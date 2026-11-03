@@ -43,6 +43,13 @@ func (s *server) launchOf(r *http.Request) (launch, error) {
 	if in.Plan.PlanID == "" {
 		return launch{}, errors.New("plan is required: commit one on Verdict first")
 	}
+	if !spark.KnownDirection(in.Plan.Direction) {
+		return launch{}, errors.New("unknown direction: " + in.Plan.Direction)
+	}
+	budget, cost := s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.ProductCostUsd
+	if in.Plan.AdsUsd < 0 || in.Plan.CreatorCount < 0 || in.Plan.AdsUsd+in.Plan.CreatorCount*cost > budget {
+		return launch{}, fmt.Errorf("plan spends more than the $%.0f monthly budget", budget)
+	}
 	l := launch{Plan: in.Plan, Title: in.Plan.Direction, Spec: engine.RunLaunch(in.Plan, s.brand), Playbook: playbookFor(in.Plan.Direction)}
 	if dirs, err := s.currentDirections(); err == nil {
 		for _, d := range dirs {
@@ -55,7 +62,7 @@ func (s *server) launchOf(r *http.Request) (launch, error) {
 }
 
 func metaEnv() (token, account string) {
-	return os.Getenv("META_ACCESS_TOKEN"), os.Getenv("META_AD_ACCOUNT_ID")
+	return os.Getenv("META_ACCESS_TOKEN"), strings.TrimPrefix(os.Getenv("META_AD_ACCOUNT_ID"), "act_")
 }
 
 // adRequest: the Meta Marketing API objects for this plan, both PAUSED. nil when the plan has no ads.
@@ -82,12 +89,14 @@ func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, 
 	case "men":
 		targeting["genders"] = []int{1}
 	}
-	campaign = map[string]any{"name": "Rehearsal · " + title + " · " + spec.StartDate, "objective": "OUTCOME_SALES",
+	// OUTCOME_TRAFFIC + LINK_CLICKS needs no pixel; the ad set ends at midnight after the last day so all days are bought.
+	endDay, _ := time.Parse("2006-01-02", spec.EndDate)
+	campaign = map[string]any{"name": "Rehearsal · " + title + " · " + spec.StartDate, "objective": "OUTCOME_TRAFFIC",
 		"status": "PAUSED", "special_ad_categories": []string{}}
 	adset = map[string]any{"name": fmt.Sprintf("%s · %s %s %s", title, country, info.Target["gender"], info.Target["age"]),
 		"daily_budget": spec.AdsDailyCents, "billing_event": "IMPRESSIONS", "optimization_goal": "LINK_CLICKS",
 		"bid_strategy": "LOWEST_COST_WITHOUT_CAP", "targeting": targeting,
-		"start_time": spec.StartDate + "T00:00:00+0000", "end_time": spec.EndDate + "T00:00:00+0000", "status": "PAUSED"}
+		"start_time": spec.StartDate + "T00:00:00+0000", "end_time": endDay.AddDate(0, 0, 1).Format("2006-01-02") + "T00:00:00+0000", "status": "PAUSED"}
 	return campaign, adset
 }
 
@@ -179,7 +188,10 @@ func (s *server) handleLaunchAds(w http.ResponseWriter, r *http.Request) {
 	adset["campaign_id"] = campaignID
 	adsetID, err := graphPost(base, "/act_"+account+"/adsets", formOf(adset), token)
 	if err != nil {
-		writeError(w, 502, err.Error())
+		// The paused campaign exists; return its id so the owner can find or delete it instead of making another.
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(502)
+		json.NewEncoder(w).Encode(map[string]any{"error": err.Error(), "campaign_id": campaignID})
 		return
 	}
 	s.writeJSON(w, map[string]any{"sent": true, "campaign_id": campaignID, "adset_id": adsetID,

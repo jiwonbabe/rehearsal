@@ -12,6 +12,9 @@ var validDirections = map[string]bool{
 	"just_post": true, "send_to_creators": true, "pay_for_reach": true, "one_week_sale": true, "mix": true,
 }
 
+// KnownDirection reports whether id is one of the catalog directions.
+func KnownDirection(id string) bool { return validDirections[id] }
+
 // pair returns a [lo, hi] from a 2-element numeric list (swapped if reversed), else def.
 func pair(v any, def [2]float64) []float64 {
 	list, ok := v.([]any)

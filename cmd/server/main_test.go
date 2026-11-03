@@ -548,3 +548,63 @@ func TestCreatorFitCached(t *testing.T) {
 		t.Errorf("uncached: %d", code)
 	}
 }
+
+func TestLaunchRejectsUnknownDirectionAndOverBudget(t *testing.T) {
+	ts := newTestServer(t)
+	plan := `{"plan_id":"x","direction":"%s","posts_per_week":4,"post_mix":{"on_hand":1},"creator_count":%d,"ads_usd":%d,"promo_week":null,"promo_discount":0}`
+	for _, c := range []struct {
+		dir       string
+		creators  int
+		ads, want int
+	}{{"../../etc", 0, 0, 400}, {"pay_for_reach", 0, 100000, 400}, {"send_to_creators", 500, 0, 400}, {"pay_for_reach", 0, 200, 200}} {
+		body := fmt.Sprintf(plan, c.dir, c.creators, c.ads)
+		if code := call(t, ts, "POST", "/api/launch", `{"plan":`+body+`}`, nil); code != c.want {
+			t.Errorf("%s: got %d want %d", body, code, c.want)
+		}
+	}
+}
+
+func TestLaunchAdRequestCoversAllDays(t *testing.T) {
+	t.Setenv("META_ACCESS_TOKEN", "")
+	ts := newTestServer(t)
+	var out struct {
+		AdRequest map[string]map[string]any `json:"ad_request"`
+	}
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	adset, campaign := out.AdRequest["adset"], out.AdRequest["campaign"]
+	if adset["start_time"] != "2026-11-02T00:00:00+0000" || adset["end_time"] != "2026-11-30T00:00:00+0000" {
+		t.Errorf("window %v..%v", adset["start_time"], adset["end_time"])
+	}
+	if campaign["objective"] != "OUTCOME_TRAFFIC" {
+		t.Errorf("objective %v", campaign["objective"])
+	}
+}
+
+func TestLaunchAdsAdsetFailureReportsCampaign(t *testing.T) {
+	graph := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasSuffix(r.URL.Path, "/campaigns") {
+			w.Write([]byte(`{"id":"77"}`))
+			return
+		}
+		w.WriteHeader(400)
+		w.Write([]byte(`{"error":{"message":"needs promoted_object"}}`))
+	}))
+	defer graph.Close()
+	t.Setenv("META_GRAPH_URL", graph.URL)
+	t.Setenv("META_ACCESS_TOKEN", "tok")
+	t.Setenv("META_AD_ACCOUNT_ID", "act_123")
+	ts := newTestServer(t)
+	resp, err := http.Post(ts.URL+"/api/launch/ads", "application/json", strings.NewReader(launchBody(t, ts)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+	var out struct {
+		Error      string `json:"error"`
+		CampaignID string `json:"campaign_id"`
+	}
+	json.NewDecoder(resp.Body).Decode(&out)
+	if resp.StatusCode != 502 || out.CampaignID != "77" || !strings.Contains(out.Error, "promoted_object") {
+		t.Errorf("%d %+v", resp.StatusCode, out)
+	}
+}

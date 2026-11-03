@@ -57,7 +57,7 @@ function adsCard(d) {
         out.textContent = 'Not connected to a Meta ad account yet. This is the exact request Rehearsal would send. Set META_AD_ACCOUNT_ID and META_ACCESS_TOKEN on the server to send it.';
         b.disabled = false;
       }
-    } catch (e) { out.textContent = 'Meta said no: ' + e.message; out.style.color = '#c2410c'; b.disabled = false; }
+    } catch (e) { out.textContent = 'Meta said no: ' + e.message + (e.campaign_id ? ` (paused campaign ${e.campaign_id} was created; delete it in Ads Manager before retrying)` : ''); out.style.color = '#c2410c'; b.disabled = false; }
   };
   c.appendChild(b); c.appendChild(out);
   return c;

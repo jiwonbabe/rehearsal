@@ -17,7 +17,7 @@ Rehearsal stress-tests a small brand's monthly marketing plan against shocks and
 
 ## Launch
 
-Commit on Verdict leads to Launch, where the committed plan becomes actions. The server builds the Meta Marketing API objects (campaign `OUTCOME_SALES` + ad set with targeting from the confirmed customer, daily budget from the engine) and creates them `PAUSED` in the owner's ad account when `META_AD_ACCOUNT_ID` and `META_ACCESS_TOKEN` are set; without them it shows the exact request and sends nothing. The creator kit carries the search terms, the piece to send and the DM; the 4-week calendar downloads as `.ics`. No spend ever starts from Rehearsal: the owner switches the campaign on in Ads Manager.
+Commit on Verdict leads to Launch, where the committed plan becomes actions. The server builds the Meta Marketing API objects (campaign `OUTCOME_TRAFFIC` + ad set with targeting from the confirmed customer, daily budget from the engine) and creates them `PAUSED` in the owner's ad account when `META_AD_ACCOUNT_ID` and `META_ACCESS_TOKEN` are set; without them it shows the exact request and sends nothing. The creator kit carries the search terms, the piece to send and the DM; the 4-week calendar downloads as `.ics`. No spend ever starts from Rehearsal: the owner switches the campaign on in Ads Manager.
 
 ## Model access
 

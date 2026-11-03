@@ -103,11 +103,11 @@ playbook file by direction id (the direction's own `caution` already carries las
   `https://graph.facebook.com/v21.0/act_<id>/...` (form-encoded, stdlib `net/http`), both
   `status=PAUSED`, returns `{sent: true, campaign_id, adset_id, url}`. Without credentials:
   `{sent: false, reason: "no_credentials", request}`. `META_GRAPH_URL` overrides the base for
-  tests. Campaign: `objective=OUTCOME_SALES`, `special_ad_categories=[]`. Ad set:
+  tests. Campaign: `objective=OUTCOME_TRAFFIC` (no pixel needed with `LINK_CLICKS`), `special_ad_categories=[]`. Ad set:
   `daily_budget=<cents>`, `billing_event=IMPRESSIONS`, `optimization_goal=LINK_CLICKS`,
   `bid_strategy=LOWEST_COST_WITHOUT_CAP`, `targeting={geo_locations:{countries:[market]},
   age_min, age_max, genders}` (women→[2], men→[1], everyone→omitted; market `other`→`US`),
-  `start_time`/`end_time` at 00:00Z.
+  `start_time` at 00:00Z on the start date, `end_time` at 00:00Z the day after the end date so all 28 days are bought.
 - `POST /api/launch/calendar {plan}` → `text/calendar`, one all-day `VEVENT` per week
   ("Week N: post 3× (2 on hand, 1 close up) · ship 4 pieces") plus one on `start_date` for
   the ad campaign when ads > 0.

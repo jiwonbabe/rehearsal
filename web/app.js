@@ -19,7 +19,7 @@ async function api(path, body) {
     : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   let json = null;
   try { json = await res.json(); } catch (e) { /* non-JSON body */ }
-  if (!res.ok) throw new Error((json && json.error) || String(res.status));
+  if (!res.ok) { const err = new Error((json && json.error) || String(res.status)); if (json && json.campaign_id) err.campaign_id = json.campaign_id; throw err; }
   return json;
 }
 

@@ -186,6 +186,9 @@ func Playbook(direction, profile, brand map[string]any) (map[string]any, error) 
 		return nil, err
 	}
 	id, _ := direction["id"].(string)
+	if !KnownDirection(id) {
+		return nil, errors.New("unknown direction id: " + id)
+	}
 	return Call("playbook-"+id, fill(tpl, map[string]any{"DIRECTION_JSON": direction, "PROFILE_JSON": profile, "BRAND_JSON": brand}))
 }
 

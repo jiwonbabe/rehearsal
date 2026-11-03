@@ -1,6 +1,8 @@
 package spark
 
 import (
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -179,5 +181,20 @@ func TestValidateCreatorFit(t *testing.T) {
 	}
 	if len(p) != 5 {
 		t.Errorf("keys %v", p)
+	}
+}
+
+func TestPlaybookIDCannotEscapeCache(t *testing.T) {
+	tmp := t.TempDir()
+	os.WriteFile(filepath.Join(tmp, "secret.json"), []byte(`{"weeks":[]}`), 0o644)
+	old := CacheDir
+	CacheDir = filepath.Join(tmp, "cache")
+	t.Cleanup(func() { CacheDir = old })
+	t.Setenv("MUSE_API_KEY", "")
+	if _, err := Playbook(map[string]any{"id": "/../secret"}, nil, nil); err == nil {
+		t.Fatal("traversal id read a file outside the cache dir")
+	}
+	if !KnownDirection("pay_for_reach") || KnownDirection("../x") {
+		t.Error("KnownDirection")
 	}
 }

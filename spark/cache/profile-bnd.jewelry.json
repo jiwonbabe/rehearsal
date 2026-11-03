@@ -1,0 +1,20 @@
+{
+ "best_post_type": "close_up",
+ "confidence": "high",
+ "handle": "bnd.jewelry",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "200+"
+ },
+ "market": "KR",
+ "post_types_seen": {
+  "close_up": "most",
+  "flat_lay": "some",
+  "on_hand": "some",
+  "on_neck": "some"
+ },
+ "style": "Minimal elegant everyday fine jewelry with soft beige aesthetic",
+ "what_they_sell": "Delicate gold diamond rings, necklaces and earrings",
+ "why": "Korean bio lists Seoul address and grid shows dainty diamond rings and necklaces in minimal beige styling."
+}

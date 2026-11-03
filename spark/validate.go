@@ -153,3 +153,44 @@ func ValidateCheck(raw map[string]any, allowed []float64) (string, bool) {
 	}
 	return text, true
 }
+
+func oneOf(v any, allowed ...string) string {
+	s, _ := v.(string)
+	for _, a := range allowed {
+		if s == a {
+			return s
+		}
+	}
+	return ""
+}
+
+func sentence(v any) string {
+	text, _ := v.(string)
+	r := []rune(strings.TrimSpace(text))
+	if len(r) > 200 {
+		r = r[:200]
+	}
+	return string(r)
+}
+
+// ValidateProfile returns exactly the profile keys; out-of-list labels become "".
+func ValidateProfile(raw map[string]any) map[string]any {
+	cust, _ := raw["likely_customer"].(map[string]any)
+	seen, _ := raw["post_types_seen"].(map[string]any)
+	posts := map[string]any{}
+	for _, k := range []string{"on_hand", "close_up", "flat_lay", "on_neck"} {
+		posts[k] = oneOf(seen[k], "none", "some", "most")
+	}
+	return map[string]any{
+		"handle": sentence(raw["handle"]), "what_they_sell": sentence(raw["what_they_sell"]),
+		"style": sentence(raw["style"]), "market": oneOf(raw["market"], "US", "KR", "other"),
+		"likely_customer": map[string]any{
+			"gender":     oneOf(cust["gender"], "women", "men", "everyone"),
+			"age":        oneOf(cust["age"], "18-24", "25-34", "35-44"),
+			"price_band": oneOf(cust["price_band"], "30-80", "80-200", "200+"),
+		},
+		"post_types_seen": posts,
+		"best_post_type":  oneOf(raw["best_post_type"], "on_hand", "close_up", "flat_lay", "on_neck"),
+		"confidence":      oneOf(raw["confidence"], "low", "medium", "high"), "why": sentence(raw["why"]),
+	}
+}

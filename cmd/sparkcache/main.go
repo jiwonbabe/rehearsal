@@ -4,9 +4,13 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
+	"sort"
+	"strings"
 
 	"rehearsal/engine"
 	"rehearsal/spark"
@@ -77,6 +81,7 @@ func main() {
 	}
 
 	checkLine(m1, rates, brand)
+	profileStep()
 	if failed {
 		os.Exit(1)
 	}
@@ -119,4 +124,29 @@ func checkLine(dirs []map[string]any, rates engine.Rates, brand *engine.Brand) {
 	} else {
 		fail(name, fmt.Errorf("check line rejected"))
 	}
+}
+
+// profileStep reads the demo screenshots in web/demo-posts/ into a profile read for bnd.jewelry.
+func profileStep() {
+	name := "profile-bnd.jewelry"
+	files, _ := filepath.Glob("web/demo-posts/*")
+	sort.Strings(files)
+	var images []string
+	for _, f := range files {
+		ext := strings.ToLower(filepath.Ext(f))
+		mime := map[string]string{".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}[ext]
+		raw, err := os.ReadFile(f)
+		if mime == "" || err != nil {
+			continue
+		}
+		images = append(images, "data:"+mime+";base64,"+base64.StdEncoding.EncodeToString(raw))
+	}
+	raw, err := spark.Profile("bnd.jewelry", images)
+	if err != nil {
+		fail(name, err)
+		return
+	}
+	p := spark.ValidateProfile(raw)
+	c := p["likely_customer"].(map[string]any)
+	fmt.Printf("ok %s: %v %v %v %v %v %v\n", name, p["market"], c["gender"], c["age"], c["price_band"], p["best_post_type"], p["confidence"])
 }

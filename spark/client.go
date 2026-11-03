@@ -52,6 +52,19 @@ func cachePath(name string) string {
 
 // Call returns parsed JSON from Spark. Cache first; live only with MUSE_API_KEY.
 func Call(name, prompt string) (map[string]any, error) {
+	return callContent(name, []any{map[string]any{"type": "text", "text": prompt}})
+}
+
+// CallWithImages is Call with image data URLs (data:image/...;base64,...) after the text part.
+func CallWithImages(name, prompt string, images []string) (map[string]any, error) {
+	content := []any{map[string]any{"type": "text", "text": prompt}}
+	for _, url := range images {
+		content = append(content, map[string]any{"type": "image_url", "image_url": map[string]string{"url": url}})
+	}
+	return callContent(name, content)
+}
+
+func callContent(name string, content []any) (map[string]any, error) {
 	if err := os.MkdirAll(CacheDir, 0o755); err != nil {
 		return nil, err
 	}
@@ -75,7 +88,7 @@ func Call(name, prompt string) (map[string]any, error) {
 	}
 	body, _ := json.Marshal(map[string]any{
 		"model":           model,
-		"messages":        []map[string]string{{"role": "user", "content": prompt}},
+		"messages":        []map[string]any{{"role": "user", "content": content}},
 		"response_format": map[string]string{"type": "json_object"},
 		"temperature":     0.2,
 	})
@@ -143,4 +156,25 @@ func Check(aID, bID string, flip map[string]any, aTitle, bTitle string) (map[str
 		return nil, err
 	}
 	return Call("check-"+aID+"-"+bID, fill(tpl, map[string]any{"FLIP_JSON": flip, "A_TITLE": aTitle, "B_TITLE": bTitle}))
+}
+
+// SafeHandle lowercases, strips a leading @, and keeps only [a-z0-9._-].
+func SafeHandle(handle string) string {
+	var b strings.Builder
+	for _, c := range strings.TrimPrefix(strings.ToLower(strings.TrimSpace(handle)), "@") {
+		if (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '.' || c == '_' || c == '-' {
+			b.WriteRune(c)
+		}
+	}
+	return b.String()
+}
+
+// Profile: reads a brand's Instagram screenshots (data URLs) into labels. Cached by handle,
+// so the same handle returns the same read whatever the images.
+func Profile(handle string, images []string) (map[string]any, error) {
+	tpl, err := loadPrompt("profile.md")
+	if err != nil {
+		return nil, err
+	}
+	return CallWithImages("profile-"+SafeHandle(handle), fill(tpl, map[string]any{"HANDLE": handle}), images)
 }

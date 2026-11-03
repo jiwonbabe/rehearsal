@@ -323,3 +323,41 @@ func (s *server) handleReviewApply(w http.ResponseWriter, r *http.Request) {
 	s.lastReview = &review
 	s.writeJSON(w, map[string]any{"month": 2, "rates": s.rates})
 }
+
+// handleProfile reads the owner's Instagram screenshots through Spark (cache-only in the demo).
+func (s *server) handleProfile(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		Source string   `json:"source"`
+		Handle string   `json:"handle"`
+		Images []string `json:"images"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeError(w, 400, err.Error())
+		return
+	}
+	if in.Source != "screenshot" {
+		writeError(w, 400, `only source "screenshot" is available; Instagram Login comes after app review`)
+		return
+	}
+	handle := spark.SafeHandle(in.Handle)
+	if handle == "" {
+		writeError(w, 400, "handle is required")
+		return
+	}
+	if len(in.Images) == 0 || len(in.Images) > 8 {
+		writeError(w, 400, "send 1 to 8 screenshots")
+		return
+	}
+	for _, img := range in.Images {
+		if !strings.HasPrefix(img, "data:image/") || len(img) > 4_000_000 {
+			writeError(w, 400, "each screenshot must be a data:image/ URL under 4 MB")
+			return
+		}
+	}
+	raw, err := spark.Profile(handle, in.Images)
+	if err != nil {
+		writeError(w, 503, "no cached read for @"+handle+"; run `go run ./cmd/sparkcache` with MUSE_API_KEY set")
+		return
+	}
+	s.writeJSON(w, spark.ValidateProfile(raw))
+}

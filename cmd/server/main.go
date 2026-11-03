@@ -8,6 +8,7 @@
 //	/api/summary         the block the planner prompt gets
 //	/api/directions      Spark directions for the current month, sorted by rank
 //	/api/setup   POST    {budget_usd_per_month, goal_orders_per_month, target, market}
+//	/api/profile POST    {source:"screenshot", handle, images:[data URLs]} -> labels read from the profile
 //	/api/stress  POST    {direction_ids:[...]} -> plans, matrix, verdict, flip, check
 //	/api/review  POST    {plan} (optional) -> committed plan + review + new rates
 //	/api/review/apply POST  adopt the reviewed rates, move to month 2
@@ -63,6 +64,7 @@ func (s *server) routes() *http.ServeMux {
 	}))
 	mux.HandleFunc("/api/directions", s.locked(s.handleDirections))
 	mux.HandleFunc("POST /api/setup", s.locked(s.handleSetup))
+	mux.HandleFunc("POST /api/profile", s.locked(s.handleProfile))
 	mux.HandleFunc("POST /api/stress", s.locked(s.handleStress))
 	mux.HandleFunc("POST /api/review", s.locked(s.handleReview))
 	mux.HandleFunc("POST /api/review/apply", s.locked(s.handleReviewApply))

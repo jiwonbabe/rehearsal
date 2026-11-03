@@ -266,3 +266,57 @@ func TestBaselineIndependentOfClickOrder(t *testing.T) {
 		t.Errorf("baseline survived %d vs %d", a, b)
 	}
 }
+
+func TestProfileBadRequests(t *testing.T) {
+	ts := newTestServer(t)
+	img := `"images":["data:image/png;base64,AA=="]`
+	for name, body := range map[string]string{
+		"bad source":   `{"source":"instagram","handle":"bnd.jewelry",` + img + `}`,
+		"empty handle": `{"source":"screenshot","handle":"@ !",` + img + `}`,
+		"no images":    `{"source":"screenshot","handle":"bnd.jewelry","images":[]}`,
+		"not an image": `{"source":"screenshot","handle":"bnd.jewelry","images":["http://x/y.png"]}`,
+	} {
+		if code := call(t, ts, "POST", "/api/profile", body, nil); code != 400 {
+			t.Errorf("%s: status %d, want 400", name, code)
+		}
+	}
+}
+
+func TestProfileCached(t *testing.T) {
+	ts := newTestServer(t)
+	var out struct {
+		Market       string            `json:"market"`
+		Customer     map[string]string `json:"likely_customer"`
+		BestPostType string            `json:"best_post_type"`
+		Confidence   string            `json:"confidence"`
+	}
+	body := `{"source":"screenshot","handle":"bnd.jewelry","images":["data:image/png;base64,AA=="]}`
+	if code := call(t, ts, "POST", "/api/profile", body, &out); code != 200 {
+		t.Fatalf("status %d", code)
+	}
+	in := func(v string, list ...string) bool {
+		for _, l := range list {
+			if v == l {
+				return true
+			}
+		}
+		return false
+	}
+	if !in(out.Market, "US", "KR", "other") || !in(out.Customer["gender"], "women", "men", "everyone") ||
+		!in(out.Customer["age"], "18-24", "25-34", "35-44") || !in(out.Customer["price_band"], "30-80", "80-200", "200+") ||
+		!in(out.BestPostType, "on_hand", "close_up", "flat_lay", "on_neck") || !in(out.Confidence, "low", "medium", "high") {
+		t.Errorf("labels not in allowed lists: %+v", out)
+	}
+}
+
+func TestProfileNoCacheNoKey(t *testing.T) {
+	t.Setenv("MUSE_API_KEY", "")
+	ts := newTestServer(t)
+	body := `{"source":"screenshot","handle":"nobody.here","images":["data:image/png;base64,AA=="]}`
+	if code := call(t, ts, "POST", "/api/profile", body, nil); code != 503 {
+		t.Errorf("status %d, want 503", code)
+	}
+	if _, err := os.Stat("spark/cache/profile-nobody.here.json"); err == nil {
+		t.Error("cache file should not be created")
+	}
+}

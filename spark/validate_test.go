@@ -1,6 +1,9 @@
 package spark
 
-import "testing"
+import (
+	"strings"
+	"testing"
+)
 
 func rawDir(id string, ranges map[string]any) map[string]any {
 	return map[string]any{"id": id, "title": id, "rank": 1.0, "ranges": ranges}
@@ -94,5 +97,36 @@ func TestValidateDirectionsNormalizesPercentDiscount(t *testing.T) {
 	got := out[0]["ranges"].(map[string]any)["promo_discount"].([]float64)
 	if got[0] != 0.15 || got[1] != 0.25 {
 		t.Errorf("promo_discount: %v", got)
+	}
+}
+
+func TestValidateProfile(t *testing.T) {
+	long := strings.Repeat("é", 300)
+	raw := map[string]any{
+		"handle": "bnd.jewelry", "what_they_sell": long, "style": "minimal", "market": "JP",
+		"likely_customer": map[string]any{"gender": "women", "age": "25-34", "price_band": "5000"},
+		"post_types_seen": map[string]any{"on_hand": "some", "close_up": "most", "flat_lay": "lots"},
+		"best_post_type":  "close_up", "confidence": "high",
+	}
+	out := ValidateProfile(raw)
+	if n := len([]rune(out["what_they_sell"].(string))); n != 200 {
+		t.Errorf("sentence not trimmed to 200 runes: %d", n)
+	}
+	if out["market"] != "" {
+		t.Errorf("invalid market kept: %v", out["market"])
+	}
+	c := out["likely_customer"].(map[string]any)
+	if c["gender"] != "women" || c["age"] != "25-34" || c["price_band"] != "" {
+		t.Errorf("likely_customer: %v", c)
+	}
+	p := out["post_types_seen"].(map[string]any)
+	if p["on_hand"] != "some" || p["close_up"] != "most" || p["flat_lay"] != "" || p["on_neck"] != "" {
+		t.Errorf("post_types_seen: %v", p)
+	}
+	if out["best_post_type"] != "close_up" || out["confidence"] != "high" || out["style"] != "minimal" || out["handle"] != "bnd.jewelry" {
+		t.Errorf("valid fields changed: %v", out)
+	}
+	if len(ValidateProfile(nil)) != 9 {
+		t.Errorf("empty input should still have all 9 keys")
 	}
 }

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehearsal directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="page">
+  <div id="taught" style="display:none;background:#17181c;color:#f3f4f1;border-radius:12px;padding:16px 20px;gap:16px;align-items:center;grid-template-columns:auto 1fr">
+    <div style="font-size:11px;font-weight:600;color:#9fb8cf;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap">What October taught us</div>
+    <div id="taught-body" style="font-size:14px;line-height:1.45"></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px"><h1 id="title" style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.01em"></h1></div>
+  <div id="cards" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px"></div>
+  <div class="card" style="padding:20px 24px;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div id="foot" style="font-size:13px;color:#5c6066"></div>
+    <button id="go" class="btn" disabled>Test these</button>
+  </div>
+</div>
+<script src="/app.js"></script>
+<script>
+renderHeader(1, 'Directions · this month');
+let dirs = [], sel = getSelected().slice(0, 2);
+function draw() {
+  $cards.innerHTML = '';
+  dirs.forEach(d => {
+    const on = sel.includes(d.id), r = d.ranges;
+    const c = document.createElement('div');
+    c.className = 'card' + (on ? ' on' : '');
+    c.style.padding = '22px';
+    const rangeLine = `${money(r.ads_usd[0])}–${money(r.ads_usd[1])} ads · ${r.creator_count[0]}–${r.creator_count[1]} creators · ${r.posts_per_week[0]}–${r.posts_per_week[1]} posts/wk`;
+    c.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <div style="font-size:12px;font-weight:600;color:${d.rank === 1 ? '#2f5d8a' : '#5c6066'};text-transform:uppercase;letter-spacing:.06em">${d.rank === 1 ? 'Suggested first' : 'Also fits'}</div>
+        <div class="mono" style="font-size:12px;color:#5c6066">${rangeLine}</div></div>
+      <div style="font-size:20px;font-weight:600"></div>
+      <div class="plain" style="font-size:14px;color:#5c6066;line-height:1.5"></div>
+      <div style="display:flex;gap:10px;padding:10px 12px;background:#f3f4f1;border-radius:8px;font-size:13px;line-height:1.45"><span style="font-weight:600;white-space:nowrap">Why for you</span><span class="why"></span></div>
+      <div class="do" style="font-size:12px;color:#5c6066"></div>`;
+    c.children[1].textContent = d.title;
+    c.querySelector('.plain').textContent = d.plain;
+    c.querySelector('.why').textContent = d.why_for_you;
+    c.querySelector('.do').textContent = 'You would do: ' + d.you_would_do;
+    if (d.caution) {
+      const k = document.createElement('div');
+      k.className = 'caution';
+      k.innerHTML = '<span style="font-weight:600;white-space:nowrap;color:#c2410c">Caution</span><span></span>';
+      k.lastChild.textContent = d.caution;
+      c.insertBefore(k, c.querySelector('.do'));
+    }
+    const b = document.createElement('button');
+    b.className = on ? 'btn' : 'btn ghost';
+    b.style.minHeight = '44px'; b.style.fontSize = '14px';
+    b.textContent = on ? 'Selected' : 'Select';
+    b.onclick = () => {
+      if (on) sel = sel.filter(x => x !== d.id);
+      else if (sel.length < 2) sel.push(d.id);
+      else return;
+      draw();
+    };
+    c.appendChild(b);
+    $cards.appendChild(c);
+  });
+  const n = sel.length;
+  $foot.textContent = `${n} direction${n === 1 ? '' : 's'} selected · the engine will build ${n * 60} variants and attack each with 20 bad months.`;
+  $go.disabled = n === 0;
+}
+const $cards = document.getElementById('cards'), $foot = document.getElementById('foot'), $go = document.getElementById('go');
+$go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
+(async () => {
+  try {
+    const data = await api('/api/directions');
+    dirs = data.directions.slice().sort((a, b) => a.rank - b.rank);
+    sel = sel.filter(id => dirs.some(d => d.id === id));
+    document.getElementById('title').textContent = (data.month === 2 ? 'November' : 'This month') + ': pick one or two directions';
+    const lm = data.last_month;
+    if (data.month === 2 && lm) {
+      const t = document.getElementById('taught');
+      t.style.display = 'grid';
+      const body = document.getElementById('taught-body');
+      const p = (s) => { const e = document.createElement('div'); e.textContent = s; body.appendChild(e); };
+      p(lm.diagnosis);
+      p(`Orders ${lm.actual.orders} vs ${lm.range[0]}–${lm.range[1]}`);
+      (lm.rate_changes || []).forEach(r => p(`${r.rate} ${r.old} → ${r.new}`));
+    }
+    draw();
+  } catch (e) { showError(e); }
+})();
+</script>
+</body>
+</html>

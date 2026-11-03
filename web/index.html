@@ -1,1 +1,103 @@
-<!doctype html><meta charset="utf-8"><title>Rehearsal</title><p>Demo brand · synthetic data. API: <a href="/api/summary">/api/summary</a></p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehearsal setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="page" style="max-width:1120px">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <h1 style="margin:0;font-size:34px;font-weight:600;letter-spacing:-.01em">Tell us who you sell to. We'll do the marketing homework.</h1>
+    <p style="margin:0;font-size:16px;color:#5c6066;max-width:680px;line-height:1.5">Confirm who your customer is, set a monthly budget, and from then on you only pick a direction each month.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+    <div class="card" style="padding:24px;gap:14px">
+      <div class="label">Demo brand</div>
+      <div id="brand-name" style="font-size:15px;font-weight:600"></div>
+      <div style="font-size:12px;color:#5c6066">52 weeks of synthetic data</div>
+    </div>
+    <div class="card" style="padding:24px;gap:14px">
+      <div class="label">Monthly budget and goal</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Budget per month ($)
+          <input id="budget" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%"></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Orders goal per month
+          <input id="goal" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%"></label>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px"><button id="save" class="btn ghost" style="min-height:40px">Save</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
+    </div>
+  </div>
+
+  <div class="card" style="padding:24px;gap:16px">
+    <div class="label">Who you sell to</div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Market
+        <select id="market" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="US">United States</option><option value="KR">South Korea</option></select></label>
+      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Gender
+        <select id="gender" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="women">Women</option><option value="men">Men</option><option value="everyone">Everyone</option></select></label>
+      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Age
+        <select id="age" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="18-24">18–24</option><option value="25-34">25–34</option><option value="35-44">35–44</option></select></label>
+      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Price band
+        <select id="price_band" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="30-80">$30–80</option><option value="80-200">$80–200</option><option value="200+">$200+</option></select></label>
+    </div>
+  </div>
+
+  <div class="card" style="padding:24px;gap:16px">
+    <div class="label">Engine trust check</div>
+    <div style="display:flex;gap:32px;flex-wrap:wrap;font-size:13px">
+      <div><div style="color:#5c6066">Median weekly error</div><div id="bt-err" class="mono" style="font-size:20px"></div></div>
+      <div><div style="color:#5c6066">Weeks inside engine range</div><div id="bt-in" class="mono" style="font-size:20px"></div></div>
+    </div>
+    <table style="border-collapse:collapse;font-size:13px;width:100%">
+      <thead><tr style="text-align:left;color:#5c6066"><th>Week</th><th>Actual</th><th>Engine</th><th>Range</th><th></th><th></th></tr></thead>
+      <tbody id="bt-rows" class="mono"></tbody>
+    </table>
+    <div id="bt-weak" style="display:none;font-size:13px;color:#c2410c">Known weakness: the engine's sale-week estimate is its weakest</div>
+  </div>
+
+  <div style="display:flex;justify-content:flex-end"><a class="btn" href="/directions.html">See this month's directions</a></div>
+</div>
+<script src="/app.js"></script>
+<script>
+renderHeader(0, 'Setup · once');
+const $ = id => document.getElementById(id);
+function fill(b) {
+  $('brand-name').textContent = b.name;
+  $('budget').value = b.budget_usd_per_month;
+  $('goal').value = b.goal_orders_per_month;
+  $('market').value = b.market;
+  $('gender').value = b.target.gender;
+  $('age').value = b.target.age;
+  $('price_band').value = b.target.price_band;
+}
+async function loadBacktest() {
+  const bt = await api('/api/backtest');
+  $('bt-err').textContent = bt.median_abs_pct_error + '%';
+  $('bt-in').textContent = bt.weeks_inside_range + ' / ' + bt.weeks_total;
+  let weak = false;
+  $('bt-rows').innerHTML = bt.rows.map(r => {
+    const inside = r.actual >= r.low && r.actual <= r.high;
+    if (r.promo && !inside) weak = true;
+    return `<tr><td>${r.week}</td><td>${r.actual}</td><td>${r.engine}</td><td>${r.low}–${r.high}</td>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:5px;background:${inside ? '#2f5d8a' : '#c2410c'}"></span></td>
+      <td style="color:#5c6066">${r.promo ? 'sale week' : ''}</td></tr>`;
+  }).join('');
+  $('bt-weak').style.display = weak ? 'block' : 'none';
+}
+$('save').onclick = async () => {
+  try {
+    const b = await api('/api/setup', {
+      budget_usd_per_month: Number($('budget').value), goal_orders_per_month: Number($('goal').value),
+      target: { gender: $('gender').value, age: $('age').value, price_band: $('price_band').value }, market: $('market').value });
+    fill(b); $('saved').textContent = 'Saved'; await loadBacktest();
+  } catch (e) { $('saved').textContent = ''; showError(e); }
+};
+(async () => { try { fill(await api('/api/brand')); await loadBacktest(); } catch (e) { showError(e); } })();
+</script>
+</body>
+</html>

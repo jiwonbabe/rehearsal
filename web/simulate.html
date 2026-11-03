@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehearsal stress test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="page">
+  <div id="empty" style="display:none;font-size:15px">Pick a direction first. <a href="/directions.html">Back to directions</a></div>
+  <div id="main" style="display:none;grid-template-columns:300px minmax(0,1fr) 280px;gap:20px">
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div class="card" style="padding:18px 20px;gap:10px">
+        <div style="font-size:13px;font-weight:600">Planner · Muse Spark</div>
+        <div style="font-size:12px;color:#5c6066;line-height:1.4">Proposes parameters only. Never a number for orders or revenue.</div>
+        <pre id="plan" class="mono" style="margin:0;font-size:11.5px;line-height:1.5;background:#17181c;color:#d9dbd4;border-radius:8px;padding:14px;overflow-x:auto"></pre>
+      </div>
+    </div>
+    <div id="matrices" style="display:flex;flex-direction:column;gap:16px;min-width:0"></div>
+    <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div id="adv" style="display:flex;flex-direction:column;gap:12px"></div>
+      <a class="btn" href="/verdict.html">See the verdict</a>
+    </div>
+  </div>
+</div>
+<script src="/app.js"></script>
+<script>
+renderHeader(2, 'Simulate · stress test');
+const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
+const planEl = () => document.getElementById('plan');
+const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); };
+(async () => {
+  const ids = getSelected();
+  if (!ids.length) { document.getElementById('empty').style.display = 'block'; return; }
+  try {
+    const data = await api('/api/stress', { direction_ids: ids });
+    document.getElementById('main').style.display = 'grid';
+    showPlan(data.directions[0].plans[0]);
+    data.directions.forEach(d => {
+      const plans = d.plans, combos = d.stress.combos;
+      const box = el('div', '', ''); box.className = 'card'; box.style.cssText = 'padding:18px 20px;min-width:0';
+      box.appendChild(el('div', 'font-size:13px;font-weight:600', `${d.title} · ${plans.length} variants × ${combos.length} bad months`));
+      const lg = el('div', 'display:flex;gap:14px;font-size:12px;color:#5c6066');
+      lg.innerHTML = '<span><span class="cell" style="display:inline-block;vertical-align:middle;width:12px;height:12px"></span> survived</span><span><span class="cell died" style="display:inline-block;vertical-align:middle;width:12px;height:12px"></span> died</span>';
+      box.appendChild(lg);
+      const grid = el('div', 'display:flex;flex-direction:column;gap:3px;overflow-x:auto');
+      plans.forEach(p => {
+        const row = el('div', 'display:flex;gap:3px;align-items:center');
+        row.appendChild(el('div', 'width:28px;font-size:9px;color:#5c6066;text-align:right', p.plan_id.split('-').pop())).className = 'mono';
+        const pt = planText(p);
+        (d.stress.matrix[p.plan_id] || []).forEach(c => {
+          const cell = el('div'); cell.className = 'cell' + (c.survived ? '' : ' died');
+          cell.title = `${pt} · ${shockText(c.shocks, data.catalog)} · ${Math.round(c.orders)} orders, ${money(c.spend_usd)}`;
+          row.appendChild(cell);
+        });
+        row.onmouseenter = () => showPlan(p);
+        grid.appendChild(row);
+      });
+      box.appendChild(grid);
+      box.appendChild(el('div', 'font-size:11px;color:#5c6066', `${plans.length * combos.length} runs · deterministic · same input, same output`)).className = 'mono';
+      document.getElementById('matrices').appendChild(box);
+
+      const adv = el('div'); adv.className = 'card'; adv.style.cssText = 'padding:18px 20px;gap:10px';
+      adv.appendChild(el('div', 'font-size:13px;font-weight:600', `Adversary · Muse Spark · ${d.title}`));
+      combos.forEach((codes, i) => {
+        const row = el('div', 'padding:8px 10px;background:#f3f4f1;border-radius:6px;font-size:12.5px');
+        const prior = codes.length ? data.priors[codes[0]] : undefined;
+        row.appendChild(el('div', 'display:flex;justify-content:space-between;gap:8px', '')).append(
+          el('span', '', shockText(codes, data.catalog)), el('span', 'color:#5c6066;font-family:IBM Plex Mono,monospace', prior === undefined ? '' : 'p ' + prior));
+        const sh = d.shocks.find(s => s.codes.join('|') === codes.join('|'));
+        if (sh && sh.why) row.appendChild(el('div', 'font-size:11.5px;color:#5c6066;margin-top:4px', sh.why));
+        adv.appendChild(row);
+      });
+      document.getElementById('adv').appendChild(adv);
+    });
+  } catch (e) { showError(e); }
+})();
+</script>
+</body>
+</html>

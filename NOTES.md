@@ -14,3 +14,5 @@
 - Success metric revenue is display-only (goal ÷ avg price); the engine tests orders.
 - spark/cache/playbook-<id>.json generated live on Nov 3, 2026 (Spark role 5, prompts/playbook.md) from the cached profile read + brand basics; one file per direction id, month 2 reuses it.
 - Creator fit read (Spark role 6, prompts/creator.md) is cached by handle in spark/cache/creator-<handle>.json; the demo server has none until screenshots are dropped into web/demo-creators/<handle>.png and sparkcache is rerun.
+- Launch numbers: creator_dms = creator_count × 2 (assume half reply); ads daily budget = ads_usd / 28 days; posts per type by largest remainder of posts_per_week × mix.
+- Meta ads adapter creates campaign + ad set only (optimization_goal LINK_CLICKS, no pixel); the owner picks the boosted posts in Ads Manager. META_* env vars are read per request; MUSE_API_KEY stays unset in the server.

@@ -1,0 +1,111 @@
+{
+ "rows": [
+  {
+   "week": "2026-08-03",
+   "engine": 10.0,
+   "actual": 10,
+   "low": 8.0,
+   "high": 12.0,
+   "promo": false
+  },
+  {
+   "week": "2026-08-10",
+   "engine": 17.1,
+   "actual": 17,
+   "low": 13.7,
+   "high": 20.6,
+   "promo": false
+  },
+  {
+   "week": "2026-08-17",
+   "engine": 8.0,
+   "actual": 8,
+   "low": 6.4,
+   "high": 9.6,
+   "promo": false
+  },
+  {
+   "week": "2026-08-24",
+   "engine": 8.9,
+   "actual": 9,
+   "low": 7.1,
+   "high": 10.6,
+   "promo": false
+  },
+  {
+   "week": "2026-08-31",
+   "engine": 8.6,
+   "actual": 11,
+   "low": 6.9,
+   "high": 10.3,
+   "promo": false
+  },
+  {
+   "week": "2026-09-07",
+   "engine": 7.3,
+   "actual": 9,
+   "low": 5.9,
+   "high": 8.8,
+   "promo": false
+  },
+  {
+   "week": "2026-09-14",
+   "engine": 7.3,
+   "actual": 9,
+   "low": 5.9,
+   "high": 8.8,
+   "promo": false
+  },
+  {
+   "week": "2026-09-21",
+   "engine": 11.6,
+   "actual": 12,
+   "low": 9.3,
+   "high": 14.0,
+   "promo": false
+  },
+  {
+   "week": "2026-09-28",
+   "engine": 8.9,
+   "actual": 11,
+   "low": 7.1,
+   "high": 10.6,
+   "promo": false
+  },
+  {
+   "week": "2026-10-05",
+   "engine": 13.1,
+   "actual": 12,
+   "low": 10.5,
+   "high": 15.7,
+   "promo": false
+  },
+  {
+   "week": "2026-10-12",
+   "engine": 13.1,
+   "actual": 10,
+   "low": 10.5,
+   "high": 15.7,
+   "promo": false
+  },
+  {
+   "week": "2026-10-19",
+   "engine": 15.4,
+   "actual": 17,
+   "low": 12.3,
+   "high": 18.5,
+   "promo": false
+  },
+  {
+   "week": "2026-10-26",
+   "engine": 12.2,
+   "actual": 14,
+   "low": 9.8,
+   "high": 14.7,
+   "promo": false
+  }
+ ],
+ "median_abs_pct_error": 9.5,
+ "weeks_inside_range": 8,
+ "weeks_total": 13
+}

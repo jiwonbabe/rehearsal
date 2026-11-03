@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rehearsal stress test</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#17181c;background:#f3f4f1}
+a{color:#17181c}a:hover{color:#2f5d8a}
+</style>
+</helmet>
+<div style="min-height: 820px; box-sizing: border-box; background: #f3f4f1; display: flex; flex-direction: column">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 20px 40px; border-bottom: 1px solid #d9dbd4; background: #ffffff">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 28px; height: 28px; border-radius: 6px; background: #17181c; display: flex; align-items: center; justify-content: center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f3f4f1" stroke-width="2.2" aria-hidden="true"><path d="M4 18 L10 10 L14 14 L20 6"></path></svg>
+      </div>
+      <div style="font-weight: 600; font-size: 16px">Rehearsal</div>
+      <div style="font-size: 13px; color: #5c6066; padding-left: 12px; border-left: 1px solid #d9dbd4">BND · @bnd.jewelry · connected</div>
+    </div>
+    <div style="display: flex; gap: 6px; font-size: 13px">
+      <a href="Main.dc.html" style="padding: 8px 14px; border-radius: 20px; text-decoration: none; color: #5c6066">0 Setup</a>
+      <a href="Directions.dc.html" style="padding: 8px 14px; border-radius: 20px; text-decoration: none; color: #5c6066">1 Directions</a>
+      <div style="padding: 8px 14px; border-radius: 20px; background: #17181c; color: #f3f4f1; font-weight: 500">2 Simulate</div>
+      <a href="Survivors.dc.html" style="padding: 8px 14px; border-radius: 20px; text-decoration: none; color: #5c6066">3 Verdict</a>
+      <a href="Review.dc.html" style="padding: 8px 14px; border-radius: 20px; text-decoration: none; color: #5c6066">4 Review</a>
+    </div>
+  </div>
+
+  <div style="max-width: 1200px; width: 100%; margin: 0 auto; box-sizing: border-box; padding: 36px 40px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h1 style="margin: 0; font-size: 30px; font-weight: 600; letter-spacing: -0.01em">Two directions, 120 variants, 20 bad months each</h1>
+        <p style="margin: 0; font-size: 15px; color: #5c6066; max-width: 640px; line-height: 1.5">Rows 001–060 are "Pay for reach", 061–120 are "Send to creators". The planner proposes variants inside each direction, the adversary picks shocks, the engine computes every cell.</p>
+      </div>
+      <div style="display: flex; gap: 14px; font-size: 12px; color: #5c6066; flex-wrap: wrap">
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; background: #2f5d8a; display: inline-block; border-radius: 2px"></span>hit goal</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; background: #9fb8cf; display: inline-block; border-radius: 2px"></span>break-even</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; background: #e8d2c2; display: inline-block; border-radius: 2px"></span>lost money</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; background: #c2410c; display: inline-block; border-radius: 2px"></span>budget gone by week 6</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 300px minmax(0, 1fr) 280px; gap: 20px">
+
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; justify-content: space-between">
+            <div style="font-size: 13px; font-weight: 600">Planner · Muse Spark</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5c6066">patch 312 / 500</div>
+          </div>
+          <div style="font-size: 12px; color: #5c6066; line-height: 1.4">Proposes parameters only. Never a number for orders or revenue.</div>
+          <pre style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; line-height: 1.5; background: #17181c; color: #d9dbd4; border-radius: 8px; padding: 14px; overflow-x: auto">{
+  "plan_id": 312,
+  "direction": "pay_for_reach",
+  "posts_per_week": 4,
+  "post_mix": {
+    "on_hand": 0.5,
+    "close_up": 0.3,
+    "flat_lay": 0.2
+  },
+  "creator_seeding": {
+    "count": 0
+  },
+  "ads_usd": 180,
+  "ad_audience": "US, women, 25-34",
+  "promo": null
+}</pre>
+        </div>
+        <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 6px">
+          <div style="font-size: 13px; font-weight: 600">Engine · deterministic</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #5c6066; line-height: 1.5">12 weeks · reach → visits → orders → cost<br>rates from backtest · same input, same output<br>model cannot read engine/ or tests/</div>
+        </div>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px">
+          <div style="font-size: 13px; font-weight: 600">Variants (top 40 of 120) × shocks</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5c6066">2,400 runs · 1.1 s</div>
+        </div>
+        <div style="display: flex; gap: 6px">
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-top: 0">
+            <sc-for list="{{rows}}" as="row" hint-placeholder-count="40">
+              <div style="display: flex; gap: 3px; align-items: center">
+                <div style="width: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #5c6066; text-align: right">{{row.label}}</div>
+                <sc-for list="{{row.cells}}" as="cell" hint-placeholder-count="20">
+                  <div style="width: 22px; height: 12px; border-radius: 2px; background: {{cell.color}}"></div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5c6066; padding-left: 34px">
+          <span>shock 1</span><span>shock 10</span><span>shock 20</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; justify-content: space-between">
+            <div style="font-size: 13px; font-weight: 600">Adversary · Muse Spark</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5c6066">20 shocks</div>
+          </div>
+          <div style="font-size: 12px; color: #5c6066; line-height: 1.4">Picks the combination most likely to break each plan. Weighted by how often it happened in your history.</div>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px">
+            <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: #f3f4f1; border-radius: 6px"><span>Reach drops 40% (algorithm)</span><span style="font-family: 'IBM Plex Mono', monospace; color: #5c6066">p .22</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: #f3f4f1; border-radius: 6px"><span>2 of 6 creators never post</span><span style="font-family: 'IBM Plex Mono', monospace; color: #5c6066">p .38</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: #f3f4f1; border-radius: 6px"><span>Competitor runs 20% sale</span><span style="font-family: 'IBM Plex Mono', monospace; color: #5c6066">p .31</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: #f3f4f1; border-radius: 6px"><span>Ad CPM up 60%</span><span style="font-family: 'IBM Plex Mono', monospace; color: #5c6066">p .18</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: #f3f4f1; border-radius: 6px"><span>Shipping delay, week 3</span><span style="font-family: 'IBM Plex Mono', monospace; color: #5c6066">p .12</span></div>
+            <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: #fff4ec; border: 1px solid #f0c9ad; border-radius: 6px"><span>Reach drop + creators no-show</span><span style="font-family: 'IBM Plex Mono', monospace; color: #c2410c">kills 71%</span></div>
+          </div>
+          <div style="font-size: 11px; color: #5c6066">+ 14 more</div>
+        </div>
+        <a href="Survivors.dc.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 20px; border-radius: 8px; background: #17181c; color: #f3f4f1; text-decoration: none; font-size: 15px; font-weight: 600">See the 3 that survived<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f3f4f1" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+  var colors = ['#2f5d8a', '#9fb8cf', '#e8d2c2', '#c2410c'];
+  var rows = [];
+  var seed = 7;
+  function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  for (var r = 0; r < 40; r++) {
+    var strength = r < 3 ? 0.92 : (r < 12 ? 0.7 : (r < 28 ? 0.45 : 0.2));
+    var cells = [];
+    for (var c = 0; c < 20; c++) {
+      var severity = c / 20;
+      var v = rnd() * 0.5 + strength - severity * 0.9;
+      var idx = v > 0.55 ? 0 : (v > 0.3 ? 1 : (v > 0.05 ? 2 : 3));
+      cells.push({ color: colors[idx] });
+    }
+    rows.push({ label: String(r + 1).padStart(3, '0'), cells: cells });
+  }
+  var yoursIdx = [0,0,0,1,0,1,2,0,1,2,3,0,2,3,1,3,2,3,3,3];
+  var yours = yoursIdx.map(function (i) { return { color: colors[i] }; });
+  return { rows: rows, yours: yours };
+}
+}
+</script>
+</body>
+</html>

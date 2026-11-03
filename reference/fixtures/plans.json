@@ -1,0 +1,602 @@
+[
+ {
+  "plan_id": "pay_for_reach-000",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.56,
+   "close_up": 0.22,
+   "flat_lay": 0.22,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 140,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-001",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.4,
+   "flat_lay": 0.1,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 240,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-002",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.62,
+   "close_up": 0.25,
+   "flat_lay": 0.12,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 140,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-003",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.36,
+   "close_up": 0.36,
+   "flat_lay": 0.27,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 180,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-004",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.4,
+   "close_up": 0.4,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 0,
+  "ads_usd": 140,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-005",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.25,
+   "flat_lay": 0.25,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 180,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-006",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.2,
+   "flat_lay": 0.3,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 180,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-007",
+  "direction": "pay_for_reach",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.38,
+   "close_up": 0.31,
+   "flat_lay": 0.23,
+   "on_neck": 0.08
+  },
+  "creator_count": 0,
+  "ads_usd": 260,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-008",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.56,
+   "close_up": 0.33,
+   "flat_lay": 0.11,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 200,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-009",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.25,
+   "flat_lay": 0.17,
+   "on_neck": 0.08
+  },
+  "creator_count": 0,
+  "ads_usd": 140,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-010",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.4,
+   "close_up": 0.4,
+   "flat_lay": 0.2,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 260,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-011",
+  "direction": "pay_for_reach",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.2,
+   "flat_lay": 0.3,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 220,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-012",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.46,
+   "close_up": 0.23,
+   "flat_lay": 0.23,
+   "on_neck": 0.08
+  },
+  "creator_count": 0,
+  "ads_usd": 200,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-013",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.42,
+   "close_up": 0.33,
+   "flat_lay": 0.25,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 200,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-014",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.43,
+   "close_up": 0.29,
+   "flat_lay": 0.21,
+   "on_neck": 0.07
+  },
+  "creator_count": 0,
+  "ads_usd": 240,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-015",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.55,
+   "close_up": 0.27,
+   "flat_lay": 0.09,
+   "on_neck": 0.09
+  },
+  "creator_count": 0,
+  "ads_usd": 140,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-016",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.56,
+   "close_up": 0.22,
+   "flat_lay": 0.11,
+   "on_neck": 0.11
+  },
+  "creator_count": 0,
+  "ads_usd": 180,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-017",
+  "direction": "pay_for_reach",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.3,
+   "flat_lay": 0.2,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 240,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-018",
+  "direction": "pay_for_reach",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.55,
+   "close_up": 0.27,
+   "flat_lay": 0.09,
+   "on_neck": 0.09
+  },
+  "creator_count": 0,
+  "ads_usd": 240,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "pay_for_reach-019",
+  "direction": "pay_for_reach",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.45,
+   "close_up": 0.36,
+   "flat_lay": 0.18,
+   "on_neck": 0.0
+  },
+  "creator_count": 0,
+  "ads_usd": 160,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-000",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.44,
+   "close_up": 0.33,
+   "flat_lay": 0.22,
+   "on_neck": 0.0
+  },
+  "creator_count": 4,
+  "ads_usd": 20,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-001",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.4,
+   "close_up": 0.4,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 7,
+  "ads_usd": 60,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-002",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.45,
+   "close_up": 0.27,
+   "flat_lay": 0.27,
+   "on_neck": 0.0
+  },
+  "creator_count": 7,
+  "ads_usd": 20,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-003",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.36,
+   "close_up": 0.36,
+   "flat_lay": 0.18,
+   "on_neck": 0.09
+  },
+  "creator_count": 4,
+  "ads_usd": 40,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-004",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.44,
+   "close_up": 0.22,
+   "flat_lay": 0.22,
+   "on_neck": 0.11
+  },
+  "creator_count": 6,
+  "ads_usd": 20,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-005",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.6,
+   "close_up": 0.2,
+   "flat_lay": 0.2,
+   "on_neck": 0.0
+  },
+  "creator_count": 8,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-006",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.4,
+   "flat_lay": 0.1,
+   "on_neck": 0.0
+  },
+  "creator_count": 6,
+  "ads_usd": 40,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-007",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.62,
+   "close_up": 0.25,
+   "flat_lay": 0.12,
+   "on_neck": 0.0
+  },
+  "creator_count": 7,
+  "ads_usd": 20,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-008",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.2,
+   "flat_lay": 0.2,
+   "on_neck": 0.1
+  },
+  "creator_count": 6,
+  "ads_usd": 20,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-009",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.44,
+   "close_up": 0.33,
+   "flat_lay": 0.22,
+   "on_neck": 0.0
+  },
+  "creator_count": 7,
+  "ads_usd": 40,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-010",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.42,
+   "close_up": 0.25,
+   "flat_lay": 0.25,
+   "on_neck": 0.08
+  },
+  "creator_count": 4,
+  "ads_usd": 20,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-011",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.67,
+   "close_up": 0.22,
+   "flat_lay": 0.11,
+   "on_neck": 0.0
+  },
+  "creator_count": 4,
+  "ads_usd": 60,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-012",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.45,
+   "close_up": 0.18,
+   "flat_lay": 0.27,
+   "on_neck": 0.09
+  },
+  "creator_count": 7,
+  "ads_usd": 60,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-013",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.56,
+   "close_up": 0.33,
+   "flat_lay": 0.11,
+   "on_neck": 0.0
+  },
+  "creator_count": 4,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-014",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.17,
+   "flat_lay": 0.25,
+   "on_neck": 0.08
+  },
+  "creator_count": 5,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-015",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.25,
+   "flat_lay": 0.12,
+   "on_neck": 0.12
+  },
+  "creator_count": 6,
+  "ads_usd": 40,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-016",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.3,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 8,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-017",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.6,
+   "close_up": 0.2,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 4,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-018",
+  "direction": "send_to_creators",
+  "posts_per_week": 3,
+  "post_mix": {
+   "on_hand": 0.4,
+   "close_up": 0.4,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 7,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ },
+ {
+  "plan_id": "send_to_creators-019",
+  "direction": "send_to_creators",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.33,
+   "close_up": 0.33,
+   "flat_lay": 0.25,
+   "on_neck": 0.08
+  },
+  "creator_count": 8,
+  "ads_usd": 0,
+  "promo_week": null,
+  "promo_discount": 0.0
+ }
+]

@@ -1,0 +1,60 @@
+{
+ "clean": {
+  "plan_id": "pay_for_reach-000",
+  "weeks": [
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   }
+  ],
+  "orders": 53.55335838445734,
+  "spend_usd": 140.0,
+  "engagement": 4691.569952670724
+ },
+ "shocked": {
+  "plan_id": "send_to_creators-005",
+  "weeks": [
+   {
+    "engagement": 1114.5630588235294,
+    "orders": 12.722520506653671,
+    "spend_usd": 360.0
+   },
+   {
+    "engagement": 367.3630588235294,
+    "orders": 4.19337785535684,
+    "spend_usd": 0.0
+   },
+   {
+    "engagement": 367.3630588235294,
+    "orders": 4.19337785535684,
+    "spend_usd": 0.0
+   },
+   {
+    "engagement": 367.3630588235294,
+    "orders": 4.19337785535684,
+    "spend_usd": 0.0
+   }
+  ],
+  "orders": 25.30265407272419,
+  "spend_usd": 360.0,
+  "engagement": 2216.6522352941174
+ },
+ "clean_survived": true,
+ "shocked_survived": false
+}

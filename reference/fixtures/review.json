@@ -1,0 +1,38 @@
+{
+ "actual": {
+  "orders": 53,
+  "spend_usd": 360,
+  "engagement": 4697,
+  "creators_seeded": 4,
+  "creators_posted": 1,
+  "seed_post_rate": 0.25,
+  "order_per_engagement": 0.011283798169044072
+ },
+ "expected_orders": 35.5,
+ "range": [
+  30.2,
+  40.8
+ ],
+ "inside_range": false,
+ "diagnosis": "Only 1 of 4 seeded creators posted, so seeded engagement never arrived and orders followed. Your own conversion held. This was a creator problem, not a product or audience problem.",
+ "rate_changes": [
+  {
+   "rate": "seed_post_rate",
+   "old": 0.6,
+   "new": 0.49
+  }
+ ],
+ "new_rates": {
+  "eng_per_post": {
+   "on_hand": 244.86666666666667,
+   "close_up": 173.76470588235293,
+   "flat_lay": 112.08823529411765,
+   "on_neck": 132.57142857142858
+  },
+  "order_per_engagement": 0.011414805475504324,
+  "promo_multiplier": 1.9301856454554502,
+  "seed_post_rate": 0.49,
+  "eng_per_creator_post": 311.3333333333333,
+  "ad_eng_per_usd": 4.937931034482759
+ }
+}

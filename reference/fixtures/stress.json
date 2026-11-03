@@ -1,0 +1,7120 @@
+{
+ "combos": [
+  [
+   "reach_drop"
+  ],
+  [
+   "creator_noshow"
+  ],
+  [
+   "competitor_sale"
+  ],
+  [
+   "cpm_spike"
+  ],
+  [
+   "shipping_delay"
+  ],
+  [
+   "viral_post"
+  ],
+  [
+   "promo_underestimate"
+  ],
+  [
+   "reach_drop",
+   "creator_noshow"
+  ],
+  [
+   "reach_drop",
+   "cpm_spike"
+  ],
+  [
+   "creator_noshow",
+   "competitor_sale"
+  ],
+  [
+   "cpm_spike",
+   "competitor_sale"
+  ],
+  [
+   "reach_drop",
+   "shipping_delay"
+  ],
+  [
+   "creator_noshow",
+   "shipping_delay"
+  ],
+  [
+   "competitor_sale",
+   "promo_underestimate"
+  ],
+  [
+   "reach_drop",
+   "competitor_sale"
+  ],
+  [
+   "reach_drop",
+   "creator_noshow",
+   "competitor_sale"
+  ],
+  [
+   "cpm_spike",
+   "shipping_delay"
+  ],
+  [
+   "creator_noshow",
+   "cpm_spike"
+  ],
+  [
+   "reach_drop",
+   "promo_underestimate"
+  ],
+  [
+   "viral_post",
+   "competitor_sale"
+  ]
+ ],
+ "matrix": {
+  "pay_for_reach-000": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 35.3,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 53.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 45.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 50.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 49.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 76.4,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 53.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 35.3,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 32.3,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 45.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 43.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.6,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 49.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 45.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 30.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 30.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 46.8,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 50.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 35.3,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 61.5,
+    "spend_usd": 140.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-001": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 30.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 41.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 35.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 36.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 38.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 55.3,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 41.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 30.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 25.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 35.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 30.8,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 28.0,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 38.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 35.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 25.7,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 25.7,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 33.6,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 36.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 30.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 44.9,
+    "spend_usd": 240.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-002": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 25.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 36.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 31.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 33.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 33.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 50.8,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 36.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 22.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 28.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 23.2,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 33.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 31.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 21.3,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 21.3,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 31.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 33.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 25.0,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 41.0,
+    "spend_usd": 140.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-003": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 25.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 34.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 29.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 31.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 32.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 47.3,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 34.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 21.2,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 26.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 23.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 32.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 29.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 21.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 21.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 28.8,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 31.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 25.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 38.4,
+    "spend_usd": 180.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-004": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 23.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 34.2,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 29.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 31.2,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 31.6,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 47.3,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 34.2,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 23.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 20.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 26.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 21.9,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 31.6,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 29.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 20.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 20.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 28.9,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 31.2,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 23.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 38.3,
+    "spend_usd": 140.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-005": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 36.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 54.4,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 46.2,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 50.6,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 50.3,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 76.5,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 54.4,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 36.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 32.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 46.2,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 43.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 34.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 50.3,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 46.2,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 31.2,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.2,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 46.8,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 50.6,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 36.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 61.7,
+    "spend_usd": 180.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-006": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 36.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 53.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 45.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 49.9,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 49.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 75.5,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 53.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 36.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 32.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 45.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 42.4,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 33.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 49.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 45.7,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 30.8,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 30.8,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 46.2,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 49.9,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 36.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 60.9,
+    "spend_usd": 180.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-007": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 34.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 48.1,
+    "spend_usd": 260.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 40.9,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 42.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 44.5,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 64.9,
+    "spend_usd": 260.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 48.1,
+    "spend_usd": 260.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 34.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 29.2,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 40.9,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 36.2,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.1,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 44.5,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 40.9,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 29.5,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.5,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 39.4,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 42.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 34.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 52.6,
+    "spend_usd": 260.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-008": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 28.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 39.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 33.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 35.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 36.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 53.8,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 39.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 28.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 24.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 33.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 30.1,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 26.1,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 36.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 33.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 24.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 24.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 32.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 35.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 28.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 43.6,
+    "spend_usd": 200.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-009": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 34.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 52.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 44.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 49.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 48.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 74.9,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 52.5,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 34.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 31.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 44.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 42.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 48.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 44.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 29.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.5,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 45.9,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 49.6,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 34.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 60.3,
+    "spend_usd": 140.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-010": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 30.3,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 40.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 34.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 35.2,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 37.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 53.7,
+    "spend_usd": 260.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 40.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 30.3,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 24.8,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 34.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 29.9,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 28.0,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 37.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 34.6,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 25.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 25.7,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 32.5,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 35.2,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 30.3,
+    "spend_usd": 260.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 43.7,
+    "spend_usd": 260.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-011": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 33.3,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 47.2,
+    "spend_usd": 220.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 40.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 42.6,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 43.7,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 64.7,
+    "spend_usd": 220.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 47.2,
+    "spend_usd": 220.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 33.3,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 28.7,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 40.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 36.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 30.8,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 43.7,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 40.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 28.3,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 28.3,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 39.4,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 42.6,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 33.3,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 52.4,
+    "spend_usd": 220.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-012": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 26.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 37.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 31.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 32.9,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 34.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 50.1,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 37.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 26.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 22.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 28.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 24.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 34.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 31.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 22.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 30.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 32.9,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 26.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 40.6,
+    "spend_usd": 200.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-013": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 37.1,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 54.2,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 46.1,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 50.0,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 50.2,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 75.7,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 54.2,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 37.1,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 32.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 46.1,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 42.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 34.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 50.2,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 46.1,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 31.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 46.3,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 50.0,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 37.1,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 61.1,
+    "spend_usd": 200.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-014": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 39.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 56.6,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 48.1,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 51.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 52.3,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 78.1,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 56.6,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 39.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 34.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 48.1,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 43.8,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 36.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 52.3,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 48.1,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 33.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 33.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 47.6,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 51.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 39.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 63.1,
+    "spend_usd": 240.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-015": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 24.6,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 35.8,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 30.4,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 32.8,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 33.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 49.7,
+    "spend_usd": 140.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 35.8,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 24.6,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 21.7,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 30.4,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 27.9,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 22.8,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 33.1,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 30.4,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 20.9,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 20.9,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 30.4,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 32.8,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 24.6,
+    "spend_usd": 140.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 40.2,
+    "spend_usd": 140.0,
+    "survived": false
+   }
+  ],
+  "pay_for_reach-016": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 37.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 56.3,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 47.9,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 52.5,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 52.1,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 79.4,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 56.3,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 37.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 34.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 47.9,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 44.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 35.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 52.1,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 47.9,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 32.2,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 32.2,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 48.6,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 52.5,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 37.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 64.0,
+    "spend_usd": 180.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-017": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 35.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 49.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 42.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 44.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 45.8,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 67.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 49.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 35.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 30.0,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 42.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 37.8,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.5,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 45.8,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 42.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 29.8,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.8,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 41.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 44.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 35.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 54.7,
+    "spend_usd": 240.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-018": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 41.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 60.0,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 51.0,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 54.9,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 55.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 83.3,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 60.0,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 41.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 36.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 51.0,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 46.7,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 38.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 55.5,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 51.0,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 35.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 35.2,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 50.8,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 54.9,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 41.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 67.3,
+    "spend_usd": 240.0,
+    "survived": true
+   }
+  ],
+  "pay_for_reach-019": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 24.9,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 35.4,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 30.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 32.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 32.8,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 48.7,
+    "spend_usd": 160.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 35.4,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 24.9,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 21.5,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 30.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 27.3,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 23.0,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 32.8,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 30.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 21.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 21.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 29.7,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 32.1,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 24.9,
+    "spend_usd": 160.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 39.4,
+    "spend_usd": 160.0,
+    "survived": false
+   }
+  ],
+  "send_to_creators-000": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 25.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 31.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 31.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 35.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 33.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 48.6,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 35.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 21.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 24.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 27.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 31.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 24.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 29.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 31.6,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 22.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 18.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 33.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 31.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 25.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 40.7,
+    "spend_usd": 200.0,
+    "survived": false
+   }
+  ],
+  "send_to_creators-001": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 39.3,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 45.9,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 47.6,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 52.1,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 50.5,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 70.9,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 53.4,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 31.9,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 38.1,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 40.1,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 46.5,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 37.5,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 43.0,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 47.6,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 35.7,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 28.2,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 49.3,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 44.6,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 39.3,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 59.9,
+    "spend_usd": 375.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-002": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 31.5,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 34.3,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 37.7,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 41.3,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 39.7,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 54.6,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 41.7,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 24.0,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 31.0,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 30.2,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 37.3,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 30.2,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 32.2,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 37.7,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 29.0,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 21.5,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 39.3,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 33.8,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 31.5,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 46.7,
+    "spend_usd": 335.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-003": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 30.8,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 39.9,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 38.8,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 43.3,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 41.5,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 60.9,
+    "spend_usd": 220.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 44.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 26.6,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 30.0,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 34.6,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 38.1,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 29.1,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 37.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 38.8,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 27.5,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 23.2,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 40.7,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 39.1,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 30.8,
+    "spend_usd": 220.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 50.5,
+    "spend_usd": 220.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-004": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 29.1,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 32.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 35.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 38.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 37.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 52.0,
+    "spend_usd": 290.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 39.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 22.7,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 28.7,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 28.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 35.0,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 27.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 30.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 35.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 26.7,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 20.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 36.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 32.5,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 29.1,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 44.2,
+    "spend_usd": 290.0,
+    "survived": false
+   }
+  ],
+  "send_to_creators-005": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 33.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 36.5,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 40.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 45.0,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 42.9,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 59.0,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 45.0,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 33.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 32.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 40.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.6,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 34.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 40.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 31.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 42.9,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 36.5,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 33.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 50.6,
+    "spend_usd": 360.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-006": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 37.3,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 45.8,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 46.2,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 51.3,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 49.2,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 70.7,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 52.2,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 30.9,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 36.5,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 39.9,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 45.5,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 35.5,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 42.8,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 46.2,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 33.6,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 27.2,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 48.4,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 44.9,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 37.3,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 59.2,
+    "spend_usd": 310.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-007": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 38.9,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 46.7,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 48.3,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 53.7,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 51.2,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 73.2,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 54.2,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 31.5,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 38.5,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 40.8,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 47.9,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 37.1,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 43.8,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 48.3,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 35.3,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 27.9,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 50.8,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 46.3,
+    "spend_usd": 335.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 38.9,
+    "spend_usd": 335.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 61.6,
+    "spend_usd": 335.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-008": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 29.8,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 33.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 36.2,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 39.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 38.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 53.5,
+    "spend_usd": 290.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 40.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 23.4,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 29.3,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.8,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 35.8,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 28.5,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 31.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 36.2,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 27.2,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 20.8,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 37.9,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 33.5,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 29.8,
+    "spend_usd": 290.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 45.5,
+    "spend_usd": 290.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-009": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 32.8,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 35.7,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 38.9,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 42.3,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 41.1,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 56.2,
+    "spend_usd": 355.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 43.2,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.3,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 31.9,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.5,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 38.2,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 31.4,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 33.6,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 38.9,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 30.1,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.6,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 40.3,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 34.9,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 32.8,
+    "spend_usd": 355.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 48.0,
+    "spend_usd": 355.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-010": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 29.9,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 39.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 38.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 43.0,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 40.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 60.3,
+    "spend_usd": 200.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 43.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 29.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 33.9,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 37.8,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 28.3,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 36.5,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 38.2,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 26.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 40.4,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 38.7,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 29.9,
+    "spend_usd": 200.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 50.0,
+    "spend_usd": 200.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-011": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 29.5,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 37.0,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 36.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 40.0,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 38.9,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 56.0,
+    "spend_usd": 240.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 41.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 28.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 32.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 35.3,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 28.0,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 34.6,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 36.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 26.4,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.1,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 37.7,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 35.8,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 29.5,
+    "spend_usd": 240.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 46.7,
+    "spend_usd": 240.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-012": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 33.4,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 36.0,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 39.2,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 42.2,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 41.3,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 56.0,
+    "spend_usd": 375.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 43.5,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 25.9,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 32.1,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.7,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 38.1,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.0,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 33.9,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 39.2,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 30.6,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 23.2,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 40.2,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 34.7,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 33.4,
+    "spend_usd": 375.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 48.0,
+    "spend_usd": 375.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-013": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 25.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 32.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 32.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 36.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 34.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 51.0,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 36.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 21.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 25.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 28.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 32.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 24.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 30.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 32.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 23.0,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 18.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 34.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 32.6,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 25.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 42.5,
+    "spend_usd": 180.0,
+    "survived": false
+   }
+  ],
+  "send_to_creators-014": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 31.5,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 40.1,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 40.3,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 45.5,
+    "spend_usd": 225.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 42.9,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 62.9,
+    "spend_usd": 225.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 45.5,
+    "spend_usd": 225.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 26.2,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 31.5,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 34.9,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 40.3,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 30.0,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 37.5,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 40.3,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 28.4,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 23.1,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 42.9,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 40.1,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 31.5,
+    "spend_usd": 225.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 52.4,
+    "spend_usd": 225.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-015": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 31.1,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 35.4,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 37.4,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 40.9,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 39.6,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 55.2,
+    "spend_usd": 310.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 41.8,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 24.7,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 30.2,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.0,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 36.7,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 29.7,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 33.2,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 37.4,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 28.3,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.0,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 38.8,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 34.5,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 31.1,
+    "spend_usd": 310.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 46.8,
+    "spend_usd": 310.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-016": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 33.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 35.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 40.2,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 44.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 42.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 58.0,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 44.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 24.9,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 33.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 31.7,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 40.2,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 32.2,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 33.7,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 40.2,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 31.0,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 22.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 42.3,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 35.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 33.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 49.8,
+    "spend_usd": 360.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-017": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 31.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 41.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 40.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 46.2,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 43.4,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 65.0,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 46.2,
+    "spend_usd": 180.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 26.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 31.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 36.3,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 40.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 29.4,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 39.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 40.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 27.7,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 23.5,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 43.4,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 41.9,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 31.1,
+    "spend_usd": 180.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 53.7,
+    "spend_usd": 180.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-018": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 30.7,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 33.8,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 37.3,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 41.2,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 39.2,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 54.4,
+    "spend_usd": 315.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 41.2,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 23.2,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 30.7,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 29.8,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 37.3,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 29.5,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 31.8,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 37.3,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 28.3,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 20.9,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 39.2,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 33.8,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 30.7,
+    "spend_usd": 315.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 46.5,
+    "spend_usd": 315.0,
+    "survived": true
+   }
+  ],
+  "send_to_creators-019": [
+   {
+    "shocks": [
+     "reach_drop"
+    ],
+    "orders": 36.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow"
+    ],
+    "orders": 40.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale"
+    ],
+    "orders": 44.5,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike"
+    ],
+    "orders": 49.3,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "shipping_delay"
+    ],
+    "orders": 46.9,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "viral_post"
+    ],
+    "orders": 65.5,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "promo_underestimate"
+    ],
+    "orders": 49.3,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow"
+    ],
+    "orders": 27.9,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "cpm_spike"
+    ],
+    "orders": 36.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 36.0,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "competitor_sale"
+    ],
+    "orders": 44.5,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "shipping_delay"
+    ],
+    "orders": 35.0,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "shipping_delay"
+    ],
+    "orders": 38.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "competitor_sale",
+     "promo_underestimate"
+    ],
+    "orders": 44.5,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "competitor_sale"
+    ],
+    "orders": 33.5,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "creator_noshow",
+     "competitor_sale"
+    ],
+    "orders": 25.0,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "cpm_spike",
+     "shipping_delay"
+    ],
+    "orders": 46.9,
+    "spend_usd": 360.0,
+    "survived": true
+   },
+   {
+    "shocks": [
+     "creator_noshow",
+     "cpm_spike"
+    ],
+    "orders": 40.8,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "reach_drop",
+     "promo_underestimate"
+    ],
+    "orders": 36.4,
+    "spend_usd": 360.0,
+    "survived": false
+   },
+   {
+    "shocks": [
+     "viral_post",
+     "competitor_sale"
+    ],
+    "orders": 55.8,
+    "spend_usd": 360.0,
+    "survived": true
+   }
+  ]
+ }
+}

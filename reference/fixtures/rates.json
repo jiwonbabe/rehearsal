@@ -1,0 +1,13 @@
+{
+ "eng_per_post": {
+  "on_hand": 244.86666666666667,
+  "close_up": 173.76470588235293,
+  "flat_lay": 112.08823529411765,
+  "on_neck": 132.57142857142858
+ },
+ "order_per_engagement": 0.011414805475504324,
+ "promo_multiplier": 1.9301856454554502,
+ "seed_post_rate": 0.6,
+ "eng_per_creator_post": 311.3333333333333,
+ "ad_eng_per_usd": 4.937931034482759
+}

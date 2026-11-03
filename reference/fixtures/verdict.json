@@ -1,0 +1,83 @@
+[
+ {
+  "plan": {
+   "plan_id": "pay_for_reach-018",
+   "direction": "pay_for_reach",
+   "posts_per_week": 5,
+   "post_mix": {
+    "on_hand": 0.55,
+    "close_up": 0.27,
+    "flat_lay": 0.09,
+    "on_neck": 0.09
+   },
+   "creator_count": 0,
+   "ads_usd": 240,
+   "promo_week": null,
+   "promo_discount": 0.0
+  },
+  "survived": 13,
+  "total": 20,
+  "orders_bad_month": [
+   41.4,
+   55.5
+  ],
+  "spend_usd": 240,
+  "dies_if": [
+   "reach_drop"
+  ]
+ },
+ {
+  "plan": {
+   "plan_id": "send_to_creators-007",
+   "direction": "send_to_creators",
+   "posts_per_week": 4,
+   "post_mix": {
+    "on_hand": 0.62,
+    "close_up": 0.25,
+    "flat_lay": 0.12,
+    "on_neck": 0.0
+   },
+   "creator_count": 7,
+   "ads_usd": 20,
+   "promo_week": null,
+   "promo_discount": 0.0
+  },
+  "survived": 11,
+  "total": 20,
+  "orders_bad_month": [
+   38.5,
+   51.2
+  ],
+  "spend_usd": 335,
+  "dies_if": [
+   "reach_drop"
+  ]
+ },
+ {
+  "plan": {
+   "plan_id": "baseline",
+   "direction": "just_post",
+   "posts_per_week": 5,
+   "post_mix": {
+    "on_hand": 0.5,
+    "close_up": 0.3,
+    "flat_lay": 0.2,
+    "on_neck": 0.0
+   },
+   "creator_count": 0,
+   "ads_usd": 0,
+   "promo_week": null,
+   "promo_discount": 0.0
+  },
+  "survived": 2,
+  "total": 20,
+  "orders_bad_month": [
+   27.0,
+   45.0
+  ],
+  "spend_usd": 0,
+  "dies_if": [
+   "reach_drop"
+  ]
+ }
+]

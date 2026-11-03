@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rehearsal backtest</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#17181c;background:#f3f4f1}
+a{color:#17181c}a:hover{color:#2f5d8a}
+</style>
+</helmet>
+<div style="min-height: 820px; box-sizing: border-box; background: #f3f4f1; display: flex; flex-direction: column">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 20px 40px; border-bottom: 1px solid #d9dbd4; background: #ffffff">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 28px; height: 28px; border-radius: 6px; background: #17181c; display: flex; align-items: center; justify-content: center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f3f4f1" stroke-width="2.2" aria-hidden="true"><path d="M4 18 L10 10 L14 14 L20 6"></path></svg>
+      </div>
+      <div style="font-weight: 600; font-size: 16px">Rehearsal</div>
+      <div style="font-size: 13px; color: #5c6066; padding-left: 12px; border-left: 1px solid #d9dbd4">BND · @bnd.jewelry · connected</div>
+    </div>
+    <div style="display: flex; gap: 6px; font-size: 13px">
+      <a href="Main.dc.html" style="padding: 8px 14px; border-radius: 20px; text-decoration: none; color: #5c6066">0 Setup</a>
+      <div style="padding: 8px 14px; border-radius: 20px; background: #17181c; color: #f3f4f1; font-weight: 500">Engine trust check</div>
+      <a href="Directions.dc.html" style="padding: 8px 14px; border-radius: 20px; text-decoration: none; color: #5c6066">1 Directions</a>
+    </div>
+  </div>
+
+  <div style="max-width: 1120px; width: 100%; margin: 0 auto; box-sizing: border-box; padding: 48px 40px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="font-size: 13px; font-weight: 600; color: #2f5d8a; text-transform: uppercase; letter-spacing: 0.06em">Before any plan: can the engine be trusted?</div>
+      <h1 style="margin: 0; font-size: 34px; font-weight: 600; letter-spacing: -0.01em">Jul–Sep replayed against what actually happened</h1>
+      <p style="margin: 0; font-size: 16px; color: #5c6066; max-width: 680px; line-height: 1.5">The engine was given your real spend and posting from the last three months and asked to compute orders. Here is how far off it was, week by week.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+      <div style="display: flex; flex-direction: column; gap: 16px; grid-column: span 2; background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 24px">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px">
+          <div style="font-size: 15px; font-weight: 600">Weekly orders · actual vs engine</div>
+          <div style="display: flex; gap: 16px; font-size: 12px; color: #5c6066">
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 3px; background: #17181c; display: inline-block"></span>Actual</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 3px; background: #2f5d8a; display: inline-block"></span>Engine</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 14px; height: 10px; background: #dbe5ef; display: inline-block"></span>Engine range</span>
+          </div>
+        </div>
+        <svg width="100%" viewBox="0 0 680 260" role="img" aria-label="Line chart of weekly orders, actual versus engine, July to September, with engine range band">
+          <line x1="40" y1="220" x2="660" y2="220" stroke="#d9dbd4"></line>
+          <line x1="40" y1="160" x2="660" y2="160" stroke="#ebece7"></line>
+          <line x1="40" y1="100" x2="660" y2="100" stroke="#ebece7"></line>
+          <line x1="40" y1="40" x2="660" y2="40" stroke="#ebece7"></line>
+          <text x="8" y="224" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">0</text>
+          <text x="8" y="164" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">20</text>
+          <text x="8" y="104" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">40</text>
+          <text x="8" y="44" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">60</text>
+          <polygon points="60,150 110,142 160,136 210,146 260,128 310,118 360,124 410,110 460,86 510,72 560,96 610,104 660,98 660,142 610,148 560,140 510,116 460,128 410,150 360,160 310,154 260,164 210,178 160,170 110,176 60,184" fill="#dbe5ef"></polygon>
+          <polyline points="60,167 110,159 160,153 210,162 260,146 310,136 360,142 410,130 460,107 510,94 560,118 610,126 660,120" fill="none" stroke="#2f5d8a" stroke-width="2.5"></polyline>
+          <polyline points="60,172 110,154 160,158 210,166 260,140 310,131 360,148 410,124 460,76 510,70 560,122 610,131 660,116" fill="none" stroke="#17181c" stroke-width="2.5"></polyline>
+          <circle cx="460" cy="76" r="5" fill="#c2410c"></circle>
+          <circle cx="510" cy="70" r="5" fill="#c2410c"></circle>
+          <text x="470" y="60" font-size="11" fill="#c2410c" font-family="IBM Plex Sans, sans-serif">sale week, under by 29%</text>
+          <text x="60" y="246" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">Jul</text>
+          <text x="280" y="246" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">Aug</text>
+          <text x="500" y="246" font-size="11" fill="#5c6066" font-family="IBM Plex Mono, monospace">Sep</text>
+        </svg>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 4px">
+          <div style="font-size: 12px; color: #5c6066">Median weekly error</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 32px; font-weight: 500">8.4%</div>
+          <div style="font-size: 12px; color: #5c6066">13 weeks · orders</div>
+        </div>
+        <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 4px">
+          <div style="font-size: 12px; color: #5c6066">Weeks inside engine range</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 32px; font-weight: 500">11 / 13</div>
+          <div style="font-size: 12px; color: #5c6066">2 misses, both in sale weeks</div>
+        </div>
+        <div style="background: #fff4ec; border: 1px solid #f0c9ad; border-radius: 12px; padding: 20px 24px; display: flex; flex-direction: column; gap: 6px">
+          <div style="font-size: 12px; font-weight: 600; color: #c2410c">Known weakness</div>
+          <div style="font-size: 13px; line-height: 1.45">The engine underestimates sale weeks. Promo plans in the next step carry a wider range because of this.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #ffffff; border: 1px solid #d9dbd4; border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px">
+      <div style="display: flex; gap: 32px; flex-wrap: wrap; font-size: 13px">
+        <div style="display: flex; flex-direction: column; gap: 2px"><div style="color: #5c6066">Calibrated rates</div><div style="font-family: 'IBM Plex Mono', monospace">reach→visit 3.1% · visit→order 1.9% · seed post rate 62%</div></div>
+        <div style="display: flex; flex-direction: column; gap: 2px"><div style="color: #5c6066">Source</div><div style="font-family: 'IBM Plex Mono', monospace">Insights API · 5 reference accounts · your spend log</div></div>
+      </div>
+      <a href="Directions.dc.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; border-radius: 8px; background: #17181c; color: #f3f4f1; text-decoration: none; font-size: 15px; font-weight: 600">Continue to directions<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f3f4f1" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -15,6 +15,22 @@
     <p style="margin:0;font-size:16px;color:#5c6066;max-width:680px;line-height:1.5">Confirm who your customer is, set a monthly budget, and from then on you only pick a direction each month.</p>
   </div>
 
+  <div class="card" style="padding:24px;gap:14px">
+    <div class="label">Step 1 · Your Instagram</div>
+    <input id="handle" type="text" placeholder="@yourbrand or instagram.com/yourbrand" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 10px;font-family:inherit;font-size:14px">
+    <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Drop a screenshot of your profile (or a few posts)
+      <input id="shots" type="file" accept="image/*" multiple></label>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button id="demo-shot" class="btn ghost" style="min-height:40px">Use demo screenshot</button><button id="read" class="btn" style="min-height:40px">Read my feed</button><span id="read-status" style="font-size:12px;color:#2f5d8a"></span></div>
+    <div id="read-out" style="display:none;flex-direction:column;gap:8px;font-size:14px;line-height:1.5">
+      <div class="label">What we read from your feed · Muse Spark</div>
+      <div id="r-sell"></div><div id="r-style"></div><div id="r-post"></div>
+      <div id="r-cust"></div><div id="r-conf"></div>
+      <div id="r-why" style="color:#5c6066;font-size:13px"></div>
+      <div style="font-weight:500">Check these and fix anything wrong. This decides which directions we suggest.</div>
+    </div>
+    <div style="font-size:12px;color:#5c6066">Demo: real @bnd.jewelry profile screenshot, synthetic sales data.</div>
+  </div>
+
   <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
     <div class="card" style="padding:24px;gap:14px">
       <div class="label">Demo brand</div>
@@ -29,12 +45,12 @@
         <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Orders goal per month
           <input id="goal" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%"></label>
       </div>
-      <div style="display:flex;align-items:center;gap:12px"><button id="save" class="btn ghost" style="min-height:40px">Save</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
+      <div style="display:flex;align-items:center;gap:12px"><button id="save" class="btn ghost" style="min-height:40px">Confirm</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
     </div>
   </div>
 
   <div class="card" style="padding:24px;gap:16px">
-    <div class="label">Who you sell to</div>
+    <div class="label">Step 2 · Who you sell to</div>
     <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
       <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Market
         <select id="market" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="US">United States</option><option value="KR">South Korea</option></select></label>
@@ -98,8 +114,55 @@ $('save').onclick = async () => {
     const b = await api('/api/setup', {
       budget_usd_per_month: Number($('budget').value), goal_orders_per_month: Number($('goal').value),
       target: { gender: $('gender').value, age: $('age').value, price_band: $('price_band').value }, market: $('market').value });
-    fill(b); $('saved').textContent = 'Saved'; await loadBacktest();
+    fill(b); $('saved').textContent = 'Confirmed'; await loadBacktest();
   } catch (e) { $('saved').textContent = ''; showError(e); }
+};
+
+let shots = [];
+const POST = { on_hand: 'on-hand', close_up: 'close-up', flat_lay: 'flat-lay', on_neck: 'on-neck' };
+function handleOf(text) {
+  const m = text.trim().match(/instagram\.com\/([^/?#\s]+)/i);
+  return (m ? m[1] : text.trim()).replace(/^@/, '');
+}
+function shrink(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file), img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, 1400 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(url); resolve(c.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror = () => reject(new Error('could not read that image'));
+    img.src = url;
+  });
+}
+$('shots').onchange = async () => {
+  try { shots = await Promise.all([...$('shots').files].map(shrink)); } catch (e) { shots = []; showError(e); }
+};
+$('demo-shot').onclick = async () => {
+  try {
+    const blob = await (await fetch('/demo-posts/bnd-profile.png')).blob();
+    shots = [await shrink(blob)]; $('handle').value = 'bnd.jewelry'; $('read-status').textContent = 'Demo screenshot loaded';
+  } catch (e) { showError(e); }
+};
+$('read').onclick = async () => {
+  try {
+    $('read-status').textContent = 'Reading…';
+    const p = await api('/api/profile', { source: 'screenshot', handle: handleOf($('handle').value), images: shots });
+    const c = p.likely_customer;
+    $('r-sell').textContent = p.what_they_sell; $('r-style').textContent = p.style;
+    $('r-post').textContent = 'Most of your photos: ' + (POST[p.best_post_type] || p.best_post_type);
+    $('r-cust').innerHTML = 'Likely customer <span style="color:#5c6066">(guessed from the photos, no prices seen)</span>: ';
+    $('r-cust').append(`${c.gender}, ${c.age}, $${c.price_band}, ${p.market}`);
+    $('r-conf').textContent = 'Confidence: ' + p.confidence; $('r-why').textContent = p.why;
+    $('read-out').style.display = 'flex';
+    if (p.market) $('market').value = p.market;
+    if (c.gender) $('gender').value = c.gender;
+    if (c.age) $('age').value = c.age;
+    if (c.price_band) $('price_band').value = c.price_band;
+    $('read-status').textContent = '';
+  } catch (e) { $('read-status').textContent = ''; showError(e); }
 };
 (async () => { try { fill(await api('/api/brand')); await loadBacktest(); } catch (e) { showError(e); } })();
 </script>

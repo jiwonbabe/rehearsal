@@ -8,3 +8,5 @@
 - Docker CLI is installed but its daemon was not running, so the Dockerfile was not smoke-tested; run the build command in DEMO.md before relying on it.
 - Fly CLI (fly/flyctl) is not installed, so nothing was deployed; the two deploy commands are at the top of DEMO.md and README's Live line says "Deploy: see DEMO.md".
 - Server is cache-only: main() unsets MUSE_API_KEY so the demo never calls Spark live; cmd/sparkcache is the only live caller.
+- The profile read is cached by handle (spark/cache/profile-<handle>.json): the same handle returns the same read regardless of the image sent.
+- /api/profile takes `source`; only "screenshot" exists. Instagram Login (Graph API) will add `source: "instagram"` with the same prompt and ValidateProfile after Meta App Review.

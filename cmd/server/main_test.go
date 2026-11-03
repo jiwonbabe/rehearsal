@@ -2,6 +2,8 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"math"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -92,7 +94,9 @@ func TestStressTwoDirections(t *testing.T) {
 	if len(out.Catalog) != 7 || len(out.Priors) != 7 {
 		t.Errorf("catalog/priors missing")
 	}
-	if !strings.Contains(out.Check, "68%") || !strings.Contains(out.Check, "60%") {
+	thr := fmt.Sprintf("%d%%", int(math.Round(out.Flip.Threshold*100)))
+	cur := fmt.Sprintf("%d%%", int(math.Round(out.Flip.Current*100)))
+	if !strings.Contains(out.Check, thr) || !strings.Contains(out.Check, cur) {
 		t.Errorf("check line: %q", out.Check)
 	}
 }

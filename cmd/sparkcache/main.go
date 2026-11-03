@@ -53,7 +53,11 @@ func main() {
 	rates := engine.Calibrate(brand)
 	backtest := engine.RunBacktest(brand, rates, 13)
 
-	m1 := directionsFor(1, engine.Summary(brand, rates, backtest), "", brand)
+	// Month 1 sees the brand as it was before October, so the review has something to change.
+	pre := *brand
+	pre.Weeks = brand.Weeks[:len(brand.Weeks)-engine.HorizonWeeks]
+	preRates := engine.Calibrate(&pre)
+	m1 := directionsFor(1, engine.Summary(&pre, preRates, engine.RunBacktest(&pre, preRates, 13)), "", brand)
 	rv := engine.RunReview(brand, engine.OctoberPlan(), rates)
 	m2 := directionsFor(2, engine.Summary(brand, rv.NewRates, backtest), engine.LastMonthBlock(rv), brand)
 

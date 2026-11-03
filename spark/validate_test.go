@@ -82,3 +82,17 @@ func TestValidateCheck(t *testing.T) {
 		t.Errorf("empty accepted")
 	}
 }
+
+func TestValidateDirectionsNormalizesPercentDiscount(t *testing.T) {
+	raw := map[string]any{"directions": []any{
+		rawDir("one_week_sale", map[string]any{"promo_discount": []any{15.0, 25.0}}),
+	}}
+	out, err := ValidateDirections(raw, 400, 45)
+	if err != nil || len(out) != 1 {
+		t.Fatalf("got %d dirs, err %v", len(out), err)
+	}
+	got := out[0]["ranges"].(map[string]any)["promo_discount"].([]float64)
+	if got[0] != 0.15 || got[1] != 0.25 {
+		t.Errorf("promo_discount: %v", got)
+	}
+}

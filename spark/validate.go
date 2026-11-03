@@ -56,6 +56,9 @@ func repairRanges(raw any, budget, productCost float64) map[string]any {
 	creatorCount := pair(in["creator_count"], [2]float64{0, 0})
 	adsUsd := pair(in["ads_usd"], [2]float64{0, 0})
 	promoDiscount := pair(in["promo_discount"], [2]float64{0, 0})
+	if promoDiscount[1] > 1 { // percent, e.g. [15, 25]
+		promoDiscount[0], promoDiscount[1] = promoDiscount[0]/100, promoDiscount[1]/100
+	}
 
 	adsUsd[1] = math.Min(adsUsd[1], budget)
 	maxCreators := math.Max(0, math.Floor((budget-adsUsd[0])/productCost))

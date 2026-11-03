@@ -15,6 +15,7 @@
 //	/api/launch  POST    {plan} -> spec (engine), playbook (Spark text), paused Meta ads request, ads_connected
 //	/api/launch/ads POST {plan} -> creates the PAUSED campaign + ad set when META_AD_ACCOUNT_ID/META_ACCESS_TOKEN are set; dry-run otherwise
 //	/api/launch/calendar POST {plan} -> .ics with one event per week
+//	/api/launch/creator POST {handle, images, direction} -> fit labels for one creator (cached by handle)
 //
 // Pages are served from web/ (copy layouts from mockup/).
 package main
@@ -77,6 +78,7 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/launch", s.locked(s.handleLaunch))
 	mux.HandleFunc("POST /api/launch/ads", s.locked(s.handleLaunchAds))
 	mux.HandleFunc("POST /api/launch/calendar", s.locked(s.handleLaunchCalendar))
+	mux.HandleFunc("POST /api/launch/creator", s.locked(s.handleCreatorFit))
 	mux.Handle("/", http.FileServer(http.Dir("web")))
 	return mux
 }

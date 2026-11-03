@@ -520,3 +520,31 @@ func TestLaunchCalendar(t *testing.T) {
 		t.Errorf("%s", ics)
 	}
 }
+
+func TestCreatorFitBadRequests(t *testing.T) {
+	ts := newTestServer(t)
+	for _, body := range []string{`{"handle":"","images":["data:image/png;base64,AA=="]}`, `{"handle":"x","images":[]}`, `{"handle":"x","images":["http://x/y.png"]}`} {
+		if code := call(t, ts, "POST", "/api/launch/creator", body, nil); code != 400 {
+			t.Errorf("%s: %d", body, code)
+		}
+	}
+}
+
+func TestCreatorFitCached(t *testing.T) {
+	dir := t.TempDir()
+	os.WriteFile(filepath.Join(dir, "creator-soft.daily.json"), []byte(`{"handle":"soft.daily","fit":"high","size_band":"small","why":"Thin gold rings on beige","send":"thin band"}`), 0o644)
+	old := spark.CacheDir
+	spark.CacheDir = dir
+	t.Cleanup(func() { spark.CacheDir = old })
+	ts := newTestServer(t)
+	var out map[string]any
+	if code := call(t, ts, "POST", "/api/launch/creator", `{"handle":"@Soft.Daily","images":["data:image/png;base64,AA=="]}`, &out); code != 200 {
+		t.Fatal(code)
+	}
+	if out["fit"] != "high" || out["size_band"] != "small" {
+		t.Errorf("%v", out)
+	}
+	if code := call(t, ts, "POST", "/api/launch/creator", `{"handle":"nobody","images":["data:image/png;base64,AA=="]}`, nil); code != 503 {
+		t.Errorf("uncached: %d", code)
+	}
+}

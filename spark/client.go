@@ -188,3 +188,12 @@ func Playbook(direction, profile, brand map[string]any) (map[string]any, error) 
 	id, _ := direction["id"].(string)
 	return Call("playbook-"+id, fill(tpl, map[string]any{"DIRECTION_JSON": direction, "PROFILE_JSON": profile, "BRAND_JSON": brand}))
 }
+
+// CreatorFit: reads a creator's Instagram screenshots against the brand's creator brief. Cached by handle.
+func CreatorFit(handle string, brief map[string]any, images []string) (map[string]any, error) {
+	tpl, err := loadPrompt("creator.md")
+	if err != nil {
+		return nil, err
+	}
+	return CallWithImages("creator-"+SafeHandle(handle), fill(tpl, map[string]any{"HANDLE": handle, "BRIEF_JSON": brief}), images)
+}

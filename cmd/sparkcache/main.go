@@ -83,6 +83,7 @@ func main() {
 	checkLine(m1, rates, brand)
 	profileStep()
 	playbookStep(append(append([]map[string]any{}, m1...), m2...), brand)
+	creatorStep()
 	if failed {
 		os.Exit(1)
 	}
@@ -127,10 +128,9 @@ func checkLine(dirs []map[string]any, rates engine.Rates, brand *engine.Brand) {
 	}
 }
 
-// profileStep reads the demo screenshots in web/demo-posts/ into a profile read for bnd.jewelry.
-func profileStep() {
-	name := "profile-bnd.jewelry"
-	files, _ := filepath.Glob("web/demo-posts/*")
+// dataURLs reads image files matching glob into data: URLs, sorted by name.
+func dataURLs(glob string) []string {
+	files, _ := filepath.Glob(glob)
 	sort.Strings(files)
 	var images []string
 	for _, f := range files {
@@ -142,6 +142,13 @@ func profileStep() {
 		}
 		images = append(images, "data:"+mime+";base64,"+base64.StdEncoding.EncodeToString(raw))
 	}
+	return images
+}
+
+// profileStep reads the demo screenshots in web/demo-posts/ into a profile read for bnd.jewelry.
+func profileStep() {
+	name := "profile-bnd.jewelry"
+	images := dataURLs("web/demo-posts/*")
 	raw, err := spark.Profile("bnd.jewelry", images)
 	if err != nil {
 		fail(name, err)
@@ -181,5 +188,30 @@ func playbookStep(dirs []map[string]any, brand *engine.Brand) {
 			continue
 		}
 		fmt.Printf("ok playbook-%s: week1=%q ad=%v creators=%v\n", id, weeks[0]["do"], p["ad"] != nil, p["creator_brief"] != nil)
+	}
+}
+
+// creatorStep reads each web/demo-creators/<handle>.png against the send_to_creators brief. Skips when the folder is empty.
+func creatorStep() {
+	files, _ := filepath.Glob("web/demo-creators/*")
+	if len(files) == 0 {
+		fmt.Println("skip creators: web/demo-creators/ is empty")
+		return
+	}
+	raw, err := spark.Playbook(map[string]any{"id": "send_to_creators"}, nil, nil)
+	if err != nil {
+		fail("creator", err)
+		return
+	}
+	brief, _ := spark.ValidatePlaybook(raw)["creator_brief"].(map[string]any)
+	for _, f := range files {
+		handle := strings.TrimSuffix(filepath.Base(f), filepath.Ext(f))
+		out, err := spark.CreatorFit(handle, brief, dataURLs(f))
+		if err != nil {
+			fail("creator-"+handle, err)
+			continue
+		}
+		p := spark.ValidateCreatorFit(out)
+		fmt.Printf("ok creator-%s: %v %v %q\n", handle, p["fit"], p["size_band"], p["why"])
 	}
 }

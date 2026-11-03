@@ -170,3 +170,14 @@ func TestValidatePlaybook(t *testing.T) {
 		t.Error("noNumbers")
 	}
 }
+
+func TestValidateCreatorFit(t *testing.T) {
+	p := ValidateCreatorFit(map[string]any{"handle": "@soft.daily", "fit": "very high", "size_band": "small",
+		"why": "Posts hands with thin rings on 30% of days", "send": "the thin band"})
+	if p["handle"] != "@soft.daily" || p["fit"] != "" || p["size_band"] != "small" || p["why"] != "" || p["send"] != "the thin band" {
+		t.Errorf("%v", p)
+	}
+	if len(p) != 5 {
+		t.Errorf("keys %v", p)
+	}
+}

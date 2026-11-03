@@ -245,3 +245,12 @@ func ValidatePlaybook(raw map[string]any) map[string]any {
 	}
 	return out
 }
+
+// ValidateCreatorFit returns exactly handle, fit, size_band, why, send; out-of-list labels become "".
+func ValidateCreatorFit(raw map[string]any) map[string]any {
+	return map[string]any{
+		"handle": sentence(raw["handle"]), "fit": oneOf(raw["fit"], "high", "medium", "low"),
+		"size_band": oneOf(raw["size_band"], "small", "mid", "large"),
+		"why":       clean(raw["why"]), "send": clean(raw["send"]),
+	}
+}

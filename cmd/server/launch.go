@@ -245,3 +245,35 @@ func (s *server) handleLaunchCalendar(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Disposition", `attachment; filename="rehearsal-`+l.Spec.StartDate+`.ics"`)
 	io.WriteString(w, icsFor(l.Spec, l.Title))
 }
+
+// handleCreatorFit: {handle, images, direction?} -> labels on whether this creator fits the brief (Spark cache by handle).
+func (s *server) handleCreatorFit(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		Handle    string   `json:"handle"`
+		Images    []string `json:"images"`
+		Direction string   `json:"direction"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeError(w, 400, err.Error())
+		return
+	}
+	handle := spark.SafeHandle(in.Handle)
+	if handle == "" {
+		writeError(w, 400, "handle is required")
+		return
+	}
+	if msg := imagesError(in.Images); msg != "" {
+		writeError(w, 400, msg)
+		return
+	}
+	var brief map[string]any
+	if pb := playbookFor(in.Direction); pb != nil {
+		brief, _ = pb["creator_brief"].(map[string]any)
+	}
+	raw, err := spark.CreatorFit(handle, brief, in.Images)
+	if err != nil {
+		writeError(w, 503, "no cached read for @"+handle+"; run `go run ./cmd/sparkcache` with MUSE_API_KEY set")
+		return
+	}
+	s.writeJSON(w, spark.ValidateCreatorFit(raw))
+}

@@ -352,15 +352,9 @@ func (s *server) handleProfile(w http.ResponseWriter, r *http.Request) {
 		writeError(w, 400, "handle is required")
 		return
 	}
-	if len(in.Images) == 0 || len(in.Images) > 8 {
-		writeError(w, 400, "send 1 to 8 screenshots")
+	if msg := imagesError(in.Images); msg != "" {
+		writeError(w, 400, msg)
 		return
-	}
-	for _, img := range in.Images {
-		if !strings.HasPrefix(img, "data:image/") || len(img) > 4_000_000 {
-			writeError(w, 400, "each screenshot must be a data:image/ URL under 4 MB")
-			return
-		}
 	}
 	raw, err := spark.Profile(handle, in.Images)
 	if err != nil {
@@ -368,4 +362,17 @@ func (s *server) handleProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.writeJSON(w, spark.ValidateProfile(raw))
+}
+
+// imagesError: "" when images is 1-8 data:image/ URLs under 4 MB each, else the message for a 400.
+func imagesError(images []string) string {
+	if len(images) == 0 || len(images) > 8 {
+		return "send 1 to 8 screenshots"
+	}
+	for _, img := range images {
+		if !strings.HasPrefix(img, "data:image/") || len(img) > 4_000_000 {
+			return "each screenshot must be a data:image/ URL under 4 MB"
+		}
+	}
+	return ""
 }

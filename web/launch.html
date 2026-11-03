@@ -81,7 +81,34 @@ function creatorsCard(d) {
     b.onclick = async () => { try { await navigator.clipboard.writeText(ta.value); b.textContent = 'Copied'; } catch (e) { ta.select(); } };
     c.appendChild(ta); c.appendChild(b);
   }
+  c.appendChild(fitBox(d.direction.id));
   return c;
+}
+
+// fitBox: paste a creator's handle and a screenshot; Spark reads whether they fit the brief.
+function fitBox(direction) {
+  const box = el('div', 'display:flex;flex-direction:column;gap:8px;border-top:1px solid #e6e7e2;padding-top:12px');
+  box.appendChild(el('div', 'font-size:13.5px;font-weight:600', 'Found one? Check the fit'));
+  const row = el('div', 'display:flex;gap:8px;flex-wrap:wrap');
+  const handle = document.createElement('input'); handle.placeholder = '@creator'; handle.style.cssText = 'flex:1;min-width:120px;padding:8px 10px;border:1px solid #d9dbd4;border-radius:8px;font:inherit;font-size:13.5px';
+  const file = document.createElement('input'); file.type = 'file'; file.accept = 'image/*'; file.multiple = true; file.style.fontSize = '12.5px';
+  const b = el('button', 'min-height:40px;font-size:14px', 'Does this creator fit?'); b.className = 'btn ghost';
+  const out = el('div', 'font-size:13.5px;line-height:1.5');
+  const readFile = f => new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(f); });
+  b.onclick = async () => {
+    out.style.color = ''; out.textContent = 'Reading…';
+    try {
+      const images = await Promise.all([...file.files].slice(0, 8).map(readFile));
+      const r = await api('/api/launch/creator', { handle: handle.value, images, direction });
+      const tone = { high: '#2f6f3e', medium: '#8a6d1f', low: '#c2410c' }[r.fit] || '#5c6066';
+      out.innerHTML = `<span style="font-weight:600;color:${tone}"></span> <span></span>`;
+      out.firstChild.textContent = `${r.fit || 'unsure'} fit · ${r.size_band || ''} account`;
+      out.lastChild.textContent = [r.why, r.send ? 'Send: ' + r.send : ''].filter(Boolean).join(' · ');
+    } catch (e) { out.style.color = '#c2410c'; out.textContent = e.message; }
+  };
+  row.appendChild(handle); row.appendChild(file);
+  box.appendChild(row); box.appendChild(b); box.appendChild(out);
+  return box;
 }
 
 function calendarCard(d) {

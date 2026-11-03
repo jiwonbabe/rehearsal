@@ -33,6 +33,14 @@ function getCommitted() {
 }
 function setCommitted(plan) { sessionStorage.setItem('rehearsal.committed', JSON.stringify(plan)); }
 
+// prov: a small chip saying where a block's numbers come from. kind: real | demo | engine | spark
+function prov(kind, text) {
+  const look = { real: ['#e8f3ea', '#2f6f3e'], demo: ['#fbf3dc', '#8a6d1f'], engine: ['#e4edf6', '#2f5d8a'], spark: ['#f3f4f1', '#5c6066'] }[kind] || ['#f3f4f1', '#5c6066'];
+  const b = document.createElement('span');
+  b.textContent = text;
+  b.style.cssText = `display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;background:${look[0]};color:${look[1]};white-space:nowrap;margin-left:8px;vertical-align:middle`;
+  return b;
+}
 function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
 function pct(x) { return Math.round(x * 100) + '%'; }
 function shockText(codes, catalog) {

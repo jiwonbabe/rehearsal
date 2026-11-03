@@ -106,7 +106,7 @@ function renderChannels(list, connected, handle, ev) {
   const h = document.createElement('div'); h.style.cssText = 'font-size:18px;font-weight:600'; h.textContent = 'Where to post, and why'; head.appendChild(h);
   const sub = document.createElement('div'); sub.style.cssText = 'font-size:12px;color:#5c6066';
   const demo = ev && ev.evidence && ev.evidence.source === 'mock';
-  sub.textContent = connected ? `Reasoned from @${handle}'s Instagram and Threads data (${ev.evidence.days} days${demo ? ', demo data' : ''}) and sourced public statistics · not stress-tested` : 'Connect your Instagram on Setup to see where to post for your brand.';
+  sub.textContent = connected ? (demo ? `Reasoned from the demo account @${handle}'s mock Instagram and Threads data (${ev.evidence.days} days; not your real numbers) and sourced public statistics · not stress-tested` : `Reasoned from @${handle}'s Instagram and Threads data (${ev.evidence.days} days) and sourced public statistics · not stress-tested`) : 'Connect your Instagram on Setup to see where to post for your brand.';
   head.appendChild(sub); box.appendChild(head); box.style.display = 'flex';
   if (!list || !list.length) return;
   const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px';

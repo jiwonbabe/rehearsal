@@ -619,7 +619,7 @@ func TestMetaConnectMockThenEvidence(t *testing.T) {
 		Channels []map[string]any `json:"channels"`
 		Stats    []engine.StatRow `json:"stats"`
 	}
-	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"@BND.jewelry"}`, &out); code != 200 {
+	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"@Demo.Brand"}`, &out); code != 200 {
 		t.Fatal(code)
 	}
 	if out.Evidence.Formats[1].Format != "reels" || out.Evidence.Formats[1].ReachVsFeed <= 1 {
@@ -663,7 +663,7 @@ func TestLaunchCarriesReachAndCreators(t *testing.T) {
 	if out.Reach != nil || out.Creators != nil {
 		t.Errorf("before connect: %v %v", out.Reach, out.Creators)
 	}
-	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"bnd.jewelry"}`, nil)
+	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"demo.brand"}`, nil)
 	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
 	if out.Reach["instagram_reels"] == nil || len(out.Creators) != 6 || !strings.HasPrefix(out.Creators[0]["username"].(string), "demo.") {
 		t.Errorf("after connect: %v %d", out.Reach, len(out.Creators))
@@ -686,5 +686,21 @@ func TestKoreanMap(t *testing.T) {
 		if ko == "" || ko == en {
 			t.Errorf("%q -> %q", en, ko)
 		}
+	}
+}
+
+func TestTrustEndpoint(t *testing.T) {
+	ts := newTestServer(t)
+	var out struct {
+		Holdout   engine.Backtest   `json:"holdout"`
+		InSample  engine.Backtest   `json:"in_sample"`
+		Truth     []engine.TruthRow `json:"truth"`
+		Synthetic bool              `json:"synthetic"`
+	}
+	if code := call(t, ts, "GET", "/api/trust", "", &out); code != 200 {
+		t.Fatal(code)
+	}
+	if out.Holdout.WeeksTotal != 13 || out.Holdout.MedianAbsPctError < out.InSample.MedianAbsPctError || len(out.Truth) != 9 || !out.Synthetic {
+		t.Errorf("%+v", out)
 	}
 }

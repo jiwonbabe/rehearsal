@@ -210,7 +210,7 @@ func creatorStep() {
 		p := spark.ValidateCreatorFit(out)
 		fmt.Printf("ok creator-%s: %v %v %q\n", handle, p["fit"], p["size_band"], p["why"])
 	}
-	if meta, err := engine.LoadMeta("data/meta/bnd.jewelry"); err == nil {
+	if meta, err := engine.LoadMeta("data/meta/demo.brand"); err == nil {
 		for _, c := range engine.RunEvidence(meta).Creators {
 			out, err := spark.CreatorFit(c.Username, brief, nil, c)
 			report(c.Username, out, err)
@@ -226,7 +226,7 @@ func creatorStep() {
 
 // channelsStep: evidence from the mock Meta data + sourced statistics -> channel verdicts for bnd.jewelry.
 func channelsStep(brand *engine.Brand) any {
-	meta, err := engine.LoadMeta("data/meta/bnd.jewelry")
+	meta, err := engine.LoadMeta("data/meta/demo.brand")
 	if err != nil {
 		fail("channels", err)
 		return nil
@@ -243,7 +243,7 @@ func channelsStep(brand *engine.Brand) any {
 		return nil
 	}
 	basics := map[string]any{"name": brand.Brand.Name, "market": brand.Brand.Market, "target": brand.Brand.Target, "avg_price_usd": brand.Brand.AvgPriceUsd}
-	raw, err := spark.Channels("bnd.jewelry", ev, spark.ValidateProfile(rawProfile), stats, basics)
+	raw, err := spark.Channels("demo.brand", ev, spark.ValidateProfile(rawProfile), stats, basics)
 	if err != nil {
 		fail("channels", err)
 		return nil

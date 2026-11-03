@@ -4,7 +4,8 @@
 //
 //	/api/brand           brand info + target + budget
 //	/api/rates           calibrated rates
-//	/api/backtest        engine vs actual, last 13 weeks
+//	/api/backtest        engine vs actual, last 13 weeks (in-sample)
+//	/api/trust           holdout backtest (calibrated on the first 39 weeks), in-sample backtest, generator-truth recovery
 //	/api/summary         the block the planner prompt gets
 //	/api/directions      Spark directions for the current month, sorted by rank
 //	/api/setup   POST    {budget_usd_per_month, goal_orders_per_month, target, market}
@@ -74,6 +75,10 @@ func (s *server) routes() *http.ServeMux {
 	}))
 	mux.HandleFunc("/api/summary", s.locked(func(w http.ResponseWriter, r *http.Request) {
 		s.writeJSON(w, engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13)))
+	}))
+	mux.HandleFunc("/api/trust", s.locked(func(w http.ResponseWriter, r *http.Request) {
+		s.writeJSON(w, map[string]any{"holdout": engine.RunHoldout(s.brand, 13), "in_sample": engine.RunBacktest(s.brand, s.rates, 13),
+			"truth": engine.RunTruthCheck(s.brand, s.rates), "synthetic": s.brand.Brand.Synthetic})
 	}))
 	mux.HandleFunc("/api/goals", s.locked(func(w http.ResponseWriter, r *http.Request) {
 		s.writeJSON(w, engine.RunGoalSuggestions(s.brand, 13))

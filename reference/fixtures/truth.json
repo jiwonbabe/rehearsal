@@ -1,0 +1,65 @@
+[
+ {
+  "rate": "eng_per_post.on_hand",
+  "true": 240.9637,
+  "engine": 244.8667,
+  "err_pct": 1.6,
+  "note": "generator value scaled by average followers"
+ },
+ {
+  "rate": "eng_per_post.close_up",
+  "true": 176.3149,
+  "engine": 173.7647,
+  "err_pct": 1.4,
+  "note": "generator value scaled by average followers"
+ },
+ {
+  "rate": "eng_per_post.flat_lay",
+  "true": 111.6661,
+  "engine": 112.0882,
+  "err_pct": 0.4,
+  "note": "generator value scaled by average followers"
+ },
+ {
+  "rate": "eng_per_post.on_neck",
+  "true": 141.0519,
+  "engine": 132.5714,
+  "err_pct": 6.0,
+  "note": "generator value scaled by average followers"
+ },
+ {
+  "rate": "order_per_engagement",
+  "true": 0.0115,
+  "engine": 0.0114,
+  "err_pct": 0.7,
+  "note": ""
+ },
+ {
+  "rate": "promo_multiplier",
+  "true": 2.0,
+  "engine": 1.9302,
+  "err_pct": 3.5,
+  "note": ""
+ },
+ {
+  "rate": "seed_post_rate",
+  "true": 0.75,
+  "engine": 0.6,
+  "err_pct": 20.0,
+  "note": "October carries a planted creator no-show"
+ },
+ {
+  "rate": "eng_per_creator_post",
+  "true": 300,
+  "engine": 311.3333,
+  "err_pct": 3.8,
+  "note": ""
+ },
+ {
+  "rate": "ad_eng_per_usd",
+  "true": 5.0,
+  "engine": 4.9379,
+  "err_pct": 1.2,
+  "note": ""
+ }
+]

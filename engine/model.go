@@ -16,6 +16,7 @@ const HorizonWeeks = 4
 type Brand struct {
 	Brand BrandInfo `json:"brand"`
 	Weeks []Week    `json:"weeks"`
+	Truth *Truth    `json:"generator_truth,omitempty"`
 }
 
 type BrandInfo struct {

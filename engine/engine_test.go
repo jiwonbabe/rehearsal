@@ -284,7 +284,7 @@ func TestLaunchPostsSumToWeekly(t *testing.T) {
 func TestEvidenceMatchesReference(t *testing.T) {
 	var want Evidence
 	loadJSON(t, "evidence", &want)
-	m, err := LoadMeta(filepath.Join(root(), "data", "meta", "bnd.jewelry"))
+	m, err := LoadMeta(filepath.Join(root(), "data", "meta", "demo.brand"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -296,7 +296,7 @@ func TestEvidenceMatchesReference(t *testing.T) {
 }
 
 func TestEvidenceNoFeedPosts(t *testing.T) {
-	m, _ := LoadMeta(filepath.Join(root(), "data", "meta", "bnd.jewelry"))
+	m, _ := LoadMeta(filepath.Join(root(), "data", "meta", "demo.brand"))
 	var kept []MediaItem
 	for _, p := range m.Media.Data {
 		if p.MediaProductType != "FEED" {
@@ -310,5 +310,40 @@ func TestEvidenceNoFeedPosts(t *testing.T) {
 	}
 	if len(EvidenceNumbers(e, nil)) == 0 {
 		t.Error("no numbers")
+	}
+}
+
+func TestTruthCheckMatchesReference(t *testing.T) {
+	var want []TruthRow
+	loadJSON(t, "truth", &want)
+	b := brand(t)
+	got := RunTruthCheck(b, Calibrate(b))
+	if len(got) != len(want) || len(got) != 9 {
+		t.Fatalf("rows %d want %d", len(got), len(want))
+	}
+	for i := range got {
+		if got[i].Rate != want[i].Rate {
+			t.Errorf("row %d: %s want %s", i, got[i].Rate, want[i].Rate)
+		}
+		near(t, got[i].Rate+" true", got[i].True, want[i].True)
+		near(t, got[i].Rate+" engine", got[i].Engine, want[i].Engine)
+		near(t, got[i].Rate+" err", got[i].ErrPct, want[i].ErrPct)
+	}
+	b.Truth = nil
+	if rows := RunTruthCheck(b, Calibrate(b)); len(rows) != 0 {
+		t.Errorf("no truth → no rows, got %d", len(rows))
+	}
+}
+
+func TestHoldoutMatchesReference(t *testing.T) {
+	var want Backtest
+	loadJSON(t, "holdout", &want)
+	got := RunHoldout(brand(t), 13)
+	near(t, "median", got.MedianAbsPctError, want.MedianAbsPctError)
+	if got.WeeksInsideRange != want.WeeksInsideRange || got.WeeksTotal != 13 {
+		t.Errorf("inside %d/%d want %d/%d", got.WeeksInsideRange, got.WeeksTotal, want.WeeksInsideRange, want.WeeksTotal)
+	}
+	if got.Rows[0].Week != want.Rows[0].Week {
+		t.Errorf("first week %s want %s", got.Rows[0].Week, want.Rows[0].Week)
 	}
 }

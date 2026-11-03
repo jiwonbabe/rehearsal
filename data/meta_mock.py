@@ -1,8 +1,8 @@
-"""Generate data/meta/bnd.jewelry/*.json: mock Meta data shaped like the Graph API replies, seeded.
+"""Generate data/meta/demo.brand/*.json: mock Meta data shaped like the Graph API replies, seeded.
 
 Run:  python3 data/meta_mock.py
 Live replacements: Instagram Graph API (account + media insights), Threads API, hashtag search,
-business_discovery, Marketing API delivery_estimate. Every file carries "source": "mock"; peer and creator handles are fictional (demo.* prefix).
+business_discovery, Marketing API delivery_estimate. Every file carries "source": "mock"; the account and every peer/creator handle are fictional (demo.* prefix), so no real account's numbers are shown.
 """
 import json
 import os
@@ -11,7 +11,7 @@ from datetime import date, timedelta
 
 SEED = 7
 POST_TYPES = ["on_hand", "close_up", "flat_lay", "on_neck"]
-OUT = os.path.join(os.path.dirname(__file__), "meta", "bnd.jewelry")
+OUT = os.path.join(os.path.dirname(__file__), "meta", "demo.brand")
 END = date(2026, 10, 26)
 
 REACH = {"FEED": 1800, "REELS": 5400, "STORY": 900}
@@ -38,7 +38,7 @@ def posts(rng, n, weights, like_base):
 
 def main():
     rng = random.Random(SEED)
-    dump("account", {"source": "mock", "username": "bnd.jewelry", "followers_count": 5561,
+    dump("account", {"source": "mock", "username": "demo.brand", "followers_count": 5561,
                      "follower_demographics": {
                          "age": {"18-24": 0.22, "25-34": 0.46, "35-44": 0.21, "45-54": 0.08, "55+": 0.03},
                          "gender": {"women": 0.78, "men": 0.19, "unknown": 0.03},

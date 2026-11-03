@@ -1262,5 +1262,20 @@
    "orders": 14,
    "spend_usd": 60
   }
- ]
+ ],
+ "generator_truth": {
+  "eng_per_post": {
+   "on_hand": 205,
+   "close_up": 150,
+   "flat_lay": 95,
+   "on_neck": 120
+  },
+  "order_per_engagement": 0.0115,
+  "promo_multiplier": 2.0,
+  "seed_post_rate": 0.75,
+  "eng_per_creator_post": 300,
+  "ad_eng_per_usd": 5.0,
+  "followers_base": 4000,
+  "note": "eng_per_post scales with followers/4000; October carries a planted creator no-show, so seed_post_rate in the data is below 0.75 on purpose."
+ }
 }

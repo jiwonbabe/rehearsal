@@ -22,15 +22,15 @@
       <input id="shots" type="file" accept="image/*" multiple></label>
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button id="demo-shot" class="btn ghost" style="min-height:40px">Use demo screenshot</button><button id="read" class="btn" style="min-height:40px">Read my feed</button><span id="read-status" style="font-size:12px;color:#2f5d8a"></span></div>
     <div id="read-out" style="display:none;flex-direction:column;gap:8px;font-size:14px;line-height:1.5">
-      <div class="label">What we read from your feed · Muse Spark</div>
+      <div class="label">What we read from your feed · Muse Spark <span id="read-prov"></span></div>
       <div id="r-sell"></div><div id="r-style"></div><div id="r-post"></div>
       <div id="r-cust"></div><div id="r-conf"></div>
       <div id="r-why" style="color:#5c6066;font-size:13px"></div>
       <div style="font-weight:500">Check these and fix anything wrong. This decides which directions we suggest.</div>
     </div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #e6e7e2;padding-top:12px"><button id="connect" class="btn ghost" style="min-height:40px">Connect Instagram (demo data)</button><span id="connect-status" style="font-size:12px;color:#2f5d8a"></span></div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #e6e7e2;padding-top:12px"><button id="connect" class="btn ghost" style="min-height:40px">Connect Instagram · demo account</button><span id="connect-status" style="font-size:12px;color:#2f5d8a"></span></div>
     <div id="aud" style="display:none;flex-direction:column;gap:6px;font-size:14px;line-height:1.5">
-      <div class="label">Your followers · Instagram insights</div>
+      <div class="label">Demo account followers · mock Instagram insights <span id="aud-prov"></span></div>
       <div id="aud-line"></div>
       <div id="aud-fmt" style="color:#5c6066;font-size:13px"></div>
     </div>
@@ -76,7 +76,7 @@
   </div>
 
   <div class="card" style="padding:24px;gap:16px">
-    <div class="label">Engine trust check</div>
+    <div class="label">Engine trust check <span id="bt-prov"></span></div>
     <h2 style="margin:0;font-size:20px;font-weight:600">Before you trust any plan: how well does the engine know your brand?</h2>
     <p id="bt-sub" style="margin:0;font-size:14px;color:#5c6066;line-height:1.5;max-width:760px"></p>
     <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
@@ -89,6 +89,15 @@
     </table>
     <div style="font-size:13px;color:#5c6066;line-height:1.5">The smaller the miss, the more the plans on the next pages are worth. The engine's sale-week guesses are its weakest, so sale plans carry a wider range.</div>
     <div id="bt-weak" style="display:none;font-size:13px;color:#c2410c">Known weakness: at least one sale week landed outside the engine's range.</div>
+    <div id="bt-insample" style="font-size:13px;color:#5c6066"></div>
+    <div id="truth" style="display:none;flex-direction:column;gap:10px;border-top:1px solid #e6e7e2;padding-top:14px">
+      <div class="label">Known-answer check · only possible on synthetic data</div>
+      <div style="font-size:14px;color:#5c6066;line-height:1.5;max-width:760px">The demo data was generated with known rates. The engine never reads them; it learns from the weekly rows alone. Here is what it recovered.</div>
+      <table style="border-collapse:collapse;font-size:13px;width:100%">
+        <thead><tr style="text-align:left;color:#5c6066"><th>Rate</th><th>Generator used</th><th>Engine recovered</th><th>Miss</th><th></th></tr></thead>
+        <tbody id="truth-rows" class="mono"></tbody>
+      </table>
+    </div>
   </div>
 
   <div style="display:flex;justify-content:flex-end"><a class="btn" href="/directions.html">See this month's directions</a></div>
@@ -106,11 +115,19 @@ function fill(b) {
   $('age').value = b.target.age;
   $('price_band').value = b.target.price_band;
 }
+const RATE_NAMES = { 'eng_per_post.on_hand': 'Engagement per on-hand post', 'eng_per_post.close_up': 'Engagement per close-up post', 'eng_per_post.flat_lay': 'Engagement per flat-lay post', 'eng_per_post.on_neck': 'Engagement per on-neck post', order_per_engagement: 'Orders per engagement', promo_multiplier: 'Sale week multiplier', seed_post_rate: 'Creators who post after seeding', eng_per_creator_post: 'Engagement per creator post', ad_eng_per_usd: 'Engagement per ad dollar' };
 async function loadBacktest() {
-  const bt = await api('/api/backtest');
+  const tr = await api('/api/trust');
+  const bt = tr.holdout, ins = tr.in_sample;
+  $('bt-prov').replaceChildren(prov('engine', tr.synthetic ? 'Engine · synthetic brand data' : 'Engine · your data'));
   $('bt-err').textContent = bt.median_abs_pct_error + '%';
   $('bt-in').textContent = bt.weeks_inside_range + ' of ' + bt.weeks_total;
-  $('bt-sub').textContent = `We gave the engine what you actually did in each of the last ${bt.weeks_total} weeks (posts, ads, creators, sale weeks) and asked how many orders that would bring. Then we compared its answer with the orders you really got.`;
+  $('bt-sub').textContent = `We hid the last ${bt.weeks_total} weeks from the engine. It learned your rates from the weeks before, then we asked it for the hidden weeks' orders (given the posts, ads, creators and sale weeks you really ran) and compared with what you really got.`;
+  $('bt-insample').textContent = `If the engine may also learn from those ${bt.weeks_total} weeks (in-sample), the miss is ${ins.median_abs_pct_error}% and it gets ${ins.weeks_inside_range} of ${ins.weeks_total} right. The holdout number above is the honest one.`;
+  if (tr.synthetic && tr.truth.length) {
+    $('truth').style.display = 'flex';
+    $('truth-rows').innerHTML = tr.truth.map(r => `<tr><td style="font-family:'IBM Plex Sans',sans-serif">${RATE_NAMES[r.rate] || r.rate}</td><td>${r.true}</td><td>${r.engine}</td><td style="color:${r.err_pct > 10 ? '#c2410c' : '#2f5d8a'}">${r.err_pct}%</td><td style="color:#5c6066;font-family:'IBM Plex Sans',sans-serif">${r.note || ''}</td></tr>`).join('');
+  }
   let weak = false;
   $('bt-rows').innerHTML = bt.rows.map(r => {
     const inside = r.actual >= r.low && r.actual <= r.high;
@@ -170,6 +187,7 @@ $('read').onclick = async () => {
     $('r-cust').append(`${c.gender}, ${c.age}, $${c.price_band}, ${p.market}`);
     $('r-conf').textContent = 'Confidence: ' + p.confidence; $('r-why').textContent = p.why;
     $('read-out').style.display = 'flex';
+    $('read-prov').replaceChildren(prov('real', 'Real · your screenshot'));
     if (p.market) $('market').value = p.market;
     if (c.gender) $('gender').value = c.gender;
     if (c.age) $('age').value = c.age;
@@ -181,13 +199,14 @@ $('read').onclick = async () => {
 $('connect').onclick = async () => {
   try {
     $('connect-status').textContent = 'Loading…';
-    const ev = await api('/api/meta/connect', { source: 'mock', handle: handleOf($('handle').value) || 'bnd.jewelry' });
+    const ev = await api('/api/meta/connect', { source: 'mock', handle: 'demo.brand' });
     const a = ev.evidence.audience, f = {};
     ev.evidence.formats.forEach(x => { f[x.format] = x; });
     $('aud-line').textContent = `${a.followers.toLocaleString('en-US')} followers · ${pct(a.top_age_share)} are ${a.top_age} · ${pct(a.women_share)} women · ${pct(a.top_city_share)} in ${a.top_city}`;
     $('aud-fmt').textContent = `Last ${ev.evidence.days} days: Reels reach ${f.reels.reach_vs_feed}× your feed posts · ${POST[ev.evidence.best_type] || ev.evidence.best_type} get the most saves · Threads ${f.threads.avg_saves} replies per post`;
     $('aud').style.display = 'flex';
-    $('connect-status').textContent = `Connected · ${ev.evidence.source === 'mock' ? 'demo data' : '@' + ev.handle}`;
+    $('connect-status').textContent = ev.evidence.source === 'mock' ? `Connected · demo account @${ev.handle} · mock numbers, not your real account` : `Connected · @${ev.handle}`;
+    $('aud-prov').replaceChildren(prov('demo', ev.evidence.source === 'mock' ? 'Demo input' : 'Real · Instagram'));
     if (a.top_age) $('age').value = a.top_age;
   } catch (e) { $('connect-status').textContent = ''; showError(e); }
 };

@@ -102,7 +102,14 @@ def make_weeks(rng):
 
 def main():
     rng = random.Random(SEED)
-    out = {"brand": BRAND, "weeks": make_weeks(rng)}
+    out = {"brand": BRAND, "weeks": make_weeks(rng),
+           # The rates the generator used. The engine never reads these; the trust check compares its
+           # calibrated rates against them so a reader can see the engine recover a known answer.
+           "generator_truth": {"eng_per_post": TRUE_ENG_PER_POST, "order_per_engagement": TRUE_ORDER_PER_ENG,
+                               "promo_multiplier": TRUE_PROMO_MULT, "seed_post_rate": TRUE_SEED_POST_RATE,
+                               "eng_per_creator_post": TRUE_ENG_PER_CREATOR_POST, "ad_eng_per_usd": TRUE_AD_ENG_PER_USD,
+                               "followers_base": 4000,
+                               "note": "eng_per_post scales with followers/4000; October carries a planted creator no-show, so seed_post_rate in the data is below 0.75 on purpose."}}
     path = os.path.join(os.path.dirname(__file__), "brand.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=1)

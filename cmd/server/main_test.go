@@ -652,3 +652,23 @@ func TestMetaConnectRejects(t *testing.T) {
 		t.Errorf("traversal: %d", code)
 	}
 }
+
+func TestLaunchCarriesReachAndCreators(t *testing.T) {
+	ts := newTestServer(t)
+	var out struct {
+		Reach    map[string]any   `json:"reach"`
+		Creators []map[string]any `json:"creators"`
+	}
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	if out.Reach != nil || out.Creators != nil {
+		t.Errorf("before connect: %v %v", out.Reach, out.Creators)
+	}
+	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"bnd.jewelry"}`, nil)
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	if out.Reach["instagram_reels"] == nil || len(out.Creators) != 6 {
+		t.Errorf("after connect: %v %d", out.Reach, len(out.Creators))
+	}
+	if _, ok := out.Creators[0]["fit"]; !ok {
+		t.Errorf("creator entries carry a fit key (nil when uncached): %v", out.Creators[0])
+	}
+}

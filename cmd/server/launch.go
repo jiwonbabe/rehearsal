@@ -156,6 +156,8 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		"playbook":      l.Playbook,
 		"ad_request":    adReq,
 		"ads_connected": token != "" && account != "",
+		"reach":         s.reach(),
+		"creators":      s.suggestedCreators(),
 	})
 }
 
@@ -282,10 +284,35 @@ func (s *server) handleCreatorFit(w http.ResponseWriter, r *http.Request) {
 	if pb := playbookFor(in.Direction); pb != nil {
 		brief, _ = pb["creator_brief"].(map[string]any)
 	}
-	raw, err := spark.CreatorFit(handle, brief, in.Images)
+	raw, err := spark.CreatorFit(handle, brief, in.Images, nil)
 	if err != nil {
 		writeError(w, 503, "no cached read for @"+handle+"; run `go run ./cmd/sparkcache` with MUSE_API_KEY set")
 		return
 	}
 	s.writeJSON(w, spark.ValidateCreatorFit(raw))
+}
+
+// reach: Meta's delivery estimate for the target, once an account is connected.
+func (s *server) reach() map[string]any {
+	if s.evidence == nil {
+		return nil
+	}
+	return s.evidence.Reach
+}
+
+// suggestedCreators: creators found for the brief (business_discovery) with engine stats and, when cached, Spark's fit read.
+func (s *server) suggestedCreators() []map[string]any {
+	if s.evidence == nil {
+		return nil
+	}
+	out := []map[string]any{}
+	for _, c := range s.evidence.Creators {
+		row := map[string]any{"username": c.Username, "followers": c.Followers, "followers_band": c.FollowersBand,
+			"engagement_rate": c.EngagementRate, "post_mix": c.PostMix, "biography": c.Biography, "fit": nil}
+		if raw, err := spark.CreatorFit(c.Username, nil, nil, nil); err == nil {
+			row["fit"] = spark.ValidateCreatorFit(raw)
+		}
+		out = append(out, row)
+	}
+	return out
 }

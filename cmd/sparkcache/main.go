@@ -192,28 +192,34 @@ func playbookStep(dirs []map[string]any, brand *engine.Brand, channels any) {
 	}
 }
 
-// creatorStep reads each web/demo-creators/<handle>.png against the send_to_creators brief. Skips when the folder is empty.
+// creatorStep reads every creator in the mock business_discovery data, plus any web/demo-creators/<handle>.png,
+// against the send_to_creators brief.
 func creatorStep() {
-	files, _ := filepath.Glob("web/demo-creators/*")
-	if len(files) == 0 {
-		fmt.Println("skip creators: web/demo-creators/ is empty")
-		return
-	}
 	raw, err := spark.Playbook(map[string]any{"id": "send_to_creators"}, nil, nil, nil)
 	if err != nil {
 		fail("creator", err)
 		return
 	}
 	brief, _ := spark.ValidatePlaybook(raw)["creator_brief"].(map[string]any)
-	for _, f := range files {
-		handle := strings.TrimSuffix(filepath.Base(f), filepath.Ext(f))
-		out, err := spark.CreatorFit(handle, brief, dataURLs(f))
+	report := func(handle string, out map[string]any, err error) {
 		if err != nil {
 			fail("creator-"+handle, err)
-			continue
+			return
 		}
 		p := spark.ValidateCreatorFit(out)
 		fmt.Printf("ok creator-%s: %v %v %q\n", handle, p["fit"], p["size_band"], p["why"])
+	}
+	if meta, err := engine.LoadMeta("data/meta/bnd.jewelry"); err == nil {
+		for _, c := range engine.RunEvidence(meta).Creators {
+			out, err := spark.CreatorFit(c.Username, brief, nil, c)
+			report(c.Username, out, err)
+		}
+	}
+	files, _ := filepath.Glob("web/demo-creators/*")
+	for _, f := range files {
+		handle := strings.TrimSuffix(filepath.Base(f), filepath.Ext(f))
+		out, err := spark.CreatorFit(handle, brief, dataURLs(f), nil)
+		report(handle, out, err)
 	}
 }
 

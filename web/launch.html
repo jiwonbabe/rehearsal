@@ -40,6 +40,12 @@ function adsCard(d) {
   if (ad.creative) c.appendChild(kv('Which posts', ad.creative));
   if (ad.placements && ad.placements.length) c.appendChild(kv('Where', ad.placements.map(p => p.replace('instagram_', 'Instagram ')).join(', ')));
   c.appendChild(el('div', 'font-size:13.5px', `${money(s.ads_usd)} over ${s.days} days · ${money(s.ads_daily_usd)}/day · paused until you switch it on`));
+  if (d.reach && d.reach.instagram_reels) {
+    const r = d.reach;
+    const line = el('div', 'font-size:13px;color:#5c6066;line-height:1.5');
+    line.textContent = `Meta estimate for this audience: ${Number(r.instagram_reels.estimate_mau).toLocaleString('en-US')} reachable on Reels, ${Number(r.instagram_feed.estimate_mau).toLocaleString('en-US')} on feed, ${Number(r.instagram_stories.estimate_mau).toLocaleString('en-US')} on Stories (monthly)`;
+    c.appendChild(line);
+  }
   const pre = el('pre'); pre.className = 'req'; pre.textContent = JSON.stringify(d.ad_request, null, 1);
   const det = document.createElement('details');
   det.innerHTML = '<summary style="cursor:pointer;font-size:12px;color:#5c6066">The exact request Rehearsal sends</summary>';
@@ -81,8 +87,28 @@ function creatorsCard(d) {
     b.onclick = async () => { try { await navigator.clipboard.writeText(ta.value); b.textContent = 'Copied'; } catch (e) { ta.select(); } };
     c.appendChild(ta); c.appendChild(b);
   }
+  if (d.creators && d.creators.length) c.appendChild(creatorList(d.creators));
   c.appendChild(fitBox(d.direction.id));
   return c;
+}
+
+// creatorList: accounts found for the search terms, with engine stats and Spark's fit read when cached.
+function creatorList(list) {
+  const box = el('div', 'display:flex;flex-direction:column;gap:8px;border-top:1px solid #e6e7e2;padding-top:12px');
+  box.appendChild(el('div', 'font-size:13.5px;font-weight:600', 'Found for your search terms · Instagram'));
+  const tone = { high: '#2f6f3e', medium: '#8a6d1f', low: '#c2410c' };
+  list.slice().sort((a, b) => ({ high: 0, medium: 1, low: 2 }[(a.fit || {}).fit] ?? 3) - ({ high: 0, medium: 1, low: 2 }[(b.fit || {}).fit] ?? 3)).forEach(cr => {
+    const row = el('div', 'display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.45');
+    const top = el('div', 'display:flex;gap:8px;align-items:baseline;flex-wrap:wrap');
+    top.appendChild(el('span', 'font-weight:600', '@' + cr.username));
+    const mix = Object.entries(cr.post_mix || {}).sort((a, b) => b[1] - a[1])[0];
+    top.appendChild(el('span', 'color:#5c6066', `${Number(cr.followers).toLocaleString('en-US')} followers · ${cr.followers_band} · ${(cr.engagement_rate * 100).toFixed(1)}% engagement · mostly ${mix ? mix[0].replace('_', ' ') : '—'}`));
+    if (cr.fit && cr.fit.fit) top.appendChild(el('span', `font-weight:600;color:${tone[cr.fit.fit] || '#5c6066'}`, `${cr.fit.fit} fit`));
+    row.appendChild(top);
+    if (cr.fit && cr.fit.why) row.appendChild(el('div', 'color:#5c6066;font-size:12.5px', cr.fit.why + (cr.fit.send ? ' · Send: ' + cr.fit.send : '')));
+    box.appendChild(row);
+  });
+  return box;
 }
 
 // fitBox: paste a creator's handle and a screenshot; Spark reads whether they fit the brief.

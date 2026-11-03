@@ -4,135 +4,143 @@
    "codes": [
     "cpm_spike"
    ],
-   "why": "Ads cost much more per result this month."
+   "why": "Your whole plan is paid reach, so pricier ads burn the budget fast."
   },
   {
    "codes": [
-    "reach_drop",
-    "cpm_spike"
-   ],
-   "why": "Two things go wrong together: posts reach far fewer people and ads get much more expensive."
-  },
-  {
-   "codes": [
-    "cpm_spike",
     "competitor_sale"
    ],
-   "why": "Two things go wrong together: ads get much more expensive and a competitor runs a sale."
-  },
-  {
-   "codes": [
-    "cpm_spike",
-    "shipping_delay"
-   ],
-   "why": "Two things go wrong together: ads get much more expensive and shipping runs late."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "cpm_spike"
-   ],
-   "why": "Two things go wrong together: half of the creators you ship to never post and ads get much more expensive."
+   "why": "With no sale of your own, shoppers pick the competitor's 20% off."
   },
   {
    "codes": [
     "reach_drop"
    ],
-   "why": "Your posts reach far fewer people for the month."
-  },
-  {
-   "codes": [
-    "creator_noshow"
-   ],
-   "why": "Half of the creators you ship to never post."
-  },
-  {
-   "codes": [
-    "competitor_sale"
-   ],
-   "why": "A competitor runs a sale and takes some of your buyers."
+   "why": "Less free reach means you pay more to show those wearing shots."
   },
   {
    "codes": [
     "shipping_delay"
    ],
-   "why": "Shipping runs late and some buyers walk away."
+   "why": "Late shipping kills trust right when paid clicks arrive."
   },
   {
    "codes": [
     "viral_post"
    ],
-   "why": "One post takes off, which checks the plan is not just riding luck."
+   "why": "Checks if the plan only looks good when one post gets lucky."
   },
   {
    "codes": [
-    "promo_underestimate"
+    "cpm_spike",
+    "reach_drop"
    ],
-   "why": "Your sale week does worse than the engine's weakest estimate."
+   "why": "Free reach falls and paid gets pricier at the same time."
   },
   {
    "codes": [
-    "reach_drop",
-    "creator_noshow"
-   ],
-   "why": "Two things go wrong together: posts reach far fewer people and half of the creators you ship to never post."
-  },
-  {
-   "codes": [
-    "creator_noshow",
+    "cpm_spike",
     "competitor_sale"
    ],
-   "why": "Two things go wrong together: half of the creators you ship to never post and a competitor runs a sale."
+   "why": "Ads cost more while a rival sale steals your clicks."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "You pay extra for clicks that then don't convert after the delay."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Fewer free views and a rival sale leave paid to do all the work."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "Two things go wrong together: posts reach far fewer people and shipping runs late."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "shipping_delay"
-   ],
-   "why": "Two things go wrong together: half of the creators you ship to never post and shipping runs late."
+   "why": "Less free discovery plus late delivery squeezes both ends."
   },
   {
    "codes": [
     "competitor_sale",
-    "promo_underestimate"
+    "shipping_delay"
    ],
-   "why": "Two things go wrong together: a competitor runs a sale and your sale week does worse than hoped."
+   "why": "Rival discount plus your delay gives shoppers two reasons to skip."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "viral_post"
+   ],
+   "why": "Tests if pricey ads still work without viral luck helping."
   },
   {
    "codes": [
     "reach_drop",
+    "viral_post"
+   ],
+   "why": "Tests if free reach loss is only covered by one lucky post."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
     "competitor_sale"
    ],
-   "why": "Two things go wrong together: posts reach far fewer people and a competitor runs a sale."
+   "why": "Paid gets costly, free reach drops, and rivals discount at once."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Costly ads, less free reach, and late shipping hit together."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Expensive clicks face a rival sale then a delivery delay."
   },
   {
    "codes": [
     "reach_drop",
-    "creator_noshow",
-    "competitor_sale"
+    "competitor_sale",
+    "shipping_delay"
    ],
-   "why": "Three things go wrong together: posts reach far fewer people, half of the creators you ship to never post and a competitor runs a sale."
+   "why": "No free boost, rival on sale, and your orders arrive late."
   },
   {
    "codes": [
+    "cpm_spike",
     "reach_drop",
-    "promo_underestimate"
+    "viral_post"
    ],
-   "why": "Two things go wrong together: posts reach far fewer people and your sale week does worse than hoped."
+   "why": "Checks if costly ads plus weak reach need viral luck to survive."
   },
   {
    "codes": [
-    "viral_post",
-    "competitor_sale"
+    "cpm_spike",
+    "competitor_sale",
+    "viral_post"
    ],
-   "why": "Two things go wrong together: one post takes off and a competitor runs a sale."
+   "why": "Checks if the paid plan beats a rival sale without a lucky hit."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "Checks if pricey ads survive late shipping without going viral."
   }
  ]
 }

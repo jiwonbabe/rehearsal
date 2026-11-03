@@ -4,135 +4,144 @@
    "codes": [
     "creator_noshow"
    ],
-   "why": "Half of the creators you ship to never post."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "creator_noshow"
-   ],
-   "why": "Two things go wrong together: posts reach far fewer people and half of the creators you ship to never post."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "competitor_sale"
-   ],
-   "why": "Two things go wrong together: half of the creators you ship to never post and a competitor runs a sale."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "shipping_delay"
-   ],
-   "why": "Two things go wrong together: half of the creators you ship to never post and shipping runs late."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "creator_noshow",
-    "competitor_sale"
-   ],
-   "why": "Three things go wrong together: posts reach far fewer people, half of the creators you ship to never post and a competitor runs a sale."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "cpm_spike"
-   ],
-   "why": "Two things go wrong together: half of the creators you ship to never post and ads get much more expensive."
+   "why": "Half the creators you mail never post a wearing photo."
   },
   {
    "codes": [
     "reach_drop"
    ],
-   "why": "Your posts reach far fewer people for the month."
+   "why": "Low reach means few people see the creator photos."
   },
   {
    "codes": [
     "competitor_sale"
    ],
-   "why": "A competitor runs a sale and takes some of your buyers."
-  },
-  {
-   "codes": [
-    "cpm_spike"
-   ],
-   "why": "Ads cost much more per result this month."
+   "why": "A rival sale steals attention while creators post."
   },
   {
    "codes": [
     "shipping_delay"
    ],
-   "why": "Shipping runs late and some buyers walk away."
-  },
-  {
-   "codes": [
-    "viral_post"
-   ],
-   "why": "One post takes off, which checks the plan is not just riding luck."
+   "why": "Late arrivals delay creator posts and shopper orders."
   },
   {
    "codes": [
     "promo_underestimate"
    ],
-   "why": "Your sale week does worse than the engine's weakest estimate."
+   "why": "Any sale week could still do worse than expected."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "Seeding plans need both reach and creators to show up."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Few creator posts plus a rival sale kills conversions."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "Few posts and late shipping leave little to buy."
   },
   {
    "codes": [
     "reach_drop",
-    "cpm_spike"
-   ],
-   "why": "Two things go wrong together: posts reach far fewer people and ads get much more expensive."
-  },
-  {
-   "codes": [
-    "cpm_spike",
     "competitor_sale"
    ],
-   "why": "Two things go wrong together: ads get much more expensive and a competitor runs a sale."
+   "why": "Low reach plus a rival sale buries your photos."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "Two things go wrong together: posts reach far fewer people and shipping runs late."
+   "why": "Few views and late delivery stall creator momentum."
   },
   {
    "codes": [
     "competitor_sale",
-    "promo_underestimate"
-   ],
-   "why": "Two things go wrong together: a competitor runs a sale and your sale week does worse than hoped."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "competitor_sale"
-   ],
-   "why": "Two things go wrong together: posts reach far fewer people and a competitor runs a sale."
-  },
-  {
-   "codes": [
-    "cpm_spike",
     "shipping_delay"
    ],
-   "why": "Two things go wrong together: ads get much more expensive and shipping runs late."
+   "why": "Rival discounts and late delivery stop shoppers buying."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "viral_post"
+   ],
+   "why": "Tests if one lucky post is covering for missing creators."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Missing creators, low reach and a rival sale starve sales."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Missing posts, low reach and delays stop discovery."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Few posts plus sale competition and delays block buying."
   },
   {
    "codes": [
     "reach_drop",
-    "promo_underestimate"
+    "competitor_sale",
+    "shipping_delay"
    ],
-   "why": "Two things go wrong together: posts reach far fewer people and your sale week does worse than hoped."
+   "why": "Low views, rival sale and delays together choke demand."
   },
   {
    "codes": [
-    "viral_post",
-    "competitor_sale"
+    "creator_noshow",
+    "reach_drop",
+    "viral_post"
    ],
-   "why": "Two things go wrong together: one post takes off and a competitor runs a sale."
+   "why": "Tests if luck is needed when reach and creators fail."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Tests if one viral hit hides weak posts and rival pressure."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "Tests if luck covers missing posts and late delivery."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Tests if virality alone saves low reach during a rival sale."
   }
  ]
 }

@@ -1,197 +1,197 @@
 {
  "directions": [
   {
-   "id": "send_to_creators",
-   "title": "Send pieces to small creators",
-   "plain": "Ship 4 to 8 pieces to small creators your customer already follows. They shoot the wearing shots you cannot. Slow to start, and some will not post.",
-   "why_for_you": "Creator posts are the one thing your own history has little of, and on-hand shots are your best post type.",
-   "you_would_do": "Send 6 to 8 DMs in week 1, ship by week 2, repost what comes back.",
-   "rank": 1,
    "caution": null,
+   "id": "send_to_creators",
+   "plain": "You mail pieces to small creators young women already follow. They post real wearing photos for you.",
    "ranges": {
-    "posts_per_week": [
-     3,
-     4
+    "ads_usd": [
+     0,
+     0
     ],
     "creator_count": [
      4,
      8
     ],
-    "ads_usd": [
-     0,
-     60
-    ],
-    "promo_week": [
-     null
-    ],
-    "promo_discount": [
-     0,
-     0
-    ],
     "post_mix": {
-     "on_hand": [
-      0.4,
-      0.6
-     ],
      "close_up": [
-      0.2,
-      0.4
-     ],
-     "flat_lay": [
       0.1,
       0.3
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.5,
+      0.7
      ],
      "on_neck": [
       0,
       0.1
      ]
-    }
-   }
-  },
-  {
-   "id": "pay_for_reach",
-   "title": "Pay for reach on what already works",
-   "plain": "Put ad money behind your best existing posts, aimed at women 25-34 in the US. You keep posting 3 to 5 times a week. Fast, but it moves with ad prices.",
-   "why_for_you": "On-hand shots are your best post type, and your past ad weeks landed inside the engine's range.",
-   "you_would_do": "Pick your 2 best on-hand posts, set a daily cap between $120 and $260 for the month, keep the posting rhythm.",
-   "rank": 2,
-   "caution": null,
-   "ranges": {
+    },
     "posts_per_week": [
      3,
      5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 1,
+   "title": "Let Fans Show Your Pieces Worn",
+   "why_for_you": "Wearing shots get the most love, and creator posts get even more. Most creators you send to end up posting.",
+   "you_would_do": "Message about ten creators, send pieces to four to eight, and ask each for one wearing photo."
+  },
+  {
+   "caution": "You spent nothing last month, so we have no paid history to learn from yet.",
+   "id": "pay_for_reach",
+   "plain": "You put money behind your best photos to show them to more young women. It works fast and you can stop any time.",
+   "ranges": {
+    "ads_usd": [
+     150,
+     400
     ],
     "creator_count": [
      0,
      0
     ],
-    "ads_usd": [
-     120,
-     260
-    ],
-    "promo_week": [
-     null
-    ],
-    "promo_discount": [
-     0,
-     0
-    ],
     "post_mix": {
-     "on_hand": [
-      0.4,
-      0.6
-     ],
      "close_up": [
-      0.2,
-      0.4
-     ],
-     "flat_lay": [
       0.1,
       0.3
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.5,
+      0.7
      ],
      "on_neck": [
       0,
       0.1
      ]
-    }
-   }
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 2,
+   "title": "Boost Best Posts To Young Women",
+   "why_for_you": "Your wearing shots already get the most love. Paid support can show those winners to women your age.",
+   "you_would_do": "Post three to five times a week and pick two wearing shots to support."
   },
   {
-   "id": "just_post",
-   "title": "Just post, steadily",
-   "plain": "No spend. Post 4 to 5 times a week, mostly on-hand and close-up shots. Keeps the account warm and saves the budget.",
-   "why_for_you": "On-hand is your best post type, so steady posting never wastes money, but it is slow.",
-   "you_would_do": "Make 16 to 20 posts this month. That is all.",
-   "rank": 3,
-   "caution": "On your numbers this does not reach the order goal alone.",
+   "caution": "Creator posts can be slow to start, so early days may feel quiet.",
+   "id": "mix",
+   "plain": "You seed a few creators and also support top posts with money. You learn fast without betting all on one idea.",
    "ranges": {
+    "ads_usd": [
+     100,
+     200
+    ],
+    "creator_count": [
+     2,
+     4
+    ],
+    "post_mix": {
+     "close_up": [
+      0.1,
+      0.3
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.5,
+      0.7
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 3,
+   "title": "Half Creators Half Boosted Posts Mix",
+   "why_for_you": "Creator posts earn the most attention and your wearing shots lead brand posts. Last month you were close to goal with no spend, so a small lift may help.",
+   "you_would_do": "Message about eight creators to seed two to four, post three to five times, and support the best wearing shot."
+  },
+  {
+   "caution": "Use sales rarely, or shoppers will learn to wait for the next one.",
+   "id": "one_week_sale",
+   "plain": "You pick one week with a small discount on all pieces. Shoppers who waited get a reason to buy now.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.1,
+      0.3
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.5,
+      0.7
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
     "posts_per_week": [
      4,
      5
     ],
-    "creator_count": [
-     0,
-     0
-    ],
-    "ads_usd": [
-     0,
-     0
+    "promo_discount": [
+     10,
+     20
     ],
     "promo_week": [
-     null
-    ],
-    "promo_discount": [
-     0,
-     0
-    ],
-    "post_mix": {
-     "on_hand": [
-      0.4,
-      0.6
-     ],
-     "close_up": [
-      0.2,
-      0.4
-     ],
-     "flat_lay": [
-      0.1,
-      0.3
-     ],
-     "on_neck": [
-      0,
-      0.1
-     ]
-    }
-   }
-  },
-  {
-   "id": "one_week_sale",
-   "title": "Run a one-week sale",
-   "plain": "A discount week pulls orders forward. It works once in a while; done often it trains people to wait.",
-   "why_for_you": "Nothing in your history shows a sale working yet, so this is the least proven choice for you.",
-   "you_would_do": "Pick one week, announce it, discount 10 to 20 percent, and ship the spike.",
+     1,
+     4
+    ]
+   },
    "rank": 4,
-   "caution": "Your history has only two sale weeks, and the engine's sale-week estimate is its weakest.",
-   "ranges": {
-    "posts_per_week": [
-     3,
-     5
-    ],
-    "creator_count": [
-     0,
-     0
-    ],
-    "ads_usd": [
-     0,
-     60
-    ],
-    "promo_week": [
-     2,
-     3
-    ],
-    "promo_discount": [
-     0.1,
-     0.2
-    ],
-    "post_mix": {
-     "on_hand": [
-      0.4,
-      0.6
-     ],
-     "close_up": [
-      0.2,
-      0.4
-     ],
-     "flat_lay": [
-      0.1,
-      0.3
-     ],
-     "on_neck": [
-      0,
-      0.1
-     ]
-    }
-   }
+   "title": "Run One Simple Discount Week Only",
+   "why_for_you": "Sales lift buying a lot for shops like yours. Last month you were close to goal with no sale, so one week may close the gap.",
+   "you_would_do": "Post four to five times that week, show wearing shots daily, and keep the discount to seven days."
   }
  ]
 }

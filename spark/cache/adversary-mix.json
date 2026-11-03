@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "Half your seeded creators may never post, leaving too few shots to learn from."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow"
+   ],
+   "why": "Seeding plans need both reach and creators to show up."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "cpm_spike"
+   ],
+   "why": "Fewer creator posts plus pricey boosts leaves no winner to scale."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Fewer posts plus a rival sale means less attention that converts worse."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "Few creator posts plus late shipping stalls momentum in week 3."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "If organic reach falls, your creator posts start quiet and stay quiet."
+  },
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "Costly ads eat your small boost budget before winners emerge."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "cpm_spike"
+   ],
+   "why": "Organic and paid reach both drop, so good wearing shots never get seen."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "A rival sale steals clicks when you have no discount to answer back."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late shipping kills buying mood right when posts gain traction."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Less organic reach plus a rival sale shrinks traffic that converts."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Pricey boosts buy less traffic that converts worse against a rival sale."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Quiet early posts plus late delivery ruins late-month buying."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "You pay more for boosts that land just as shipping delays hit."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Shoppers pick the rival sale and then delay fears stop the rest."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "cpm_spike"
+   ],
+   "why": "No creators, low reach, and pricey ads kills both halves of the mix."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Thin creator content with low reach cannot fight a rival sale."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Few posts, expensive boosts, and a rival sale starve the plan."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Low reach, costly boosts, and weak conversion break the paid lift."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "viral_post"
+   ],
+   "why": "Checks if even one lucky viral post cannot save missing creators and low reach."
+  }
+ ]
+}

@@ -12,3 +12,4 @@
 - /api/profile takes `source`; only "screenshot" exists. Instagram Login (Graph API) will add `source: "instagram"` with the same prompt and ValidateProfile after Meta App Review.
 
 - Success metric revenue is display-only (goal ÷ avg price); the engine tests orders.
+- spark/cache/playbook-<id>.json generated live on Nov 3, 2026 (Spark role 5, prompts/playbook.md) from the cached profile read + brand basics; one file per direction id, month 2 reuses it.

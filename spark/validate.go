@@ -196,3 +196,52 @@ func ValidateProfile(raw map[string]any) map[string]any {
 		"ambition":       oneOf(raw["ambition"], "hold", "grow", "stretch"), "why_goal": sentence(raw["why_goal"]),
 	}
 }
+
+var numberRe = regexp.MustCompile(`(?i)\$\d|\d+\s*(orders|revenue|%)`)
+
+// noNumbers drops a playbook sentence that carries a money, order, revenue or percent figure.
+func noNumbers(s string) string {
+	if numberRe.MatchString(s) {
+		return ""
+	}
+	return s
+}
+
+func clean(v any) string { return noNumbers(sentence(v)) }
+
+// ValidatePlaybook returns exactly platform, weeks (always 4), ad, creator_brief; ad and
+// creator_brief are nil unless Spark returned objects. Strings with figures are dropped.
+func ValidatePlaybook(raw map[string]any) map[string]any {
+	weeks := make([]map[string]any, 4)
+	rawWeeks, _ := raw["weeks"].([]any)
+	for i := range weeks {
+		w := map[string]any{}
+		if i < len(rawWeeks) {
+			w, _ = rawWeeks[i].(map[string]any)
+		}
+		weeks[i] = map[string]any{"week": i + 1, "do": clean(w["do"]), "post_idea": clean(w["post_idea"])}
+	}
+	out := map[string]any{"platform": "instagram", "weeks": weeks, "ad": nil, "creator_brief": nil}
+	if ad, ok := raw["ad"].(map[string]any); ok {
+		placements := []string{}
+		list, _ := ad["placements"].([]any)
+		for _, p := range list {
+			if s := oneOf(p, "instagram_feed", "instagram_reels", "instagram_stories"); s != "" {
+				placements = append(placements, s)
+			}
+		}
+		out["ad"] = map[string]any{"audience": clean(ad["audience"]), "creative": clean(ad["creative"]), "placements": placements}
+	}
+	if cb, ok := raw["creator_brief"].(map[string]any); ok {
+		find := []string{}
+		list, _ := cb["find_them"].([]any)
+		for _, f := range list {
+			if s := clean(f); s != "" && len(find) < 5 {
+				find = append(find, s)
+			}
+		}
+		out["creator_brief"] = map[string]any{"who": clean(cb["who"]), "find_them": find,
+			"send": clean(cb["send"]), "ask": clean(cb["ask"]), "dm": clean(cb["dm"])}
+	}
+	return out
+}

@@ -134,3 +134,39 @@ func TestValidateProfile(t *testing.T) {
 		t.Errorf("empty input should still have all 12 keys")
 	}
 }
+
+func TestValidatePlaybook(t *testing.T) {
+	raw := map[string]any{
+		"platform": "tiktok",
+		"weeks": []any{
+			map[string]any{"week": 1, "do": "Post the ring close-ups.", "post_idea": "Ring on a beige cloth"},
+			map[string]any{"week": 2, "do": "Spend $120 on ads.", "post_idea": "Expect 30 orders"},
+		},
+		"ad":            map[string]any{"audience": "Women in Seoul", "creative": "Close-ups", "placements": []any{"instagram_feed", "tiktok_feed"}},
+		"creator_brief": "not an object",
+	}
+	p := ValidatePlaybook(raw)
+	if p["platform"] != "instagram" {
+		t.Errorf("platform %v", p["platform"])
+	}
+	weeks := p["weeks"].([]map[string]any)
+	if len(weeks) != 4 || weeks[0]["week"] != 1 || weeks[3]["week"] != 4 {
+		t.Fatalf("weeks %v", weeks)
+	}
+	if weeks[1]["do"] != "" || weeks[1]["post_idea"] != "" {
+		t.Errorf("numbers not dropped: %v", weeks[1])
+	}
+	if weeks[2]["do"] != "" {
+		t.Errorf("padded week should be empty: %v", weeks[2])
+	}
+	ad := p["ad"].(map[string]any)
+	if pl := ad["placements"].([]string); len(pl) != 1 || pl[0] != "instagram_feed" {
+		t.Errorf("placements %v", pl)
+	}
+	if p["creator_brief"] != nil {
+		t.Errorf("creator_brief should be nil, got %v", p["creator_brief"])
+	}
+	if noNumbers("Keep 20% for later") != "" || noNumbers("Post three times") == "" {
+		t.Error("noNumbers")
+	}
+}

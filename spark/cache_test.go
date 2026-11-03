@@ -21,6 +21,13 @@ func TestCacheFilesValidate(t *testing.T) {
 			if n := len(ParseShocks(raw)); n != 20 {
 				t.Errorf("%s: %d combos", d["id"], n)
 			}
+			pb, err := Playbook(d, map[string]any{}, map[string]any{})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if ValidatePlaybook(pb)["weeks"].([]map[string]any)[0]["do"] == "" {
+				t.Errorf("%s: empty playbook", d["id"])
+			}
 		}
 	}
 }

@@ -82,6 +82,7 @@ func main() {
 
 	checkLine(m1, rates, brand)
 	profileStep()
+	playbookStep(append(append([]map[string]any{}, m1...), m2...), brand)
 	if failed {
 		os.Exit(1)
 	}
@@ -149,4 +150,36 @@ func profileStep() {
 	p := spark.ValidateProfile(raw)
 	c := p["likely_customer"].(map[string]any)
 	fmt.Printf("ok %s: %v %v %v %v %v %v\n", name, p["market"], c["gender"], c["age"], c["price_band"], p["best_post_type"], p["confidence"])
+}
+
+// playbookStep writes the executor brief for every direction id, using the cached profile read.
+func playbookStep(dirs []map[string]any, brand *engine.Brand) {
+	rawProfile, err := spark.Profile("bnd.jewelry", nil)
+	if err != nil {
+		fail("playbook", err)
+		return
+	}
+	profile := spark.ValidateProfile(rawProfile)
+	basics := map[string]any{"name": brand.Brand.Name, "market": brand.Brand.Market,
+		"target": brand.Brand.Target, "avg_price_usd": brand.Brand.AvgPriceUsd}
+	seen := map[string]bool{}
+	for _, d := range dirs {
+		id, _ := d["id"].(string)
+		if seen[id] {
+			continue
+		}
+		seen[id] = true
+		raw, err := spark.Playbook(d, profile, basics)
+		if err != nil {
+			fail("playbook-"+id, err)
+			continue
+		}
+		p := spark.ValidatePlaybook(raw)
+		weeks := p["weeks"].([]map[string]any)
+		if weeks[0]["do"] == "" {
+			fail("playbook-"+id, fmt.Errorf("empty week 1"))
+			continue
+		}
+		fmt.Printf("ok playbook-%s: week1=%q ad=%v creators=%v\n", id, weeks[0]["do"], p["ad"] != nil, p["creator_brief"] != nil)
+	}
 }

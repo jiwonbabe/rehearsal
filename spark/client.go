@@ -178,3 +178,13 @@ func Profile(handle string, images []string) (map[string]any, error) {
 	}
 	return CallWithImages("profile-"+SafeHandle(handle), fill(tpl, map[string]any{"HANDLE": handle}), images)
 }
+
+// Playbook: executor brief for one direction, written for this brand's profile read. Cached by direction id.
+func Playbook(direction, profile, brand map[string]any) (map[string]any, error) {
+	tpl, err := loadPrompt("playbook.md")
+	if err != nil {
+		return nil, err
+	}
+	id, _ := direction["id"].(string)
+	return Call("playbook-"+id, fill(tpl, map[string]any{"DIRECTION_JSON": direction, "PROFILE_JSON": profile, "BRAND_JSON": brand}))
+}

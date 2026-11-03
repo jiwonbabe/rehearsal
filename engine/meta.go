@@ -93,3 +93,21 @@ func LoadMeta(dir string) (MetaData, error) {
 	}
 	return m, nil
 }
+
+// LoadStats reads the sourced public statistics table; rows without a source or url are dropped.
+func LoadStats(path string) ([]StatRow, error) {
+	raw, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	var rows, out []StatRow
+	if err := json.Unmarshal(raw, &rows); err != nil {
+		return nil, err
+	}
+	for _, r := range rows {
+		if r.Source != "" && r.URL != "" && r.Year > 0 {
+			out = append(out, r)
+		}
+	}
+	return out, nil
+}

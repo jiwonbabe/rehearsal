@@ -18,7 +18,7 @@ import (
 
 // playbookFor loads the cached executor brief for a direction id; nil when the cache is missing.
 func playbookFor(id string) map[string]any {
-	raw, err := spark.Playbook(map[string]any{"id": id}, nil, nil)
+	raw, err := spark.Playbook(map[string]any{"id": id}, nil, nil, nil)
 	if err != nil {
 		return nil
 	}

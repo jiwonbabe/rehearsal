@@ -82,7 +82,8 @@ func main() {
 
 	checkLine(m1, rates, brand)
 	profileStep()
-	playbookStep(append(append([]map[string]any{}, m1...), m2...), brand)
+	channels := channelsStep(brand)
+	playbookStep(append(append([]map[string]any{}, m1...), m2...), brand, channels)
 	creatorStep()
 	if failed {
 		os.Exit(1)
@@ -160,7 +161,7 @@ func profileStep() {
 }
 
 // playbookStep writes the executor brief for every direction id, using the cached profile read.
-func playbookStep(dirs []map[string]any, brand *engine.Brand) {
+func playbookStep(dirs []map[string]any, brand *engine.Brand, channels any) {
 	rawProfile, err := spark.Profile("bnd.jewelry", nil)
 	if err != nil {
 		fail("playbook", err)
@@ -176,7 +177,7 @@ func playbookStep(dirs []map[string]any, brand *engine.Brand) {
 			continue
 		}
 		seen[id] = true
-		raw, err := spark.Playbook(d, profile, basics)
+		raw, err := spark.Playbook(d, profile, basics, channels)
 		if err != nil {
 			fail("playbook-"+id, err)
 			continue
@@ -198,7 +199,7 @@ func creatorStep() {
 		fmt.Println("skip creators: web/demo-creators/ is empty")
 		return
 	}
-	raw, err := spark.Playbook(map[string]any{"id": "send_to_creators"}, nil, nil)
+	raw, err := spark.Playbook(map[string]any{"id": "send_to_creators"}, nil, nil, nil)
 	if err != nil {
 		fail("creator", err)
 		return
@@ -214,4 +215,38 @@ func creatorStep() {
 		p := spark.ValidateCreatorFit(out)
 		fmt.Printf("ok creator-%s: %v %v %q\n", handle, p["fit"], p["size_band"], p["why"])
 	}
+}
+
+// channelsStep: evidence from the mock Meta data + sourced statistics -> channel verdicts for bnd.jewelry.
+func channelsStep(brand *engine.Brand) any {
+	meta, err := engine.LoadMeta("data/meta/bnd.jewelry")
+	if err != nil {
+		fail("channels", err)
+		return nil
+	}
+	stats, err := engine.LoadStats("data/platform_stats.json")
+	if err != nil {
+		fail("channels", err)
+		return nil
+	}
+	ev := engine.RunEvidence(meta)
+	rawProfile, err := spark.Profile("bnd.jewelry", nil)
+	if err != nil {
+		fail("channels", err)
+		return nil
+	}
+	basics := map[string]any{"name": brand.Brand.Name, "market": brand.Brand.Market, "target": brand.Brand.Target, "avg_price_usd": brand.Brand.AvgPriceUsd}
+	raw, err := spark.Channels("bnd.jewelry", ev, spark.ValidateProfile(rawProfile), stats, basics)
+	if err != nil {
+		fail("channels", err)
+		return nil
+	}
+	out := spark.ValidateChannels(raw, engine.EvidenceNumbers(ev, stats))
+	if len(out) < 3 {
+		fail("channels", fmt.Errorf("only %d valid channels", len(out)))
+	}
+	for _, c := range out {
+		fmt.Printf("ok channels: %s=%s data=%q\n", c["channel"], c["verdict"], c["why_data"])
+	}
+	return out
 }

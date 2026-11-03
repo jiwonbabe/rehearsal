@@ -16,6 +16,8 @@
 //	/api/launch/ads POST {plan} -> creates the PAUSED campaign + ad set when META_AD_ACCOUNT_ID/META_ACCESS_TOKEN are set; dry-run otherwise
 //	/api/launch/calendar POST {plan} -> .ics with one event per week
 //	/api/launch/creator POST {handle, images, direction} -> fit labels for one creator (cached by handle)
+//	/api/meta/connect POST {source:"mock"|"instagram", handle} -> evidence from the account's Meta data + channel verdicts
+//	/api/evidence        evidence, sourced statistics, channel verdicts (409 before connect)
 //
 // Pages are served from web/ (copy layouts from mockup/).
 package main
@@ -35,6 +37,10 @@ type server struct {
 	baseRates, rates engine.Rates
 	month            int
 	lastReview       *engine.Review
+	meta             *engine.MetaData
+	evidence         *engine.Evidence
+	metaHandle       string
+	stats            []engine.StatRow
 	mu               sync.Mutex
 }
 
@@ -53,7 +59,8 @@ func newServer(brandPath string) (*server, error) {
 		return nil, err
 	}
 	rates := engine.Calibrate(brand)
-	return &server{brand: brand, baseRates: rates, rates: rates, month: 1}, nil
+	stats, _ := engine.LoadStats("data/platform_stats.json") // optional: no table, no public-data lines
+	return &server{brand: brand, baseRates: rates, rates: rates, month: 1, stats: stats}, nil
 }
 
 func (s *server) routes() *http.ServeMux {
@@ -79,6 +86,8 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/launch/ads", s.locked(s.handleLaunchAds))
 	mux.HandleFunc("POST /api/launch/calendar", s.locked(s.handleLaunchCalendar))
 	mux.HandleFunc("POST /api/launch/creator", s.locked(s.handleCreatorFit))
+	mux.HandleFunc("POST /api/meta/connect", s.locked(s.handleMetaConnect))
+	mux.HandleFunc("/api/evidence", s.locked(s.handleEvidence))
 	mux.Handle("/", http.FileServer(http.Dir("web")))
 	return mux
 }

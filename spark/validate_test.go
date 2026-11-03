@@ -191,10 +191,29 @@ func TestPlaybookIDCannotEscapeCache(t *testing.T) {
 	CacheDir = filepath.Join(tmp, "cache")
 	t.Cleanup(func() { CacheDir = old })
 	t.Setenv("MUSE_API_KEY", "")
-	if _, err := Playbook(map[string]any{"id": "/../secret"}, nil, nil); err == nil {
+	if _, err := Playbook(map[string]any{"id": "/../secret"}, nil, nil, nil); err == nil {
 		t.Fatal("traversal id read a file outside the cache dir")
 	}
 	if !KnownDirection("pay_for_reach") || KnownDirection("../x") {
 		t.Error("KnownDirection")
+	}
+}
+
+func TestValidateChannels(t *testing.T) {
+	raw := map[string]any{"channels": []any{
+		map[string]any{"channel": "instagram_reels", "verdict": "lead", "why_data": "Reels reach 3.08 times feed and get 262 saves.", "why_category": "Wearing shots build trust for gifts.", "how": "Post two Reels a week."},
+		map[string]any{"channel": "threads", "verdict": "support", "why_data": "Threads reach 9999 people.", "why_category": "Spend 20% there.", "how": "Ask a question."},
+		map[string]any{"channel": "myspace", "verdict": "lead", "why_data": "", "why_category": "", "how": ""},
+		map[string]any{"channel": "tiktok", "verdict": "maybe", "why_data": "", "why_category": "", "how": ""},
+	}}
+	out := ValidateChannels(raw, []float64{3.08, 262, 46, 0.46})
+	if len(out) != 2 {
+		t.Fatalf("%v", out)
+	}
+	if out[0]["why_data"] == "" || out[1]["why_data"] != "" || out[1]["why_category"] != "" {
+		t.Errorf("%v", out)
+	}
+	if !quotesAllowed("46% of followers are 25-34", []float64{46}) || quotesAllowed("about 1,200 people", []float64{46}) {
+		t.Error("quotesAllowed")
 	}
 }

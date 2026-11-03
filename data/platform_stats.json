@@ -1,0 +1,5 @@
+[
+ {"market": "US", "age_band": "18-29", "platform": "instagram", "share": 0.80, "source": "Pew Research Center, Americans' Social Media Use (2025 survey)", "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/", "year": 2025, "note": "share of US adults 18-29 who say they ever use Instagram"},
+ {"market": "US", "age_band": "18-29", "platform": "tiktok", "share": 0.63, "source": "Pew Research Center, Americans' Social Media Use (2025 survey)", "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/", "year": 2025, "note": "share of US adults 18-29 who say they ever use TikTok"},
+ {"market": "KR", "age_band": "30-39", "platform": "threads", "share": 0.19, "source": "KT Nasmedia, 2026 NPR Target Infographics", "url": "https://www.i-boss.co.kr/ab-3208-1746", "year": 2026, "note": "share of Korean internet users in their 30s using Threads; above the all-ages average"}
+]

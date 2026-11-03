@@ -179,8 +179,17 @@ func Profile(handle string, images []string) (map[string]any, error) {
 	return CallWithImages("profile-"+SafeHandle(handle), fill(tpl, map[string]any{"HANDLE": handle}), images)
 }
 
-// Playbook: executor brief for one direction, written for this brand's profile read. Cached by direction id.
-func Playbook(direction, profile, brand map[string]any) (map[string]any, error) {
+// Channels: channel verdicts for this brand from engine evidence + sourced statistics. Cached by handle.
+func Channels(handle string, evidence, profile any, stats any, brand map[string]any) (map[string]any, error) {
+	tpl, err := loadPrompt("channels.md")
+	if err != nil {
+		return nil, err
+	}
+	return Call("channels-"+SafeHandle(handle), fill(tpl, map[string]any{"EVIDENCE_JSON": evidence, "STATS_JSON": stats, "PROFILE_JSON": profile, "BRAND_JSON": brand}))
+}
+
+// Playbook: executor brief for one direction, written for this brand's profile read and channel verdicts. Cached by direction id.
+func Playbook(direction, profile, brand map[string]any, channels any) (map[string]any, error) {
 	tpl, err := loadPrompt("playbook.md")
 	if err != nil {
 		return nil, err
@@ -189,7 +198,7 @@ func Playbook(direction, profile, brand map[string]any) (map[string]any, error) 
 	if !KnownDirection(id) {
 		return nil, errors.New("unknown direction id: " + id)
 	}
-	return Call("playbook-"+id, fill(tpl, map[string]any{"DIRECTION_JSON": direction, "PROFILE_JSON": profile, "BRAND_JSON": brand}))
+	return Call("playbook-"+id, fill(tpl, map[string]any{"DIRECTION_JSON": direction, "PROFILE_JSON": profile, "BRAND_JSON": brand, "CHANNELS_JSON": channels}))
 }
 
 // CreatorFit: reads a creator's Instagram screenshots against the brand's creator brief. Cached by handle.

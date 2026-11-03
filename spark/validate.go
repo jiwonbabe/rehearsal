@@ -257,3 +257,55 @@ func ValidateCreatorFit(raw map[string]any) map[string]any {
 		"why":       clean(raw["why"]), "send": clean(raw["send"]),
 	}
 }
+
+var (
+	figureRe = regexp.MustCompile(`\d[\d,]*(?:\.\d+)?`)
+	labelRe  = regexp.MustCompile(`\b\d{2}(?:-\d{2}|\+|s)\b`) // age bands: 25-34, 55+, 30s
+)
+
+// quotesAllowed: every figure in s (age-band labels aside) is one of allowed (2dp).
+func quotesAllowed(s string, allowed []float64) bool {
+	ok := map[float64]bool{}
+	for _, a := range allowed {
+		ok[round2(a)] = true
+	}
+	for _, f := range figureRe.FindAllString(labelRe.ReplaceAllString(s, ""), -1) {
+		v, err := strconv.ParseFloat(strings.ReplaceAll(f, ",", ""), 64)
+		if err != nil || !ok[round2(v)] {
+			return false
+		}
+	}
+	return true
+}
+
+// ValidateChannels keeps entries with a catalog channel and verdict; a why_data line quoting a figure
+// outside allowed becomes "". why_category and how must carry no figures at all.
+func ValidateChannels(raw map[string]any, allowed []float64) []map[string]any {
+	out := []map[string]any{}
+	list, _ := raw["channels"].([]any)
+	for _, item := range list {
+		c, _ := item.(map[string]any)
+		channel := oneOf(c["channel"], "instagram_reels", "instagram_feed", "instagram_stories", "threads", "facebook", "naver_blog", "tiktok", "x")
+		verdict := oneOf(c["verdict"], "lead", "support", "skip")
+		if channel == "" || verdict == "" {
+			continue
+		}
+		why := sentence(c["why_data"])
+		if !quotesAllowed(why, allowed) {
+			why = ""
+		}
+		noFigures := func(v any) string {
+			t := sentence(v)
+			if !quotesAllowed(t, nil) {
+				return ""
+			}
+			return t
+		}
+		out = append(out, map[string]any{"channel": channel, "verdict": verdict, "why_data": why,
+			"why_category": noFigures(c["why_category"]), "how": noFigures(c["how"])})
+		if len(out) == 6 {
+			break
+		}
+	}
+	return out
+}

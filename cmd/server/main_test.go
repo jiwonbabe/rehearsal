@@ -608,3 +608,47 @@ func TestLaunchAdsAdsetFailureReportsCampaign(t *testing.T) {
 		t.Errorf("%d %+v", resp.StatusCode, out)
 	}
 }
+
+func TestMetaConnectMockThenEvidence(t *testing.T) {
+	ts := newTestServer(t)
+	if code := call(t, ts, "GET", "/api/evidence", "", nil); code != 409 {
+		t.Errorf("evidence before connect: %d", code)
+	}
+	var out struct {
+		Evidence engine.Evidence  `json:"evidence"`
+		Channels []map[string]any `json:"channels"`
+		Stats    []engine.StatRow `json:"stats"`
+	}
+	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"@BND.jewelry"}`, &out); code != 200 {
+		t.Fatal(code)
+	}
+	if out.Evidence.Formats[1].Format != "reels" || out.Evidence.Formats[1].ReachVsFeed <= 1 {
+		t.Errorf("%+v", out.Evidence.Formats)
+	}
+	if len(out.Channels) < 3 || len(out.Stats) == 0 {
+		t.Errorf("channels %d stats %d", len(out.Channels), len(out.Stats))
+	}
+	if code := call(t, ts, "GET", "/api/evidence", "", &out); code != 200 || len(out.Channels) < 3 {
+		t.Errorf("evidence after connect: %d %d", code, len(out.Channels))
+	}
+	var dirs struct {
+		Channels []map[string]any `json:"channels"`
+	}
+	call(t, ts, "GET", "/api/directions", "", &dirs)
+	if len(dirs.Channels) < 3 {
+		t.Errorf("directions channels %v", dirs.Channels)
+	}
+}
+
+func TestMetaConnectRejects(t *testing.T) {
+	ts := newTestServer(t)
+	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"nobody"}`, nil); code != 404 {
+		t.Errorf("unknown handle: %d", code)
+	}
+	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"instagram","handle":"bnd.jewelry"}`, nil); code != 400 {
+		t.Errorf("instagram without token: %d", code)
+	}
+	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"../brand"}`, nil); code != 404 {
+		t.Errorf("traversal: %d", code)
+	}
+}

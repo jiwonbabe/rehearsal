@@ -69,3 +69,16 @@ func TestParseShocks(t *testing.T) {
 		t.Errorf("got %v", got)
 	}
 }
+
+func TestValidateCheck(t *testing.T) {
+	allowed := []float64{0.86, 0.6, 86, 60}
+	if got, ok := ValidateCheck(map[string]any{"check": "Ask the creators who posted if they will again; at 86% seeding wins, you are at 60%."}, allowed); !ok || got == "" {
+		t.Errorf("valid line rejected")
+	}
+	if _, ok := ValidateCheck(map[string]any{"check": "Expect about 40 orders if 86% post."}, allowed); ok {
+		t.Errorf("line with a foreign number accepted")
+	}
+	if _, ok := ValidateCheck(map[string]any{"check": ""}, allowed); ok {
+		t.Errorf("empty accepted")
+	}
+}

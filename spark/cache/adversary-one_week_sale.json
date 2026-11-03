@@ -1,0 +1,138 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "Your sale week does worse than the engine's weakest estimate."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "promo_underestimate"
+   ],
+   "why": "Two things go wrong together: a competitor runs a sale and your sale week does worse than hoped."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "promo_underestimate"
+   ],
+   "why": "Two things go wrong together: posts reach far fewer people and your sale week does worse than hoped."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Your posts reach far fewer people for the month."
+  },
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "Half of the creators you ship to never post."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "A competitor runs a sale and takes some of your buyers."
+  },
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "Ads cost much more per result this month."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Shipping runs late and some buyers walk away."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "One post takes off, which checks the plan is not just riding luck."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow"
+   ],
+   "why": "Two things go wrong together: posts reach far fewer people and half of the creators you ship to never post."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "cpm_spike"
+   ],
+   "why": "Two things go wrong together: posts reach far fewer people and ads get much more expensive."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Two things go wrong together: half of the creators you ship to never post and a competitor runs a sale."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Two things go wrong together: ads get much more expensive and a competitor runs a sale."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Two things go wrong together: posts reach far fewer people and shipping runs late."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "Two things go wrong together: half of the creators you ship to never post and shipping runs late."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Two things go wrong together: posts reach far fewer people and a competitor runs a sale."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Three things go wrong together: posts reach far fewer people, half of the creators you ship to never post and a competitor runs a sale."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "Two things go wrong together: ads get much more expensive and shipping runs late."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "cpm_spike"
+   ],
+   "why": "Two things go wrong together: half of the creators you ship to never post and ads get much more expensive."
+  },
+  {
+   "codes": [
+    "viral_post",
+    "competitor_sale"
+   ],
+   "why": "Two things go wrong together: one post takes off and a competitor runs a sale."
+  }
+ ]
+}

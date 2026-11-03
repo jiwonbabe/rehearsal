@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"strings"
 )
 
 // Blend: new = 0.7*old + 0.3*observed. One month is evidence, not a verdict.
@@ -132,4 +133,27 @@ func Summary(b *Brand, r Rates, bt Backtest) map[string]any {
 		"backtest": map[string]any{"median_abs_pct_error": bt.MedianAbsPctError,
 			"weeks_inside_range": bt.WeeksInsideRange, "weeks_total": bt.WeeksTotal},
 	}
+}
+
+// OctoberPlan is the plan the brand actually ran last month (same as the review fixture).
+func OctoberPlan() Plan {
+	return Plan{PlanID: "oct", Direction: "send_to_creators", PostsPerWeek: 3,
+		PostMix: map[string]float64{"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, CreatorCount: 4}
+}
+
+// LastMonthBlock is the {{LAST_MONTH_BLOCK}} text for the month-2 planner prompt.
+func LastMonthBlock(rv Review) string {
+	changes := []string{}
+	for _, c := range rv.RateChanges {
+		changes = append(changes, fmt.Sprintf("%s %g -> %g", c.Rate, c.Old, c.New))
+	}
+	rates := "none"
+	if len(changes) > 0 {
+		rates = strings.Join(changes, "; ")
+	}
+	return fmt.Sprintf("## Last month (engine review; context only)\n\n"+
+		"Actual: %g orders, $%g spent, %g of %g seeded creators posted. Engine range was %g\u2013%g orders.\n"+
+		"Diagnosis: %s\nRate changes: %s",
+		rv.Actual.Orders, rv.Actual.SpendUsd, rv.Actual.CreatorsPosted, rv.Actual.CreatorsSeeded,
+		rv.Range[0], rv.Range[1], rv.Diagnosis, rates)
 }

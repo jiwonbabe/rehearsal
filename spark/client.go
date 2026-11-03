@@ -135,3 +135,12 @@ func Adversary(direction map[string]any, priors map[string]float64) (map[string]
 	id, _ := direction["id"].(string)
 	return Call("adversary-"+id, fill(tpl, values))
 }
+
+// Check: one-sentence "what to verify this week" from the engine's flip result.
+func Check(aID, bID string, flip map[string]any, aTitle, bTitle string) (map[string]any, error) {
+	tpl, err := loadPrompt("check.md")
+	if err != nil {
+		return nil, err
+	}
+	return Call("check-"+aID+"-"+bID, fill(tpl, map[string]any{"FLIP_JSON": flip, "A_TITLE": aTitle, "B_TITLE": bTitle}))
+}

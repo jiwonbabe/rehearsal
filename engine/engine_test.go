@@ -5,6 +5,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -214,5 +215,16 @@ func TestCleanCombos(t *testing.T) {
 	out := CleanCombos([][]string{{"reach_drop", "nonsense"}, {"nothing"}, {"reach_drop", "nonsense"}})
 	if len(out) != 1 || out[0][0] != "reach_drop" {
 		t.Errorf("got %v", out)
+	}
+}
+
+func TestLastMonthBlock(t *testing.T) {
+	b := brand(t)
+	rv := RunReview(b, OctoberPlan(), Calibrate(b))
+	got := LastMonthBlock(rv)
+	for _, want := range []string{"## Last month", "53 orders", "30.2", "40.8", "seed_post_rate 0.6 -> 0.49", rv.Diagnosis} {
+		if !strings.Contains(got, want) {
+			t.Errorf("block missing %q:\n%s", want, got)
+		}
 	}
 }

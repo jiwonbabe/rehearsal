@@ -3,6 +3,9 @@ package spark
 import (
 	"errors"
 	"math"
+	"regexp"
+	"strconv"
+	"strings"
 )
 
 var validDirections = map[string]bool{
@@ -119,4 +122,31 @@ func ParseShocks(raw map[string]any) [][]string {
 		out = append(out, row)
 	}
 	return out
+}
+
+var numberToken = regexp.MustCompile(`\d+(\.\d+)?`)
+var sentenceBreak = regexp.MustCompile(`[.!?]\s+\S`)
+
+func round2(x float64) float64 { return math.Round(x*100) / 100 }
+
+// ValidateCheck returns raw["check"] if it is one non-empty sentence whose every number is in allowed.
+func ValidateCheck(raw map[string]any, allowed []float64) (string, bool) {
+	text, _ := raw["check"].(string)
+	text = strings.TrimSpace(text)
+	if text == "" || sentenceBreak.MatchString(text) {
+		return "", false
+	}
+	for _, token := range numberToken.FindAllString(text, -1) {
+		n, _ := strconv.ParseFloat(token, 64)
+		found := false
+		for _, a := range allowed {
+			if round2(a) == round2(n) {
+				found = true
+			}
+		}
+		if !found {
+			return "", false
+		}
+	}
+	return text, true
 }

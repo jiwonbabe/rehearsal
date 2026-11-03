@@ -1,5 +1,5 @@
 {
- "best_post_type": "close_up",
+ "best_post_type": "flat_lay",
  "confidence": "high",
  "handle": "bnd.jewelry",
  "likely_customer": {
@@ -10,11 +10,11 @@
  "market": "KR",
  "post_types_seen": {
   "close_up": "most",
-  "flat_lay": "some",
+  "flat_lay": "most",
   "on_hand": "some",
   "on_neck": "some"
  },
- "style": "Minimal elegant everyday fine jewelry with soft beige aesthetic",
- "what_they_sell": "Delicate gold diamond rings, necklaces and earrings",
- "why": "Korean bio lists Seoul address and grid shows dainty diamond rings and necklaces in minimal beige styling."
+ "style": "Minimal elegant everyday bridal jewelry",
+ "what_they_sell": "Delicate gold rings necklaces and earrings",
+ "why": "Beige minimal grid of couple bands and solitaires with Korean bio and Seoul address"
 }

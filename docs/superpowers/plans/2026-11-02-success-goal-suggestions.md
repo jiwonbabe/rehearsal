@@ -8,7 +8,7 @@
   type GoalSuggestions struct {
       AvgWeeklyOrders    float64 `json:"avg_weekly_orders"`
       Hold               float64 `json:"hold"`     // round(avg_weekly_orders * 4)
-      Grow               float64 `json:"grow"`     // round(hold * 1.15)
+      Grow               float64 `json:"grow"`     // round(hold * 1.10)
       Stretch            float64 `json:"stretch"`  // max sum of orders over any 4 consecutive weeks inside the window
       AvgMonthlySpendUsd float64 `json:"avg_monthly_spend_usd"` // round(sum(spend_usd)/weeks * 4)
       AvgPriceUsd        float64 `json:"avg_price_usd"`
@@ -31,7 +31,7 @@
 
 ## Task 4 — Setup "Step 3 · What counts as success" (`web/index.html`)
 - Replace the budget/goal card with: heading "Step 3 · What counts as success"; a proposal line (from the profile result when present): "Suggested: {ambition label} on {metric label} — {why_goal}" in muted text, else "Pick what a good month looks like."
-- Three selectable cards (radio behaviour) fed by `GET /api/goals`: **Hold** "{hold} orders · about what you did lately ({avg_weekly_orders} a week)", **Grow** "{grow} orders · 15% more than Hold", **Stretch** "{stretch} orders · your best 4 weeks". A unit toggle "orders / revenue": in revenue mode the same three cards show `money(n × avg_price_usd)` with the orders in small text; the engine still tests orders.
+- Three selectable cards (radio behaviour) fed by `GET /api/goals`: **Hold** "{hold} orders · about what you did lately ({avg_weekly_orders} a week)", **Grow** "{grow} orders · 10% more than Hold", **Stretch** "{stretch} orders · your best 4 weeks". A unit toggle "orders / revenue": in revenue mode the same three cards show `money(n × avg_price_usd)` with the orders in small text; the engine still tests orders.
 - Below: the goal input (number, editable; picking a card writes its value in the current unit) and the budget input with caption "You spent about {money(avg_monthly_spend_usd)} a month lately." Preselect the card named by the profile `ambition` (after a feed read) else the one closest to `current_goal`. Preset the unit from `success_metric` when present.
 - "Confirm" posts `/api/setup` with `goal_orders_per_month` (revenue mode: goal ÷ avg_price_usd, rounded) and `budget_usd_per_month`, then re-renders.
 - No new numbers computed in JS beyond unit conversion and formatting.

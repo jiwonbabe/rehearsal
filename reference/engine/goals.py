@@ -14,7 +14,7 @@ def goal_suggestions(brand, weeks_back=13):
         return out
     hold = round(orders / n * 4)
     k = min(4, n)
-    out.update(avg_weekly_orders=round(orders / n, 1), hold=hold, grow=round(hold * 1.15),
+    out.update(avg_weekly_orders=round(orders / n, 1), hold=hold, grow=round(hold * 1.10),
                stretch=max(sum(w["orders"] for w in rows[i:i + k]) for i in range(n - k + 1)),
                avg_monthly_spend_usd=round(spend / n * 4))
     return out

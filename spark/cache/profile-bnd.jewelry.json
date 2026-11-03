@@ -1,6 +1,6 @@
 {
- "ambition": "hold",
- "best_post_type": "flat_lay",
+ "ambition": "stretch",
+ "best_post_type": "close_up",
  "confidence": "high",
  "handle": "bnd.jewelry",
  "likely_customer": {
@@ -11,13 +11,13 @@
  "market": "KR",
  "post_types_seen": {
   "close_up": "most",
-  "flat_lay": "most",
+  "flat_lay": "some",
   "on_hand": "some",
   "on_neck": "some"
  },
- "style": "Minimal elegant everyday bridal jewelry",
- "success_metric": "orders",
+ "style": "Minimal elegant everyday fine jewelry",
+ "success_metric": "revenue",
  "what_they_sell": "Delicate gold rings necklaces and earrings",
- "why": "Beige minimal grid of couple bands and solitaires with Korean bio and Seoul address",
- "why_goal": "A bridal jewelry brand wins on orders and consultations, not followers; the feed looks steady, so hold the pace and keep the budget."
+ "why": "Grid shows beige minimal ring close-ups with Korean bio and Seoul address",
+ "why_goal": "Capture gifting revenue during diamond wishlist promo with higher targets"
 }

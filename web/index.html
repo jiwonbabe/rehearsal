@@ -177,7 +177,7 @@ const inUnit = n => G.unit === 'revenue' ? Math.round(n * G.g.avg_price_usd) : n
 function showGoals() {
   const g = G.g;
   if (!G.pick) G.pick = ['hold', 'grow', 'stretch'].reduce((a, k) => Math.abs(g[k] - g.current_goal) < Math.abs(g[a] - g.current_goal) ? k : a, 'hold');
-  const sub = { hold: `about what you did lately (${g.avg_weekly_orders} a week)`, grow: '15% more than Hold', stretch: 'your best 4 weeks' };
+  const sub = { hold: `about what you did lately (${g.avg_weekly_orders} a week)`, grow: '10% more than Hold', stretch: 'your best 4 weeks' };
   $('g-cards').innerHTML = ['hold', 'grow', 'stretch'].map(k => {
     const big = G.unit === 'revenue' ? money(inUnit(g[k])) : g[k] + ' orders';
     return `<button data-k="${k}" class="card" style="padding:16px;gap:4px;text-align:left;cursor:pointer;border:2px solid ${G.pick === k ? '#17181c' : '#d9dbd4'};background:#fff">

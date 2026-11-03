@@ -32,7 +32,7 @@ func RunGoalSuggestions(b *Brand, weeksBack int) GoalSuggestions {
 	}
 	g.AvgWeeklyOrders = round1(orders / n)
 	g.Hold = roundTo(orders/n*4, 0)
-	g.Grow = roundTo(g.Hold*1.15, 0)
+	g.Grow = roundTo(g.Hold*1.10, 0)
 	g.AvgMonthlySpendUsd = roundTo(spend/n*4, 0)
 	// Stretch: best 4 consecutive weeks (all weeks if fewer than 4).
 	k := 4

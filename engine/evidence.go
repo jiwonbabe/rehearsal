@@ -3,6 +3,7 @@ package engine
 import (
 	"math"
 	"sort"
+	"strings"
 )
 
 // Evidence: averages and shares from the brand's own Meta data. Same formulas as reference/engine/evidence.py.
@@ -268,6 +269,27 @@ func EvidenceNumbers(e Evidence, stats []StatRow) []float64 {
 	}
 	for _, s := range stats {
 		pct(s.Share)
+	}
+	return out
+}
+
+// EvidenceLabels: age-band labels a Spark line may write without them counting as figures (25-34, 55+, 30s).
+func EvidenceLabels(e Evidence, stats []StatRow) []string {
+	seen := map[string]bool{}
+	var out []string
+	add := func(band string) {
+		if band == "" || seen[band] {
+			return
+		}
+		seen[band] = true
+		out = append(out, band)
+		if len(band) >= 2 && strings.Contains(band, "-") {
+			out = append(out, band[:1]+"0s")
+		}
+	}
+	add(e.Audience.TopAge)
+	for _, s := range stats {
+		add(s.AgeBand)
 	}
 	return out
 }

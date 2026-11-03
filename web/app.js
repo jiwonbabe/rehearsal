@@ -15,6 +15,7 @@ function renderHeader(step, subtitle) {
 }
 
 async function api(path, body) {
+  if (typeof I18N_READY !== 'undefined') await I18N_READY;
   const res = await fetch(path, body === undefined ? undefined
     : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   let json = null;

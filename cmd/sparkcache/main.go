@@ -248,7 +248,7 @@ func channelsStep(brand *engine.Brand) any {
 		fail("channels", err)
 		return nil
 	}
-	out := spark.ValidateChannels(raw, engine.EvidenceNumbers(ev, stats))
+	out := spark.ValidateChannels(raw, engine.EvidenceNumbers(ev, stats), engine.EvidenceLabels(ev, stats))
 	if len(out) < 3 {
 		fail("channels", fmt.Errorf("only %d valid channels", len(out)))
 	}
@@ -258,12 +258,18 @@ func channelsStep(brand *engine.Brand) any {
 	return out
 }
 
-// translateStep writes ko/<name>.json for every cached call that has none yet.
+// translateStep writes ko/<name>.json for every cached call that has none yet, or whose English file is newer.
 func translateStep() {
 	for _, name := range spark.CacheNames() {
 		en, err := spark.Call(name, "")
 		if err != nil {
 			continue
+		}
+		enInfo, _ := os.Stat(filepath.Join(spark.CacheDir, name+".json"))
+		koPath := filepath.Join(spark.CacheDir, "ko", name+".json")
+		if koInfo, err := os.Stat(koPath); err == nil && enInfo != nil && enInfo.ModTime().After(koInfo.ModTime()) {
+			os.Remove(koPath)
+			fmt.Printf("stale ko/%s removed\n", name)
 		}
 		ko, err := spark.Translate(name, en)
 		if err != nil {

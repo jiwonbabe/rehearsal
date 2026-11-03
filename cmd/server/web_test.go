@@ -11,7 +11,7 @@ import (
 var banned = regexp.MustCompile(`(?i)forecast|prediction|예측`)
 
 func TestNoBannedWords(t *testing.T) {
-	for _, glob := range []string{"web/*", "prompts/*", "spark/cache/*", "cmd/*/*.go", "engine/*.go", "README.md", "DEMO.md"} {
+	for _, glob := range []string{"web/*", "prompts/*", "spark/cache/*", "spark/cache/ko/*", "cmd/*/*.go", "engine/*.go", "README.md", "DEMO.md"} {
 		files, _ := filepath.Glob(glob)
 		for _, f := range files {
 			if strings.HasSuffix(f, "_test.go") {

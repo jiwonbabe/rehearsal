@@ -665,7 +665,7 @@ func TestLaunchCarriesReachAndCreators(t *testing.T) {
 	}
 	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"bnd.jewelry"}`, nil)
 	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
-	if out.Reach["instagram_reels"] == nil || len(out.Creators) != 6 {
+	if out.Reach["instagram_reels"] == nil || len(out.Creators) != 6 || !strings.HasPrefix(out.Creators[0]["username"].(string), "demo.") {
 		t.Errorf("after connect: %v %d", out.Reach, len(out.Creators))
 	}
 	if _, ok := out.Creators[0]["fit"]; !ok {

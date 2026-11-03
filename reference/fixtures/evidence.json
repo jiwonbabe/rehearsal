@@ -105,7 +105,7 @@
   ],
   "peers": [
    {
-    "username": "mellow.gold.seoul",
+    "username": "demo.mellow.gold",
     "followers": 24100,
     "post_mix": {
      "on_hand": 0.67,
@@ -116,7 +116,7 @@
     "avg_likes": 649
    },
    {
-    "username": "une.pieces",
+    "username": "demo.une.pieces",
     "followers": 11300,
     "post_mix": {
      "on_hand": 0.08,
@@ -127,7 +127,7 @@
     "avg_likes": 244
    },
    {
-    "username": "hazel.jewel.kr",
+    "username": "demo.hazel.jewel",
     "followers": 38400,
     "post_mix": {
      "on_hand": 0.5,
@@ -141,7 +141,7 @@
  },
  "creators": [
   {
-   "username": "soft.daily.yj",
+   "username": "demo.soft.daily",
    "followers": 6200,
    "followers_band": "small",
    "engagement_rate": 0.067,
@@ -154,7 +154,7 @@
    "biography": "\uc77c\uc0c1, \ucee4\ud53c, \uc791\uc740 \ubc18\uc9c0 \u2728 \uc11c\uc6b8"
   },
   {
-   "username": "minsol.outfit",
+   "username": "demo.minsol.outfit",
    "followers": 14800,
    "followers_band": "mid",
    "engagement_rate": 0.037,
@@ -167,7 +167,7 @@
    "biography": "\ub370\uc77c\ub9ac\ub8e9 \u00b7 \ubca0\uc774\uc9c0 \ub7ec\ubc84 \u00b7 \ud611\ucc2c\ubb38\uc758 DM"
   },
   {
-   "username": "hana.handpoem",
+   "username": "demo.hana.hands",
    "followers": 3900,
    "followers_band": "small",
    "engagement_rate": 0.095,
@@ -180,7 +180,7 @@
    "biography": "hands, light, quiet mornings"
   },
   {
-   "username": "goldie.seoul",
+   "username": "demo.goldie.reviews",
    "followers": 52000,
    "followers_band": "mid",
    "engagement_rate": 0.019,
@@ -193,7 +193,7 @@
    "biography": "jewelry reviews \u00b7 PR welcome"
   },
   {
-   "username": "yeon.cafe.log",
+   "username": "demo.yeon.cafe",
    "followers": 9100,
    "followers_band": "small",
    "engagement_rate": 0.03,
@@ -206,7 +206,7 @@
    "biography": "\uce74\ud398 \ud22c\uc5b4 \u00b7 \ud544\ub984 \uc0ac\uc9c4"
   },
   {
-   "username": "ari.minimal",
+   "username": "demo.ari.minimal",
    "followers": 21500,
    "followers_band": "mid",
    "engagement_rate": 0.032,

@@ -206,15 +206,22 @@ func TestValidateChannels(t *testing.T) {
 		map[string]any{"channel": "myspace", "verdict": "lead", "why_data": "", "why_category": "", "how": ""},
 		map[string]any{"channel": "tiktok", "verdict": "maybe", "why_data": "", "why_category": "", "how": ""},
 	}}
-	out := ValidateChannels(raw, []float64{3.08, 262, 46, 0.46})
+	out := ValidateChannels(raw, []float64{3.08, 262, 46, 0.46}, []string{"25-34"})
 	if len(out) != 2 {
 		t.Fatalf("%v", out)
 	}
 	if out[0]["why_data"] == "" || out[1]["why_data"] != "" || out[1]["why_category"] != "" {
 		t.Errorf("%v", out)
 	}
-	if !quotesAllowed("46% of followers are 25-34", []float64{46}) || quotesAllowed("about 1,200 people", []float64{46}) {
+	labels := []string{"25-34", "55+", "30s"}
+	if !quotesAllowed("46% of followers are 25-34", []float64{46}, labels) || quotesAllowed("about 1,200 people", []float64{46}, labels) {
 		t.Error("quotesAllowed")
+	}
+	if quotesAllowed("10-15 orders a week", nil, labels) || quotesAllowed("grow 12-15% a month", []float64{46}, labels) || quotesAllowed("in their 20s", nil, labels) {
+		t.Error("ranges that are not labels must be rejected")
+	}
+	if !quotesAllowed("55+ buyers and 30s women", nil, labels) {
+		t.Error("declared labels must pass")
 	}
 }
 
@@ -231,6 +238,11 @@ func TestValidateTranslation(t *testing.T) {
 	}
 	if l := out["list"].([]any); len(l) != 2 || l[0] != "a" {
 		t.Errorf("list %v", l)
+	}
+	bad := ValidateTranslation(map[string]any{"a": "262 saves", "b": "Our guess", "c": "seven days"},
+		map[string]any{"a": "260개 저장", "b": "지난 예측", "c": "7일"}).(map[string]any)
+	if bad["a"] != "262 saves" || bad["b"] != "Our guess" || bad["c"] != "seven days" {
+		t.Errorf("digits or banned words changed: %v", bad)
 	}
 	flat := map[string]string{}
 	FlattenStrings(en, out, flat)

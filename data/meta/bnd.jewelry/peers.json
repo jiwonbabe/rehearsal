@@ -2,7 +2,7 @@
  "source": "mock",
  "data": [
   {
-   "username": "mellow.gold.seoul",
+   "username": "demo.mellow.gold",
    "followers_count": 24100,
    "media_count": 412,
    "recent": [
@@ -81,7 +81,7 @@
    ]
   },
   {
-   "username": "une.pieces",
+   "username": "demo.une.pieces",
    "followers_count": 11300,
    "media_count": 236,
    "recent": [
@@ -160,7 +160,7 @@
    ]
   },
   {
-   "username": "hazel.jewel.kr",
+   "username": "demo.hazel.jewel",
    "followers_count": 38400,
    "media_count": 690,
    "recent": [

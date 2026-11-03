@@ -44,7 +44,7 @@ func (s *server) channels() []map[string]any {
 	if err != nil {
 		return nil
 	}
-	return spark.ValidateChannels(raw, engine.EvidenceNumbers(*s.evidence, s.stats))
+	return spark.ValidateChannels(raw, engine.EvidenceNumbers(*s.evidence, s.stats), engine.EvidenceLabels(*s.evidence, s.stats))
 }
 
 func (s *server) evidenceOut() map[string]any {

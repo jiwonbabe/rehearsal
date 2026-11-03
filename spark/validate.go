@@ -4,6 +4,7 @@ import (
 	"errors"
 	"math"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -258,20 +259,30 @@ func ValidateCreatorFit(raw map[string]any) map[string]any {
 	}
 }
 
-var (
-	figureRe = regexp.MustCompile(`\d[\d,]*(?:\.\d+)?`)
-	labelRe  = regexp.MustCompile(`\b\d{2}(?:-\d{2}|\+|s)\b`) // age bands: 25-34, 55+, 30s
-)
+var figureRe = regexp.MustCompile(`\d[\d,]*(?:\.\d+)?`)
 
-// quotesAllowed: every figure in s (age-band labels aside) is one of allowed (2dp).
-func quotesAllowed(s string, allowed []float64) bool {
+// figures: the numbers written in s, after removing the declared labels (age bands like 25-34, 55+, 30s).
+func figures(s string, labels []string) []float64 {
+	for _, l := range labels {
+		s = strings.ReplaceAll(s, l, " ")
+	}
+	var out []float64
+	for _, f := range figureRe.FindAllString(s, -1) {
+		if v, err := strconv.ParseFloat(strings.ReplaceAll(f, ",", ""), 64); err == nil {
+			out = append(out, round2(v))
+		}
+	}
+	return out
+}
+
+// quotesAllowed: every figure in s (declared labels aside) is one of allowed (2dp).
+func quotesAllowed(s string, allowed []float64, labels []string) bool {
 	ok := map[float64]bool{}
 	for _, a := range allowed {
 		ok[round2(a)] = true
 	}
-	for _, f := range figureRe.FindAllString(labelRe.ReplaceAllString(s, ""), -1) {
-		v, err := strconv.ParseFloat(strings.ReplaceAll(f, ",", ""), 64)
-		if err != nil || !ok[round2(v)] {
+	for _, v := range figures(s, labels) {
+		if !ok[v] {
 			return false
 		}
 	}
@@ -279,8 +290,8 @@ func quotesAllowed(s string, allowed []float64) bool {
 }
 
 // ValidateChannels keeps entries with a catalog channel and verdict; a why_data line quoting a figure
-// outside allowed becomes "". why_category and how must carry no figures at all.
-func ValidateChannels(raw map[string]any, allowed []float64) []map[string]any {
+// outside allowed becomes "". why_category and how must carry no figures at all (labels aside).
+func ValidateChannels(raw map[string]any, allowed []float64, labels []string) []map[string]any {
 	out := []map[string]any{}
 	list, _ := raw["channels"].([]any)
 	for _, item := range list {
@@ -291,12 +302,12 @@ func ValidateChannels(raw map[string]any, allowed []float64) []map[string]any {
 			continue
 		}
 		why := sentence(c["why_data"])
-		if !quotesAllowed(why, allowed) {
+		if !quotesAllowed(why, allowed, labels) {
 			why = ""
 		}
 		noFigures := func(v any) string {
 			t := sentence(v)
-			if !quotesAllowed(t, nil) {
+			if !quotesAllowed(t, nil, labels) {
 				return ""
 			}
 			return t
@@ -333,12 +344,30 @@ func ValidateTranslation(en, ko any) any {
 		}
 		return out
 	case string:
-		if s, ok := ko.(string); ok && strings.TrimSpace(s) != "" {
+		if s, ok := ko.(string); ok && strings.TrimSpace(s) != "" && !bannedRe.MatchString(s) && sameFigures(e, s) {
 			return strings.TrimSpace(s)
 		}
 		return e
 	}
 	return en
+}
+
+var bannedRe = regexp.MustCompile(`(?i)forecast|prediction|예측`)
+
+// sameFigures: the translation carries exactly the numbers the English had (as a multiset).
+func sameFigures(en, ko string) bool {
+	a, b := figures(en, nil), figures(ko, nil)
+	if len(a) != len(b) {
+		return false
+	}
+	sort.Float64s(a)
+	sort.Float64s(b)
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
 }
 
 // FlattenStrings records every en string whose translated counterpart differs, as into[en] = ko.

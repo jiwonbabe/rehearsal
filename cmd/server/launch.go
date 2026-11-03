@@ -151,13 +151,14 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		adReq = map[string]any{"campaign": campaign, "adset": adset}
 	}
 	s.writeJSON(w, map[string]any{
-		"direction":     map[string]string{"id": l.Plan.Direction, "title": l.Title},
-		"spec":          l.Spec,
-		"playbook":      l.Playbook,
-		"ad_request":    adReq,
-		"ads_connected": token != "" && account != "",
-		"reach":         s.reach(),
-		"creators":      s.suggestedCreators(),
+		"direction":       map[string]string{"id": l.Plan.Direction, "title": l.Title},
+		"spec":            l.Spec,
+		"playbook":        l.Playbook,
+		"ad_request":      adReq,
+		"ads_connected":   token != "" && account != "",
+		"reach":           s.reach(),
+		"creators":        s.suggestedCreators(),
+		"creators_source": s.metaSource(),
 	})
 }
 
@@ -290,6 +291,13 @@ func (s *server) handleCreatorFit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.writeJSON(w, spark.ValidateCreatorFit(raw))
+}
+
+func (s *server) metaSource() string {
+	if s.evidence == nil {
+		return ""
+	}
+	return s.evidence.Source
 }
 
 // reach: Meta's delivery estimate for the target, once an account is connected.

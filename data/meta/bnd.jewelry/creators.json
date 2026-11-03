@@ -2,7 +2,7 @@
  "source": "mock",
  "data": [
   {
-   "username": "soft.daily.yj",
+   "username": "demo.soft.daily",
    "followers_count": 6200,
    "biography": "일상, 커피, 작은 반지 ✨ 서울",
    "recent": [
@@ -45,7 +45,7 @@
    ]
   },
   {
-   "username": "minsol.outfit",
+   "username": "demo.minsol.outfit",
    "followers_count": 14800,
    "biography": "데일리룩 · 베이지 러버 · 협찬문의 DM",
    "recent": [
@@ -88,7 +88,7 @@
    ]
   },
   {
-   "username": "hana.handpoem",
+   "username": "demo.hana.hands",
    "followers_count": 3900,
    "biography": "hands, light, quiet mornings",
    "recent": [
@@ -131,7 +131,7 @@
    ]
   },
   {
-   "username": "goldie.seoul",
+   "username": "demo.goldie.reviews",
    "followers_count": 52000,
    "biography": "jewelry reviews · PR welcome",
    "recent": [
@@ -174,7 +174,7 @@
    ]
   },
   {
-   "username": "yeon.cafe.log",
+   "username": "demo.yeon.cafe",
    "followers_count": 9100,
    "biography": "카페 투어 · 필름 사진",
    "recent": [
@@ -217,7 +217,7 @@
    ]
   },
   {
-   "username": "ari.minimal",
+   "username": "demo.ari.minimal",
    "followers_count": 21500,
    "biography": "minimal wardrobe · 30대 직장인",
    "recent": [

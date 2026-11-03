@@ -2,7 +2,7 @@
 
 Run:  python3 data/meta_mock.py
 Live replacements: Instagram Graph API (account + media insights), Threads API, hashtag search,
-business_discovery, Marketing API delivery_estimate. Every file carries "source": "mock".
+business_discovery, Marketing API delivery_estimate. Every file carries "source": "mock"; peer and creator handles are fictional (demo.* prefix).
 """
 import json
 import os
@@ -69,16 +69,16 @@ def main():
         {"hashtag": "#데일리주얼리", "top_media": posts(rng, 30, [0.5, 0.3, 0.15, 0.05], 420)},
         {"hashtag": "#everydaygoldjewelry", "top_media": posts(rng, 30, [0.55, 0.25, 0.12, 0.08], 610)}]})
     dump("peers", {"source": "mock", "data": [
-        {"username": "mellow.gold.seoul", "followers_count": 24100, "media_count": 412, "recent": posts(rng, 12, [0.6, 0.25, 0.1, 0.05], 520)},
-        {"username": "une.pieces", "followers_count": 11300, "media_count": 236, "recent": posts(rng, 12, [0.35, 0.45, 0.15, 0.05], 260)},
-        {"username": "hazel.jewel.kr", "followers_count": 38400, "media_count": 690, "recent": posts(rng, 12, [0.5, 0.2, 0.2, 0.1], 740)}]})
+        {"username": "demo.mellow.gold", "followers_count": 24100, "media_count": 412, "recent": posts(rng, 12, [0.6, 0.25, 0.1, 0.05], 520)},
+        {"username": "demo.une.pieces", "followers_count": 11300, "media_count": 236, "recent": posts(rng, 12, [0.35, 0.45, 0.15, 0.05], 260)},
+        {"username": "demo.hazel.jewel", "followers_count": 38400, "media_count": 690, "recent": posts(rng, 12, [0.5, 0.2, 0.2, 0.1], 740)}]})
     dump("creators", {"source": "mock", "data": [
-        {"username": "soft.daily.yj", "followers_count": 6200, "biography": "일상, 커피, 작은 반지 ✨ 서울", "recent": posts(rng, 6, [0.6, 0.2, 0.2, 0], 310)},
-        {"username": "minsol.outfit", "followers_count": 14800, "biography": "데일리룩 · 베이지 러버 · 협찬문의 DM", "recent": posts(rng, 6, [0.4, 0.3, 0.2, 0.1], 520)},
-        {"username": "hana.handpoem", "followers_count": 3900, "biography": "hands, light, quiet mornings", "recent": posts(rng, 6, [0.8, 0.2, 0, 0], 260)},
-        {"username": "goldie.seoul", "followers_count": 52000, "biography": "jewelry reviews · PR welcome", "recent": posts(rng, 6, [0.3, 0.5, 0.2, 0], 900)},
-        {"username": "yeon.cafe.log", "followers_count": 9100, "biography": "카페 투어 · 필름 사진", "recent": posts(rng, 6, [0.2, 0.1, 0.6, 0.1], 280)},
-        {"username": "ari.minimal", "followers_count": 21500, "biography": "minimal wardrobe · 30대 직장인", "recent": posts(rng, 6, [0.5, 0.3, 0.1, 0.1], 610)}]})
+        {"username": "demo.soft.daily", "followers_count": 6200, "biography": "일상, 커피, 작은 반지 ✨ 서울", "recent": posts(rng, 6, [0.6, 0.2, 0.2, 0], 310)},
+        {"username": "demo.minsol.outfit", "followers_count": 14800, "biography": "데일리룩 · 베이지 러버 · 협찬문의 DM", "recent": posts(rng, 6, [0.4, 0.3, 0.2, 0.1], 520)},
+        {"username": "demo.hana.hands", "followers_count": 3900, "biography": "hands, light, quiet mornings", "recent": posts(rng, 6, [0.8, 0.2, 0, 0], 260)},
+        {"username": "demo.goldie.reviews", "followers_count": 52000, "biography": "jewelry reviews · PR welcome", "recent": posts(rng, 6, [0.3, 0.5, 0.2, 0], 900)},
+        {"username": "demo.yeon.cafe", "followers_count": 9100, "biography": "카페 투어 · 필름 사진", "recent": posts(rng, 6, [0.2, 0.1, 0.6, 0.1], 280)},
+        {"username": "demo.ari.minimal", "followers_count": 21500, "biography": "minimal wardrobe · 30대 직장인", "recent": posts(rng, 6, [0.5, 0.3, 0.1, 0.1], 610)}]})
     dump("reach_estimate", {"source": "mock", "targeting": {"countries": ["KR"], "age_min": 25, "age_max": 34, "genders": ["women"]},
                             "data": {"instagram_reels": {"estimate_dau": 412000, "estimate_mau": 1260000},
                                      "instagram_feed": {"estimate_dau": 388000, "estimate_mau": 1310000},

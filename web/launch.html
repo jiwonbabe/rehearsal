@@ -41,7 +41,7 @@ function adsCard(d) {
   if (ad.creative) c.appendChild(kv('Which posts', ad.creative));
   if (ad.placements && ad.placements.length) c.appendChild(kv('Where', ad.placements.map(p => p.replace('instagram_', 'Instagram ')).join(', ')));
   c.appendChild(el('div', 'font-size:13.5px', `${money(s.ads_usd)} over ${s.days} days · ${money(s.ads_daily_usd)}/day · paused until you switch it on`));
-  if (d.reach && d.reach.instagram_reels) {
+  if (d.reach && d.reach.instagram_reels && d.reach.instagram_feed && d.reach.instagram_stories) {
     const r = d.reach;
     const line = el('div', 'font-size:13px;color:#5c6066;line-height:1.5');
     line.textContent = `Meta estimate for this audience: ${Number(r.instagram_reels.estimate_mau).toLocaleString('en-US')} reachable on Reels, ${Number(r.instagram_feed.estimate_mau).toLocaleString('en-US')} on feed, ${Number(r.instagram_stories.estimate_mau).toLocaleString('en-US')} on Stories (monthly)`;
@@ -88,15 +88,15 @@ function creatorsCard(d) {
     b.onclick = async () => { try { await navigator.clipboard.writeText(ta.value); b.textContent = 'Copied'; } catch (e) { ta.select(); } };
     c.appendChild(ta); c.appendChild(b);
   }
-  if (d.creators && d.creators.length) c.appendChild(creatorList(d.creators));
+  if (d.creators && d.creators.length) c.appendChild(creatorList(d.creators, d.creators_source));
   c.appendChild(fitBox(d.direction.id));
   return c;
 }
 
 // creatorList: accounts found for the search terms, with engine stats and Spark's fit read when cached.
-function creatorList(list) {
+function creatorList(list, source) {
   const box = el('div', 'display:flex;flex-direction:column;gap:8px;border-top:1px solid #e6e7e2;padding-top:12px');
-  box.appendChild(el('div', 'font-size:13.5px;font-weight:600', 'Found for your search terms · Instagram'));
+  box.appendChild(el('div', 'font-size:13.5px;font-weight:600', source === 'mock' ? 'Found for your search terms · Instagram · demo data, fictional accounts' : 'Found for your search terms · Instagram'));
   const tone = { high: '#2f6f3e', medium: '#8a6d1f', low: '#c2410c' };
   list.slice().sort((a, b) => ({ high: 0, medium: 1, low: 2 }[(a.fit || {}).fit] ?? 3) - ({ high: 0, medium: 1, low: 2 }[(b.fit || {}).fit] ?? 3)).forEach(cr => {
     const row = el('div', 'display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.45');

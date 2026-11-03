@@ -96,13 +96,17 @@ function tagged(label, bg, fg, text) {
   const r = document.createElement('div'); r.style.cssText = 'display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5';
   r.appendChild(badge(label, bg, fg)); const t = document.createElement('span'); t.textContent = text; r.appendChild(t); return r;
 }
-function renderChannels(list, connected, handle) {
+function statFor(line, stats) {
+  return (stats || []).find(r => line.includes(`${Math.round(r.share * 100)}%`));
+}
+function renderChannels(list, connected, handle, ev) {
   const box = document.getElementById('channels');
   box.innerHTML = '';
   const head = document.createElement('div'); head.style.cssText = 'display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline';
   const h = document.createElement('div'); h.style.cssText = 'font-size:18px;font-weight:600'; h.textContent = 'Where to post, and why'; head.appendChild(h);
   const sub = document.createElement('div'); sub.style.cssText = 'font-size:12px;color:#5c6066';
-  sub.textContent = connected ? `Reasoned from @${handle}'s Instagram and Threads data (90 days) and sourced public statistics · not stress-tested` : 'Connect your Instagram on Setup to see where to post for your brand.';
+  const demo = ev && ev.evidence && ev.evidence.source === 'mock';
+  sub.textContent = connected ? `Reasoned from @${handle}'s Instagram and Threads data (${ev.evidence.days} days${demo ? ', demo data' : ''}) and sourced public statistics · not stress-tested` : 'Connect your Instagram on Setup to see where to post for your brand.';
   head.appendChild(sub); box.appendChild(head); box.style.display = 'flex';
   if (!list || !list.length) return;
   const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px';
@@ -112,7 +116,11 @@ function renderChannels(list, connected, handle) {
     const top = document.createElement('div'); top.style.cssText = 'display:flex;justify-content:space-between;align-items:center;gap:8px';
     const name = document.createElement('div'); name.style.cssText = 'font-size:15px;font-weight:600'; name.textContent = CH[c.channel] || c.channel;
     top.appendChild(name); top.appendChild(badge(v, bg, fg)); card.appendChild(top);
-    if (c.why_data) card.appendChild(tagged('Your data', '#e4edf6', '#2f5d8a', c.why_data));
+    if (c.why_data) {
+      const st = statFor(c.why_data, ev && ev.stats);
+      card.appendChild(tagged(st ? 'Public data' : (demo ? 'Your data · demo' : 'Your data'), '#e4edf6', '#2f5d8a', c.why_data));
+      if (st) { const src = document.createElement('a'); src.href = st.url; src.target = '_blank'; src.style.cssText = 'font-size:11.5px;color:#5c6066'; src.textContent = `Source: ${st.source}, ${st.year}`; card.appendChild(src); }
+    }
     if (c.why_category) card.appendChild(tagged('Spark reasoning', '#f3f4f1', '#5c6066', c.why_category));
     if (c.how) { const how = document.createElement('div'); how.style.cssText = 'font-size:13px;line-height:1.5;border-top:1px solid #e6e7e2;padding-top:8px'; how.textContent = c.how; card.appendChild(how); }
     grid.appendChild(card);
@@ -125,7 +133,7 @@ $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
   try {
     const data = await api('/api/directions');
     dirs = data.directions.slice().sort((a, b) => a.rank - b.rank);
-    try { const ev = data.channels ? await api('/api/evidence') : null; renderChannels(data.channels, !!ev, ev && ev.handle); } catch (e) { renderChannels(null, false); }
+    try { const ev = data.channels ? await api('/api/evidence') : null; renderChannels(data.channels, !!ev, ev && ev.handle, ev); } catch (e) { renderChannels(null, false); }
     sel = sel.filter(id => dirs.some(d => d.id === id));
     document.getElementById('title').textContent = (data.month === 2 ? 'November' : 'This month') + ': pick one or two directions';
     const lm = data.last_month;

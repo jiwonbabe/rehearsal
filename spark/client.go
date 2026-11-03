@@ -1,5 +1,6 @@
 // Package spark calls Muse Spark through the OpenAI-compatible Meta Model API and caches
-// every response on disk. It must not import rehearsal/engine (oracle isolation): it
+// every response on disk. Cache files are named by call (directions-m1, adversary-<id>),
+// committed to git, and hand-editable. It must not import rehearsal/engine (oracle isolation): it
 // receives plain maps and returns parsed JSON.
 //
 // Env:
@@ -11,8 +12,6 @@ package spark
 
 import (
 	"bytes"
-	"crypto/sha256"
-	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -47,9 +46,8 @@ func fill(template string, values map[string]any) string {
 	return out
 }
 
-func cachePath(name, prompt string) string {
-	sum := sha256.Sum256([]byte(prompt))
-	return filepath.Join(CacheDir, fmt.Sprintf("%s-%s.json", name, hex.EncodeToString(sum[:])[:12]))
+func cachePath(name string) string {
+	return filepath.Join(CacheDir, name+".json")
 }
 
 // Call returns parsed JSON from Spark. Cache first; live only with MUSE_API_KEY.
@@ -57,7 +55,7 @@ func Call(name, prompt string) (map[string]any, error) {
 	if err := os.MkdirAll(CacheDir, 0o755); err != nil {
 		return nil, err
 	}
-	path := cachePath(name, prompt)
+	path := cachePath(name)
 	if raw, err := os.ReadFile(path); err == nil {
 		var out map[string]any
 		return out, json.Unmarshal(raw, &out)
@@ -115,13 +113,13 @@ func Call(name, prompt string) (map[string]any, error) {
 	return out, os.WriteFile(path, pretty, 0o644)
 }
 
-// Directions: planner call. summary comes from engine.Summary; lastMonthBlock is "" on month one.
-func Directions(summary map[string]any, lastMonthBlock string) (map[string]any, error) {
+// Directions: planner call for the given month (1 or 2). summary comes from engine.Summary; lastMonthBlock is "" on month one.
+func Directions(month int, summary map[string]any, lastMonthBlock string) (map[string]any, error) {
 	tpl, err := loadPrompt("directions.md")
 	if err != nil {
 		return nil, err
 	}
-	return Call("directions", fill(tpl, map[string]any{"SUMMARY_JSON": summary, "LAST_MONTH_BLOCK": lastMonthBlock}))
+	return Call(fmt.Sprintf("directions-m%d", month), fill(tpl, map[string]any{"SUMMARY_JSON": summary, "LAST_MONTH_BLOCK": lastMonthBlock}))
 }
 
 // Adversary: shock-picker call for one direction. priors come from engine.PriorProbabilities.

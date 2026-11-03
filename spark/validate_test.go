@@ -1,0 +1,71 @@
+package spark
+
+import "testing"
+
+func rawDir(id string, ranges map[string]any) map[string]any {
+	return map[string]any{"id": id, "title": id, "rank": 1.0, "ranges": ranges}
+}
+
+func TestValidateDirectionsClampsToBudget(t *testing.T) {
+	raw := map[string]any{"directions": []any{
+		rawDir("pay_for_reach", map[string]any{"ads_usd": []any{120.0, 900.0}, "creator_count": []any{0.0, 0.0}}),
+		rawDir("send_to_creators", map[string]any{"ads_usd": []any{0.0, 60.0}, "creator_count": []any{4.0, 20.0}}),
+	}}
+	out, err := ValidateDirections(raw, 400, 45)
+	if err != nil || len(out) != 2 {
+		t.Fatalf("got %d dirs, err %v", len(out), err)
+	}
+	ads := out[0]["ranges"].(map[string]any)["ads_usd"].([]float64)
+	if ads[0] != 120 || ads[1] != 400 {
+		t.Errorf("ads_usd clamp: %v", ads)
+	}
+	creators := out[1]["ranges"].(map[string]any)["creator_count"].([]float64)
+	if creators[0] != 4 || creators[1] != 8 { // floor((400-0)/45) = 8
+		t.Errorf("creator_count clamp: %v", creators)
+	}
+}
+
+func TestValidateDirectionsRepairsMalformedRanges(t *testing.T) {
+	raw := map[string]any{"directions": []any{
+		rawDir("just_post", map[string]any{"posts_per_week": []any{5.0}, "ads_usd": []any{60.0, 10.0}, "promo_discount": "x"}),
+		map[string]any{"title": "no id"},
+		rawDir("bogus_direction", map[string]any{}),
+	}}
+	out, err := ValidateDirections(raw, 400, 45)
+	if err != nil || len(out) != 1 {
+		t.Fatalf("got %d dirs, err %v", len(out), err)
+	}
+	r := out[0]["ranges"].(map[string]any)
+	want := map[string][]float64{"posts_per_week": {3, 5}, "creator_count": {0, 0}, "ads_usd": {10, 60},
+		"promo_discount": {0, 0}}
+	for k, w := range want {
+		got := r[k].([]float64)
+		if got[0] != w[0] || got[1] != w[1] {
+			t.Errorf("%s: got %v want %v", k, got, w)
+		}
+	}
+	if pw := r["promo_week"].([]*int); len(pw) != 1 || pw[0] != nil {
+		t.Errorf("promo_week default: %v", pw)
+	}
+	mix := r["post_mix"].(map[string][]float64)
+	if mix["on_hand"][0] != 0.4 || mix["on_hand"][1] != 0.6 || mix["on_neck"][1] != 0.1 {
+		t.Errorf("post_mix default: %v", mix)
+	}
+}
+
+func TestValidateDirectionsEmpty(t *testing.T) {
+	if _, err := ValidateDirections(map[string]any{"directions": []any{}}, 400, 45); err == nil {
+		t.Error("want error for no directions")
+	}
+}
+
+func TestParseShocks(t *testing.T) {
+	raw := map[string]any{"shocks": []any{
+		map[string]any{"codes": []any{"reach_drop", "bogus"}, "why": "x"},
+		map[string]any{"why": "no codes"},
+	}}
+	got := ParseShocks(raw)
+	if len(got) != 1 || len(got[0]) != 2 || got[0][0] != "reach_drop" {
+		t.Errorf("got %v", got)
+	}
+}

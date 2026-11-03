@@ -46,8 +46,11 @@ function renderTodo(p) {
     r.appendChild(el('div', '', l.join('. ')));
     box.appendChild(r);
   });
-  const a = el('a', '', 'Review October'); a.className = 'btn'; a.href = '/review.html'; a.style.alignSelf = 'flex-start';
-  box.appendChild(a);
+  const row = el('div', 'display:flex;gap:10px;flex-wrap:wrap');
+  const go = el('a', '', 'Make it happen →'); go.className = 'btn'; go.href = '/launch.html';
+  const a = el('a', '', 'Review October'); a.className = 'btn ghost'; a.href = '/review.html';
+  row.appendChild(go); row.appendChild(a);
+  box.appendChild(row);
 }
 (async () => {
   const ids = getSelected();
@@ -69,7 +72,7 @@ function renderTodo(p) {
       c.appendChild(el('div', 'font-size:13.5px', `Spend ${money(v.spend_usd)}`));
       c.appendChild(el('div', 'font-size:13.5px;color:#c2410c', `Dies if ${shockText(v.dies_if, data.catalog)}`));
       const b = el('button', 'align-self:flex-start', 'Commit to this plan'); b.className = 'btn';
-      b.onclick = () => { renderTodo(v.plan); document.getElementById('todo').scrollIntoView({ behavior: 'smooth' }); };
+      b.onclick = () => { setCommitted(v.plan); renderTodo(v.plan); document.getElementById('todo').scrollIntoView({ behavior: 'smooth' }); };
       c.appendChild(b);
       document.getElementById('cards').appendChild(c);
     });

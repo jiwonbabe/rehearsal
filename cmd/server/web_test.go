@@ -29,7 +29,7 @@ func TestNoBannedWords(t *testing.T) {
 }
 
 func TestEveryPageHasBadgeAndShell(t *testing.T) {
-	pages := []string{"web/index.html", "web/directions.html", "web/simulate.html", "web/verdict.html", "web/review.html"}
+	pages := []string{"web/index.html", "web/directions.html", "web/simulate.html", "web/verdict.html", "web/review.html", "web/launch.html"}
 	js, _ := os.ReadFile("web/app.js")
 	if !strings.Contains(string(js), "Demo brand · synthetic data") {
 		t.Fatal("app.js must carry the badge")

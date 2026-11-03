@@ -1,6 +1,6 @@
 // Shared shell for every page. All numbers shown come from the API; this file only formats.
 function renderHeader(step, subtitle) {
-  const nav = [['0 Setup', '/'], ['1 Directions', '/directions.html'], ['2 Simulate', '/simulate.html'], ['3 Verdict', '/verdict.html'], ['4 Review', '/review.html']];
+  const nav = [['0 Setup', '/'], ['1 Directions', '/directions.html'], ['2 Simulate', '/simulate.html'], ['3 Verdict', '/verdict.html'], ['4 Review', '/review.html'], ['5 Launch', '/launch.html']];
   const pills = nav.map(([t, h], i) => i === step
     ? `<div class="pill active">${t}</div>` : `<a class="pill" href="${h}">${t}</a>`).join('');
   const el = document.createElement('div');
@@ -27,6 +27,10 @@ function getSelected() {
   try { return JSON.parse(sessionStorage.getItem('rehearsal.selected')) || []; } catch (e) { return []; }
 }
 function setSelected(ids) { sessionStorage.setItem('rehearsal.selected', JSON.stringify(ids)); }
+function getCommitted() {
+  try { return JSON.parse(sessionStorage.getItem('rehearsal.committed')); } catch (e) { return null; }
+}
+function setCommitted(plan) { sessionStorage.setItem('rehearsal.committed', JSON.stringify(plan)); }
 
 function money(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
 function pct(x) { return Math.round(x * 100) + '%'; }

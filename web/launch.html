@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehearsal launch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+<style>
+.chip{display:inline-block;padding:4px 10px;border-radius:14px;background:#f3f4f1;font-size:12.5px;margin:0 6px 6px 0}
+.lbl{font-size:12px;font-weight:600;color:#5c6066;text-transform:uppercase;letter-spacing:.06em}
+.kv{display:flex;gap:10px;font-size:13.5px;line-height:1.5}.kv b{white-space:nowrap;min-width:72px}
+table.cal{border-collapse:collapse;width:100%;font-size:13px}table.cal th,table.cal td{text-align:left;padding:8px 10px;border-bottom:1px solid #e6e7e2;vertical-align:top}table.cal th{font-size:12px;color:#5c6066}
+pre.req{font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.4;background:#f3f4f1;border-radius:8px;padding:12px;overflow:auto;max-height:260px;margin:0}
+textarea.dm{width:100%;box-sizing:border-box;min-height:96px;font-family:inherit;font-size:13.5px;line-height:1.5;padding:10px;border:1px solid #d9dbd4;border-radius:8px;resize:vertical}
+</style>
+</head>
+<body>
+<div class="page">
+  <div id="empty" style="display:none;font-size:15px">Commit a plan on Verdict first. <a href="/verdict.html">Back to verdict</a></div>
+  <div id="main" style="display:none;flex-direction:column;gap:20px">
+    <h1 id="title" style="margin:0;font-size:28px;font-weight:600"></h1>
+    <div style="font-size:14px;color:#5c6066;max-width:760px;line-height:1.5">Nothing is sent live. The ads campaign is created paused in your Meta ad account; you switch it on in Ads Manager. Every number here comes from the engine; the words come from Muse Spark's playbook for your brand.</div>
+    <div id="sub" class="mono" style="font-size:13px;color:#5c6066"></div>
+    <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px"></div>
+  </div>
+</div>
+<script src="/app.js"></script>
+<script>
+renderHeader(5, 'Launch');
+const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
+const kv = (k, v) => { const r = el('div'); r.className = 'kv'; r.appendChild(el('b', '', k)); r.appendChild(el('div', '', v)); return r; };
+const card = (title) => { const c = el('div'); c.className = 'card'; c.appendChild(el('div', 'font-size:17px;font-weight:600', title)); return c; };
+
+function adsCard(d) {
+  const ad = (d.playbook && d.playbook.ad) || {}, s = d.spec;
+  const c = card('Ads · Meta');
+  if (ad.audience) c.appendChild(kv('Who', ad.audience));
+  if (ad.creative) c.appendChild(kv('Which posts', ad.creative));
+  if (ad.placements && ad.placements.length) c.appendChild(kv('Where', ad.placements.map(p => p.replace('instagram_', 'Instagram ')).join(', ')));
+  c.appendChild(el('div', 'font-size:13.5px', `${money(s.ads_usd)} over ${s.days} days · ${money(s.ads_daily_usd)}/day · paused until you switch it on`));
+  const pre = el('pre'); pre.className = 'req'; pre.textContent = JSON.stringify(d.ad_request, null, 1);
+  const det = document.createElement('details');
+  det.innerHTML = '<summary style="cursor:pointer;font-size:12px;color:#5c6066">The exact request Rehearsal sends</summary>';
+  det.appendChild(pre); c.appendChild(det);
+  const b = el('button', 'align-self:flex-start', 'Create paused campaign in Meta Ads Manager'); b.className = 'btn';
+  const out = el('div', 'font-size:13.5px;line-height:1.5');
+  b.onclick = async () => {
+    b.disabled = true;
+    try {
+      const r = await api('/api/launch/ads', { plan: getCommitted() });
+      if (r.sent) {
+        out.textContent = `Created paused: campaign ${r.campaign_id}, ad set ${r.adset_id}. `;
+        const a = el('a', '', 'Open Ads Manager'); a.href = r.url; a.target = '_blank'; out.appendChild(a);
+      } else {
+        out.textContent = 'Not connected to a Meta ad account yet. This is the exact request Rehearsal would send. Set META_AD_ACCOUNT_ID and META_ACCESS_TOKEN on the server to send it.';
+        b.disabled = false;
+      }
+    } catch (e) { out.textContent = 'Meta said no: ' + e.message; out.style.color = '#c2410c'; b.disabled = false; }
+  };
+  c.appendChild(b); c.appendChild(out);
+  return c;
+}
+
+function creatorsCard(d) {
+  const cb = (d.playbook && d.playbook.creator_brief) || {}, s = d.spec;
+  const c = card('Creators · seeding kit');
+  if (cb.who) c.appendChild(kv('Who', cb.who));
+  if (cb.find_them && cb.find_them.length) {
+    const row = el('div'); row.appendChild(el('div', 'font-size:13.5px;font-weight:600;margin-bottom:6px', 'Type these into Instagram search'));
+    cb.find_them.forEach(f => { const ch = el('span', '', f); ch.className = 'chip'; row.appendChild(ch); });
+    c.appendChild(row);
+  }
+  if (cb.send) c.appendChild(kv('Send', cb.send));
+  if (cb.ask) c.appendChild(kv('Ask', cb.ask));
+  c.appendChild(el('div', 'font-size:13.5px', `Ship ${s.creator_count} pieces (${money(s.creator_ship_usd)} at cost) · send ${s.creator_dms} DMs, expect about half to answer`));
+  if (cb.dm) {
+    const ta = document.createElement('textarea'); ta.className = 'dm'; ta.readOnly = true; ta.value = cb.dm;
+    const b = el('button', 'align-self:flex-start;min-height:40px;font-size:14px', 'Copy DM'); b.className = 'btn ghost';
+    b.onclick = async () => { try { await navigator.clipboard.writeText(ta.value); b.textContent = 'Copied'; } catch (e) { ta.select(); } };
+    c.appendChild(ta); c.appendChild(b);
+  }
+  return c;
+}
+
+function calendarCard(d) {
+  const s = d.spec, weeks = (d.playbook && d.playbook.weeks) || [];
+  const c = card('Calendar · 4 weeks');
+  const t = document.createElement('table'); t.className = 'cal';
+  t.innerHTML = '<thead><tr><th>Week</th><th>Starts</th><th>Posts</th><th>Also</th><th>Post idea</th></tr></thead>';
+  const tb = document.createElement('tbody');
+  s.calendar.forEach((w, i) => {
+    const posts = Object.entries(w.posts).filter(([, n]) => n > 0).map(([k, n]) => `${n} ${k.replace('_', ' ')}`).join(', ');
+    const total = Object.values(w.posts).reduce((a, b) => a + b, 0);
+    const also = [];
+    if (w.creators > 0) also.push(`ship ${w.creators} pieces`);
+    if (w.ads_usd > 0) also.push(`${money(w.ads_usd)} ads`);
+    if (w.promo_discount > 0) also.push(`${pct(w.promo_discount)} off`);
+    const tr = document.createElement('tr');
+    [`${w.week}`, w.start_date, `${total} (${posts})`, also.join(' · ') || '—', (weeks[i] && weeks[i].post_idea) || ''].forEach(v => tr.appendChild(el('td', '', v)));
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb); c.appendChild(t);
+  const b = el('button', 'align-self:flex-start', 'Download calendar (.ics)'); b.className = 'btn ghost';
+  b.onclick = async () => {
+    const res = await fetch('/api/launch/calendar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: getCommitted() }) });
+    const blob = await res.blob();
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `rehearsal-${s.start_date}.ics`; a.click();
+  };
+  c.appendChild(b);
+  return c;
+}
+
+(async () => {
+  const plan = getCommitted();
+  if (!plan) { document.getElementById('empty').style.display = 'block'; return; }
+  try {
+    const d = await api('/api/launch', { plan });
+    document.getElementById('main').style.display = 'flex';
+    document.getElementById('title').textContent = `Launch: ${d.direction.title}`;
+    document.getElementById('sub').textContent = `Starts ${d.spec.start_date} · ${d.spec.days} days · total ${money(d.spec.total_spend_usd)} · ${d.ads_connected ? 'Meta ad account connected' : 'no Meta ad account connected'}`;
+    const cards = document.getElementById('cards');
+    if (d.ad_request) cards.appendChild(adsCard(d));
+    if (d.spec.creator_count > 0) cards.appendChild(creatorsCard(d));
+    cards.appendChild(calendarCard(d));
+  } catch (e) { showError(e); }
+})();
+</script>
+</body>
+</html>

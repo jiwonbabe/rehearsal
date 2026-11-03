@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rehearsal verdict</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="page">
+  <div id="empty" style="display:none;font-size:15px">Pick a direction first. <a href="/directions.html">Back to directions</a></div>
+  <div id="main" style="display:none;flex-direction:column;gap:20px">
+    <h1 id="title" style="margin:0;font-size:28px;font-weight:600"></h1>
+    <div id="sub" style="font-size:14px;color:#5c6066;max-width:760px;line-height:1.5">The best variant from each direction you picked, plus the no-spend baseline. Survived = hit your order goal in that many of 20 bad months without running out of budget early.</div>
+    <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px"></div>
+    <div id="todo" class="card" style="display:none"></div>
+    <div id="flip" class="card"></div>
+  </div>
+</div>
+<script src="/app.js"></script>
+<script>
+renderHeader(3, 'Verdict');
+const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
+function renderTodo(p) {
+  const mix = planText(p).replace(/^post [^(]*\(/, '').replace(/\).*$/, '');
+  const w1 = [`Post ${p.posts_per_week}× (${mix})`];
+  if (p.ads_usd > 0) w1.push(`Pick your 2 best on-hand posts and set a daily cap of ${money(p.ads_usd / 28)}`);
+  if (p.creator_count > 0) w1.push(`DM and ship ${p.creator_count} pieces`);
+  const rows = [['Week 1', w1]];
+  for (let w = 2; w <= 4; w++) {
+    const l = [`Post ${p.posts_per_week}×`];
+    if (p.promo_week === w) l.push(`Announce ${pct(p.promo_discount)} off`);
+    if (w === 4) l.push('Review opens next month');
+    rows.push([`Week ${w}`, l]);
+  }
+  const box = document.getElementById('todo');
+  box.innerHTML = '';
+  box.style.display = 'flex';
+  box.appendChild(el('div', 'font-size:13px;font-weight:600', 'Your month, generated on commit'));
+  rows.forEach(([k, l]) => {
+    const r = el('div', 'display:flex;gap:16px;font-size:13.5px;line-height:1.5');
+    r.appendChild(el('div', 'width:70px;font-weight:600;flex:none', k));
+    r.appendChild(el('div', '', l.join('. ')));
+    box.appendChild(r);
+  });
+  const a = el('a', '', 'Review October'); a.className = 'btn'; a.href = '/review.html'; a.style.alignSelf = 'flex-start';
+  box.appendChild(a);
+}
+(async () => {
+  const ids = getSelected();
+  if (!ids.length) { document.getElementById('empty').style.display = 'block'; return; }
+  try {
+    const data = await api('/api/stress', { direction_ids: ids });
+    const titles = {};
+    data.directions.forEach(d => { titles[d.id] = d.title; });
+    const titleOf = p => p.plan_id === 'baseline' ? 'Just post · baseline' : (titles[p.direction] || p.direction);
+    document.getElementById('main').style.display = 'flex';
+    const first = data.verdict.find(v => v.plan.plan_id !== 'baseline');
+    document.getElementById('title').textContent = first
+      ? `Verdict: ${titleOf(first.plan)} holds this month.` : 'Verdict: no paid direction holds this month.';
+    data.verdict.forEach(v => {
+      const c = el('div'); c.className = 'card';
+      c.appendChild(el('div', 'font-size:15px;font-weight:600', `${titleOf(v.plan)} · survived ${v.survived} / ${v.total}`));
+      c.appendChild(el('div', 'font-size:12.5px;color:#5c6066;line-height:1.45', planText(v.plan)));
+      c.appendChild(el('div', 'font-size:13.5px', `Orders, bad month ${v.orders_bad_month[0]}–${v.orders_bad_month[1]}`));
+      c.appendChild(el('div', 'font-size:13.5px', `Spend ${money(v.spend_usd)}`));
+      c.appendChild(el('div', 'font-size:13.5px;color:#c2410c', `Dies if ${shockText(v.dies_if, data.catalog)}`));
+      const b = el('button', 'align-self:flex-start', 'Commit to this plan'); b.className = 'btn';
+      b.onclick = () => { renderTodo(v.plan); document.getElementById('todo').scrollIntoView({ behavior: 'smooth' }); };
+      c.appendChild(b);
+      document.getElementById('cards').appendChild(c);
+    });
+    const f = data.flip, fb = document.getElementById('flip');
+    fb.appendChild(el('div', 'font-size:13px;font-weight:600', 'The assumption that flips the answer'));
+    if (!f) {
+      fb.appendChild(el('div', 'font-size:14px', 'No creator post rate between 30% and 100% changes this ranking.'));
+    } else {
+      // ponytail: flip carries no ids; A = pay_for_reach, B = send_to_creators per the two-direction stress
+      const A = titles.pay_for_reach || 'A', B = titles.send_to_creators || 'B';
+      fb.appendChild(el('div', 'font-size:14px;line-height:1.5', f.a_wins_now
+        ? `If creators post at ${pct(f.threshold)} or better, ${B} beats ${A}. At your current ${pct(f.current)}, ${A} wins.`
+        : `If creators post at ${pct(f.threshold)} or better, ${A} beats ${B}. At your current ${pct(f.current)}, ${B} wins.`));
+      if (data.check) {
+        const ck = el('div', 'padding:12px 14px;background:#f3f4f1;border-radius:8px');
+        ck.appendChild(el('div', 'font-size:12px;font-weight:600;color:#5c6066;margin-bottom:4px', 'What to check this week · Muse Spark'));
+        ck.appendChild(el('div', 'font-size:13.5px;line-height:1.5', data.check));
+        fb.appendChild(ck);
+      }
+    }
+  } catch (e) { showError(e); }
+})();
+</script>
+</body>
+</html>

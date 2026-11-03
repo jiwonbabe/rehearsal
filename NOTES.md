@@ -16,3 +16,6 @@
 - Creator fit read (Spark role 6, prompts/creator.md) is cached by handle in spark/cache/creator-<handle>.json; the demo server has none until screenshots are dropped into web/demo-creators/<handle>.png and sparkcache is rerun.
 - Launch numbers: creator_dms = creator_count × 2 (assume half reply); ads daily budget = ads_usd / 28 days; posts per type by largest remainder of posts_per_week × mix.
 - Meta ads adapter creates campaign + ad set only (OUTCOME_TRAFFIC + LINK_CLICKS, no pixel; not yet tried against a real ad account); the owner picks the boosted posts in Ads Manager. META_* env vars are read per request; MUSE_API_KEY stays unset in the server.
+- Meta data is mock (data/meta/bnd.jewelry, data/meta_mock.py seed 7) shaped like the Graph API; post_type labels on media would come from Spark vision in live mode. Orders by channel need the shop; link taps are the proxy.
+- platform_stats.json holds only numbers found in sources checked on Nov 3, 2026 (3 rows); no automatic refresh. Channel verdicts are reasoned, not stress-tested, and the card says so.
+- Korean: Spark translated each cache file once (spark/cache/ko/); static copy is a dictionary in web/i18n.js applied by a MutationObserver, so a string missing from the dictionary stays English rather than breaking.

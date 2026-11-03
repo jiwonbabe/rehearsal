@@ -6,9 +6,11 @@
 //	/api/rates           calibrated rates
 //	/api/backtest        engine vs actual, last 13 weeks
 //	/api/summary         the block the planner prompt gets
-//	/api/directions      cached Spark directions (see spark/)         [TODO step 1]
-//	/api/stress  POST    {direction_ids:[...]} -> plans, matrix, verdict, flip   [TODO step 2]
-//	/api/review  POST    {plan} -> review + new rates                   [TODO step 3]
+//	/api/directions      Spark directions for the current month, sorted by rank
+//	/api/setup   POST    {budget_usd_per_month, goal_orders_per_month, target, market}
+//	/api/stress  POST    {direction_ids:[...]} -> plans, matrix, verdict, flip, check
+//	/api/review  POST    {plan} (optional) -> committed plan + review + new rates
+//	/api/review/apply POST  adopt the reviewed rates, move to month 2
 //
 // Pages are served from web/ (copy layouts from mockup/).
 package main
@@ -18,13 +20,17 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sync"
 
 	"rehearsal/engine"
 )
 
 type server struct {
-	brand *engine.Brand
-	rates engine.Rates
+	brand            *engine.Brand
+	baseRates, rates engine.Rates
+	month            int
+	lastReview       *engine.Review
+	mu               sync.Mutex
 }
 
 func (s *server) writeJSON(w http.ResponseWriter, v any) {
@@ -36,28 +42,52 @@ func (s *server) writeJSON(w http.ResponseWriter, v any) {
 	}
 }
 
+func newServer(brandPath string) (*server, error) {
+	brand, err := engine.LoadBrand(brandPath)
+	if err != nil {
+		return nil, err
+	}
+	rates := engine.Calibrate(brand)
+	return &server{brand: brand, baseRates: rates, rates: rates, month: 1}, nil
+}
+
+func (s *server) routes() *http.ServeMux {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/api/brand", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.brand.Brand) }))
+	mux.HandleFunc("/api/rates", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.rates) }))
+	mux.HandleFunc("/api/backtest", s.locked(func(w http.ResponseWriter, r *http.Request) {
+		s.writeJSON(w, engine.RunBacktest(s.brand, s.rates, 13))
+	}))
+	mux.HandleFunc("/api/summary", s.locked(func(w http.ResponseWriter, r *http.Request) {
+		s.writeJSON(w, engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13)))
+	}))
+	mux.HandleFunc("/api/directions", s.locked(s.handleDirections))
+	mux.HandleFunc("/api/setup", s.locked(s.handleSetup))
+	mux.HandleFunc("/api/stress", s.locked(s.handleStress))
+	mux.HandleFunc("/api/review", s.locked(s.handleReview))
+	mux.HandleFunc("/api/review/apply", s.locked(s.handleReviewApply))
+	mux.Handle("/", http.FileServer(http.Dir("web")))
+	return mux
+}
+
+// locked serializes every handler that reads or writes server state.
+func (s *server) locked(h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		s.mu.Lock()
+		defer s.mu.Unlock()
+		h(w, r)
+	}
+}
+
 func main() {
-	brand, err := engine.LoadBrand("data/brand.json")
+	s, err := newServer("data/brand.json")
 	if err != nil {
 		log.Fatalf("load brand: %v (run `python data/synthetic.py`)", err)
 	}
-	s := &server{brand: brand, rates: engine.Calibrate(brand)}
-
-	mux := http.NewServeMux()
-	mux.HandleFunc("/api/brand", func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, brand.Brand) })
-	mux.HandleFunc("/api/rates", func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.rates) })
-	mux.HandleFunc("/api/backtest", func(w http.ResponseWriter, r *http.Request) {
-		s.writeJSON(w, engine.RunBacktest(brand, s.rates, 13))
-	})
-	mux.HandleFunc("/api/summary", func(w http.ResponseWriter, r *http.Request) {
-		s.writeJSON(w, engine.Summary(brand, s.rates, engine.RunBacktest(brand, s.rates, 13)))
-	})
-	mux.Handle("/", http.FileServer(http.Dir("web")))
-
 	addr := ":8080"
 	if p := os.Getenv("PORT"); p != "" {
 		addr = ":" + p
 	}
-	log.Printf("Rehearsal on http://localhost%s  (brand: %s, synthetic=%v)", addr, brand.Brand.Name, brand.Brand.Synthetic)
-	log.Fatal(http.ListenAndServe(addr, mux))
+	log.Printf("Rehearsal on http://localhost%s  (brand: %s, synthetic=%v)", addr, s.brand.Brand.Name, s.brand.Brand.Synthetic)
+	log.Fatal(http.ListenAndServe(addr, s.routes()))
 }

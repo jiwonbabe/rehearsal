@@ -1,0 +1,240 @@
+{
+ "source": "mock",
+ "days": 90,
+ "audience": {
+  "followers": 5561,
+  "top_age": "25-34",
+  "top_age_share": 0.46,
+  "women_share": 0.78,
+  "top_city": "Seoul",
+  "top_city_share": 0.41
+ },
+ "formats": [
+  {
+   "format": "feed",
+   "posts": 12,
+   "avg_reach": 2016,
+   "avg_saves": 88,
+   "link_taps_per_post": 23,
+   "reach_vs_feed": 1.0
+  },
+  {
+   "format": "reels",
+   "posts": 8,
+   "avg_reach": 6209,
+   "avg_saves": 262,
+   "link_taps_per_post": 95,
+   "reach_vs_feed": 3.08
+  },
+  {
+   "format": "stories",
+   "posts": 4,
+   "avg_reach": 1033,
+   "avg_saves": 49,
+   "link_taps_per_post": 23,
+   "reach_vs_feed": 0.51
+  },
+  {
+   "format": "threads",
+   "posts": 10,
+   "avg_reach": 2438,
+   "avg_saves": 21,
+   "link_taps_per_post": 0,
+   "reach_vs_feed": 1.21
+  }
+ ],
+ "post_types": [
+  {
+   "post_type": "on_hand",
+   "posts": 9,
+   "avg_reach": 3875,
+   "avg_saves": 203
+  },
+  {
+   "post_type": "close_up",
+   "posts": 7,
+   "avg_reach": 3749,
+   "avg_saves": 141
+  },
+  {
+   "post_type": "flat_lay",
+   "posts": 0,
+   "avg_reach": 0,
+   "avg_saves": 0
+  },
+  {
+   "post_type": "on_neck",
+   "posts": 4,
+   "avg_reach": 3187,
+   "avg_saves": 85
+  }
+ ],
+ "best_type": "on_hand",
+ "category": {
+  "hashtags": [
+   {
+    "hashtag": "#\ub370\uc77c\ub9ac\uc8fc\uc5bc\ub9ac",
+    "share_by_type": {
+     "on_hand": 0.47,
+     "close_up": 0.33,
+     "flat_lay": 0.13,
+     "on_neck": 0.07
+    },
+    "avg_likes_by_type": {
+     "on_hand": 541,
+     "close_up": 405,
+     "flat_lay": 312,
+     "on_neck": 314
+    }
+   },
+   {
+    "hashtag": "#everydaygoldjewelry",
+    "share_by_type": {
+     "on_hand": 0.6,
+     "close_up": 0.2,
+     "flat_lay": 0.0,
+     "on_neck": 0.2
+    },
+    "avg_likes_by_type": {
+     "on_hand": 825,
+     "close_up": 644,
+     "flat_lay": 0,
+     "on_neck": 501
+    }
+   }
+  ],
+  "peers": [
+   {
+    "username": "mellow.gold.seoul",
+    "followers": 24100,
+    "post_mix": {
+     "on_hand": 0.67,
+     "close_up": 0.17,
+     "flat_lay": 0.08,
+     "on_neck": 0.08
+    },
+    "avg_likes": 649
+   },
+   {
+    "username": "une.pieces",
+    "followers": 11300,
+    "post_mix": {
+     "on_hand": 0.08,
+     "close_up": 0.67,
+     "flat_lay": 0.25,
+     "on_neck": 0.0
+    },
+    "avg_likes": 244
+   },
+   {
+    "username": "hazel.jewel.kr",
+    "followers": 38400,
+    "post_mix": {
+     "on_hand": 0.5,
+     "close_up": 0.08,
+     "flat_lay": 0.33,
+     "on_neck": 0.08
+    },
+    "avg_likes": 764
+   }
+  ]
+ },
+ "creators": [
+  {
+   "username": "soft.daily.yj",
+   "followers": 6200,
+   "followers_band": "small",
+   "engagement_rate": 0.067,
+   "post_mix": {
+    "on_hand": 1.0,
+    "close_up": 0.0,
+    "flat_lay": 0.0,
+    "on_neck": 0.0
+   },
+   "biography": "\uc77c\uc0c1, \ucee4\ud53c, \uc791\uc740 \ubc18\uc9c0 \u2728 \uc11c\uc6b8"
+  },
+  {
+   "username": "minsol.outfit",
+   "followers": 14800,
+   "followers_band": "mid",
+   "engagement_rate": 0.037,
+   "post_mix": {
+    "on_hand": 0.5,
+    "close_up": 0.5,
+    "flat_lay": 0.0,
+    "on_neck": 0.0
+   },
+   "biography": "\ub370\uc77c\ub9ac\ub8e9 \u00b7 \ubca0\uc774\uc9c0 \ub7ec\ubc84 \u00b7 \ud611\ucc2c\ubb38\uc758 DM"
+  },
+  {
+   "username": "hana.handpoem",
+   "followers": 3900,
+   "followers_band": "small",
+   "engagement_rate": 0.095,
+   "post_mix": {
+    "on_hand": 0.83,
+    "close_up": 0.17,
+    "flat_lay": 0.0,
+    "on_neck": 0.0
+   },
+   "biography": "hands, light, quiet mornings"
+  },
+  {
+   "username": "goldie.seoul",
+   "followers": 52000,
+   "followers_band": "mid",
+   "engagement_rate": 0.019,
+   "post_mix": {
+    "on_hand": 0.33,
+    "close_up": 0.33,
+    "flat_lay": 0.33,
+    "on_neck": 0.0
+   },
+   "biography": "jewelry reviews \u00b7 PR welcome"
+  },
+  {
+   "username": "yeon.cafe.log",
+   "followers": 9100,
+   "followers_band": "small",
+   "engagement_rate": 0.03,
+   "post_mix": {
+    "on_hand": 0.33,
+    "close_up": 0.17,
+    "flat_lay": 0.5,
+    "on_neck": 0.0
+   },
+   "biography": "\uce74\ud398 \ud22c\uc5b4 \u00b7 \ud544\ub984 \uc0ac\uc9c4"
+  },
+  {
+   "username": "ari.minimal",
+   "followers": 21500,
+   "followers_band": "mid",
+   "engagement_rate": 0.032,
+   "post_mix": {
+    "on_hand": 0.67,
+    "close_up": 0.33,
+    "flat_lay": 0.0,
+    "on_neck": 0.0
+   },
+   "biography": "minimal wardrobe \u00b7 30\ub300 \uc9c1\uc7a5\uc778"
+  }
+ ],
+ "reach": {
+  "instagram_reels": {
+   "estimate_dau": 412000,
+   "estimate_mau": 1260000
+  },
+  "instagram_feed": {
+   "estimate_dau": 388000,
+   "estimate_mau": 1310000
+  },
+  "instagram_stories": {
+   "estimate_dau": 351000,
+   "estimate_mau": 1190000
+  },
+  "facebook_feed": {
+   "estimate_dau": 96000,
+   "estimate_mau": 540000
+  }
+ }
+}

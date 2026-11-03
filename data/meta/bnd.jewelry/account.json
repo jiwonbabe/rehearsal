@@ -1,0 +1,26 @@
+{
+ "source": "mock",
+ "username": "bnd.jewelry",
+ "followers_count": 5561,
+ "follower_demographics": {
+  "age": {
+   "18-24": 0.22,
+   "25-34": 0.46,
+   "35-44": 0.21,
+   "45-54": 0.08,
+   "55+": 0.03
+  },
+  "gender": {
+   "women": 0.78,
+   "men": 0.19,
+   "unknown": 0.03
+  },
+  "city": {
+   "Seoul": 0.41,
+   "Gyeonggi": 0.18,
+   "Busan": 0.07,
+   "Incheon": 0.05,
+   "Los Angeles": 0.04
+  }
+ }
+}

@@ -280,3 +280,35 @@ func TestLaunchPostsSumToWeekly(t *testing.T) {
 		t.Errorf("%v", w.Posts)
 	}
 }
+
+func TestEvidenceMatchesReference(t *testing.T) {
+	var want Evidence
+	loadJSON(t, "evidence", &want)
+	m, err := LoadMeta(filepath.Join(root(), "data", "meta", "bnd.jewelry"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, _ := json.Marshal(RunEvidence(m))
+	exp, _ := json.Marshal(want)
+	if string(got) != string(exp) {
+		t.Errorf("\n got %s\nwant %s", got, exp)
+	}
+}
+
+func TestEvidenceNoFeedPosts(t *testing.T) {
+	m, _ := LoadMeta(filepath.Join(root(), "data", "meta", "bnd.jewelry"))
+	var kept []MediaItem
+	for _, p := range m.Media.Data {
+		if p.MediaProductType != "FEED" {
+			kept = append(kept, p)
+		}
+	}
+	m.Media.Data = kept
+	e := RunEvidence(m)
+	if e.Formats[0].Posts != 0 || e.Formats[0].ReachVsFeed != 0 || e.Formats[1].ReachVsFeed != 0 {
+		t.Errorf("%+v", e.Formats[:2])
+	}
+	if len(EvidenceNumbers(e, nil)) == 0 {
+		t.Error("no numbers")
+	}
+}

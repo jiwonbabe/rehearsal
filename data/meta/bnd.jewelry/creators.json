@@ -1,0 +1,263 @@
+{
+ "source": "mock",
+ "data": [
+  {
+   "username": "soft.daily.yj",
+   "followers_count": 6200,
+   "biography": "일상, 커피, 작은 반지 ✨ 서울",
+   "recent": [
+    {
+     "id": "1",
+     "post_type": "on_hand",
+     "like_count": 371,
+     "comments_count": 9
+    },
+    {
+     "id": "2",
+     "post_type": "on_hand",
+     "like_count": 365,
+     "comments_count": 9
+    },
+    {
+     "id": "3",
+     "post_type": "on_hand",
+     "like_count": 542,
+     "comments_count": 20
+    },
+    {
+     "id": "4",
+     "post_type": "on_hand",
+     "like_count": 523,
+     "comments_count": 20
+    },
+    {
+     "id": "5",
+     "post_type": "on_hand",
+     "like_count": 315,
+     "comments_count": 17
+    },
+    {
+     "id": "6",
+     "post_type": "on_hand",
+     "like_count": 383,
+     "comments_count": 15
+    }
+   ]
+  },
+  {
+   "username": "minsol.outfit",
+   "followers_count": 14800,
+   "biography": "데일리룩 · 베이지 러버 · 협찬문의 DM",
+   "recent": [
+    {
+     "id": "1",
+     "post_type": "close_up",
+     "like_count": 451,
+     "comments_count": 12
+    },
+    {
+     "id": "2",
+     "post_type": "on_hand",
+     "like_count": 701,
+     "comments_count": 32
+    },
+    {
+     "id": "3",
+     "post_type": "on_hand",
+     "like_count": 558,
+     "comments_count": 34
+    },
+    {
+     "id": "4",
+     "post_type": "close_up",
+     "like_count": 490,
+     "comments_count": 21
+    },
+    {
+     "id": "5",
+     "post_type": "close_up",
+     "like_count": 481,
+     "comments_count": 12
+    },
+    {
+     "id": "6",
+     "post_type": "on_hand",
+     "like_count": 628,
+     "comments_count": 21
+    }
+   ]
+  },
+  {
+   "username": "hana.handpoem",
+   "followers_count": 3900,
+   "biography": "hands, light, quiet mornings",
+   "recent": [
+    {
+     "id": "1",
+     "post_type": "on_hand",
+     "like_count": 443,
+     "comments_count": 9
+    },
+    {
+     "id": "2",
+     "post_type": "on_hand",
+     "like_count": 401,
+     "comments_count": 9
+    },
+    {
+     "id": "3",
+     "post_type": "on_hand",
+     "like_count": 327,
+     "comments_count": 16
+    },
+    {
+     "id": "4",
+     "post_type": "on_hand",
+     "like_count": 440,
+     "comments_count": 14
+    },
+    {
+     "id": "5",
+     "post_type": "close_up",
+     "like_count": 225,
+     "comments_count": 5
+    },
+    {
+     "id": "6",
+     "post_type": "on_hand",
+     "like_count": 379,
+     "comments_count": 8
+    }
+   ]
+  },
+  {
+   "username": "goldie.seoul",
+   "followers_count": 52000,
+   "biography": "jewelry reviews · PR welcome",
+   "recent": [
+    {
+     "id": "1",
+     "post_type": "flat_lay",
+     "like_count": 605,
+     "comments_count": 18
+    },
+    {
+     "id": "2",
+     "post_type": "close_up",
+     "like_count": 1053,
+     "comments_count": 29
+    },
+    {
+     "id": "3",
+     "post_type": "on_hand",
+     "like_count": 1405,
+     "comments_count": 38
+    },
+    {
+     "id": "4",
+     "post_type": "flat_lay",
+     "like_count": 650,
+     "comments_count": 16
+    },
+    {
+     "id": "5",
+     "post_type": "on_hand",
+     "like_count": 1530,
+     "comments_count": 39
+    },
+    {
+     "id": "6",
+     "post_type": "close_up",
+     "like_count": 704,
+     "comments_count": 41
+    }
+   ]
+  },
+  {
+   "username": "yeon.cafe.log",
+   "followers_count": 9100,
+   "biography": "카페 투어 · 필름 사진",
+   "recent": [
+    {
+     "id": "1",
+     "post_type": "flat_lay",
+     "like_count": 244,
+     "comments_count": 7
+    },
+    {
+     "id": "2",
+     "post_type": "on_hand",
+     "like_count": 358,
+     "comments_count": 10
+    },
+    {
+     "id": "3",
+     "post_type": "close_up",
+     "like_count": 320,
+     "comments_count": 11
+    },
+    {
+     "id": "4",
+     "post_type": "flat_lay",
+     "like_count": 165,
+     "comments_count": 6
+    },
+    {
+     "id": "5",
+     "post_type": "flat_lay",
+     "like_count": 151,
+     "comments_count": 7
+    },
+    {
+     "id": "6",
+     "post_type": "on_hand",
+     "like_count": 378,
+     "comments_count": 16
+    }
+   ]
+  },
+  {
+   "username": "ari.minimal",
+   "followers_count": 21500,
+   "biography": "minimal wardrobe · 30대 직장인",
+   "recent": [
+    {
+     "id": "1",
+     "post_type": "close_up",
+     "like_count": 592,
+     "comments_count": 18
+    },
+    {
+     "id": "2",
+     "post_type": "close_up",
+     "like_count": 583,
+     "comments_count": 22
+    },
+    {
+     "id": "3",
+     "post_type": "on_hand",
+     "like_count": 662,
+     "comments_count": 30
+    },
+    {
+     "id": "4",
+     "post_type": "on_hand",
+     "like_count": 758,
+     "comments_count": 36
+    },
+    {
+     "id": "5",
+     "post_type": "on_hand",
+     "like_count": 586,
+     "comments_count": 37
+    },
+    {
+     "id": "6",
+     "post_type": "on_hand",
+     "like_count": 944,
+     "comments_count": 21
+    }
+   ]
+  }
+ ]
+}

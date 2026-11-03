@@ -1,0 +1,367 @@
+{
+ "source": "mock",
+ "labelled_by": "spark-vision (mock labels)",
+ "days": 90,
+ "data": [
+  {
+   "id": "1789000",
+   "timestamp": "2026-07-29T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_neck",
+   "insights": {
+    "reach": 1725,
+    "views": 3219,
+    "saved": 42,
+    "shares": 16,
+    "likes": 88,
+    "comments": 4,
+    "link_taps": 19
+   }
+  },
+  {
+   "id": "1789001",
+   "timestamp": "2026-08-01T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 6477,
+    "views": 11869,
+    "saved": 346,
+    "shares": 61,
+    "likes": 502,
+    "comments": 15,
+    "link_taps": 108
+   }
+  },
+  {
+   "id": "1789002",
+   "timestamp": "2026-08-04T09:00:00+0000",
+   "media_product_type": "STORY",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 898,
+    "views": 1768,
+    "saved": 47,
+    "shares": 8,
+    "likes": 62,
+    "comments": 3,
+    "link_taps": 25
+   }
+  },
+  {
+   "id": "1789003",
+   "timestamp": "2026-08-07T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 6543,
+    "views": 11052,
+    "saved": 223,
+    "shares": 43,
+    "likes": 534,
+    "comments": 15,
+    "link_taps": 92
+   }
+  },
+  {
+   "id": "1789004",
+   "timestamp": "2026-08-10T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 1659,
+    "views": 2918,
+    "saved": 65,
+    "shares": 9,
+    "likes": 116,
+    "comments": 4,
+    "link_taps": 16
+   }
+  },
+  {
+   "id": "1789005",
+   "timestamp": "2026-08-13T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "on_neck",
+   "insights": {
+    "reach": 4669,
+    "views": 10129,
+    "saved": 116,
+    "shares": 43,
+    "likes": 383,
+    "comments": 24,
+    "link_taps": 67
+   }
+  },
+  {
+   "id": "1789006",
+   "timestamp": "2026-08-16T09:00:00+0000",
+   "media_product_type": "STORY",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 1123,
+    "views": 2288,
+    "saved": 48,
+    "shares": 6,
+    "likes": 67,
+    "comments": 5,
+    "link_taps": 19
+   }
+  },
+  {
+   "id": "1789007",
+   "timestamp": "2026-08-19T09:00:00+0000",
+   "media_product_type": "STORY",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 814,
+    "views": 1515,
+    "saved": 33,
+    "shares": 7,
+    "likes": 64,
+    "comments": 4,
+    "link_taps": 17
+   }
+  },
+  {
+   "id": "1789008",
+   "timestamp": "2026-08-22T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_neck",
+   "insights": {
+    "reach": 1502,
+    "views": 2836,
+    "saved": 44,
+    "shares": 10,
+    "likes": 91,
+    "comments": 7,
+    "link_taps": 15
+   }
+  },
+  {
+   "id": "1789009",
+   "timestamp": "2026-08-25T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "on_neck",
+   "insights": {
+    "reach": 4851,
+    "views": 7437,
+    "saved": 139,
+    "shares": 35,
+    "likes": 265,
+    "comments": 18,
+    "link_taps": 79
+   }
+  },
+  {
+   "id": "1789010",
+   "timestamp": "2026-08-28T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 6713,
+    "views": 13064,
+    "saved": 242,
+    "shares": 47,
+    "likes": 352,
+    "comments": 17,
+    "link_taps": 117
+   }
+  },
+  {
+   "id": "1789011",
+   "timestamp": "2026-08-31T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 7867,
+    "views": 12161,
+    "saved": 373,
+    "shares": 50,
+    "likes": 562,
+    "comments": 34,
+    "link_taps": 112
+   }
+  },
+  {
+   "id": "1789012",
+   "timestamp": "2026-09-03T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 2654,
+    "views": 5733,
+    "saved": 146,
+    "shares": 28,
+    "likes": 180,
+    "comments": 14,
+    "link_taps": 37
+   }
+  },
+  {
+   "id": "1789013",
+   "timestamp": "2026-09-06T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 1853,
+    "views": 3184,
+    "saved": 67,
+    "shares": 16,
+    "likes": 121,
+    "comments": 5,
+    "link_taps": 26
+   }
+  },
+  {
+   "id": "1789014",
+   "timestamp": "2026-09-09T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 1811,
+    "views": 3405,
+    "saved": 79,
+    "shares": 17,
+    "likes": 129,
+    "comments": 10,
+    "link_taps": 21
+   }
+  },
+  {
+   "id": "1789015",
+   "timestamp": "2026-09-12T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 1921,
+    "views": 3267,
+    "saved": 105,
+    "shares": 23,
+    "likes": 142,
+    "comments": 7,
+    "link_taps": 16
+   }
+  },
+  {
+   "id": "1789016",
+   "timestamp": "2026-09-15T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 2230,
+    "views": 3979,
+    "saved": 78,
+    "shares": 14,
+    "likes": 179,
+    "comments": 11,
+    "link_taps": 24
+   }
+  },
+  {
+   "id": "1789017",
+   "timestamp": "2026-09-18T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 5444,
+    "views": 8515,
+    "saved": 244,
+    "shares": 43,
+    "likes": 424,
+    "comments": 30,
+    "link_taps": 100
+   }
+  },
+  {
+   "id": "1789018",
+   "timestamp": "2026-09-21T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 2410,
+    "views": 3549,
+    "saved": 142,
+    "shares": 22,
+    "likes": 210,
+    "comments": 8,
+    "link_taps": 22
+   }
+  },
+  {
+   "id": "1789019",
+   "timestamp": "2026-09-24T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "close_up",
+   "insights": {
+    "reach": 1802,
+    "views": 3440,
+    "saved": 71,
+    "shares": 19,
+    "likes": 145,
+    "comments": 5,
+    "link_taps": 16
+   }
+  },
+  {
+   "id": "1789020",
+   "timestamp": "2026-09-27T09:00:00+0000",
+   "media_product_type": "STORY",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 1295,
+    "views": 2020,
+    "saved": 67,
+    "shares": 13,
+    "likes": 117,
+    "comments": 6,
+    "link_taps": 30
+   }
+  },
+  {
+   "id": "1789021",
+   "timestamp": "2026-09-30T09:00:00+0000",
+   "media_product_type": "REELS",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 7104,
+    "views": 11902,
+    "saved": 415,
+    "shares": 75,
+    "likes": 452,
+    "comments": 41,
+    "link_taps": 85
+   }
+  },
+  {
+   "id": "1789022",
+   "timestamp": "2026-10-03T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 2216,
+    "views": 3701,
+    "saved": 114,
+    "shares": 27,
+    "likes": 165,
+    "comments": 4,
+    "link_taps": 30
+   }
+  },
+  {
+   "id": "1789023",
+   "timestamp": "2026-10-06T09:00:00+0000",
+   "media_product_type": "FEED",
+   "post_type": "on_hand",
+   "insights": {
+    "reach": 2411,
+    "views": 4985,
+    "saved": 106,
+    "shares": 19,
+    "likes": 190,
+    "comments": 6,
+    "link_taps": 32
+   }
+  }
+ ]
+}

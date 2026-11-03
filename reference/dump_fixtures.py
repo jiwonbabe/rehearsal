@@ -15,6 +15,7 @@ from engine.shocks import FALLBACK_COMBOS  # noqa: E402
 from engine.review import review  # noqa: E402
 from engine.goals import goal_suggestions  # noqa: E402
 from engine.launch import launch_spec  # noqa: E402
+from engine.evidence import load_meta, evidence  # noqa: E402
 
 OUT = os.path.join(ROOT, "reference", "fixtures")
 
@@ -59,6 +60,7 @@ def main():
     committed = Plan("oct", "send_to_creators", 3,
                      {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 4, 0)
     r = review(brand, committed, rates)
+    dump("evidence", evidence(load_meta(os.path.join(ROOT, "data", "meta", "bnd.jewelry"))))
     dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand)})
     r["new_rates"] = r["new_rates"].to_dict()
     dump("review", r)

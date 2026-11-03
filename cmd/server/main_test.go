@@ -111,15 +111,31 @@ func TestStressRejectsBadIds(t *testing.T) {
 	}
 }
 
+// firstDirectionID: a direction id that exists in the current month, so tests do not depend on cache content.
+func firstDirectionID(t *testing.T, ts *httptest.Server) string {
+	t.Helper()
+	var out struct {
+		Directions []struct {
+			ID string `json:"id"`
+		} `json:"directions"`
+	}
+	if code := call(t, ts, "GET", "/api/directions", "", &out); code != 200 || len(out.Directions) == 0 {
+		t.Fatalf("directions: status %d, %d dirs", code, len(out.Directions))
+	}
+	return out.Directions[0].ID
+}
+
 func TestStressFallsBackWithoutAdversaryCache(t *testing.T) {
 	ts := newTestServer(t)
 	t.Setenv("MUSE_API_KEY", "")
-	if err := os.Rename("spark/cache/adversary-just_post.json", "spark/cache/adversary-just_post.json.bak"); err != nil {
+	id := firstDirectionID(t, ts)
+	path := "spark/cache/adversary-" + id + ".json"
+	if err := os.Rename(path, path+".bak"); err != nil {
 		t.Fatal(err)
 	}
-	defer os.Rename("spark/cache/adversary-just_post.json.bak", "spark/cache/adversary-just_post.json")
+	defer os.Rename(path+".bak", path)
 	var out stressResponse
-	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["just_post"]}`, &out); code != 200 {
+	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["`+id+`"]}`, &out); code != 200 {
 		t.Fatalf("status %d", code)
 	}
 	if len(out.Directions[0].Stress.Combos) != 20 || out.Flip != nil {
@@ -137,8 +153,9 @@ func TestStressFallsBackWithoutAdversaryCache(t *testing.T) {
 
 func TestStressAlignsWhyWithCombos(t *testing.T) {
 	ts := newTestServer(t)
+	id := firstDirectionID(t, ts)
 	var out stressResponse
-	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["just_post"]}`, &out); code != 200 {
+	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["`+id+`"]}`, &out); code != 200 {
 		t.Fatalf("status %d", code)
 	}
 	d := out.Directions[0]

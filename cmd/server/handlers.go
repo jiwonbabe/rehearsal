@@ -80,11 +80,19 @@ func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
 		writeError(w, 500, err.Error())
 		return
 	}
+	type directionOut struct {
+		engine.Direction
+		Playbook map[string]any `json:"playbook"`
+	}
+	var out []directionOut
+	for _, d := range dirs {
+		out = append(out, directionOut{d, playbookFor(d.ID)})
+	}
 	resp := struct {
-		Month      int                `json:"month"`
-		Directions []engine.Direction `json:"directions"`
-		LastMonth  *engine.Review     `json:"last_month"`
-	}{s.month, dirs, s.lastReview}
+		Month      int            `json:"month"`
+		Directions []directionOut `json:"directions"`
+		LastMonth  *engine.Review `json:"last_month"`
+	}{s.month, out, s.lastReview}
 	s.writeJSON(w, resp)
 }
 

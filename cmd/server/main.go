@@ -12,6 +12,9 @@
 //	/api/stress  POST    {direction_ids:[...]} -> plans, matrix, verdict, flip, check
 //	/api/review  POST    {plan} (optional) -> committed plan + review + new rates
 //	/api/review/apply POST  adopt the reviewed rates, move to month 2
+//	/api/launch  POST    {plan} -> spec (engine), playbook (Spark text), paused Meta ads request, ads_connected
+//	/api/launch/ads POST {plan} -> creates the PAUSED campaign + ad set when META_AD_ACCOUNT_ID/META_ACCESS_TOKEN are set; dry-run otherwise
+//	/api/launch/calendar POST {plan} -> .ics with one event per week
 //
 // Pages are served from web/ (copy layouts from mockup/).
 package main
@@ -71,6 +74,9 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/stress", s.locked(s.handleStress))
 	mux.HandleFunc("POST /api/review", s.locked(s.handleReview))
 	mux.HandleFunc("POST /api/review/apply", s.locked(s.handleReviewApply))
+	mux.HandleFunc("POST /api/launch", s.locked(s.handleLaunch))
+	mux.HandleFunc("POST /api/launch/ads", s.locked(s.handleLaunchAds))
+	mux.HandleFunc("POST /api/launch/calendar", s.locked(s.handleLaunchCalendar))
 	mux.Handle("/", http.FileServer(http.Dir("web")))
 	return mux
 }

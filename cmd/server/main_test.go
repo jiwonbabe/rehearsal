@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"math"
 	"net/http"
 	"net/http/httptest"
@@ -185,8 +186,10 @@ func TestStressAlignsWhyWithCombos(t *testing.T) {
 
 func TestMutatingEndpointsRejectGet(t *testing.T) {
 	ts := newTestServer(t)
-	if code := call(t, ts, "GET", "/api/review/apply", "", nil); code == 200 {
-		t.Errorf("GET apply: %d", code)
+	for _, path := range []string{"/api/review/apply", "/api/launch", "/api/launch/ads", "/api/launch/calendar"} {
+		if code := call(t, ts, "GET", path, "", nil); code == 200 {
+			t.Errorf("GET %s: %d", path, code)
+		}
 	}
 }
 
@@ -329,5 +332,191 @@ func TestGoalsEndpoint(t *testing.T) {
 	}
 	if g.Hold <= 0 || g.Stretch < g.Hold || g.Grow < g.Hold || g.WeeksUsed != 13 {
 		t.Errorf("goals: %+v", g)
+	}
+}
+
+func launchPlan(t *testing.T, ts *httptest.Server) map[string]any {
+	t.Helper()
+	var st struct {
+		Verdict []struct {
+			Plan map[string]any `json:"plan"`
+		} `json:"verdict"`
+	}
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &st)
+	for _, v := range st.Verdict {
+		if v.Plan["direction"] == "pay_for_reach" {
+			return v.Plan
+		}
+	}
+	t.Fatal("no plan")
+	return nil
+}
+
+func launchBody(t *testing.T, ts *httptest.Server) string {
+	body, _ := json.Marshal(map[string]any{"plan": launchPlan(t, ts)})
+	return string(body)
+}
+
+func TestDirectionsCarryPlaybook(t *testing.T) {
+	ts := newTestServer(t)
+	var out struct {
+		Directions []struct {
+			ID       string         `json:"id"`
+			Playbook map[string]any `json:"playbook"`
+		} `json:"directions"`
+	}
+	call(t, ts, "GET", "/api/directions", "", &out)
+	for _, d := range out.Directions {
+		if d.Playbook == nil {
+			t.Errorf("%s: no playbook", d.ID)
+			continue
+		}
+		if weeks, _ := d.Playbook["weeks"].([]any); len(weeks) != 4 {
+			t.Errorf("%s: weeks %v", d.ID, d.Playbook["weeks"])
+		}
+	}
+}
+
+func TestLaunchSpecMatchesEngine(t *testing.T) {
+	ts := newTestServer(t)
+	plan := launchPlan(t, ts)
+	body, _ := json.Marshal(map[string]any{"plan": plan})
+	var out struct {
+		Spec         engine.LaunchSpec         `json:"spec"`
+		Playbook     map[string]any            `json:"playbook"`
+		AdRequest    map[string]map[string]any `json:"ad_request"`
+		AdsConnected bool                      `json:"ads_connected"`
+	}
+	if code := call(t, ts, "POST", "/api/launch", string(body), &out); code != 200 {
+		t.Fatal(code)
+	}
+	var p engine.Plan
+	via(plan, &p)
+	s, _ := newServer("data/brand.json")
+	want := engine.RunLaunch(p, s.brand)
+	if out.Spec.StartDate != "2026-11-02" || out.Spec.TotalSpendUsd != want.TotalSpendUsd {
+		t.Errorf("spec %+v", out.Spec)
+	}
+	if out.AdsConnected {
+		t.Error("ads_connected without env")
+	}
+	if out.Playbook == nil {
+		t.Error("no playbook")
+	}
+	if p.AdsUsd > 0 {
+		if out.AdRequest["adset"]["daily_budget"] != float64(out.Spec.AdsDailyCents) {
+			t.Errorf("adset %v", out.AdRequest["adset"])
+		}
+		if out.AdRequest["campaign"]["status"] != "PAUSED" {
+			t.Error("campaign not paused")
+		}
+	}
+}
+
+func TestLaunchJustPost(t *testing.T) {
+	ts := newTestServer(t)
+	body := `{"plan":{"plan_id":"x","direction":"just_post","posts_per_week":4,"post_mix":{"on_hand":0.5,"close_up":0.3,"flat_lay":0.2,"on_neck":0},"creator_count":0,"ads_usd":0,"promo_week":null,"promo_discount":0}}`
+	var out struct {
+		Spec      engine.LaunchSpec `json:"spec"`
+		AdRequest map[string]any    `json:"ad_request"`
+	}
+	if code := call(t, ts, "POST", "/api/launch", body, &out); code != 200 {
+		t.Fatal(code)
+	}
+	if out.AdRequest != nil || len(out.Spec.Calendar) != 4 || out.Spec.TotalSpendUsd != 0 {
+		t.Errorf("%+v %v", out.Spec, out.AdRequest)
+	}
+	if code := call(t, ts, "POST", "/api/launch", `{"plan":{}}`, nil); code != 400 {
+		t.Errorf("empty plan: %d", code)
+	}
+}
+
+func TestLaunchAdsDryRun(t *testing.T) {
+	t.Setenv("META_ACCESS_TOKEN", "")
+	t.Setenv("META_AD_ACCOUNT_ID", "")
+	ts := newTestServer(t)
+	var out struct {
+		Sent    bool                      `json:"sent"`
+		Reason  string                    `json:"reason"`
+		Request map[string]map[string]any `json:"request"`
+	}
+	if code := call(t, ts, "POST", "/api/launch/ads", launchBody(t, ts), &out); code != 200 {
+		t.Fatal(code)
+	}
+	if out.Sent || out.Reason != "no_credentials" || out.Request["adset"]["status"] != "PAUSED" {
+		t.Errorf("%+v", out)
+	}
+}
+
+func TestLaunchAdsLive(t *testing.T) {
+	var paths []string
+	graph := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		paths = append(paths, r.URL.Path)
+		if r.Form.Get("status") != "PAUSED" || r.Form.Get("access_token") != "tok" {
+			w.WriteHeader(400)
+			w.Write([]byte(`{"error":{"message":"bad"}}`))
+			return
+		}
+		fmt.Fprintf(w, `{"id":"%d"}`, len(paths))
+	}))
+	defer graph.Close()
+	t.Setenv("META_GRAPH_URL", graph.URL)
+	t.Setenv("META_ACCESS_TOKEN", "tok")
+	t.Setenv("META_AD_ACCOUNT_ID", "123")
+	ts := newTestServer(t)
+	var out struct {
+		Sent       bool   `json:"sent"`
+		CampaignID string `json:"campaign_id"`
+		AdsetID    string `json:"adset_id"`
+		URL        string `json:"url"`
+	}
+	if code := call(t, ts, "POST", "/api/launch/ads", launchBody(t, ts), &out); code != 200 {
+		t.Fatal(code)
+	}
+	if !out.Sent || out.CampaignID != "1" || out.AdsetID != "2" || !strings.Contains(out.URL, "act=123") {
+		t.Errorf("%+v", out)
+	}
+	if len(paths) != 2 || paths[0] != "/act_123/campaigns" || paths[1] != "/act_123/adsets" {
+		t.Errorf("paths %v", paths)
+	}
+}
+
+func TestLaunchAdsLiveError(t *testing.T) {
+	graph := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(400)
+		w.Write([]byte(`{"error":{"message":"Invalid token"}}`))
+	}))
+	defer graph.Close()
+	t.Setenv("META_GRAPH_URL", graph.URL)
+	t.Setenv("META_ACCESS_TOKEN", "tok")
+	t.Setenv("META_AD_ACCOUNT_ID", "123")
+	ts := newTestServer(t)
+	resp, err := http.Post(ts.URL+"/api/launch/ads", "application/json", strings.NewReader(launchBody(t, ts)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+	var out struct {
+		Error string `json:"error"`
+	}
+	json.NewDecoder(resp.Body).Decode(&out)
+	if resp.StatusCode != 502 || !strings.Contains(out.Error, "Invalid token") {
+		t.Errorf("%d %+v", resp.StatusCode, out)
+	}
+}
+
+func TestLaunchCalendar(t *testing.T) {
+	ts := newTestServer(t)
+	resp, err := http.Post(ts.URL+"/api/launch/calendar", "application/json", strings.NewReader(launchBody(t, ts)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+	raw, _ := io.ReadAll(resp.Body)
+	ics := string(raw)
+	if resp.Header.Get("Content-Type") != "text/calendar; charset=utf-8" || strings.Count(ics, "BEGIN:VEVENT") < 4 ||
+		!strings.Contains(ics, "DTSTART;VALUE=DATE:20261102") || !strings.HasSuffix(ics, "END:VCALENDAR\r\n") {
+		t.Errorf("%s", ics)
 	}
 }

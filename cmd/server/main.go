@@ -62,10 +62,10 @@ func (s *server) routes() *http.ServeMux {
 		s.writeJSON(w, engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13)))
 	}))
 	mux.HandleFunc("/api/directions", s.locked(s.handleDirections))
-	mux.HandleFunc("/api/setup", s.locked(s.handleSetup))
-	mux.HandleFunc("/api/stress", s.locked(s.handleStress))
-	mux.HandleFunc("/api/review", s.locked(s.handleReview))
-	mux.HandleFunc("/api/review/apply", s.locked(s.handleReviewApply))
+	mux.HandleFunc("POST /api/setup", s.locked(s.handleSetup))
+	mux.HandleFunc("POST /api/stress", s.locked(s.handleStress))
+	mux.HandleFunc("POST /api/review", s.locked(s.handleReview))
+	mux.HandleFunc("POST /api/review/apply", s.locked(s.handleReviewApply))
 	mux.Handle("/", http.FileServer(http.Dir("web")))
 	return mux
 }

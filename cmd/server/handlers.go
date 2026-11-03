@@ -42,9 +42,12 @@ func writeError(w http.ResponseWriter, code int, msg string) {
 }
 
 // via round-trips src through JSON into dst.
-func via(src, dst any) {
-	raw, _ := json.Marshal(src)
-	json.Unmarshal(raw, dst)
+func via(src, dst any) error {
+	raw, err := json.Marshal(src)
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(raw, dst)
 }
 
 func (s *server) currentDirections() ([]engine.Direction, error) {
@@ -62,7 +65,9 @@ func (s *server) currentDirections() ([]engine.Direction, error) {
 		return nil, err
 	}
 	var dirs []engine.Direction
-	via(valid, &dirs)
+	if err := via(valid, &dirs); err != nil {
+		return nil, err
+	}
 	sort.SliceStable(dirs, func(i, j int) bool { return dirs[i].Rank < dirs[j].Rank })
 	return dirs, nil
 }
@@ -100,6 +105,9 @@ func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 		b.GoalOrdersPerMonth = *in.Goal
 	}
 	if in.Target != nil {
+		if b.Target == nil {
+			b.Target = map[string]string{}
+		}
 		for k, v := range *in.Target {
 			b.Target[k] = v
 		}
@@ -111,23 +119,36 @@ func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 }
 
 // combosFor asks the adversary for shock combos; falls back to the fixed list.
-func (s *server) combosFor(d engine.Direction) ([][]string, []string) {
+// Codes and whys are read in one pass so they stay paired.
+func (s *server) combosFor(d engine.Direction) ([][]string, []string, error) {
 	var dirMap map[string]any
-	via(d, &dirMap)
+	if err := via(d, &dirMap); err != nil {
+		return nil, nil, err
+	}
 	raw, err := spark.Adversary(dirMap, engine.PriorProbabilities(s.rates))
 	if err != nil {
-		return engine.FallbackCombos, nil
+		return engine.FallbackCombos, nil, nil
 	}
-	combos := spark.ParseShocks(raw)
-	whys := make([]string, len(combos))
+	var combos [][]string
+	var whys []string
 	list, _ := raw["shocks"].([]any)
-	for i := range combos {
-		if i < len(list) {
-			item, _ := list[i].(map[string]any)
-			whys[i], _ = item["why"].(string)
+	for _, item := range list {
+		shock, _ := item.(map[string]any)
+		codes, _ := shock["codes"].([]any)
+		var row []string
+		for _, c := range codes {
+			if code, ok := c.(string); ok {
+				row = append(row, code)
+			}
 		}
+		if len(row) == 0 {
+			continue
+		}
+		why, _ := shock["why"].(string)
+		combos = append(combos, row)
+		whys = append(whys, why)
 	}
-	return combos, whys
+	return combos, whys, nil
 }
 
 // alignShocks pairs each stressed combo with the adversary's why (matched by cleaned codes).
@@ -174,7 +195,9 @@ func (s *server) flipAndCheck(verdict []engine.Verdict, titles map[string]string
 		return nil, ""
 	}
 	var flipMap map[string]any
-	via(flip, &flipMap)
+	if err := via(flip, &flipMap); err != nil {
+		return flip, checkLine(flip)
+	}
 	raw, err := spark.Check(a.Direction, b.Direction, flipMap, titles[a.Direction], titles[b.Direction])
 	if err == nil {
 		allowed := []float64{flip.Threshold, flip.Current, flip.Threshold * 100, flip.Current * 100}
@@ -202,6 +225,19 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	for _, d := range dirs {
 		byID[d.ID] = d
 	}
+	var picked []engine.Direction
+	seen := map[string]bool{}
+	for _, id := range in.DirectionIDs {
+		d, ok := byID[id]
+		if !ok {
+			writeError(w, 400, "unknown direction id: "+id)
+			return
+		}
+		if !seen[id] {
+			seen[id] = true
+			picked = append(picked, d)
+		}
+	}
 	resp := stressResponse{Catalog: map[string]string{}, Priors: engine.PriorProbabilities(s.rates)}
 	for code, sh := range engine.Catalog {
 		resp.Catalog[code] = sh.Label
@@ -209,13 +245,12 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	var allPlans []engine.Plan
 	merged := engine.Stressed{Matrix: map[string][]engine.Cell{}}
 	titles := map[string]string{}
-	for i, id := range in.DirectionIDs {
-		d, ok := byID[id]
-		if !ok {
-			writeError(w, 400, "unknown direction id: "+id)
+	for i, d := range picked {
+		combos, whys, err := s.combosFor(d)
+		if err != nil {
+			writeError(w, 500, err.Error())
 			return
 		}
-		combos, whys := s.combosFor(d)
 		plans := engine.SampleVariants(d, 60, 7)
 		st := engine.Stress(plans, combos, s.rates, s.brand)
 		resp.Directions = append(resp.Directions, directionStress{ID: d.ID, Title: d.Title, Plans: plans,

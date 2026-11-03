@@ -5,8 +5,11 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
+
+	"rehearsal/engine"
 )
 
 func TestMain(m *testing.M) {
@@ -86,7 +89,7 @@ func TestStressTwoDirections(t *testing.T) {
 	if len(out.Catalog) != 7 || len(out.Priors) != 7 {
 		t.Errorf("catalog/priors missing")
 	}
-	if out.Check == "" || !strings.Contains(out.Check, "%") {
+	if !strings.Contains(out.Check, "68%") || !strings.Contains(out.Check, "60%") {
 		t.Errorf("check line: %q", out.Check)
 	}
 }
@@ -104,7 +107,9 @@ func TestStressRejectsBadIds(t *testing.T) {
 func TestStressFallsBackWithoutAdversaryCache(t *testing.T) {
 	ts := newTestServer(t)
 	t.Setenv("MUSE_API_KEY", "")
-	os.Rename("spark/cache/adversary-just_post.json", "spark/cache/adversary-just_post.json.bak")
+	if err := os.Rename("spark/cache/adversary-just_post.json", "spark/cache/adversary-just_post.json.bak"); err != nil {
+		t.Fatal(err)
+	}
 	defer os.Rename("spark/cache/adversary-just_post.json.bak", "spark/cache/adversary-just_post.json")
 	var out stressResponse
 	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["just_post"]}`, &out); code != 200 {
@@ -112,6 +117,38 @@ func TestStressFallsBackWithoutAdversaryCache(t *testing.T) {
 	}
 	if len(out.Directions[0].Stress.Combos) != 20 || out.Flip != nil {
 		t.Errorf("fallback combos %d, flip %v", len(out.Directions[0].Stress.Combos), out.Flip)
+	}
+	if !reflect.DeepEqual(out.Directions[0].Stress.Combos, engine.FallbackCombos) {
+		t.Errorf("combos are not engine.FallbackCombos")
+	}
+	for i, sc := range out.Directions[0].Shocks {
+		if sc.Why != "" {
+			t.Errorf("shock %d has why %q in fallback", i, sc.Why)
+		}
+	}
+}
+
+func TestStressAlignsWhyWithCombos(t *testing.T) {
+	ts := newTestServer(t)
+	var out stressResponse
+	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["just_post"]}`, &out); code != 200 {
+		t.Fatalf("status %d", code)
+	}
+	d := out.Directions[0]
+	if len(d.Shocks) != len(d.Stress.Combos) {
+		t.Fatalf("%d shocks, %d combos", len(d.Shocks), len(d.Stress.Combos))
+	}
+	for i, sc := range d.Shocks {
+		if !reflect.DeepEqual(sc.Codes, d.Stress.Combos[i]) || sc.Why == "" {
+			t.Errorf("shock %d: %+v vs combo %v", i, sc, d.Stress.Combos[i])
+		}
+	}
+}
+
+func TestMutatingEndpointsRejectGet(t *testing.T) {
+	ts := newTestServer(t)
+	if code := call(t, ts, "GET", "/api/review/apply", "", nil); code == 200 {
+		t.Errorf("GET apply: %d", code)
 	}
 }
 

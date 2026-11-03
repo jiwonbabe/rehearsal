@@ -30,6 +30,8 @@ type stressResponse struct {
 	Directions []directionStress  `json:"directions"`
 	Verdict    []engine.Verdict   `json:"verdict"`
 	Flip       *engine.Flip       `json:"flip"`
+	FlipA      string             `json:"flip_a"`
+	FlipB      string             `json:"flip_b"`
 	Catalog    map[string]string  `json:"catalog"`
 	Priors     map[string]float64 `json:"priors"`
 	Check      string             `json:"check"`
@@ -178,8 +180,8 @@ func checkLine(f *engine.Flip) string {
 		pct(f.Threshold) + " or better flips the answer; you are at " + pct(f.Current) + "."
 }
 
-// flipAndCheck: A and B are the first two non-baseline verdict plans.
-func (s *server) flipAndCheck(verdict []engine.Verdict, titles map[string]string) (*engine.Flip, string) {
+// flipPair returns the first two non-baseline verdict plans: A and B of the flip.
+func flipPair(verdict []engine.Verdict) (a, b engine.Plan) {
 	var picked []engine.Plan
 	for _, v := range verdict {
 		if v.Plan.PlanID != "baseline" {
@@ -187,9 +189,16 @@ func (s *server) flipAndCheck(verdict []engine.Verdict, titles map[string]string
 		}
 	}
 	if len(picked) < 2 {
+		return a, b
+	}
+	return picked[0], picked[1]
+}
+
+func (s *server) flipAndCheck(verdict []engine.Verdict, titles map[string]string) (*engine.Flip, string) {
+	a, b := flipPair(verdict)
+	if b.PlanID == "" {
 		return nil, ""
 	}
-	a, b := picked[0], picked[1]
 	flip := engine.RunFlip(a, b, engine.FallbackCombos, s.rates, s.brand, "seed_post_rate", 0.3, 1.0, 0.02)
 	if flip == nil {
 		return nil, ""
@@ -266,6 +275,10 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	}
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
 	resp.Flip, resp.Check = s.flipAndCheck(resp.Verdict, titles)
+	if resp.Flip != nil {
+		fa, fb := flipPair(resp.Verdict)
+		resp.FlipA, resp.FlipB = fa.Direction, fb.Direction
+	}
 	s.writeJSON(w, resp)
 }
 

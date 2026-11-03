@@ -77,8 +77,7 @@ function renderTodo(p) {
     if (!f) {
       fb.appendChild(el('div', 'font-size:14px', 'No creator post rate between 30% and 100% changes this ranking.'));
     } else {
-      // ponytail: flip carries no ids; A = pay_for_reach, B = send_to_creators per the two-direction stress
-      const A = titles.pay_for_reach || 'A', B = titles.send_to_creators || 'B';
+      const A = titles[data.flip_a], B = titles[data.flip_b];
       fb.appendChild(el('div', 'font-size:14px;line-height:1.5', f.a_wins_now
         ? `If creators post at ${pct(f.threshold)} or better, ${B} beats ${A}. At your current ${pct(f.current)}, ${A} wins.`
         : `If creators post at ${pct(f.threshold)} or better, ${A} beats ${B}. At your current ${pct(f.current)}, ${B} wins.`));

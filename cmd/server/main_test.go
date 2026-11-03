@@ -83,6 +83,9 @@ func TestStressTwoDirections(t *testing.T) {
 	if len(out.Verdict) != 3 || !hasBaseline {
 		t.Errorf("verdict should be 2 directions + baseline, got %d", len(out.Verdict))
 	}
+	if out.FlipA != "pay_for_reach" || out.FlipB != "send_to_creators" {
+		t.Errorf("flip ids: %q %q", out.FlipA, out.FlipB)
+	}
 	if out.Flip == nil || out.Flip.Param != "seed_post_rate" {
 		t.Errorf("flip: %+v", out.Flip)
 	}

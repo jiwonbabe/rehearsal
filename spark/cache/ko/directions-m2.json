@@ -1,0 +1,196 @@
+{
+ "directions": [
+  {
+   "caution": null,
+   "id": "pay_for_reach",
+   "plain": "반응이 좋았던 사진에 광고비를 쓰십니다. 사장님 같은 여성분들이 더 많이 보게 됩니다.",
+   "ranges": {
+    "ads_usd": [
+     150,
+     350
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 1,
+   "title": "반응 좋은 글을 새 여성 고객님께 보여주기",
+   "why_for_you": "착용 사진 반응이 가장 좋습니다. 잘된 사진이 더 많은 분께 보이게 됩니다.",
+   "you_would_do": "착용 사진 중 가장 좋은 2장을 고르시고, 이번 주에 3번에서 5번 올려주세요."
+  },
+  {
+   "caution": null,
+   "id": "one_week_sale",
+   "plain": "7일 동안 할인 행사를 한 번 하십니다. 기다리던 손님들이 지금 사게 됩니다.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     100
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     15,
+     25
+    ],
+    "promo_week": [
+     2
+    ]
+   },
+   "rank": 2,
+   "title": "짧게 일주일 할인하기",
+   "why_for_you": "사장님은 할인 효과가 특히 큽니다. 지난달에는 글을 적게 올리셨는데도 목표를 넘으셨습니다.",
+   "you_would_do": "한 주를 정하시고 간단한 할인율을 정하셔서, 그 주에 4번에서 5번 올려주세요."
+  },
+  {
+   "caution": null,
+   "id": "just_post",
+   "plain": "거의 매일 글을 올리십니다. 돈을 쓰지 않고 천천히 꾸준히 키우십니다.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 3,
+   "title": "돈 안 쓰고 자주 올리기",
+   "why_for_you": "착용 사진과 가까이 찍은 사진이 그냥 올려도 반응이 좋습니다. 지난 예측이 몇 주 빗나갔기 때문에 돈을 아끼기에 안전합니다.",
+   "you_would_do": "일주일에 4번에서 5번, 주로 착용 사진으로 올려주세요."
+  },
+  {
+   "caution": "지난달에는 올려주신 분이 적었으니, 못 올리시는 분이 더 많다고 생각하고 준비해 주세요.",
+   "id": "send_to_creators",
+   "plain": "제품을 소개해 주는 분들께 제품을 보내드립니다. 그분들이 착용한 사진을 올려주십니다.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     4,
+     8
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0,
+      0.2
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 4,
+   "title": "더 많은 분들께 제품 보내드리기",
+   "why_for_you": "소개해 주는 분들이 올려주시면 반응이 아주 좋습니다. 사장님 인기 글도 착용한 사진입니다.",
+   "you_would_do": "여성분 10명께 연락하셔서 4개에서 8개를 보내드리고, 한 분당 착용 사진 한 장씩 부탁해 주세요."
+  }
+ ]
+}

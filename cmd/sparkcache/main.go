@@ -85,6 +85,7 @@ func main() {
 	channels := channelsStep(brand)
 	playbookStep(append(append([]map[string]any{}, m1...), m2...), brand, channels)
 	creatorStep()
+	translateStep()
 	if failed {
 		os.Exit(1)
 	}
@@ -255,4 +256,22 @@ func channelsStep(brand *engine.Brand) any {
 		fmt.Printf("ok channels: %s=%s data=%q\n", c["channel"], c["verdict"], c["why_data"])
 	}
 	return out
+}
+
+// translateStep writes ko/<name>.json for every cached call that has none yet.
+func translateStep() {
+	for _, name := range spark.CacheNames() {
+		en, err := spark.Call(name, "")
+		if err != nil {
+			continue
+		}
+		ko, err := spark.Translate(name, en)
+		if err != nil {
+			fail("ko/"+name, err)
+			continue
+		}
+		flat := map[string]string{}
+		spark.FlattenStrings(en, spark.ValidateTranslation(en, ko), flat)
+		fmt.Printf("ok ko/%s: %d strings\n", name, len(flat))
+	}
 }

@@ -309,3 +309,56 @@ func ValidateChannels(raw map[string]any, allowed []float64) []map[string]any {
 	}
 	return out
 }
+
+// ValidateTranslation returns en's shape with ko's strings where ko has a non-empty string at the same place;
+// everything else (numbers, nulls, missing keys, mismatched lists) stays as in en.
+func ValidateTranslation(en, ko any) any {
+	switch e := en.(type) {
+	case map[string]any:
+		k, _ := ko.(map[string]any)
+		out := map[string]any{}
+		for key, v := range e {
+			out[key] = ValidateTranslation(v, k[key])
+		}
+		return out
+	case []any:
+		k, _ := ko.([]any)
+		out := make([]any, len(e))
+		for i, v := range e {
+			if len(k) == len(e) {
+				out[i] = ValidateTranslation(v, k[i])
+			} else {
+				out[i] = ValidateTranslation(v, nil)
+			}
+		}
+		return out
+	case string:
+		if s, ok := ko.(string); ok && strings.TrimSpace(s) != "" {
+			return strings.TrimSpace(s)
+		}
+		return e
+	}
+	return en
+}
+
+// FlattenStrings records every en string whose translated counterpart differs, as into[en] = ko.
+func FlattenStrings(en, ko any, into map[string]string) {
+	switch e := en.(type) {
+	case map[string]any:
+		k, _ := ko.(map[string]any)
+		for key, v := range e {
+			FlattenStrings(v, k[key], into)
+		}
+	case []any:
+		k, _ := ko.([]any)
+		for i, v := range e {
+			if i < len(k) {
+				FlattenStrings(v, k[i], into)
+			}
+		}
+	case string:
+		if s, ok := ko.(string); ok && s != e && e != "" {
+			into[e] = s
+		}
+	}
+}

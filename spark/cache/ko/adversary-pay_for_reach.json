@@ -1,0 +1,146 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "계획이 전부 유료 광고에 기대고 있어서, 광고비가 조금만 올라도 예산이 금방 닳습니다."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "사장님 쪽에서 할인을 안 하시면, 손님들은 경쟁 업체의 20% 할인으로 갑니다."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "무료로 보여지는 게 줄면, 착용 사진을 보여드리려고 돈을 더 쓰셔야 합니다."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "돈 내고 손님을 데려왔는데 배송이 늦으면, 믿음이 바로 깨집니다."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "게시물 하나가 운 좋게 터졌을 때만 계획이 좋아 보이는지 확인합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop"
+   ],
+   "why": "무료로 보여지는 건 줄고, 유료 광고비는 동시에 오릅니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "광고비는 오르는데, 경쟁 업체 세일로 손님 클릭을 빼앗깁니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "돈을 더 내고 손님을 데려왔는데, 배송이 늦어져서 사지 않습니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "무료로 보는 분이 줄고 경쟁 업체가 세일을 해서, 유료 광고가 혼자 다 해야 합니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "새 손님이 무료로 찾아오기도 줄고 배송도 늦어져서, 앞뒤로 다 힘들어집니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "경쟁 업체는 할인하는데 사장님 배송은 늦어지면, 손님이 안 살 이유가 두 가지가 됩니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "viral_post"
+   ],
+   "why": "운 좋게 터지는 게시물 없이도, 비싼 광고만으로 되는지 시험합니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "무료로 보여지는 게 줄어든 걸, 운 좋은 게시물 하나로만 메우는지 시험합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "유료 광고는 비싸지고, 무료로 보여지는 건 줄고, 경쟁 업체는 할인까지 한 번에 합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "광고비는 비싸지고, 무료로 보여지는 건 줄고, 배송까지 늦어지는 게 한 번에 옵니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "비싼 돈 내고 손님을 데려왔는데, 경쟁 업체 세일에 밀리고 배송까지 늦어집니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "무료로 밀어주는 것도 없고, 경쟁 업체는 세일하고, 주문은 늦게 도착합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "비싼 광고에 보여지는 것도 약하면, 운 좋게 터져야만 버티는지 확인합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "운 좋게 터지는 게시물 없이도, 유료 광고 계획이 경쟁 업체 세일을 이기는지 확인합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "터지는 게시물 없이도, 비싼 광고가 늦은 배송을 견디는지 확인합니다."
+  }
+ ]
+}

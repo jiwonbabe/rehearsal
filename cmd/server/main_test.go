@@ -672,3 +672,19 @@ func TestLaunchCarriesReachAndCreators(t *testing.T) {
 		t.Errorf("creator entries carry a fit key (nil when uncached): %v", out.Creators[0])
 	}
 }
+
+func TestKoreanMap(t *testing.T) {
+	ts := newTestServer(t)
+	var m map[string]string
+	if code := call(t, ts, "GET", "/api/i18n/ko", "", &m); code != 200 {
+		t.Fatal(code)
+	}
+	if len(m) < 50 {
+		t.Errorf("only %d translated strings", len(m))
+	}
+	for en, ko := range m {
+		if ko == "" || ko == en {
+			t.Errorf("%q -> %q", en, ko)
+		}
+	}
+}

@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "제품을 보내드린 분들 중 절반은 글을 안 올리실 수도 있어서, 참고할 사진이 너무 적게 남습니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow"
+   ],
+   "why": "제품을 보내드리는 방법은 글이 널리 퍼져야 하고, 받으신 분들이 글을 올려주셔야 합니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "cpm_spike"
+   ],
+   "why": "올려주신 글이 적은데 광고비가 비싸지면, 더 밀어줄 만한 글이 남지 않습니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "글은 적은데 다른 가게가 세일을 하면, 관심도 줄고 사시는 분도 더 줄어듭니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "올려주신 글이 적은데 배송까지 늦어지면, 3주차에는 힘이 빠집니다."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "돈 안 들이고 퍼지는 게 줄어들면, 올려주신 글도 처음부터 반응이 없고 계속 조용합니다."
+  },
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "광고비가 비싸지면, 잘 되는 글을 찾기 전에 준비하신 적은 광고비를 다 쓰게 됩니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "cpm_spike"
+   ],
+   "why": "그냥 퍼지는 것도 줄고 돈 내고 퍼뜨리는 것도 줄면, 좋은 착용 사진도 아무도 못 보게 됩니다."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "할인 행사가 없으시면, 다른 가게 세일에 손님 클릭을 다 빼앗기게 됩니다."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "글이 반응을 얻기 시작할 때 배송이 늦어지면, 사려던 마음이 식어버립니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "그냥 퍼지는 게 줄고 다른 가게가 세일을 하면, 찾아오시는 분도 줄고 사시는 분도 줄어듭니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "광고비가 비싸지면 찾아오시는 분은 적은데, 다른 가게 세일 때문에 사시는 분은 더 줄어듭니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "초반 글 반응이 조용한데 배송까지 늦어지면, 월말 구매까지 어려워집니다."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "배송이 늦어지는 시기에 광고비만 더 내고 글을 밀게 됩니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "손님들은 다른 가게 세일로 가고, 나머지는 배송이 늦을까 봐 구매를 멈춥니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "cpm_spike"
+   ],
+   "why": "글을 올려주실 분도 없고, 잘 퍼지지도 않고, 광고비까지 비싸면 두 가지 방법이 다 안 됩니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "올려주신 글이 적고 잘 퍼지지도 않으면, 다른 가게 세일을 이기기 어렵습니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "글은 적고 광고비는 비싸고 다른 가게는 세일을 하면, 계획이 힘들어집니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "잘 퍼지지도 않고 광고비는 비싸고 구매도 잘 안 되면, 돈 들인 홍보 효과가 깨집니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow",
+    "viral_post"
+   ],
+   "why": "운 좋게 글 하나가 크게 터져도, 글을 올려주실 분이 적고 잘 퍼지지 않는 상황을 구할 수 있는지 봅니다."
+  }
+ ]
+}

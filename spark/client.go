@@ -65,10 +65,10 @@ func CallWithImages(name, prompt string, images []string) (map[string]any, error
 }
 
 func callContent(name string, content []any) (map[string]any, error) {
-	if err := os.MkdirAll(CacheDir, 0o755); err != nil {
+	path := cachePath(name)
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return nil, err
 	}
-	path := cachePath(name)
 	if raw, err := os.ReadFile(path); err == nil {
 		var out map[string]any
 		return out, json.Unmarshal(raw, &out)
@@ -209,4 +209,44 @@ func CreatorFit(handle string, brief map[string]any, images []string, account an
 		return nil, err
 	}
 	return CallWithImages("creator-"+SafeHandle(handle), fill(tpl, map[string]any{"HANDLE": handle, "BRIEF_JSON": brief, "ACCOUNT_JSON": account}), images)
+}
+
+// Translate: Korean version of one cached call's JSON, cached as ko/<name>. Strings only; shape checked by ValidateTranslation.
+func Translate(name string, en map[string]any) (map[string]any, error) {
+	tpl, err := loadPrompt("translate.md")
+	if err != nil {
+		return nil, err
+	}
+	return Call("ko/"+name, fill(tpl, map[string]any{"JSON": en}))
+}
+
+// CacheNames lists the cached call names (without .json) in CacheDir, skipping the ko/ folder.
+func CacheNames() []string {
+	files, _ := filepath.Glob(filepath.Join(CacheDir, "*.json"))
+	var names []string
+	for _, f := range files {
+		names = append(names, strings.TrimSuffix(filepath.Base(f), ".json"))
+	}
+	return names
+}
+
+// KoreanMap: every English string across the cache paired with its validated Korean translation.
+func KoreanMap() map[string]string {
+	out := map[string]string{}
+	for _, name := range CacheNames() {
+		en, err := Call(name, "")
+		if err != nil {
+			continue
+		}
+		raw, err := os.ReadFile(cachePath("ko/" + name))
+		if err != nil {
+			continue
+		}
+		var ko map[string]any
+		if json.Unmarshal(raw, &ko) != nil {
+			continue
+		}
+		FlattenStrings(en, ValidateTranslation(en, ko), out)
+	}
+	return out
 }

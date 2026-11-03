@@ -1,0 +1,141 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "매일 올리는 글이 돈 안 들이고 보여주는 것에만 매달려 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "보는 분이 줄어든 데다가 경쟁 가게가 세일을 하면 천천히 크던 흐름이 멈춰요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "보는 분이 줄어든 데다가 배송까지 늦어지면 다시 사려던 분들이 떨어져 나가요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "잘 안 보여지고 판매도 시원찮고 배송까지 늦어지면 성장이 멈춰요."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "사장님께서 할인을 안 하시면 경쟁 가게 세일로 손님이 넘어가요."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "입소문에 기대고 계신데 배송이 늦어지면 믿음이 깨져요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "경쟁 가게가 세일을 하는데 배송까지 늦어지면 손님이 사기로 마음먹기가 두 배로 어려워져요."
+  },
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "홍보해 주시는 분이 없으시면 대신 알려줄 방법이 없어요."
+  },
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "행사를 안 하시면 경쟁 가게 세일에 맞설 기회가 없어져요."
+  },
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "광고를 안 하시면 잘 안 보여질 때 돈으로 풀 방법이 없어요."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "운 좋게 글 하나가 크게 터지면 평소 성장이 약한 게 가려져 보여요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "글 하나가 크게 터져야만 이 계획이 되는 건지 확인하는 거예요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "creator_noshow"
+   ],
+   "why": "잘 안 보여지는데 홍보해 주시는 분도 없으면 보탬받을 데가 없어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "promo_underestimate"
+   ],
+   "why": "잘 안 보여지는데 기댈 만한 할인 행사도 없어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "cpm_spike"
+   ],
+   "why": "돈 안 들이고 보여주는 것도 줄고 광고비도 비싸지면 빠져나갈 방법이 없어요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "creator_noshow"
+   ],
+   "why": "홍보해 주시는 분이 없으시면 경쟁 가게 세일이 더 아프게 들어와요."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "creator_noshow"
+   ],
+   "why": "안심시켜 주실 분이 없으시면 늦은 배송이 손님께 더 크게 느껴져요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "creator_noshow"
+   ],
+   "why": "잘 안 보여지는데 경쟁 가게는 세일을 하고 도와줄 분도 없어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay",
+    "promo_underestimate"
+   ],
+   "why": "잘 안 보여지고 배송도 늦어지는데 만회할 행사도 없어요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "글이 크게 터져도 판매가 약하고 배송이 늦으면 살리기 어려워요."
+  }
+ ]
+}

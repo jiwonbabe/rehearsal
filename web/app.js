@@ -10,7 +10,7 @@ function renderHeader(step, subtitle) {
     <div style="font-weight:600;font-size:16px">Rehearsal</div>
     <div style="font-size:13px;color:#5c6066;padding-left:12px;border-left:1px solid #d9dbd4">${subtitle}</div>
     <div class="badge">Demo brand · synthetic data</div></div>
-    <div style="display:flex;gap:6px;font-size:13px">${pills}</div>`;
+    <div style="display:flex;gap:6px;font-size:13px;align-items:center">${pills}<button class="pill" style="border:1px solid #d9dbd4;background:#fff;cursor:pointer;font:inherit;font-size:12px" onclick="setLang(getLang() === 'ko' ? 'en' : 'ko')">${getLang() === 'ko' ? 'EN' : '한국어'}</button></div>`;
   document.body.prepend(el);
 }
 

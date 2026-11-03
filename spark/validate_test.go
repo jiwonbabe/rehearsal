@@ -217,3 +217,24 @@ func TestValidateChannels(t *testing.T) {
 		t.Error("quotesAllowed")
 	}
 }
+
+func TestValidateTranslation(t *testing.T) {
+	en := map[string]any{"title": "Boost posts", "rank": 1, "weeks": []any{map[string]any{"do": "Post twice", "week": 1}}, "caution": nil, "list": []any{"a", "b"}}
+	ko := map[string]any{"title": "게시물 밀어주기", "rank": 99, "weeks": []any{map[string]any{"do": "", "week": 2}}, "list": []any{"ㄱ"}}
+	out := ValidateTranslation(en, ko).(map[string]any)
+	if out["title"] != "게시물 밀어주기" || out["rank"] != 1 || out["caution"] != nil {
+		t.Errorf("%v", out)
+	}
+	w := out["weeks"].([]any)[0].(map[string]any)
+	if w["do"] != "Post twice" || w["week"] != 1 {
+		t.Errorf("week %v", w)
+	}
+	if l := out["list"].([]any); len(l) != 2 || l[0] != "a" {
+		t.Errorf("list %v", l)
+	}
+	flat := map[string]string{}
+	FlattenStrings(en, out, flat)
+	if flat["Boost posts"] != "게시물 밀어주기" || len(flat) != 1 {
+		t.Errorf("flat %v", flat)
+	}
+}

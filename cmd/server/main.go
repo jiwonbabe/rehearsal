@@ -18,6 +18,7 @@
 //	/api/launch/creator POST {handle, images, direction} -> fit labels for one creator (cached by handle)
 //	/api/meta/connect POST {source:"mock"|"instagram", handle} -> evidence from the account's Meta data + channel verdicts
 //	/api/evidence        evidence, sourced statistics, channel verdicts (409 before connect)
+//	/api/i18n/ko         every Spark sentence paired with its Korean translation (spark/cache/ko/)
 //
 // Pages are served from web/ (copy layouts from mockup/).
 package main
@@ -30,6 +31,7 @@ import (
 	"sync"
 
 	"rehearsal/engine"
+	"rehearsal/spark"
 )
 
 type server struct {
@@ -88,6 +90,7 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/launch/creator", s.locked(s.handleCreatorFit))
 	mux.HandleFunc("POST /api/meta/connect", s.locked(s.handleMetaConnect))
 	mux.HandleFunc("/api/evidence", s.locked(s.handleEvidence))
+	mux.HandleFunc("/api/i18n/ko", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, spark.KoreanMap()) }))
 	mux.Handle("/", http.FileServer(http.Dir("web")))
 	return mux
 }

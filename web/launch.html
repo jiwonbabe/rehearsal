@@ -26,6 +26,7 @@ textarea.dm{width:100%;box-sizing:border-box;min-height:96px;font-family:inherit
     <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px"></div>
   </div>
 </div>
+<script src="/i18n.js"></script>
 <script src="/app.js"></script>
 <script>
 renderHeader(5, 'Launch');
@@ -82,7 +83,7 @@ function creatorsCard(d) {
   if (cb.ask) c.appendChild(kv('Ask', cb.ask));
   c.appendChild(el('div', 'font-size:13.5px', `Ship ${s.creator_count} pieces (${money(s.creator_ship_usd)} at cost) · send ${s.creator_dms} DMs, expect about half to answer`));
   if (cb.dm) {
-    const ta = document.createElement('textarea'); ta.className = 'dm'; ta.readOnly = true; ta.value = cb.dm;
+    const ta = document.createElement('textarea'); ta.className = 'dm'; ta.readOnly = true; ta.value = tx(cb.dm);
     const b = el('button', 'align-self:flex-start;min-height:40px;font-size:14px', 'Copy DM'); b.className = 'btn ghost';
     b.onclick = async () => { try { await navigator.clipboard.writeText(ta.value); b.textContent = 'Copied'; } catch (e) { ta.select(); } };
     c.appendChild(ta); c.appendChild(b);
@@ -169,6 +170,7 @@ function calendarCard(d) {
   const plan = getCommitted();
   if (!plan) { document.getElementById('empty').style.display = 'block'; return; }
   try {
+    await I18N_READY;
     const d = await api('/api/launch', { plan });
     document.getElementById('main').style.display = 'flex';
     document.getElementById('title').textContent = `Launch: ${d.direction.title}`;

@@ -245,3 +245,38 @@ func TestGoalSuggestionsMatchReference(t *testing.T) {
 		t.Errorf("weeks_used: got %d want %d", got.WeeksUsed, want.WeeksUsed)
 	}
 }
+
+func TestLaunchMatchesReference(t *testing.T) {
+	var want map[string]LaunchSpec
+	loadJSON(t, "launch", &want)
+	var verdict []Verdict
+	loadJSON(t, "verdict", &verdict)
+	var ads Plan
+	for _, v := range verdict {
+		if v.Plan.Direction == "pay_for_reach" {
+			ads = v.Plan
+			break
+		}
+	}
+	b := brand(t)
+	for name, p := range map[string]Plan{"ads": ads, "seeding": OctoberPlan()} {
+		got, _ := json.Marshal(RunLaunch(p, b))
+		exp, _ := json.Marshal(want[name])
+		if string(got) != string(exp) {
+			t.Errorf("%s:\n got %s\nwant %s", name, got, exp)
+		}
+	}
+}
+
+func TestLaunchPostsSumToWeekly(t *testing.T) {
+	got := splitPosts(4, map[string]float64{"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0})
+	if got["on_hand"]+got["close_up"]+got["flat_lay"]+got["on_neck"] != 4 || got["on_hand"] != 2 {
+		t.Errorf("%v", got)
+	}
+	p := OctoberPlan()
+	p.PostsPerWeek = 3.5
+	w := RunLaunch(p, brand(t)).Calendar[0]
+	if w.Posts["on_hand"]+w.Posts["close_up"]+w.Posts["flat_lay"]+w.Posts["on_neck"] != 4 {
+		t.Errorf("%v", w.Posts)
+	}
+}

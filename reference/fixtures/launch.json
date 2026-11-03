@@ -1,0 +1,134 @@
+{
+ "ads": {
+  "start_date": "2026-11-02",
+  "end_date": "2026-11-29",
+  "days": 28,
+  "ads_usd": 240,
+  "ads_daily_usd": 8.57,
+  "ads_daily_cents": 857,
+  "creator_count": 0,
+  "creator_ship_usd": 0,
+  "creator_dms": 0,
+  "total_spend_usd": 240,
+  "calendar": [
+   {
+    "week": 1,
+    "start_date": "2026-11-02",
+    "posts": {
+     "on_hand": 3,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 60.0,
+    "promo_discount": 0
+   },
+   {
+    "week": 2,
+    "start_date": "2026-11-09",
+    "posts": {
+     "on_hand": 3,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 60.0,
+    "promo_discount": 0
+   },
+   {
+    "week": 3,
+    "start_date": "2026-11-16",
+    "posts": {
+     "on_hand": 3,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 60.0,
+    "promo_discount": 0
+   },
+   {
+    "week": 4,
+    "start_date": "2026-11-23",
+    "posts": {
+     "on_hand": 3,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 60.0,
+    "promo_discount": 0
+   }
+  ]
+ },
+ "seeding": {
+  "start_date": "2026-11-02",
+  "end_date": "2026-11-29",
+  "days": 28,
+  "ads_usd": 0,
+  "ads_daily_usd": 0.0,
+  "ads_daily_cents": 0,
+  "creator_count": 4,
+  "creator_ship_usd": 180,
+  "creator_dms": 8,
+  "total_spend_usd": 180,
+  "calendar": [
+   {
+    "week": 1,
+    "start_date": "2026-11-02",
+    "posts": {
+     "on_hand": 1,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 4,
+    "ads_usd": 0.0,
+    "promo_discount": 0
+   },
+   {
+    "week": 2,
+    "start_date": "2026-11-09",
+    "posts": {
+     "on_hand": 1,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 0.0,
+    "promo_discount": 0
+   },
+   {
+    "week": 3,
+    "start_date": "2026-11-16",
+    "posts": {
+     "on_hand": 1,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 0.0,
+    "promo_discount": 0
+   },
+   {
+    "week": 4,
+    "start_date": "2026-11-23",
+    "posts": {
+     "on_hand": 1,
+     "close_up": 1,
+     "flat_lay": 1,
+     "on_neck": 0
+    },
+    "creators": 0,
+    "ads_usd": 0.0,
+    "promo_discount": 0
+   }
+  ]
+ }
+}

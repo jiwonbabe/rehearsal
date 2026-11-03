@@ -29,6 +29,7 @@ function renderTodo(p) {
   if (p.ads_usd > 0) w1.push(`Pick your 2 best on-hand posts and set a daily cap of ${money(p.ads_usd / 28)}`);
   if (p.creator_count > 0) w1.push(`DM and ship ${p.creator_count} pieces`);
   const rows = [['Week 1', w1]];
+  if (p.promo_week === 1) w1.push(`Announce ${pct(p.promo_discount)} off`);
   for (let w = 2; w <= 4; w++) {
     const l = [`Post ${p.posts_per_week}×`];
     if (p.promo_week === w) l.push(`Announce ${pct(p.promo_discount)} off`);
@@ -75,12 +76,13 @@ function renderTodo(p) {
     const f = data.flip, fb = document.getElementById('flip');
     fb.appendChild(el('div', 'font-size:13px;font-weight:600', 'The assumption that flips the answer'));
     if (!f) {
-      fb.appendChild(el('div', 'font-size:14px', 'No creator post rate between 30% and 100% changes this ranking.'));
+      fb.appendChild(el('div', 'font-size:14px', data.directions.length < 2 ? 'Pick two directions on the Directions page to see which assumption flips the answer.' : 'No creator post rate between 30% and 100% changes this ranking.'));
     } else {
+      const dir = f.threshold > f.current ? 'or better' : 'or worse';
       const A = titles[data.flip_a], B = titles[data.flip_b];
       fb.appendChild(el('div', 'font-size:14px;line-height:1.5', f.a_wins_now
-        ? `If creators post at ${pct(f.threshold)} or better, ${B} beats ${A}. At your current ${pct(f.current)}, ${A} wins.`
-        : `If creators post at ${pct(f.threshold)} or better, ${A} beats ${B}. At your current ${pct(f.current)}, ${B} wins.`));
+        ? `If creators post at ${pct(f.threshold)} ${dir}, ${B} beats ${A}. At your current ${pct(f.current)}, ${A} wins.`
+        : `If creators post at ${pct(f.threshold)} ${dir}, ${A} beats ${B}. At your current ${pct(f.current)}, ${B} wins.`));
       if (data.check) {
         const ck = el('div', 'padding:12px 14px;background:#f3f4f1;border-radius:8px');
         ck.appendChild(el('div', 'font-size:12px;font-weight:600;color:#5c6066;margin-bottom:4px', 'What to check this week · Muse Spark'));

@@ -7,11 +7,13 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 	"testing"
 
 	"rehearsal/engine"
+	"rehearsal/spark"
 )
 
 func TestMain(m *testing.M) {
@@ -129,11 +131,23 @@ func TestStressFallsBackWithoutAdversaryCache(t *testing.T) {
 	ts := newTestServer(t)
 	t.Setenv("MUSE_API_KEY", "")
 	id := firstDirectionID(t, ts)
-	path := "spark/cache/adversary-" + id + ".json"
-	if err := os.Rename(path, path+".bak"); err != nil {
+	dir := t.TempDir()
+	files, _ := filepath.Glob(filepath.Join(spark.CacheDir, "*.json"))
+	for _, f := range files {
+		data, err := os.ReadFile(f)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(dir, filepath.Base(f)), data, 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+	old := spark.CacheDir
+	spark.CacheDir = dir
+	t.Cleanup(func() { spark.CacheDir = old })
+	if err := os.Remove(filepath.Join(dir, "adversary-"+id+".json")); err != nil {
 		t.Fatal(err)
 	}
-	defer os.Rename(path+".bak", path)
 	var out stressResponse
 	if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":["`+id+`"]}`, &out); code != 200 {
 		t.Fatalf("status %d", code)
@@ -230,5 +244,25 @@ func TestSetupClampsAndValidates(t *testing.T) {
 		if d.Ranges.AdsUsd[1] > 100 {
 			t.Errorf("ads_usd not clamped to new budget: %v", d.Ranges.AdsUsd)
 		}
+	}
+}
+
+func TestBaselineIndependentOfClickOrder(t *testing.T) {
+	ts := newTestServer(t)
+	base := func(ids string) int {
+		var out stressResponse
+		if code := call(t, ts, "POST", "/api/stress", `{"direction_ids":`+ids+`}`, &out); code != 200 {
+			t.Fatalf("status %d", code)
+		}
+		for _, v := range out.Verdict {
+			if v.Plan.Direction == "baseline" || v.Plan.PlanID == "baseline" {
+				return v.Survived
+			}
+		}
+		t.Fatal("no baseline verdict")
+		return -1
+	}
+	if a, b := base(`["pay_for_reach","send_to_creators"]`), base(`["send_to_creators","pay_for_reach"]`); a != b {
+		t.Errorf("baseline survived %d vs %d", a, b)
 	}
 }

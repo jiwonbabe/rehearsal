@@ -99,6 +99,10 @@ func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 		writeError(w, 400, err.Error())
 		return
 	}
+	if (in.Budget != nil && *in.Budget < 0) || (in.Goal != nil && *in.Goal < 0) {
+		writeError(w, 400, "budget and goal must be 0 or more")
+		return
+	}
 	b := &s.brand.Brand
 	if in.Budget != nil {
 		b.BudgetUsdPerMonth = *in.Budget
@@ -176,8 +180,12 @@ func alignShocks(st engine.Stressed, combos [][]string, whys []string) []shockCo
 func pct(x float64) string { return fmt.Sprintf("%.0f%%", x*100) }
 
 func checkLine(f *engine.Flip) string {
+	dir := " or worse"
+	if f.Threshold > f.Current {
+		dir = " or better"
+	}
 	return "Check before committing: message the creators who did post last month and ask if they would do it again. Creators posting at " +
-		pct(f.Threshold) + " or better flips the answer; you are at " + pct(f.Current) + "."
+		pct(f.Threshold) + dir + " flips the answer; you are at " + pct(f.Current) + "."
 }
 
 // flipPair returns the first two non-baseline verdict plans: A and B of the flip.
@@ -254,7 +262,7 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	var allPlans []engine.Plan
 	merged := engine.Stressed{Matrix: map[string][]engine.Cell{}}
 	titles := map[string]string{}
-	for i, d := range picked {
+	for _, d := range picked {
 		combos, whys, err := s.combosFor(d)
 		if err != nil {
 			writeError(w, 500, err.Error())
@@ -269,10 +277,8 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 		for k, cells := range st.Matrix {
 			merged.Matrix[k] = cells
 		}
-		if i == 0 {
-			merged.Combos = st.Combos
-		}
 	}
+	merged.Combos = engine.FallbackCombos // fixed catalog list: baseline must not depend on click order
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
 	resp.Flip, resp.Check = s.flipAndCheck(resp.Verdict, titles)
 	if resp.Flip != nil {

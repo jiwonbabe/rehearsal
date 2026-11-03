@@ -98,8 +98,8 @@ func diagnosis(actual ActualMonth, inside bool, changes []RateChange) string {
 		}
 	}
 	if seed && !conv {
-		return fmt.Sprintf("Only %d of %d seeded creators posted, so seeded engagement never arrived and orders followed. "+
-			"Your own conversion held. This was a creator problem, not a product or audience problem.",
+		return fmt.Sprintf("Only %d of %d seeded creators posted, so the seeded engagement never arrived. "+
+			"Your own posts and conversion held up. This was a creator problem, not a product or audience problem.",
 			int(actual.CreatorsPosted), int(actual.CreatorsSeeded))
 	}
 	if conv {

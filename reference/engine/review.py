@@ -55,7 +55,7 @@ def diagnosis(actual, rates, inside, changes):
     names = [c["rate"] for c in changes]
     if "seed_post_rate" in names and "order_per_engagement" not in names:
         return (f"Only {actual['creators_posted']} of {actual['creators_seeded']} seeded creators posted, "
-                f"so seeded engagement never arrived and orders followed. Your own conversion held. "
+                f"so the seeded engagement never arrived. Your own posts and conversion held up. "
                 f"This was a creator problem, not a product or audience problem.")
     if "order_per_engagement" in names:
         return "Engagement came in as expected but fewer of it turned into orders. Conversion was off."

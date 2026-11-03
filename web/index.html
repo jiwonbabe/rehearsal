@@ -31,21 +31,11 @@
     <div style="font-size:12px;color:#5c6066">Demo: real @bnd.jewelry profile screenshot, synthetic sales data.</div>
   </div>
 
-  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+  <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:20px">
     <div class="card" style="padding:24px;gap:14px">
       <div class="label">Demo brand</div>
       <div id="brand-name" style="font-size:15px;font-weight:600"></div>
       <div style="font-size:12px;color:#5c6066">52 weeks of synthetic data</div>
-    </div>
-    <div class="card" style="padding:24px;gap:14px">
-      <div class="label">Monthly budget and goal</div>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
-        <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Budget per month ($)
-          <input id="budget" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%"></label>
-        <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Orders goal per month
-          <input id="goal" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%"></label>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px"><button id="save" class="btn ghost" style="min-height:40px">Confirm</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
     </div>
   </div>
 
@@ -61,6 +51,22 @@
       <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Price band
         <select id="price_band" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="30-80">$30–80</option><option value="80-200">$80–200</option><option value="200+">$200+</option></select></label>
     </div>
+  </div>
+
+  <div class="card" style="padding:24px;gap:16px">
+    <div class="label">Step 3 · What counts as success</div>
+    <div id="g-suggest" style="font-size:14px;color:#5c6066;line-height:1.5">Pick what a good month looks like.</div>
+    <div style="display:flex;gap:8px;align-items:center;font-size:12px;color:#5c6066">Count success in
+      <button id="u-orders" class="btn ghost" style="min-height:32px">orders</button><button id="u-revenue" class="btn ghost" style="min-height:32px">revenue</button></div>
+    <div id="g-cards" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px"></div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066"><span id="goal-label">Orders goal per month</span>
+        <input id="goal" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%"></label>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#5c6066">Budget per month ($)
+        <input id="budget" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%">
+        <span id="g-spend"></span></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><button id="save" class="btn ghost" style="min-height:40px">Confirm</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
   </div>
 
   <div class="card" style="padding:24px;gap:16px">
@@ -88,7 +94,6 @@ const $ = id => document.getElementById(id);
 function fill(b) {
   $('brand-name').textContent = b.name;
   $('budget').value = b.budget_usd_per_month;
-  $('goal').value = b.goal_orders_per_month;
   $('market').value = b.market;
   $('gender').value = b.target.gender;
   $('age').value = b.target.age;
@@ -112,9 +117,10 @@ async function loadBacktest() {
 $('save').onclick = async () => {
   try {
     const b = await api('/api/setup', {
-      budget_usd_per_month: Number($('budget').value), goal_orders_per_month: Number($('goal').value),
+      budget_usd_per_month: Number($('budget').value),
+      goal_orders_per_month: G.unit === 'revenue' ? Math.round(Number($('goal').value) / G.g.avg_price_usd) : Number($('goal').value),
       target: { gender: $('gender').value, age: $('age').value, price_band: $('price_band').value }, market: $('market').value });
-    fill(b); $('saved').textContent = 'Confirmed'; await loadBacktest();
+    fill(b); G.g.current_goal = b.goal_orders_per_month; G.g.current_budget = b.budget_usd_per_month; $('saved').textContent = 'Confirmed'; await loadBacktest();
   } catch (e) { $('saved').textContent = ''; showError(e); }
 };
 
@@ -162,9 +168,33 @@ $('read').onclick = async () => {
     if (c.age) $('age').value = c.age;
     if (c.price_band) $('price_band').value = c.price_band;
     $('read-status').textContent = '';
+    G.prof = p; if (p.success_metric) G.unit = p.success_metric; G.pick = p.ambition || G.pick; showGoals();
   } catch (e) { $('read-status').textContent = ''; showError(e); }
 };
-(async () => { try { fill(await api('/api/brand')); await loadBacktest(); } catch (e) { showError(e); } })();
+const G = { g: null, unit: 'orders', pick: '', prof: null };
+const AMB = { hold: 'Hold', grow: 'Grow', stretch: 'Stretch' };
+const inUnit = n => G.unit === 'revenue' ? Math.round(n * G.g.avg_price_usd) : n;
+function showGoals() {
+  const g = G.g;
+  if (!G.pick) G.pick = ['hold', 'grow', 'stretch'].reduce((a, k) => Math.abs(g[k] - g.current_goal) < Math.abs(g[a] - g.current_goal) ? k : a, 'hold');
+  const sub = { hold: `about what you did lately (${g.avg_weekly_orders} a week)`, grow: '15% more than Hold', stretch: 'your best 4 weeks' };
+  $('g-cards').innerHTML = ['hold', 'grow', 'stretch'].map(k => {
+    const big = G.unit === 'revenue' ? money(inUnit(g[k])) : g[k] + ' orders';
+    return `<button data-k="${k}" class="card" style="padding:16px;gap:4px;text-align:left;cursor:pointer;border:2px solid ${G.pick === k ? '#17181c' : '#d9dbd4'};background:#fff">
+      <div class="label">${AMB[k]}</div><div class="mono" style="font-size:22px;font-weight:500">${big}</div>
+      <div style="font-size:12px;color:#5c6066">${G.unit === 'revenue' ? g[k] + ' orders · ' : ''}${sub[k]}</div></button>`;
+  }).join('');
+  $('g-cards').querySelectorAll('button').forEach(b => b.onclick = () => { G.pick = b.dataset.k; $('goal').value = inUnit(g[G.pick]); showGoals(); });
+  $('goal').value = inUnit(g[G.pick]);
+  $('goal-label').textContent = G.unit === 'revenue' ? 'Revenue goal per month ($)' : 'Orders goal per month';
+  $('u-orders').style.fontWeight = G.unit === 'orders' ? 700 : 400; $('u-revenue').style.fontWeight = G.unit === 'revenue' ? 700 : 400;
+  $('g-spend').textContent = `You spent about ${money(g.avg_monthly_spend_usd)} a month lately.`;
+  const p = G.prof;
+  $('g-suggest').textContent = p && p.ambition ? `Suggested: ${AMB[p.ambition]} on ${p.success_metric} \u2014 ${p.why_goal}` : 'Pick what a good month looks like.';
+}
+$('u-orders').onclick = () => { G.unit = 'orders'; showGoals(); };
+$('u-revenue').onclick = () => { G.unit = 'revenue'; showGoals(); };
+(async () => { try { fill(await api('/api/brand')); G.g = await api('/api/goals'); showGoals(); await loadBacktest(); } catch (e) { showError(e); } })();
 </script>
 </body>
 </html>

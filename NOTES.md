@@ -10,3 +10,5 @@
 - Server is cache-only: main() unsets MUSE_API_KEY so the demo never calls Spark live; cmd/sparkcache is the only live caller.
 - The profile read is cached by handle (spark/cache/profile-<handle>.json): the same handle returns the same read regardless of the image sent.
 - /api/profile takes `source`; only "screenshot" exists. Instagram Login (Graph API) will add `source: "instagram"` with the same prompt and ValidateProfile after Meta App Review.
+
+- Success metric revenue is display-only (goal ÷ avg price); the engine tests orders.

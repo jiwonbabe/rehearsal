@@ -29,4 +29,6 @@ Deploy: see DEMO.md
 
 Instagram Login (Graph API, `instagram_business_basic`) replaces the screenshot: `/api/profile` gains `source: "instagram"` and the server fetches recent media itself; same prompt, same validation. Needs Meta App Review (2–4 weeks).
 
+Followers and inquiries as success metrics (the engine models orders only today).
+
 Shopify OAuth, Meta Marketing API, Instagram Insights, SAM 3.1 post classification (synthetic data carries type labels), paste-your-plan, web_search priors, mid-month check, discount code / UTM generation, CSV upload, multi-brand.

@@ -13,6 +13,7 @@ from engine.model import Plan, calibrate, run_plan, survived, backtest, load_bra
 from engine.stress import sample_variants, stress, verdict, flip, baseline_plan  # noqa: E402
 from engine.shocks import FALLBACK_COMBOS  # noqa: E402
 from engine.review import review  # noqa: E402
+from engine.goals import goal_suggestions  # noqa: E402
 
 OUT = os.path.join(ROOT, "reference", "fixtures")
 
@@ -59,6 +60,7 @@ def main():
     r = review(brand, committed, rates)
     r["new_rates"] = r["new_rates"].to_dict()
     dump("review", r)
+    dump("goals", goal_suggestions(brand))
     print("fixtures written to", OUT)
 
 

@@ -62,6 +62,9 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("/api/summary", s.locked(func(w http.ResponseWriter, r *http.Request) {
 		s.writeJSON(w, engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13)))
 	}))
+	mux.HandleFunc("/api/goals", s.locked(func(w http.ResponseWriter, r *http.Request) {
+		s.writeJSON(w, engine.RunGoalSuggestions(s.brand, 13))
+	}))
 	mux.HandleFunc("/api/directions", s.locked(s.handleDirections))
 	mux.HandleFunc("POST /api/setup", s.locked(s.handleSetup))
 	mux.HandleFunc("POST /api/profile", s.locked(s.handleProfile))

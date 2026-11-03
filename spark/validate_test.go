@@ -107,6 +107,7 @@ func TestValidateProfile(t *testing.T) {
 		"likely_customer": map[string]any{"gender": "women", "age": "25-34", "price_band": "5000"},
 		"post_types_seen": map[string]any{"on_hand": "some", "close_up": "most", "flat_lay": "lots"},
 		"best_post_type":  "close_up", "confidence": "high",
+		"success_metric": "revenue", "ambition": "boom", "why_goal": long,
 	}
 	out := ValidateProfile(raw)
 	if n := len([]rune(out["what_they_sell"].(string))); n != 200 {
@@ -126,7 +127,10 @@ func TestValidateProfile(t *testing.T) {
 	if out["best_post_type"] != "close_up" || out["confidence"] != "high" || out["style"] != "minimal" || out["handle"] != "bnd.jewelry" {
 		t.Errorf("valid fields changed: %v", out)
 	}
-	if len(ValidateProfile(nil)) != 9 {
-		t.Errorf("empty input should still have all 9 keys")
+	if out["success_metric"] != "revenue" || out["ambition"] != "" || len([]rune(out["why_goal"].(string))) != 200 {
+		t.Errorf("goal fields: %v %v", out["success_metric"], out["ambition"])
+	}
+	if len(ValidateProfile(nil)) != 12 {
+		t.Errorf("empty input should still have all 12 keys")
 	}
 }

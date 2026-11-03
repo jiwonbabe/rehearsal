@@ -320,3 +320,14 @@ func TestProfileNoCacheNoKey(t *testing.T) {
 		t.Error("cache file should not be created")
 	}
 }
+
+func TestGoalsEndpoint(t *testing.T) {
+	ts := newTestServer(t)
+	var g engine.GoalSuggestions
+	if code := call(t, ts, "GET", "/api/goals", "", &g); code != 200 {
+		t.Fatalf("status %d", code)
+	}
+	if g.Hold <= 0 || g.Stretch < g.Hold || g.Grow < g.Hold || g.WeeksUsed != 13 {
+		t.Errorf("goals: %+v", g)
+	}
+}

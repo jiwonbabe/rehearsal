@@ -228,3 +228,20 @@ func TestLastMonthBlock(t *testing.T) {
 		}
 	}
 }
+
+func TestGoalSuggestionsMatchReference(t *testing.T) {
+	var want GoalSuggestions
+	loadJSON(t, "goals", &want)
+	got := RunGoalSuggestions(brand(t), 13)
+	near(t, "avg_weekly_orders", got.AvgWeeklyOrders, want.AvgWeeklyOrders)
+	near(t, "hold", got.Hold, want.Hold)
+	near(t, "grow", got.Grow, want.Grow)
+	near(t, "stretch", got.Stretch, want.Stretch)
+	near(t, "avg_monthly_spend_usd", got.AvgMonthlySpendUsd, want.AvgMonthlySpendUsd)
+	near(t, "avg_price_usd", got.AvgPriceUsd, want.AvgPriceUsd)
+	near(t, "current_goal", got.CurrentGoal, want.CurrentGoal)
+	near(t, "current_budget", got.CurrentBudget, want.CurrentBudget)
+	if got.WeeksUsed != want.WeeksUsed {
+		t.Errorf("weeks_used: got %d want %d", got.WeeksUsed, want.WeeksUsed)
+	}
+}

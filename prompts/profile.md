@@ -10,4 +10,9 @@ Handle typed by the owner: {{HANDLE}}
  "post_types_seen": {"on_hand": "none|some|most", "close_up": "none|some|most", "flat_lay": "none|some|most", "on_neck": "none|some|most"},
  "best_post_type": "on_hand|close_up|flat_lay|on_neck",
  "confidence": "low|medium|high",
- "why": "<one sentence pointing at what you saw in the screenshot>"}
+ "why": "<one sentence pointing at what you saw in the screenshot>",
+ "success_metric": "orders|revenue",
+ "ambition": "hold|grow|stretch",
+ "why_goal": "<one sentence, no numbers, saying what success means for this brand this month and why that ambition>"}
+
+Pick "orders" unless the brand clearly sells big-ticket items where revenue matters more than count; pick "hold" when the feed looks steady, "grow" when there is visible momentum, "stretch" only when the feed shows a launch or season.

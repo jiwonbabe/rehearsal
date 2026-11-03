@@ -192,5 +192,7 @@ func ValidateProfile(raw map[string]any) map[string]any {
 		"post_types_seen": posts,
 		"best_post_type":  oneOf(raw["best_post_type"], "on_hand", "close_up", "flat_lay", "on_neck"),
 		"confidence":      oneOf(raw["confidence"], "low", "medium", "high"), "why": sentence(raw["why"]),
+		"success_metric": oneOf(raw["success_metric"], "orders", "revenue"),
+		"ambition":       oneOf(raw["ambition"], "hold", "grow", "stretch"), "why_goal": sentence(raw["why_goal"]),
 	}
 }

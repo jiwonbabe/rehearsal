@@ -11,11 +11,19 @@
 <body>
 <div class="page">
   <div id="empty" style="display:none;font-size:15px">Pick a direction first. <a href="/directions.html">Back to directions</a></div>
+  <div id="intro" class="card" style="display:none;padding:18px 20px;gap:6px;font-size:14px;line-height:1.5">
+    <div style="font-size:13px;font-weight:600">What this page shows</div>
+    <div>Each row is one way to run a direction: how many posts a week, how many creators, how much on ads.</div>
+    <div>Each column is a bad month the adversary invented: reach drops, creators do not post, a rival runs a sale, and so on.</div>
+    <div id="intro-goal"></div>
+    <div>Hover any square to see which bad month it was and the orders and spend the engine computed.</div>
+  </div>
   <div id="main" style="display:none;grid-template-columns:300px minmax(0,1fr) 280px;gap:20px">
     <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
       <div class="card" style="padding:18px 20px;gap:10px">
-        <div style="font-size:13px;font-weight:600">Planner · Muse Spark</div>
-        <div style="font-size:12px;color:#5c6066;line-height:1.4">Proposes parameters only. Never a number for orders or revenue.</div>
+        <div style="font-size:13px;font-weight:600">The version under your cursor</div>
+        <div id="plan-text" style="font-size:13px;line-height:1.45"></div>
+        <div style="font-size:12px;color:#5c6066;line-height:1.4">What the planner (Muse Spark) sent to the engine: settings only, never a number for orders or revenue.</div>
         <pre id="plan" class="mono" style="margin:0;font-size:11.5px;line-height:1.5;background:#17181c;color:#d9dbd4;border-radius:8px;padding:14px;overflow-x:auto"></pre>
       </div>
     </div>
@@ -31,22 +39,31 @@
 renderHeader(2, 'Simulate · stress test');
 const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
 const planEl = () => document.getElementById('plan');
-const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); };
+const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); document.getElementById('plan-text').textContent = planText(p); };
 (async () => {
   const ids = getSelected();
   if (!ids.length) { document.getElementById('empty').style.display = 'block'; return; }
   try {
-    const data = await api('/api/stress', { direction_ids: ids });
+    const [data, brand] = await Promise.all([api('/api/stress', { direction_ids: ids }), api('/api/brand')]);
+    document.getElementById('intro-goal').textContent = `Blue square: that version still reached your goal of ${brand.goal_orders_per_month} orders without running past the ${money(brand.budget_usd_per_month)} budget. Red square: it did not.`;
+    document.getElementById('intro').style.display = 'flex';
     document.getElementById('main').style.display = 'grid';
     showPlan(data.directions[0].plans[0]);
     data.directions.forEach(d => {
       const plans = d.plans, combos = d.stress.combos;
       const box = el('div', '', ''); box.className = 'card'; box.style.cssText = 'padding:18px 20px;min-width:0';
-      box.appendChild(el('div', 'font-size:13px;font-weight:600', `${d.title} · ${plans.length} variants × ${combos.length} bad months`));
+      box.appendChild(el('div', 'font-size:15px;font-weight:600', d.title));
+      box.appendChild(el('div', 'font-size:12px;color:#5c6066', `${plans.length} ways to run it × ${combos.length} bad months`));
+      const v = (data.verdict || []).find(x => x.plan.direction === d.id);
+      if (v) box.appendChild(el('div', 'font-size:13px', `Best version survived ${v.survived} of ${v.total} bad months`));
       const lg = el('div', 'display:flex;gap:14px;font-size:12px;color:#5c6066');
       lg.innerHTML = '<span><span class="cell" style="display:inline-block;vertical-align:middle;width:12px;height:12px"></span> survived</span><span><span class="cell died" style="display:inline-block;vertical-align:middle;width:12px;height:12px"></span> died</span>';
       box.appendChild(lg);
       const grid = el('div', 'display:flex;flex-direction:column;gap:3px;overflow-x:auto');
+      const hdr = el('div', 'display:flex;gap:3px;align-items:center');
+      hdr.appendChild(el('div', 'width:28px')).className = '';
+      combos.forEach((_, i) => { const h = el('div', 'width:14px;font-size:8px;color:#5c6066;text-align:center', String(i + 1)); h.className = 'mono'; hdr.appendChild(h); });
+      grid.appendChild(hdr);
       plans.forEach(p => {
         const row = el('div', 'display:flex;gap:3px;align-items:center');
         row.appendChild(el('div', 'width:28px;font-size:9px;color:#5c6066;text-align:right', p.plan_id.split('-').pop())).className = 'mono';
@@ -64,12 +81,13 @@ const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); };
       document.getElementById('matrices').appendChild(box);
 
       const adv = el('div'); adv.className = 'card'; adv.style.cssText = 'padding:18px 20px;gap:10px';
-      adv.appendChild(el('div', 'font-size:13px;font-weight:600', `Adversary · Muse Spark · ${d.title}`));
+      adv.appendChild(el('div', 'font-size:13px;font-weight:600', `Bad months, chosen by the adversary (Muse Spark) · ${d.title}`));
       combos.forEach((codes, i) => {
         const row = el('div', 'padding:8px 10px;background:#f3f4f1;border-radius:6px;font-size:12.5px');
         const prior = codes.length ? data.priors[codes[0]] : undefined;
         row.appendChild(el('div', 'display:flex;justify-content:space-between;gap:8px', '')).append(
-          el('span', '', shockText(codes, data.catalog)), el('span', 'color:#5c6066;font-family:IBM Plex Mono,monospace', prior === undefined ? '' : 'p ' + prior));
+          el('span', '', `${i + 1}. ${shockText(codes, data.catalog)}`));
+        if (prior !== undefined) row.appendChild(el('div', 'font-size:11.5px;color:#5c6066;margin-top:2px', `happens in about ${pct(prior)} of months`));
         const sh = d.shocks.find(s => s.codes.join('|') === codes.join('|'));
         if (sh && sh.why) row.appendChild(el('div', 'font-size:11.5px;color:#5c6066;margin-top:4px', sh.why));
         adv.appendChild(row);

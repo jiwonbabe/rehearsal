@@ -49,15 +49,18 @@
 
   <div class="card" style="padding:24px;gap:16px">
     <div class="label">Engine trust check</div>
-    <div style="display:flex;gap:32px;flex-wrap:wrap;font-size:13px">
-      <div><div style="color:#5c6066">Median weekly error</div><div id="bt-err" class="mono" style="font-size:20px"></div></div>
-      <div><div style="color:#5c6066">Weeks inside engine range</div><div id="bt-in" class="mono" style="font-size:20px"></div></div>
+    <h2 style="margin:0;font-size:20px;font-weight:600">Before you trust any plan: how well does the engine know your brand?</h2>
+    <p id="bt-sub" style="margin:0;font-size:14px;color:#5c6066;line-height:1.5;max-width:760px"></p>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="background:#f3f4f1;border-radius:8px;padding:14px 16px"><div style="font-size:12px;color:#5c6066">Typical miss</div><div id="bt-err" class="mono" style="font-size:28px;font-weight:500"></div><div style="font-size:12px;color:#5c6066">how far off the engine was in a typical week</div></div>
+      <div style="background:#f3f4f1;border-radius:8px;padding:14px 16px"><div style="font-size:12px;color:#5c6066">Weeks it got right</div><div id="bt-in" class="mono" style="font-size:28px;font-weight:500"></div><div style="font-size:12px;color:#5c6066">its answer was within 20% of what really happened</div></div>
     </div>
     <table style="border-collapse:collapse;font-size:13px;width:100%">
-      <thead><tr style="text-align:left;color:#5c6066"><th>Week</th><th>Actual</th><th>Engine</th><th>Range</th><th></th><th></th></tr></thead>
+      <thead><tr style="text-align:left;color:#5c6066"><th>Week</th><th>Orders you got</th><th>Engine said</th><th>Engine's range (low–high)</th><th>Result</th><th></th></tr></thead>
       <tbody id="bt-rows" class="mono"></tbody>
     </table>
-    <div id="bt-weak" style="display:none;font-size:13px;color:#c2410c">Known weakness: the engine's sale-week estimate is its weakest</div>
+    <div style="font-size:13px;color:#5c6066;line-height:1.5">The smaller the miss, the more the plans on the next pages are worth. The engine's sale-week guesses are its weakest, so sale plans carry a wider range.</div>
+    <div id="bt-weak" style="display:none;font-size:13px;color:#c2410c">Known weakness: at least one sale week landed outside the engine's range.</div>
   </div>
 
   <div style="display:flex;justify-content:flex-end"><a class="btn" href="/directions.html">See this month's directions</a></div>
@@ -78,13 +81,14 @@ function fill(b) {
 async function loadBacktest() {
   const bt = await api('/api/backtest');
   $('bt-err').textContent = bt.median_abs_pct_error + '%';
-  $('bt-in').textContent = bt.weeks_inside_range + ' / ' + bt.weeks_total;
+  $('bt-in').textContent = bt.weeks_inside_range + ' of ' + bt.weeks_total;
+  $('bt-sub').textContent = `We gave the engine what you actually did in each of the last ${bt.weeks_total} weeks (posts, ads, creators, sale weeks) and asked how many orders that would bring. Then we compared its answer with the orders you really got.`;
   let weak = false;
   $('bt-rows').innerHTML = bt.rows.map(r => {
     const inside = r.actual >= r.low && r.actual <= r.high;
     if (r.promo && !inside) weak = true;
     return `<tr><td>${r.week}</td><td>${r.actual}</td><td>${r.engine}</td><td>${r.low}–${r.high}</td>
-      <td><span style="display:inline-block;width:10px;height:10px;border-radius:5px;background:${inside ? '#2f5d8a' : '#c2410c'}"></span></td>
+      <td><span style="display:inline-block;width:10px;height:10px;border-radius:5px;background:${inside ? '#2f5d8a' : '#c2410c'}"></span> ${inside ? 'hit' : 'miss'}</td>
       <td style="color:#5c6066">${r.promo ? 'sale week' : ''}</td></tr>`;
   }).join('');
   $('bt-weak').style.display = weak ? 'block' : 'none';

@@ -356,7 +356,8 @@ func (s *server) handleReview(w http.ResponseWriter, r *http.Request) {
 		writeError(w, 400, err.Error())
 		return
 	}
-	s.writeJSON(w, map[string]any{"committed": plan, "review": review})
+	s.writeJSON(w, map[string]any{"committed": plan, "review": review,
+		"next_month_name": engine.SeasonFor(s.brand.Season, engine.PlanMonth(s.brand, 1)).Name})
 }
 
 func (s *server) handleReviewApply(w http.ResponseWriter, r *http.Request) {

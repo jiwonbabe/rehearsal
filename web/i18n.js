@@ -28,7 +28,7 @@ const KO = {
   // directions
   'What October taught us': '10월이 알려준 것', 'Test these': '이 방향들 테스트', 'Full playbook · Muse Spark': '전체 플레이북 · Muse Spark', 'Why for you': '왜 당신에게', 'Caution': '주의', 'Suggested first': '먼저 제안', 'Also fits': '이것도 맞음', 'Select': '선택', 'Selected': '선택됨',
   'Where to post, and why': '어디에 올릴지, 그리고 왜', 'Connect your Instagram on Setup to see where to post for your brand.': '설정에서 인스타그램을 연결하면 내 브랜드에 맞는 채널을 보여 드립니다.', 'Your data': '내 데이터', 'Spark reasoning': 'Spark 판단', 'Lead': '주력', 'Support': '보조', 'Skip': '보류', 'Naver blog': '네이버 블로그', 'Instagram feed': 'Instagram 피드',
-  'This month: pick one or two directions': '이번 달: 방향 한두 개 고르기', 'November: pick one or two directions': '11월: 방향 한두 개 고르기',
+  'This month: pick one or two directions': '이번 달: 방향 한두 개 고르기', 'No data': '데이터 없음',
   // simulate
   'Pick a direction first.': '먼저 방향을 고르세요.', 'Back to directions': '방향으로 돌아가기', 'What this page shows': '이 화면이 보여주는 것',
   'Each row is one way to run a direction: how many posts a week, how many creators, how much on ads.': '각 행은 방향을 실행하는 한 가지 방식입니다: 주당 포스트 수, 크리에이터 수, 광고비.',
@@ -40,7 +40,7 @@ const KO = {
   'Week 1': '1주차', 'Week 2': '2주차', 'Week 3': '3주차', 'Week 4': '4주차', 'Review opens next month': '다음 달 리뷰 시작', 'Your month, generated on commit': '확정하면 만들어지는 이번 달 계획', 'Make it happen →': '실행하기 →', 'Review October': '10월 리뷰', 'Just post · baseline': '그냥 포스팅 · 기준선', 'Verdict: no paid direction holds this month.': '결론: 이번 달엔 돈 쓰는 방향 중 버티는 게 없습니다.',
   'Commit to this plan': '이 플랜으로 확정', 'The assumption that flips the answer': '답을 뒤집는 가정', 'Pick two directions on the Directions page to see which assumption flips the answer.': '방향 화면에서 두 개를 고르면 어떤 가정이 답을 뒤집는지 보여 드립니다.', 'No creator post rate between 30% and 100% changes this ranking.': '크리에이터 게시율이 30%에서 100% 사이 어디여도 이 순위는 바뀌지 않습니다.', 'What to check this week · Muse Spark': '이번 주 확인할 것 · Muse Spark',
   // review
-  'Expected range vs what happened': '예상 범위 vs 실제', 'Diagnosis': '진단', 'What the engine changed': '엔진이 바꾼 것', "Small steps. One month is evidence, not a verdict. Next month's directions are re-ranked with this.": '작은 걸음으로. 한 달은 증거이지 결론이 아닙니다. 다음 달 방향은 이걸 반영해 다시 순위를 매깁니다.', 'Plan November': '11월 계획하기', 'Creator posts': '크리에이터 게시', 'No rate changed.': '바뀐 비율이 없습니다.', 'Orders': '주문',
+  'Expected range vs what happened': '예상 범위 vs 실제', 'Diagnosis': '진단', 'What the engine changed': '엔진이 바꾼 것', "Small steps. One month is evidence, not a verdict. Next month's directions are re-ranked with this.": '작은 걸음으로. 한 달은 증거이지 결론이 아닙니다. 다음 달 방향은 이걸 반영해 다시 순위를 매깁니다.', 'Creator posts': '크리에이터 게시', 'No rate changed.': '바뀐 비율이 없습니다.', 'Orders': '주문',
   'Engagement came in as expected but fewer of it turned into orders. Conversion was off.': '반응은 예상대로 왔지만 주문으로 이어진 비율이 낮았습니다. 전환이 어긋났습니다.', 'Orders were outside the range, but no single rate explains it. Watch next month.': '주문이 범위 밖이었지만 하나의 비율로 설명되지 않습니다. 다음 달을 지켜보세요.',
   // launch
   'Commit a plan on Verdict first.': '먼저 결론 화면에서 플랜을 확정하세요.', 'Back to verdict': '결론으로 돌아가기',
@@ -69,6 +69,7 @@ const KO_RX = [
   [/^If the engine may also learn from those (\d+) weeks \(in-sample\), the miss is (\S+)% and it gets (\d+) of (\d+) right\. The holdout number above is the honest one\.$/, (m, n, e, a, b) => `엔진이 그 ${n}주도 보고 배우게 하면(인샘플) 오차 ${e}%, ${b}주 중 ${a}주 적중입니다. 위의 홀드아웃 숫자가 정직한 쪽입니다.`],
   [/^Connected · demo account @(.+) · mock numbers, not your real account$/, (m, h) => `연결됨 · 데모 계정 @${h} · 목 숫자, 실제 계정 아님`],
   [/^Reasoned from the demo account @(.+)'s mock Instagram and Threads data \((\d+) days; not your real numbers\) and sourced public statistics · not stress-tested$/, (m, h, d) => `데모 계정 @${h}의 목 인스타그램·스레드 데이터(${d}일, 실제 숫자 아님)와 출처 있는 공개 통계로 판단 · 스트레스 테스트 대상 아님`],
+  [/^(\w+): pick one or two directions$/, (m, a) => `${KO[a] || a}: 방향 한두 개 고르기`], [/^Plan (\w+)$/, (m, a) => `${KO[a] || a} 계획하기`],
   [/^Most of your photos: (.+)$/, (m, a) => `사진 대부분: ${w(a)}`], [/^Confidence: (.+)$/, (m, a) => `확신도: ${w(a)}`],
   [/^(\S+) followers · (\d+%) are (\S+) · (\d+%) women · (\d+%) in (.+)$/, (m, f, a, band, wm, c, city) => `팔로워 ${f}명 · ${band}가 ${a} · 여성 ${wm} · ${city} ${c}`],
   [/^Last (\d+) days: Reels reach (.+)× your feed posts · (.+) get the most saves · Threads (\d+) replies per post$/, (m, d, r, t, th) => `최근 ${d}일: 릴스 도달이 피드의 ${r}배 · 저장은 ${w(t)}이 가장 많음 · 스레드 글당 답글 ${th}개`],

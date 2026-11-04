@@ -32,11 +32,12 @@ const el = (tag, css, text) => { const e = document.createElement(tag); if (css)
     document.getElementById('main').style.display = 'flex';
     const where = r.inside_range ? 'inside range' : (a.orders > r.range[1] ? 'above range' : 'below range');
     document.getElementById('title').textContent = `October: ${where}. ` + (where === 'above range' ? 'Here is what went better than the engine thought.' : where === 'inside range' ? 'Here is what the engine got right.' : 'Here is what was off.');
+    document.getElementById('apply').textContent = `Plan ${d.next_month_name || 'next month'}`;
     document.getElementById('ran').textContent = `You ran ${planText(d.committed)}.`;
     const out = a.orders < r.range[0] || a.orders > r.range[1];
     const rows = document.getElementById('rows');
     const row = (k, v, bad) => { const x = el('div', 'display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #d9dbd4;padding-bottom:6px'); x.appendChild(el('span', '', k)); x.appendChild(el('span', 'font-weight:500' + (bad ? ';color:#c2410c' : ''), v)); rows.appendChild(x); };
-    row('Orders', `${a.orders} vs ${r.range[0]}–${r.range[1]}`, out);
+    row('Orders', `${a.orders} vs ${Math.round(r.range[0])}–${Math.round(r.range[1])}`, out);
     row('Creator posts', `${a.creators_posted} of ${a.creators_seeded}`);
     row('Spend', money(a.spend_usd));
     document.getElementById('diag').textContent = r.diagnosis;

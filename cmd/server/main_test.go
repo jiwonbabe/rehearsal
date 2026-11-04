@@ -203,8 +203,9 @@ func TestReviewApplyIsIdempotent(t *testing.T) {
 				SeedPostRate float64 `json:"seed_post_rate"`
 			} `json:"new_rates"`
 		} `json:"review"`
+		NextMonthName string `json:"next_month_name"`
 	}
-	if code := call(t, ts, "POST", "/api/review", "", &rv); code != 200 || rv.Review.InsideRange || rv.Review.NewRates.SeedPostRate != 0.49 {
+	if code := call(t, ts, "POST", "/api/review", "", &rv); code != 200 || rv.Review.InsideRange || rv.Review.NewRates.SeedPostRate != 0.49 || rv.NextMonthName != "December" {
 		t.Fatalf("review: %d %+v", code, rv)
 	}
 	var applied struct {

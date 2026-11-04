@@ -87,6 +87,10 @@ def main():
     dump("creator_pool", {"weights": creator_weights(ev["creators"]), "expected": [expected_engagement(c) for c in ev["creators"]],
                           "plan": run_plan(seed_plan, rates, pool_brand), "plan_cycles": run_plan(big_plan, rates, pool_brand),
                           "plan_no_pool": run_plan(seed_plan, rates, brand), "plan_offset2": run_plan(seed_plan, rates, pool_brand, offset=2)})
+    from engine.launch import creator_math, creator_bands
+    dump("creator_bands", creator_bands(rates, dict(pool_brand, season=season_brand["season"]), 11))
+    dump("creator_math", {"no_pool": creator_math(4, rates, brand, 11), "pool": creator_math(4, rates, dict(pool_brand, season=season_brand["season"]), 11),
+                          "two": creator_math(2, rates, pool_brand, 0)})
     dec = Plan.from_dict(dict(committed.to_dict(), month=12))
     dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand), "december": launch_spec(dec, brand)})
     dump("gaps", baseline_gaps(out))

@@ -1,0 +1,26 @@
+[
+ {
+  "band": "small",
+  "count": 3,
+  "followers_min": 3900,
+  "followers_max": 9100,
+  "eng_per_post_min": 273,
+  "eng_per_post_max": 415,
+  "orders_per_post_min": 3.2,
+  "orders_per_post_max": 4.9,
+  "orders_per_contact": 2.5,
+  "pieces_for_budget": 8
+ },
+ {
+  "band": "mid",
+  "count": 3,
+  "followers_min": 14800,
+  "followers_max": 52000,
+  "eng_per_post_min": 548,
+  "eng_per_post_max": 988,
+  "orders_per_post_min": 6.5,
+  "orders_per_post_max": 11.7,
+  "orders_per_contact": 5.3,
+  "pieces_for_budget": 8
+ }
+]

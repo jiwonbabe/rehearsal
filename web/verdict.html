@@ -96,6 +96,9 @@ function renderTodo(p) {
         document.getElementById('cards').appendChild(c);
         return;
       }
+      const cm = (data.creator_math || {})[v.plan.plan_id];
+      if (cm) c.appendChild(el('div', 'font-size:12.5px;color:#2f5d8a;line-height:1.5', creatorMathText(cm)));
+      if (cm && (data.creator_bands || []).length) c.appendChild(creatorFinder([], data.creator_bands));
       if (v.plan.creator_count > 0 && (data.creator_pool || []).length) {
         const pool = data.creator_pool;
         c.appendChild(el('div', 'font-size:12.5px;color:#5c6066;line-height:1.45', `Creators counted (followers × engagement rate): ${pool.map(p => `@${p.username} ${p.expected_engagement}`).join(', ')}. Each bad month lands a different ${Math.round(v.plan.creator_count)} of them.`));

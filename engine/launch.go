@@ -84,3 +84,102 @@ func RunLaunch(p Plan, b *Brand) LaunchSpec {
 		TotalSpendUsd: p.AdsUsd + ship, Calendar: cal,
 	}
 }
+
+// CreatorPlanMath: what seeding N creators means in numbers an owner can check before committing. Every figure is
+// the brand's own calibrated rate or the found creators' audience; no model writes any of it.
+type CreatorPlanMath struct {
+	Creators           int     `json:"creators"`
+	FollowersMin       float64 `json:"followers_min"`       // from the creator pool; 0 without one
+	FollowersMax       float64 `json:"followers_max"`       //
+	EngPerPostMin      float64 `json:"eng_per_post_min"`    // expected engagement on one creator post (followers × their rate)
+	EngPerPostMax      float64 `json:"eng_per_post_max"`    // without a pool both equal the history's engagement per creator post
+	ExpectedPosts      float64 `json:"expected_posts"`      // creators × the history's post rate
+	ExpectedEngagement float64 `json:"expected_engagement"` // expected posts × engagement per creator post (calibrated mean)
+	ExpectedOrders     float64 `json:"expected_orders"`     // × order rate × the month's demand index, no shocks
+	ShipUsd            float64 `json:"ship_usd"`            // creators × product cost
+}
+
+func CreatorMath(count float64, r Rates, b *Brand, month int) CreatorPlanMath {
+	n := halfUp(count)
+	m := CreatorPlanMath{Creators: n, EngPerPostMin: math.Round(r.EngPerCreatorPost), EngPerPostMax: math.Round(r.EngPerCreatorPost)}
+	for i, c := range b.CreatorPool {
+		e := ExpectedEngagement(c)
+		if i == 0 || c.Followers < m.FollowersMin {
+			m.FollowersMin = c.Followers
+		}
+		if i == 0 || c.Followers > m.FollowersMax {
+			m.FollowersMax = c.Followers
+		}
+		if i == 0 || e < m.EngPerPostMin {
+			m.EngPerPostMin = e
+		}
+		if i == 0 || e > m.EngPerPostMax {
+			m.EngPerPostMax = e
+		}
+	}
+	posts := float64(n) * r.SeedPostRate
+	eng := posts * r.EngPerCreatorPost
+	m.ExpectedPosts, m.ExpectedEngagement = round1(posts), math.Round(eng)
+	m.ExpectedOrders = round1(eng * r.OrderPerEngagement * SeasonFor(b.Season, month).Demand)
+	m.ShipUsd = float64(n) * b.Brand.ProductCostUsd
+	return m
+}
+
+// CreatorBand: what one creator of a size band is worth, from the creators found in that band: expected engagement
+// on a post (followers × their rate) and the orders that engagement brings at the brand's own order rate, for the
+// month being planned. PerContact multiplies by the history's post rate (not everyone you send to posts).
+type CreatorBand struct {
+	Band             string  `json:"band"` // small (<10k) | mid (<100k) | large
+	Count            int     `json:"count"`
+	FollowersMin     float64 `json:"followers_min"`
+	FollowersMax     float64 `json:"followers_max"`
+	EngPerPostMin    float64 `json:"eng_per_post_min"`
+	EngPerPostMax    float64 `json:"eng_per_post_max"`
+	OrdersPerPostMin float64 `json:"orders_per_post_min"`
+	OrdersPerPostMax float64 `json:"orders_per_post_max"`
+	OrdersPerContact float64 `json:"orders_per_contact"` // mean orders per creator contacted (× post rate)
+	PiecesForBudget  int     `json:"pieces_for_budget"`  // how many creators the budget ships to, at product cost
+}
+
+var bandOrder = []string{"small", "mid", "large"}
+
+func CreatorBands(r Rates, b *Brand, month int) []CreatorBand {
+	demand := SeasonFor(b.Season, month).Demand
+	orderPerEng := r.OrderPerEngagement * demand
+	pieces := 0
+	if b.Brand.ProductCostUsd > 0 {
+		pieces = int(math.Floor(b.Brand.BudgetUsdPerMonth / b.Brand.ProductCostUsd))
+	}
+	out := []CreatorBand{}
+	for _, band := range bandOrder {
+		cb := CreatorBand{Band: band, PiecesForBudget: pieces}
+		sum := 0.0
+		for _, c := range b.CreatorPool {
+			if c.FollowersBand != band {
+				continue
+			}
+			e := ExpectedEngagement(c)
+			if cb.Count == 0 || c.Followers < cb.FollowersMin {
+				cb.FollowersMin = c.Followers
+			}
+			if cb.Count == 0 || c.Followers > cb.FollowersMax {
+				cb.FollowersMax = c.Followers
+			}
+			if cb.Count == 0 || e < cb.EngPerPostMin {
+				cb.EngPerPostMin = e
+			}
+			if cb.Count == 0 || e > cb.EngPerPostMax {
+				cb.EngPerPostMax = e
+			}
+			sum += e
+			cb.Count++
+		}
+		if cb.Count == 0 {
+			continue
+		}
+		cb.OrdersPerPostMin, cb.OrdersPerPostMax = round1(cb.EngPerPostMin*orderPerEng), round1(cb.EngPerPostMax*orderPerEng)
+		cb.OrdersPerContact = round1(sum / float64(cb.Count) * orderPerEng * r.SeedPostRate)
+		out = append(out, cb)
+	}
+	return out
+}

@@ -27,25 +27,27 @@ type directionStress struct {
 }
 
 type stressResponse struct {
-	Directions  []directionStress   `json:"directions"`
-	Verdict     []engine.Verdict    `json:"verdict"`
-	Flip        *engine.Flip        `json:"flip"`
-	FlipA       string              `json:"flip_a"`
-	FlipB       string              `json:"flip_b"`
-	Catalog     map[string]string   `json:"catalog"`
-	Priors      map[string]float64  `json:"priors"`
-	Check       string              `json:"check"`
-	Gaps        []engine.Gap        `json:"gaps"`
-	Goal        float64             `json:"goal"`
-	Budget      float64             `json:"budget"`
-	AvgPrice    float64             `json:"avg_price_usd"`
-	Month       int                 `json:"month"`
-	MonthName   string              `json:"month_name"`
-	SeasonGoal  int                 `json:"season_goal"`
-	Demand      float64             `json:"demand"`
-	Coverage    []engine.Coverage   `json:"coverage"`
-	CreatorPool []map[string]any    `json:"creator_pool"` // creators a seeding plan counts, in order, with expected engagement per post
-	Untested    map[string][]string `json:"untested"`     // plan_id -> levers the history never used
+	Directions   []directionStress                 `json:"directions"`
+	Verdict      []engine.Verdict                  `json:"verdict"`
+	Flip         *engine.Flip                      `json:"flip"`
+	FlipA        string                            `json:"flip_a"`
+	FlipB        string                            `json:"flip_b"`
+	Catalog      map[string]string                 `json:"catalog"`
+	Priors       map[string]float64                `json:"priors"`
+	Check        string                            `json:"check"`
+	Gaps         []engine.Gap                      `json:"gaps"`
+	Goal         float64                           `json:"goal"`
+	Budget       float64                           `json:"budget"`
+	AvgPrice     float64                           `json:"avg_price_usd"`
+	Month        int                               `json:"month"`
+	MonthName    string                            `json:"month_name"`
+	SeasonGoal   int                               `json:"season_goal"`
+	Demand       float64                           `json:"demand"`
+	Coverage     []engine.Coverage                 `json:"coverage"`
+	CreatorPool  []map[string]any                  `json:"creator_pool"` // creators a seeding plan counts, in order, with expected engagement per post
+	CreatorMath  map[string]engine.CreatorPlanMath `json:"creator_math"` // plan_id -> what its creators mean in numbers
+	CreatorBands []engine.CreatorBand              `json:"creator_bands"`
+	Untested     map[string][]string               `json:"untested"` // plan_id -> levers the history never used
 }
 
 func writeError(w http.ResponseWriter, code int, msg string) {
@@ -144,20 +146,26 @@ func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
 	}
 	type directionOut struct {
 		engine.Direction
-		Playbook map[string]any `json:"playbook"`
+		Playbook    map[string]any           `json:"playbook"`
+		CreatorMath []engine.CreatorPlanMath `json:"creator_math"` // [low, high] of the creator range; nil when the direction seeds nobody
 	}
 	var out []directionOut
 	for _, d := range dirs {
-		out = append(out, directionOut{d, playbookFor(d.ID)})
+		o := directionOut{d, playbookFor(d.ID), nil}
+		if cc := d.Ranges.CreatorCount; len(cc) == 2 && cc[1] > 0 {
+			o.CreatorMath = []engine.CreatorPlanMath{engine.CreatorMath(cc[0], s.rates, s.brand, s.planMonth()), engine.CreatorMath(cc[1], s.rates, s.brand, s.planMonth())}
+		}
+		out = append(out, o)
 	}
 	resp := struct {
-		Month      int               `json:"month"`
-		Directions []directionOut    `json:"directions"`
-		LastMonth  *engine.Review    `json:"last_month"`
-		Channels   []map[string]any  `json:"channels"`
-		Season     map[string]any    `json:"season"`
-		Coverage   []engine.Coverage `json:"coverage"`
-	}{s.month, out, s.lastReview, s.channels(), s.seasonOut(), engine.LeverCoverage(s.brand)}
+		Month        int                  `json:"month"`
+		Directions   []directionOut       `json:"directions"`
+		LastMonth    *engine.Review       `json:"last_month"`
+		Channels     []map[string]any     `json:"channels"`
+		Season       map[string]any       `json:"season"`
+		Coverage     []engine.Coverage    `json:"coverage"`
+		CreatorBands []engine.CreatorBand `json:"creator_bands"`
+	}{s.month, out, s.lastReview, s.channels(), s.seasonOut(), engine.LeverCoverage(s.brand), engine.CreatorBands(s.rates, s.brand, s.planMonth())}
 	s.writeJSON(w, resp)
 }
 
@@ -375,8 +383,12 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	for _, c := range s.brand.CreatorPool {
 		resp.CreatorPool = append(resp.CreatorPool, map[string]any{"username": c.Username, "expected_engagement": engine.ExpectedEngagement(c)})
 	}
+	resp.CreatorMath, resp.CreatorBands = map[string]engine.CreatorPlanMath{}, engine.CreatorBands(s.rates, s.brand, s.planMonth())
 	for _, v := range resp.Verdict {
 		resp.Untested[v.Plan.PlanID] = engine.Untested(v.Plan, resp.Coverage)
+		if v.Plan.CreatorCount > 0 {
+			resp.CreatorMath[v.Plan.PlanID] = engine.CreatorMath(v.Plan.CreatorCount, s.rates, s.brand, v.Plan.Month)
+		}
 	}
 	resp.Goal, resp.Budget, resp.AvgPrice = s.brand.Brand.GoalOrdersPerMonth, s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.AvgPriceUsd
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())

@@ -57,6 +57,23 @@ function coverageLine(cov) {
   return `Your history used ${cov.map(part).join(', ')}. A lever used in fewer than 6 weeks is thin evidence; one never used is shown but not rated.`;
 }
 const thinLevers = (uses, cov) => (cov || []).filter(c => uses[c.lever] && c.status === 'thin').map(c => c.lever);
+const fmtK = n => n >= 1000 ? (Math.round(n / 100) / 10) + 'k' : String(Math.round(n));
+const rng = (a, b, f = x => x) => a === b ? f(a) : `${f(a)}–${f(b)}`;
+// creatorMathText: what a creator plan means in numbers (engine), as one sentence; lo and hi are CreatorPlanMath.
+function creatorMathText(lo, hi) {
+  hi = hi || lo;
+  const who = lo.followers_max > 0 ? ` of ${fmtK(lo.followers_min)}–${fmtK(lo.followers_max)} followers (the creators found)` : '';
+  return `In numbers: ${rng(lo.creators, hi.creators)} creators${who} · ${rng(lo.expected_posts, hi.expected_posts)} posts expected at your post rate · ${rng(lo.eng_per_post_min, lo.eng_per_post_max)} engagement per post · about ${rng(lo.expected_orders, hi.expected_orders)} orders from creators in a plain month · ${rng(lo.ship_usd, hi.ship_usd, money)} in pieces shipped`;
+}
+// creatorFinder: the search terms (playbook, Spark) and what each creator size is worth (engine), as a block.
+function creatorFinder(terms, bands) {
+  const box = document.createElement('div'); box.style.cssText = 'display:flex;flex-direction:column;gap:6px;font-size:12.5px;line-height:1.5;background:#eef3f8;border-radius:8px;padding:10px 12px';
+  const h = document.createElement('div'); h.style.cssText = 'font-weight:600;color:#2f5d8a'; h.textContent = 'Who to look for, and what they are worth'; box.appendChild(h);
+  if (terms && terms.length) { const r = document.createElement('div'); r.textContent = 'Search Instagram for: ' + terms.join(' · '); box.appendChild(r); }
+  (bands || []).forEach(b => { const r = document.createElement('div'); r.textContent = `${b.band === 'small' ? 'Small' : b.band === 'mid' ? 'Mid-size' : 'Large'} creators, ${fmtK(b.followers_min)}–${fmtK(b.followers_max)} followers: ${rng(b.eng_per_post_min, b.eng_per_post_max)} engagement per post ≈ ${rng(b.orders_per_post_min, b.orders_per_post_max)} orders per post · about ${b.orders_per_contact} orders per creator you contact, since not everyone posts`; box.appendChild(r); });
+  if (bands && bands.length) { const r = document.createElement('div'); r.style.color = '#5c6066'; r.textContent = `Your budget ships ${bands[0].pieces_for_budget} pieces at cost. Numbers from the creators found for your search terms and your own order rate; the stress test above is what survives when some do not post.`; box.appendChild(r); }
+  return box;
+}
 const DIRS = { just_post: 'Just post', pay_for_reach: 'Pay for reach', send_to_creators: 'Send to creators', one_week_sale: 'One-week sale' };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function planText(plan) {

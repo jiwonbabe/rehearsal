@@ -1,0 +1,35 @@
+{
+ "no_pool": {
+  "creators": 4,
+  "followers_min": 0,
+  "followers_max": 0,
+  "eng_per_post_min": 311,
+  "eng_per_post_max": 311,
+  "expected_posts": 2.4,
+  "expected_engagement": 747,
+  "expected_orders": 8.5,
+  "ship_usd": 180
+ },
+ "pool": {
+  "creators": 4,
+  "followers_min": 3900,
+  "followers_max": 52000,
+  "eng_per_post_min": 273,
+  "eng_per_post_max": 988,
+  "expected_posts": 2.4,
+  "expected_engagement": 747,
+  "expected_orders": 8.9,
+  "ship_usd": 180
+ },
+ "two": {
+  "creators": 2,
+  "followers_min": 3900,
+  "followers_max": 52000,
+  "eng_per_post_min": 273,
+  "eng_per_post_max": 988,
+  "expected_posts": 1.2,
+  "expected_engagement": 374,
+  "expected_orders": 4.3,
+  "ship_usd": 90
+ }
+}

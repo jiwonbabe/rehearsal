@@ -27,7 +27,7 @@
 <script src="/app.js"></script>
 <script>
 renderHeader(1, 'Directions · this month');
-let dirs = [], coverage = [], sel = getSelected().slice(0, 2);
+let dirs = [], coverage = [], data = {}, sel = getSelected().slice(0, 2);
 const line = (label, text) => { const r = document.createElement('div'); r.innerHTML = '<span style="font-weight:600"></span> <span></span>'; r.firstChild.textContent = label; r.lastChild.textContent = text; return r; };
 function renderPlaybook(box, pb) {
   if (!pb || !pb.weeks || !pb.weeks[0].do) return;
@@ -78,6 +78,8 @@ function draw() {
     c.querySelector('.why').textContent = d.why_for_you;
     c.querySelector('.do').textContent = 'You would do: ' + d.you_would_do;
     renderPlaybook(c.querySelector('.pb'), d.playbook);
+    if (d.creator_math && d.creator_math.length === 2 && (data.creator_bands || []).length) c.insertBefore(creatorFinder((d.playbook && d.playbook.creator_brief && d.playbook.creator_brief.find_them) || [], data.creator_bands), c.querySelector('.do'));
+    if (d.creator_math && d.creator_math.length === 2) { const cm = document.createElement('div'); cm.style.cssText = 'font-size:12.5px;color:#2f5d8a;line-height:1.5'; cm.textContent = creatorMathText(d.creator_math[0], d.creator_math[1]); c.insertBefore(cm, c.querySelector('.do')); }
     const uses = { ads: r.ads_usd && r.ads_usd[1] > 0, creators: r.creator_count && r.creator_count[1] > 0, sale: !!(r.promo_discount && r.promo_discount[1] > 0) };
     const never = (coverage || []).filter(x => uses[x.lever] && x.status === 'none').map(x => LEVER[x.lever]);
     if (never.length) {
@@ -174,7 +176,7 @@ const $cards = document.getElementById('cards'), $foot = document.getElementById
 $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
 (async () => {
   try {
-    const data = await api('/api/directions');
+    data = await api('/api/directions');
     dirs = data.directions.slice().sort((a, b) => a.rank - b.rank); coverage = data.coverage || [];
     renderSeason(data.season);
     try { const ev = data.channels ? await api('/api/evidence') : null; renderChannels(data.channels, !!ev, ev && ev.handle, ev); } catch (e) { renderChannels(null, false); }

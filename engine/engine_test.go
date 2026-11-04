@@ -529,3 +529,47 @@ func TestCreatorPoolMatchesReference(t *testing.T) {
 		t.Error("history must never use the pool")
 	}
 }
+
+func TestCreatorMathMatchesReference(t *testing.T) {
+	var want map[string]CreatorPlanMath
+	loadJSON(t, "creator_math", &want)
+	var ev Evidence
+	loadJSON(t, "evidence", &ev)
+	b := brand(t)
+	r := Calibrate(b)
+	pb := *b
+	pb.CreatorPool = ev.Creators
+	sb := pb
+	sb.Season, _ = LoadSeasonality(filepath.Join(root(), "data", "seasonality.json"), "jewelry")
+	for name, c := range map[string]CreatorPlanMath{"no_pool": CreatorMath(4, r, b, 11), "pool": CreatorMath(4, r, &sb, 11), "two": CreatorMath(2, r, &pb, 0)} {
+		if c != want[name] {
+			t.Errorf("%s: %+v want %+v", name, c, want[name])
+		}
+	}
+	if m := CreatorMath(4, r, &sb, 11); m.ExpectedOrders <= CreatorMath(4, r, &pb, 11).ExpectedOrders {
+		t.Error("the month's demand index must lift expected orders")
+	}
+}
+
+func TestCreatorBandsMatchReference(t *testing.T) {
+	var want []CreatorBand
+	loadJSON(t, "creator_bands", &want)
+	var ev Evidence
+	loadJSON(t, "evidence", &ev)
+	b := brand(t)
+	pb := *b
+	pb.CreatorPool = ev.Creators
+	pb.Season, _ = LoadSeasonality(filepath.Join(root(), "data", "seasonality.json"), "jewelry")
+	got := CreatorBands(Calibrate(b), &pb, 11)
+	if len(got) != len(want) || len(got) != 2 {
+		t.Fatalf("bands %v want %v", got, want)
+	}
+	for i := range got {
+		if got[i] != want[i] {
+			t.Errorf("band %s: %+v want %+v", got[i].Band, got[i], want[i])
+		}
+	}
+	if len(CreatorBands(Calibrate(b), b, 11)) != 0 {
+		t.Error("no pool, no bands")
+	}
+}

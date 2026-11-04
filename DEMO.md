@@ -4,7 +4,7 @@ No live API calls; everything is served from `spark/cache/`. Restart the server 
 
 ## Deploy
 
-Deployed Nov 4, 2026 as `rehearsal-jaunty-harborwave-867` (sjc, one shared-cpu machine, no Meta secrets). From the repo root:
+Deployed Nov 4, 2026 as `rehearsal-run` (sjc, one shared-cpu machine, no Meta secrets). From the repo root:
 
 ```
 fly launch --copy-config --no-deploy
@@ -13,7 +13,7 @@ fly deploy --ha=false
 
 State (month, rates) lives in server memory, so run exactly one machine; restart it to reset to month 1.
 
-Live: https://rehearsal-jaunty-harborwave-867.fly.dev (in README). Reset to month 1 before a demo: `fly machines restart 801e09c6137d68` (the machine id; `fly machines list` shows it). Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
+Live: https://rehearsal-run.fly.dev (in README). Reset to month 1 before a demo: `fly machines restart e823214b1d1698 -a rehearsal-run` (the machine id; `fly machines list` shows it). Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
 
 ## Three brands
 

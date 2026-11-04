@@ -75,7 +75,7 @@ The demo runs from `spark/cache/` with no live calls.
 
 ## Live
 
-https://rehearsal-jaunty-harborwave-867.fly.dev (one Fly machine, state in memory; restart it to reset to month 1: `fly machines restart <machine id>`). Deploy: see DEMO.md
+https://rehearsal-run.fly.dev (one Fly machine, state in memory; restart it to reset to month 1: `fly machines restart <machine id>`). Deploy: see DEMO.md
 
 ## Next
 

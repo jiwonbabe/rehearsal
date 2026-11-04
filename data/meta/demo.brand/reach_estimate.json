@@ -2,7 +2,7 @@
  "source": "mock",
  "targeting": {
   "countries": [
-   "KR"
+   "US"
   ],
   "age_min": 25,
   "age_max": 34,

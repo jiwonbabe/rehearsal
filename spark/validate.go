@@ -296,7 +296,7 @@ func ValidateChannels(raw map[string]any, allowed []float64, labels []string) []
 	list, _ := raw["channels"].([]any)
 	for _, item := range list {
 		c, _ := item.(map[string]any)
-		channel := oneOf(c["channel"], "instagram_reels", "instagram_feed", "instagram_stories", "threads", "facebook", "naver_blog", "tiktok", "x")
+		channel := oneOf(c["channel"], "instagram_reels", "instagram_feed", "instagram_stories", "threads", "facebook", "tiktok", "x")
 		verdict := oneOf(c["verdict"], "lead", "support", "skip")
 		if channel == "" || verdict == "" {
 			continue

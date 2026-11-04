@@ -94,7 +94,7 @@ function draw() {
   $go.disabled = n === 0;
   $go.style.opacity = n === 0 ? '.4' : '1';
 }
-const CH = { instagram_reels: 'Instagram Reels', instagram_feed: 'Instagram feed', instagram_stories: 'Instagram Stories', threads: 'Threads', facebook: 'Facebook', naver_blog: 'Naver blog', tiktok: 'TikTok', x: 'X' };
+const CH = { instagram_reels: 'Instagram Reels', instagram_feed: 'Instagram feed', instagram_stories: 'Instagram Stories', threads: 'Threads', facebook: 'Facebook', tiktok: 'TikTok', x: 'X' };
 const VERDICT = { lead: ['Lead', '#2f6f3e', '#e8f3ea'], support: ['Support', '#8a6d1f', '#fbf3dc'], skip: ['Skip', '#5c6066', '#f3f4f1'] };
 function badge(text, bg, fg) { const b = document.createElement('span'); b.textContent = text; b.style.cssText = `display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;background:${bg};color:${fg};white-space:nowrap`; return b; }
 function tagged(label, bg, fg, text) {

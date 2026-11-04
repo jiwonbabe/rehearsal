@@ -42,7 +42,7 @@ def main():
                      "follower_demographics": {
                          "age": {"18-24": 0.22, "25-34": 0.46, "35-44": 0.21, "45-54": 0.08, "55+": 0.03},
                          "gender": {"women": 0.78, "men": 0.19, "unknown": 0.03},
-                         "city": {"Seoul": 0.41, "Gyeonggi": 0.18, "Busan": 0.07, "Incheon": 0.05, "Los Angeles": 0.04}}})
+                         "city": {"Portland": 0.41, "Seattle": 0.18, "Los Angeles": 0.07, "San Francisco": 0.05, "New York": 0.04}}})
     media = []
     kinds = ["FEED"] * 12 + ["REELS"] * 8 + ["STORY"] * 4
     rng.shuffle(kinds)
@@ -66,20 +66,20 @@ def main():
                         "insights": {"views": views, "likes": int(views * 0.028), "replies": int(views * 0.009), "reposts": int(views * 0.003)}})
     dump("threads", {"source": "mock", "days": 90, "data": threads})
     dump("hashtags", {"source": "mock", "data": [
-        {"hashtag": "#데일리주얼리", "top_media": posts(rng, 30, [0.5, 0.3, 0.15, 0.05], 420)},
+        {"hashtag": "#dailygoldjewelry", "top_media": posts(rng, 30, [0.5, 0.3, 0.15, 0.05], 420)},
         {"hashtag": "#everydaygoldjewelry", "top_media": posts(rng, 30, [0.55, 0.25, 0.12, 0.08], 610)}]})
     dump("peers", {"source": "mock", "data": [
         {"username": "demo.mellow.gold", "followers_count": 24100, "media_count": 412, "recent": posts(rng, 12, [0.6, 0.25, 0.1, 0.05], 520)},
         {"username": "demo.une.pieces", "followers_count": 11300, "media_count": 236, "recent": posts(rng, 12, [0.35, 0.45, 0.15, 0.05], 260)},
         {"username": "demo.hazel.jewel", "followers_count": 38400, "media_count": 690, "recent": posts(rng, 12, [0.5, 0.2, 0.2, 0.1], 740)}]})
     dump("creators", {"source": "mock", "data": [
-        {"username": "demo.soft.daily", "followers_count": 6200, "biography": "일상, 커피, 작은 반지 ✨ 서울", "recent": posts(rng, 6, [0.6, 0.2, 0.2, 0], 310)},
-        {"username": "demo.minsol.outfit", "followers_count": 14800, "biography": "데일리룩 · 베이지 러버 · 협찬문의 DM", "recent": posts(rng, 6, [0.4, 0.3, 0.2, 0.1], 520)},
+        {"username": "demo.soft.daily", "followers_count": 6200, "biography": "slow mornings, coffee, tiny rings ✨ Portland", "recent": posts(rng, 6, [0.6, 0.2, 0.2, 0], 310)},
+        {"username": "demo.minsol.outfit", "followers_count": 14800, "biography": "daily outfits · beige lover · collabs by DM", "recent": posts(rng, 6, [0.4, 0.3, 0.2, 0.1], 520)},
         {"username": "demo.hana.hands", "followers_count": 3900, "biography": "hands, light, quiet mornings", "recent": posts(rng, 6, [0.8, 0.2, 0, 0], 260)},
         {"username": "demo.goldie.reviews", "followers_count": 52000, "biography": "jewelry reviews · PR welcome", "recent": posts(rng, 6, [0.3, 0.5, 0.2, 0], 900)},
-        {"username": "demo.yeon.cafe", "followers_count": 9100, "biography": "카페 투어 · 필름 사진", "recent": posts(rng, 6, [0.2, 0.1, 0.6, 0.1], 280)},
-        {"username": "demo.ari.minimal", "followers_count": 21500, "biography": "minimal wardrobe · 30대 직장인", "recent": posts(rng, 6, [0.5, 0.3, 0.1, 0.1], 610)}]})
-    dump("reach_estimate", {"source": "mock", "targeting": {"countries": ["KR"], "age_min": 25, "age_max": 34, "genders": ["women"]},
+        {"username": "demo.yeon.cafe", "followers_count": 9100, "biography": "cafe hopping · film photos", "recent": posts(rng, 6, [0.2, 0.1, 0.6, 0.1], 280)},
+        {"username": "demo.ari.minimal", "followers_count": 21500, "biography": "minimal wardrobe · thirties, office life", "recent": posts(rng, 6, [0.5, 0.3, 0.1, 0.1], 610)}]})
+    dump("reach_estimate", {"source": "mock", "targeting": {"countries": ["US"], "age_min": 25, "age_max": 34, "genders": ["women"]},
                             "data": {"instagram_reels": {"estimate_dau": 412000, "estimate_mau": 1260000},
                                      "instagram_feed": {"estimate_dau": 388000, "estimate_mau": 1310000},
                                      "instagram_stories": {"estimate_dau": 351000, "estimate_mau": 1190000},

@@ -163,11 +163,11 @@ func dataURLs(glob string) []string {
 	return images
 }
 
-// profileStep reads the demo screenshots in web/demo-posts/ into a profile read for bnd.jewelry.
+// profileStep reads the demo screenshots in web/demo-posts/ into a profile read for wrenfield.jewelry.
 func profileStep() {
-	name := "profile-bnd.jewelry"
+	name := "profile-wrenfield.jewelry"
 	images := dataURLs("web/demo-posts/*")
-	raw, err := spark.Profile("bnd.jewelry", images)
+	raw, err := spark.Profile("wrenfield.jewelry", images)
 	if err != nil {
 		fail(name, err)
 		return
@@ -179,7 +179,7 @@ func profileStep() {
 
 // playbookStep writes the executor brief for every direction id, using the cached profile read.
 func playbookStep(dirs []map[string]any, brand *engine.Brand, channels any) {
-	rawProfile, err := spark.Profile("bnd.jewelry", nil)
+	rawProfile, err := spark.Profile("wrenfield.jewelry", nil)
 	if err != nil {
 		fail("playbook", err)
 		return
@@ -240,7 +240,7 @@ func creatorStep() {
 	}
 }
 
-// channelsStep: evidence from the mock Meta data + sourced statistics -> channel verdicts for bnd.jewelry.
+// channelsStep: evidence from the mock Meta data + sourced statistics -> channel verdicts for wrenfield.jewelry.
 func channelsStep(brand *engine.Brand) any {
 	meta, err := engine.LoadMeta("data/meta/demo.brand")
 	if err != nil {
@@ -253,7 +253,7 @@ func channelsStep(brand *engine.Brand) any {
 		return nil
 	}
 	ev := engine.RunEvidence(meta)
-	rawProfile, err := spark.Profile("bnd.jewelry", nil)
+	rawProfile, err := spark.Profile("wrenfield.jewelry", nil)
 	if err != nil {
 		fail("channels", err)
 		return nil

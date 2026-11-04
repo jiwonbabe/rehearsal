@@ -276,10 +276,10 @@ func TestProfileBadRequests(t *testing.T) {
 	ts := newTestServer(t)
 	img := `"images":["data:image/png;base64,AA=="]`
 	for name, body := range map[string]string{
-		"bad source":   `{"source":"instagram","handle":"bnd.jewelry",` + img + `}`,
+		"bad source":   `{"source":"instagram","handle":"wrenfield.jewelry",` + img + `}`,
 		"empty handle": `{"source":"screenshot","handle":"@ !",` + img + `}`,
-		"no images":    `{"source":"screenshot","handle":"bnd.jewelry","images":[]}`,
-		"not an image": `{"source":"screenshot","handle":"bnd.jewelry","images":["http://x/y.png"]}`,
+		"no images":    `{"source":"screenshot","handle":"wrenfield.jewelry","images":[]}`,
+		"not an image": `{"source":"screenshot","handle":"wrenfield.jewelry","images":["http://x/y.png"]}`,
 	} {
 		if code := call(t, ts, "POST", "/api/profile", body, nil); code != 400 {
 			t.Errorf("%s: status %d, want 400", name, code)
@@ -295,7 +295,7 @@ func TestProfileCached(t *testing.T) {
 		BestPostType string            `json:"best_post_type"`
 		Confidence   string            `json:"confidence"`
 	}
-	body := `{"source":"screenshot","handle":"bnd.jewelry","images":["data:image/png;base64,AA=="]}`
+	body := `{"source":"screenshot","handle":"wrenfield.jewelry","images":["data:image/png;base64,AA=="]}`
 	if code := call(t, ts, "POST", "/api/profile", body, &out); code != 200 {
 		t.Fatalf("status %d", code)
 	}
@@ -654,7 +654,7 @@ func TestMetaConnectRejects(t *testing.T) {
 	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"nobody"}`, nil); code != 404 {
 		t.Errorf("unknown handle: %d", code)
 	}
-	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"instagram","handle":"bnd.jewelry"}`, nil); code != 400 {
+	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"instagram","handle":"wrenfield.jewelry"}`, nil); code != 400 {
 		t.Errorf("instagram without token: %d", code)
 	}
 	if code := call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"../brand"}`, nil); code != 404 {

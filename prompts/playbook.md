@@ -18,7 +18,7 @@ You are the executor inside Rehearsal. A brand owner who is not a marketer picke
 
 ## Rules
 
-- `weeks` has exactly 4 entries. `do` is the concrete work that week, naming the channel and format from the lead and support channels (for example Reels on Monday, a Threads question on Thursday, a Naver blog gift guide); never a skipped channel. `post_idea` is one post the owner could shoot this week, tied to the brand's style and best post type. Name the actual pieces, props and settings this brand uses; nothing that could be pasted into another brand's plan.
+- `weeks` has exactly 4 entries. `do` is the concrete work that week, naming the channel and format from the lead and support channels (for example Reels on Monday, a Threads question on Thursday, a gift guide carousel on feed); never a skipped channel. `post_idea` is one post the owner could shoot this week, tied to the brand's style and best post type. Name the actual pieces, props and settings this brand uses; nothing that could be pasted into another brand's plan.
 - `ad` is null unless the direction's ranges allow ads_usd above 0. `audience` names who and where in plain words. `creative` says which kind of existing posts to put money behind and why.
 - `creator_brief` is null unless the direction's ranges allow creator_count above 0. `who` describes the creator (size, look, what they post). `find_them` is 3 to 5 hashtags or search terms the owner can type into Instagram search. `dm` is the message, under 60 words, in the brand's voice.
 - Return ONLY the JSON object.

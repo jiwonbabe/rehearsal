@@ -1,0 +1,23 @@
+{
+ "ambition": "stretch",
+ "best_post_type": "close_up",
+ "confidence": "medium",
+ "handle": "wrenfield.jewelry",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "80-200"
+ },
+ "market": "US",
+ "post_types_seen": {
+  "close_up": "most",
+  "flat_lay": "some",
+  "on_hand": "some",
+  "on_neck": "some"
+ },
+ "style": "Minimal everyday gold jewelry on warm beige backgrounds",
+ "success_metric": "revenue",
+ "what_they_sell": "Delicate gold rings necklaces and earrings",
+ "why": "Grid shows beige close-ups of thin gold rings and chains with a Portland bio and a holiday gift guide tile",
+ "why_goal": "Capture holiday gift revenue around the gift guide the bio points to with higher targets"
+}

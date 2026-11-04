@@ -1,6 +1,6 @@
 {
  "source": "mock",
- "username": "bnd.jewelry",
+ "username": "demo.brand",
  "followers_count": 5561,
  "follower_demographics": {
   "age": {
@@ -16,11 +16,11 @@
    "unknown": 0.03
   },
   "city": {
-   "Seoul": 0.41,
-   "Gyeonggi": 0.18,
-   "Busan": 0.07,
-   "Incheon": 0.05,
-   "Los Angeles": 0.04
+   "Portland": 0.41,
+   "Seattle": 0.18,
+   "Los Angeles": 0.07,
+   "San Francisco": 0.05,
+   "New York": 0.04
   }
  }
 }

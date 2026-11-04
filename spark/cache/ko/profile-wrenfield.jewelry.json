@@ -1,0 +1,23 @@
+{
+ "ambition": "stretch",
+ "best_post_type": "close_up",
+ "confidence": "medium",
+ "handle": "wrenfield.jewelry",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "80-200"
+ },
+ "market": "US",
+ "post_types_seen": {
+  "close_up": "most",
+  "flat_lay": "some",
+  "on_hand": "some",
+  "on_neck": "some"
+ },
+ "style": "따뜻한 베이지 배경에 담은 심플한 데일리 골드 주얼리입니다",
+ "success_metric": "revenue",
+ "what_they_sell": "섬세한 골드 반지와 목걸이, 귀걸이를 파십니다",
+ "why": "게시물 목록에 베이지 배경의 얇은 골드 반지와 체인 근접 사진이 많고, 포틀랜드 소개와 홀리데이 선물 가이드 게시물이 있습니다",
+ "why_goal": "소개글이 가리키는 선물 가이드 시즌에 선물 매출을 더 크게 내고 싶어하십니다"
+}

@@ -19,7 +19,7 @@ TRUE_AD_ENG_PER_USD = 5.0
 TRUE_SEED_POST_RATE = 0.75
 
 BRAND = {
-    "name": "BND US (demo)",
+    "name": "Wrenfield Jewelry (demo)",
     "synthetic": True,
     "market": "US",
     "target": {"gender": "women", "age": "25-34", "price_band": "80-200"},

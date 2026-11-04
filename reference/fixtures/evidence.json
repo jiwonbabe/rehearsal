@@ -6,7 +6,7 @@
   "top_age": "25-34",
   "top_age_share": 0.46,
   "women_share": 0.78,
-  "top_city": "Seoul",
+  "top_city": "Portland",
   "top_city_share": 0.41
  },
  "formats": [
@@ -73,7 +73,7 @@
  "category": {
   "hashtags": [
    {
-    "hashtag": "#\ub370\uc77c\ub9ac\uc8fc\uc5bc\ub9ac",
+    "hashtag": "#dailygoldjewelry",
     "share_by_type": {
      "on_hand": 0.47,
      "close_up": 0.33,
@@ -151,7 +151,7 @@
     "flat_lay": 0.0,
     "on_neck": 0.0
    },
-   "biography": "\uc77c\uc0c1, \ucee4\ud53c, \uc791\uc740 \ubc18\uc9c0 \u2728 \uc11c\uc6b8"
+   "biography": "slow mornings, coffee, tiny rings \u2728 Portland"
   },
   {
    "username": "demo.minsol.outfit",
@@ -164,7 +164,7 @@
     "flat_lay": 0.0,
     "on_neck": 0.0
    },
-   "biography": "\ub370\uc77c\ub9ac\ub8e9 \u00b7 \ubca0\uc774\uc9c0 \ub7ec\ubc84 \u00b7 \ud611\ucc2c\ubb38\uc758 DM"
+   "biography": "daily outfits \u00b7 beige lover \u00b7 collabs by DM"
   },
   {
    "username": "demo.hana.hands",
@@ -203,7 +203,7 @@
     "flat_lay": 0.5,
     "on_neck": 0.0
    },
-   "biography": "\uce74\ud398 \ud22c\uc5b4 \u00b7 \ud544\ub984 \uc0ac\uc9c4"
+   "biography": "cafe hopping \u00b7 film photos"
   },
   {
    "username": "demo.ari.minimal",
@@ -216,7 +216,7 @@
     "flat_lay": 0.0,
     "on_neck": 0.0
    },
-   "biography": "minimal wardrobe \u00b7 30\ub300 \uc9c1\uc7a5\uc778"
+   "biography": "minimal wardrobe \u00b7 thirties, office life"
   }
  ],
  "reach": {

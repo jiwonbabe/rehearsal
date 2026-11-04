@@ -93,10 +93,18 @@ func (s *server) seasonNumbers() []float64 {
 }
 
 // seasonOut: what the pages show for the month being planned. Indexes from the table, note from Spark.
+// seasonGoalOffer: the month-sized goal, or 0 once the owner has already sized the goal to this month.
+func (s *server) seasonGoalOffer(se engine.Season) int {
+	if s.goalMonth == se.Month {
+		return 0
+	}
+	return engine.SeasonGoal(s.brand.Brand.GoalOrdersPerMonth, se.Demand)
+}
+
 func (s *server) seasonOut() map[string]any {
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
 	out := map[string]any{"month": se.Month, "name": se.Name, "demand": se.Demand, "ad_cost": se.AdCost, "note": s.seasonNote, "applied": s.brand.Season != nil,
-		"goal": s.brand.Brand.GoalOrdersPerMonth, "season_goal": engine.SeasonGoal(s.brand.Brand.GoalOrdersPerMonth, se.Demand)}
+		"goal": s.brand.Brand.GoalOrdersPerMonth, "season_goal": s.seasonGoalOffer(se)}
 	if s.brand.Season != nil {
 		out["sources"], out["table_note"], out["category"], out["market"] = s.brand.Season.Sources, s.brand.Season.Note, s.brand.Season.Category, s.brand.Season.Market
 	}
@@ -129,10 +137,11 @@ func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
 
 func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 	var in struct {
-		Budget *float64           `json:"budget_usd_per_month"`
-		Goal   *float64           `json:"goal_orders_per_month"`
-		Target *map[string]string `json:"target"`
-		Market *string            `json:"market"`
+		Budget    *float64           `json:"budget_usd_per_month"`
+		Goal      *float64           `json:"goal_orders_per_month"`
+		GoalMonth *int               `json:"goal_month"`
+		Target    *map[string]string `json:"target"`
+		Market    *string            `json:"market"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeError(w, 400, err.Error())
@@ -148,6 +157,10 @@ func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 	}
 	if in.Goal != nil {
 		b.GoalOrdersPerMonth = *in.Goal
+		s.goalMonth = 0
+		if in.GoalMonth != nil {
+			s.goalMonth = *in.GoalMonth
+		}
 	}
 	if in.Target != nil {
 		if b.Target == nil {
@@ -326,7 +339,7 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	resp.Goal, resp.Budget, resp.AvgPrice = s.brand.Brand.GoalOrdersPerMonth, s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.AvgPriceUsd
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
 	resp.Month, resp.MonthName = se.Month, se.Name
-	resp.SeasonGoal, resp.Demand = engine.SeasonGoal(resp.Goal, se.Demand), se.Demand
+	resp.SeasonGoal, resp.Demand = s.seasonGoalOffer(se), se.Demand
 	resp.Flip, resp.Check = s.flipAndCheck(resp.Verdict, titles)
 	if resp.Flip != nil {
 		fa, fb := flipPair(resp.Verdict)

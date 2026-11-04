@@ -823,6 +823,16 @@ func TestStressCarriesGapsAndState(t *testing.T) {
 	if st.SeasonGoal != 48 {
 		t.Errorf("november-sized goal %d want 48", st.SeasonGoal)
 	}
+	call(t, ts, "POST", "/api/setup", `{"goal_orders_per_month":48,"goal_month":11}`, nil)
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &st)
+	if st.SeasonGoal != 0 {
+		t.Errorf("goal already sized for November, still offered %d", st.SeasonGoal)
+	}
+	call(t, ts, "POST", "/api/setup", `{"goal_orders_per_month":529}`, nil)
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &st)
+	if st.SeasonGoal != 550 {
+		t.Errorf("hand-set goal should be offered sized: %d want 550", st.SeasonGoal)
+	}
 	resp, _ := http.Get(ts.URL + "/setup.html")
 	if resp.Request.URL.Path != "/" {
 		t.Errorf("setup.html should redirect home, landed on %s", resp.Request.URL.Path)

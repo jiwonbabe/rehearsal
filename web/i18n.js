@@ -97,7 +97,7 @@ const KO_RX = [
   [/^ship (\d+) pieces$/, (m, n) => `${n}개 발송`], [/^(\$[\d,]+) ads$/, (m, a) => `광고 ${a}`], [/^(\d+%) off$/, (m, p) => `${p} 할인`], [/^(\d+) \((.+)\)$/, (m, n, mix) => `${n} (${mix.split(', ').map(x => x.replace(/^(\d+) (.+)$/, (mm, k, t) => `${w(t)} ${k}`)).join(', ')})`],
   [/^Launch: (.+)$/, (m, t) => `실행: ${tx(t)}`], [/^Starts (\S+) · (\d+) days · total (\$[\d,]+) · (.+)$/, (m, d, n, tot, c) => `시작 ${d} · ${n}일 · 총 ${tot} · ${KO[c] || c}`],
   [/^Connected · @(.+)$/, (m, h) => `연결됨 · @${h}`],
-  [/^Your goal of (\d+) orders is an average-month goal\. A (\w+)-sized goal is (\d+) \((\d+) × (\S+)\)\. Test against the month you are actually in:$/, (m, g, mo, sg, g2, d) => `목표 ${g}건은 평범한 달 기준입니다. ${KO[mo] || mo} 크기의 목표는 ${sg}건(${g2} × ${d})입니다. 실제 그 달 기준으로 시험하세요:`],
+  [/^If (\d+) orders is your average-month goal, the (\w+)-sized goal is (\d+) \((\d+) × (\S+)\)\. Test against the month you are actually in:$/, (m, g, mo, sg, g2, d) => `${g}건이 평범한 달 기준 목표라면, ${KO[mo] || mo} 크기의 목표는 ${sg}건(${g2} × ${d})입니다. 실제 그 달 기준으로 시험하세요:`],
   [/^Use (\d+) for (\w+)$/, (m, n, mo) => `${KO[mo] || mo}엔 ${n}건으로`], [/^Use (\d+) and re-test$/, (m, n) => `${n}건으로 다시 테스트`],
   [/^Verdict: just posting already clears a (\d+)-order goal in (\d+) of (\d+) bad months\.$/, (m, g, a, b) => `결론: 그냥 포스팅만으로도 목표 ${g}건을 나쁜 달 ${b}개 중 ${a}개에서 넘깁니다.`],
   [/^(\w+) usually brings (\S+)× an average month, so (\d+) is a low bar\. Either keep the money, or raise the bar to a (\w+)-sized goal of (\d+) and test again\.$/, (m, mo, d, g, mo2, sg) => `${KO[mo] || mo}은 보통 평달의 ${d}배라서 ${g}건은 낮은 기준입니다. 돈을 아끼거나, 기준을 ${KO[mo2] || mo2} 크기인 ${sg}건으로 올려 다시 시험하세요.`],

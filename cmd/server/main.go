@@ -44,6 +44,7 @@ type server struct {
 	evidence         *engine.Evidence
 	metaHandle       string
 	seasonNote       string
+	goalMonth        int // month the goal was last sized for via "Use N for <month>"; 0 = owner's own number
 	reachLive        map[string]any
 	stats            []engine.StatRow
 	mu               sync.Mutex

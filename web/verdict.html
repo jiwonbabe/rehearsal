@@ -79,7 +79,7 @@ function renderTodo(p) {
         : 'This goal is a low bar for this month. Either keep the money, or raise the goal on Setup and test again.'));
       if (data.season_goal && data.season_goal !== data.goal) {
         const b = el('button', 'min-height:34px;font-size:13px;padding:0 14px', `Use ${data.season_goal} and re-test`); b.className = 'btn ghost';
-        b.onclick = async () => { b.disabled = true; try { await api('/api/setup', { goal_orders_per_month: data.season_goal }); location.reload(); } catch (e) { b.disabled = false; showError(e); } };
+        b.onclick = async () => { b.disabled = true; try { await api('/api/setup', { goal_orders_per_month: data.season_goal, goal_month: data.month }); location.reload(); } catch (e) { b.disabled = false; showError(e); } };
         bar.appendChild(b);
       }
       document.getElementById('main').insertBefore(bar, document.getElementById('cards'));

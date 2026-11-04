@@ -354,9 +354,11 @@ func ValidateTranslation(en, ko any) any {
 
 var bannedRe = regexp.MustCompile(`(?i)forecast|prediction|예측`)
 
-// sameFigures: the translation carries exactly the numbers the English had (as a multiset).
+var koDateRe = regexp.MustCompile(`\d{1,2}(월|일|주차|시)`) // Korean writes month and day names as numerals (December → 12월)
+
+// sameFigures: the translation carries exactly the numbers the English had (as a multiset); Korean date numerals are not figures.
 func sameFigures(en, ko string) bool {
-	a, b := figures(en, nil), figures(ko, nil)
+	a, b := figures(en, nil), figures(koDateRe.ReplaceAllString(ko, " "), nil)
 	if len(a) != len(b) {
 		return false
 	}

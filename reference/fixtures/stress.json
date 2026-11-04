@@ -98,7 +98,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 140.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -157,7 +157,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 140.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -193,7 +193,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 140.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -247,7 +247,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 140.0,
-    "survived": true
+    "survived": false
    }
   ],
   "pay_for_reach-001": [
@@ -1148,7 +1148,7 @@
     ],
     "orders": 45.7,
     "spend_usd": 180.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -1207,7 +1207,7 @@
     ],
     "orders": 45.7,
     "spend_usd": 180.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -1243,7 +1243,7 @@
     ],
     "orders": 45.7,
     "spend_usd": 180.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -1297,7 +1297,7 @@
     ],
     "orders": 45.7,
     "spend_usd": 180.0,
-    "survived": true
+    "survived": false
    }
   ],
   "pay_for_reach-007": [
@@ -1796,7 +1796,7 @@
     ],
     "orders": 45.9,
     "spend_usd": 140.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -3089,7 +3089,7 @@
     ],
     "orders": 45.8,
     "spend_usd": 240.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -3159,7 +3159,7 @@
     ],
     "orders": 45.8,
     "spend_usd": 240.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -3765,7 +3765,7 @@
     ],
     "orders": 45.9,
     "spend_usd": 375.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -4481,7 +4481,7 @@
     ],
     "orders": 45.0,
     "spend_usd": 360.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -4505,7 +4505,7 @@
     ],
     "orders": 45.0,
     "spend_usd": 360.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -4613,7 +4613,7 @@
     ],
     "orders": 45.0,
     "spend_usd": 360.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -4640,7 +4640,7 @@
     ],
     "orders": 45.8,
     "spend_usd": 310.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -4716,7 +4716,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 310.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -6056,7 +6056,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 225.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -6080,7 +6080,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 225.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [
@@ -6188,7 +6188,7 @@
     ],
     "orders": 45.5,
     "spend_usd": 225.0,
-    "survived": true
+    "survived": false
    },
    {
     "shocks": [

@@ -241,8 +241,15 @@ func TestValidateTranslation(t *testing.T) {
 	}
 	bad := ValidateTranslation(map[string]any{"a": "262 saves", "b": "Our guess", "c": "seven days"},
 		map[string]any{"a": "260개 저장", "b": "지난 예측", "c": "7일"}).(map[string]any)
-	if bad["a"] != "262 saves" || bad["b"] != "Our guess" || bad["c"] != "seven days" {
+	if bad["a"] != "262 saves" || bad["b"] != "Our guess" {
 		t.Errorf("digits or banned words changed: %v", bad)
+	}
+	if bad["c"] != "7일" {
+		t.Errorf("a word written as the same numeral with a Korean unit is fine: %v", bad["c"])
+	}
+	dates := ValidateTranslation(map[string]any{"n": "December lifts demand 2.23 times."}, map[string]any{"n": "12월에는 수요가 2.23배입니다."}).(map[string]any)
+	if dates["n"] != "12월에는 수요가 2.23배입니다." {
+		t.Errorf("month numerals are not figures: %v", dates["n"])
 	}
 	flat := map[string]string{}
 	FlattenStrings(en, out, flat)

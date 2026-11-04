@@ -93,23 +93,34 @@ func main() {
 	}
 }
 
-// checkLine runs the flip search between the best pay_for_reach and send_to_creators plans, then call 3.
+// checkLine mirrors the server: each direction is stressed with its own adversary combos, the verdict picks the
+// best plan per direction, and the flip between the two best plans runs on the fallback combos. Then call 3.
 func checkLine(dirs []map[string]any, rates engine.Rates, brand *engine.Brand) {
-	var plans []engine.Plan
+	var allPlans []engine.Plan
+	merged := engine.Stressed{Matrix: map[string][]engine.Cell{}, Combos: engine.FallbackCombos}
 	titles := map[string]string{}
 	for _, m := range dirs {
 		d := toDirection(m)
 		titles[d.ID] = d.Title
-		if d.ID == "pay_for_reach" || d.ID == "send_to_creators" {
-			for _, p := range engine.SampleVariants(d, 60, 7) {
-				p.Month = engine.PlanMonth(brand, 0)
-				plans = append(plans, p)
-			}
+		if d.ID != "pay_for_reach" && d.ID != "send_to_creators" {
+			continue
 		}
+		combos := engine.FallbackCombos
+		if raw, err := spark.Adversary(m, engine.PriorProbabilities(rates)); err == nil {
+			combos = spark.ParseShocks(raw)
+		}
+		plans := engine.SampleVariants(d, 60, 7)
+		for i := range plans {
+			plans[i].Month = engine.PlanMonth(brand, 0)
+		}
+		st := engine.Stress(plans, combos, rates, brand)
+		for k, cells := range st.Matrix {
+			merged.Matrix[k] = cells
+		}
+		allPlans = append(allPlans, plans...)
 	}
-	st := engine.Stress(plans, engine.FallbackCombos, rates, brand)
 	best := map[string]engine.Plan{}
-	for _, v := range engine.RunVerdict(plans, st, rates, brand) {
+	for _, v := range engine.RunVerdict(allPlans, merged, rates, brand) {
 		best[v.Plan.Direction] = v.Plan
 	}
 	flip := engine.RunFlip(best["pay_for_reach"], best["send_to_creators"], engine.FallbackCombos, rates, brand, "seed_post_rate", 0.3, 1.0, 0.02)

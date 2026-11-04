@@ -49,6 +49,14 @@ function pct(x) { return Math.round(x * 100) + '%'; }
 function shockText(codes, catalog) {
   return codes.length ? codes.map(c => (catalog && catalog[c]) || c).join(' + ') : 'never';
 }
+const LEVER = { ads: 'ads', creators: 'creators', sale: 'a sale' };
+// coverageLine: how many weeks of history used each lever; a lever with no weeks is shown, not rated.
+function coverageLine(cov) {
+  if (!cov || !cov.length) return '';
+  const part = c => `${LEVER[c.lever] || c.lever} in ${c.weeks} week${c.weeks === 1 ? '' : 's'}` + (c.status === 'thin' ? ' (thin)' : c.status === 'none' ? ' (never)' : '');
+  return `Your history used ${cov.map(part).join(', ')}. A lever used in fewer than 6 weeks is thin evidence; one never used is shown but not rated.`;
+}
+const thinLevers = (uses, cov) => (cov || []).filter(c => uses[c.lever] && c.status === 'thin').map(c => c.lever);
 const DIRS = { just_post: 'Just post', pay_for_reach: 'Pay for reach', send_to_creators: 'Send to creators', one_week_sale: 'One-week sale' };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function planText(plan) {

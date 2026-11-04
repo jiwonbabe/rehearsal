@@ -61,3 +61,51 @@ func RunHoldout(b *Brand, weeksBack int) Backtest {
 	}
 	return RunBacktest(b, Calibrate(&pre), weeksBack)
 }
+
+// Coverage: how many of the brand's weeks actually used a lever. A lever with no history cannot be rated
+// (Calibrate would read 0 ÷ 0 as "no effect"), and a thin one gets a warning next to its numbers.
+type Coverage struct {
+	Lever  string `json:"lever"`  // ads | creators | sale
+	Weeks  int    `json:"weeks"`  // weeks in the history where the lever was used
+	Status string `json:"status"` // none | thin | ok
+}
+
+const thinWeeks = 6 // fewer weeks than this and the rate rests on a handful of observations
+
+func coverageStatus(weeks int) string {
+	switch {
+	case weeks == 0:
+		return "none"
+	case weeks < thinWeeks:
+		return "thin"
+	}
+	return "ok"
+}
+
+func LeverCoverage(b *Brand) []Coverage {
+	ads, creators, sale := 0, 0, 0
+	for _, w := range b.Weeks {
+		if w.AdsUsd > 0 {
+			ads++
+		}
+		if w.CreatorsSeeded > 0 {
+			creators++
+		}
+		if w.PromoDiscount > 0 {
+			sale++
+		}
+	}
+	return []Coverage{{"ads", ads, coverageStatus(ads)}, {"creators", creators, coverageStatus(creators)}, {"sale", sale, coverageStatus(sale)}}
+}
+
+// Untested: the levers a plan relies on that the history never used. Such a plan is shown, not rated.
+func Untested(p Plan, cov []Coverage) []string {
+	uses := map[string]bool{"ads": p.AdsUsd > 0, "creators": p.CreatorCount > 0, "sale": p.PromoWeek != nil}
+	out := []string{}
+	for _, c := range cov {
+		if uses[c.Lever] && c.Status == "none" {
+			out = append(out, c.Lever)
+		}
+	}
+	return out
+}

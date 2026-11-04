@@ -16,7 +16,7 @@ from engine.review import review  # noqa: E402
 from engine.goals import goal_suggestions  # noqa: E402
 from engine.launch import launch_spec  # noqa: E402
 from engine.evidence import load_meta, evidence  # noqa: E402
-from engine.trust import truth_check, holdout  # noqa: E402
+from engine.trust import lever_coverage, untested, truth_check, holdout  # noqa: E402
 
 OUT = os.path.join(ROOT, "reference", "fixtures")
 
@@ -74,6 +74,10 @@ def main():
                     "goal_december": season_goal(brand["brand"]["goal_orders_per_month"], season_brand["season"]["demand"]["12"])})
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
+    no_ads = dict(brand, weeks=[dict(w, ads_usd=0, ad_engagement=0) for w in brand["weeks"]])
+    ads_plan = Plan("x", "pay_for_reach", 4, {"on_hand": 0.6, "close_up": 0.2, "flat_lay": 0.1, "on_neck": 0.1}, 0, 300)
+    dump("coverage", {"coverage": lever_coverage(brand), "no_ads": lever_coverage(no_ads),
+                      "untested_ads_plan": untested(ads_plan, lever_coverage(no_ads)), "tested_ads_plan": untested(ads_plan, lever_coverage(brand))})
     dump("evidence", evidence(load_meta(os.path.join(ROOT, "data", "meta", "demo.brand"))))
     dec = Plan.from_dict(dict(committed.to_dict(), month=12))
     dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand), "december": launch_spec(dec, brand)})

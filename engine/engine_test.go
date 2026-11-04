@@ -2,6 +2,7 @@ package engine
 
 import (
 	"encoding/json"
+	"fmt"
 	"math"
 	"os"
 	"path/filepath"
@@ -450,5 +451,35 @@ func TestSeasonCatalogPerCategory(t *testing.T) {
 	}
 	if c.For("nope") != nil || (*SeasonCatalog)(nil).For("jewelry") != nil {
 		t.Error("unknown category or nil catalog must mean no prior")
+	}
+}
+
+func TestLeverCoverageMatchesReference(t *testing.T) {
+	var want struct {
+		Coverage        []Coverage `json:"coverage"`
+		NoAds           []Coverage `json:"no_ads"`
+		UntestedAdsPlan []string   `json:"untested_ads_plan"`
+		TestedAdsPlan   []string   `json:"tested_ads_plan"`
+	}
+	loadJSON(t, "coverage", &want)
+	b := brand(t)
+	if got := LeverCoverage(b); fmt.Sprint(got) != fmt.Sprint(want.Coverage) {
+		t.Errorf("coverage %v want %v", got, want.Coverage)
+	}
+	noAds := *b
+	noAds.Weeks = append([]Week{}, b.Weeks...)
+	for i := range noAds.Weeks {
+		noAds.Weeks[i].AdsUsd, noAds.Weeks[i].AdEngagement = 0, 0
+	}
+	cov := LeverCoverage(&noAds)
+	if fmt.Sprint(cov) != fmt.Sprint(want.NoAds) {
+		t.Errorf("no-ads coverage %v want %v", cov, want.NoAds)
+	}
+	plan := Plan{PlanID: "x", Direction: "pay_for_reach", PostsPerWeek: 4, PostMix: map[string]float64{"on_hand": 0.6, "close_up": 0.2, "flat_lay": 0.1, "on_neck": 0.1}, AdsUsd: 300}
+	if got := Untested(plan, cov); fmt.Sprint(got) != fmt.Sprint(want.UntestedAdsPlan) || len(got) != 1 {
+		t.Errorf("untested %v want %v", got, want.UntestedAdsPlan)
+	}
+	if got := Untested(plan, LeverCoverage(b)); len(got) != 0 || len(want.TestedAdsPlan) != 0 {
+		t.Errorf("tested plan must have no untested lever: %v", got)
 	}
 }

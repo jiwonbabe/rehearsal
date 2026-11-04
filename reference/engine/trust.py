@@ -31,3 +31,25 @@ def holdout(brand, weeks_back=13):
     pre = dict(brand)
     pre["weeks"] = brand["weeks"][:-weeks_back]
     return backtest(brand, calibrate(pre), weeks_back)
+
+
+THIN_WEEKS = 6
+
+
+def coverage_status(weeks):
+    return "none" if weeks == 0 else "thin" if weeks < THIN_WEEKS else "ok"
+
+
+def lever_coverage(brand):
+    """Weeks in the history where each lever (ads, creators, sale) was used, with none / thin / ok."""
+    weeks = brand["weeks"]
+    counts = {"ads": sum(1 for w in weeks if w["ads_usd"] > 0),
+              "creators": sum(1 for w in weeks if w["creators_seeded"] > 0),
+              "sale": sum(1 for w in weeks if w["promo_discount"] > 0)}
+    return [{"lever": k, "weeks": n, "status": coverage_status(n)} for k, n in counts.items()]
+
+
+def untested(plan, coverage):
+    """Levers a plan relies on that the history never used."""
+    uses = {"ads": plan.ads_usd > 0, "creators": plan.creator_count > 0, "sale": plan.promo_week is not None}
+    return [c["lever"] for c in coverage if uses[c["lever"]] and c["status"] == "none"]

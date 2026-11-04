@@ -34,7 +34,7 @@ const KO = {
   'Each row is one way to run a direction: how many posts a week, how many creators, how much on ads.': '각 행은 방향을 실행하는 한 가지 방식입니다: 주당 포스트 수, 크리에이터 수, 광고비.',
   'Each column is a bad month the adversary invented: reach drops, creators do not post, a rival runs a sale, and so on.': '각 열은 공격자가 만든 나쁜 달입니다: 도달 감소, 크리에이터 미게시, 경쟁사 세일 등.',
   'Hover any square to see which bad month it was and the orders and spend the engine computed.': '칸에 마우스를 올리면 어떤 나쁜 달이었는지, 엔진이 계산한 주문과 지출을 볼 수 있습니다.',
-  'The version under your cursor': '커서 아래의 버전', 'Direction': '방향', 'Posts per week': '주당 포스트', 'Photo mix': '사진 구성', 'Creators seeded': '시딩 크리에이터', 'Ad budget': '광고 예산', 'Sale': '세일', 'Month': '달', 'none': '없음', 'not set': '미지정', 'Just post': '그냥 포스팅', 'Pay for reach': '도달에 돈 쓰기', 'Send to creators': '크리에이터에게 보내기', 'One-week sale': '일주일 세일', 'What the planner (Muse Spark) sent to the engine: settings only, never a number for orders or revenue.': '플래너(Muse Spark)가 엔진에 보낸 것: 설정값만, 주문이나 매출 숫자는 없음.', 'See the verdict': '결론 보기', 'survived': '생존', 'died': '실패',
+  'The version under your cursor': '커서 아래의 버전', 'Not rated': '평가 안 함', 'not rated': '평가 안 함', 'Direction': '방향', 'Posts per week': '주당 포스트', 'Photo mix': '사진 구성', 'Creators seeded': '시딩 크리에이터', 'Ad budget': '광고 예산', 'Sale': '세일', 'Month': '달', 'none': '없음', 'not set': '미지정', 'Just post': '그냥 포스팅', 'Pay for reach': '도달에 돈 쓰기', 'Send to creators': '크리에이터에게 보내기', 'One-week sale': '일주일 세일', 'What the planner (Muse Spark) sent to the engine: settings only, never a number for orders or revenue.': '플래너(Muse Spark)가 엔진에 보낸 것: 설정값만, 주문이나 매출 숫자는 없음.', 'See the verdict': '결론 보기', 'survived': '생존', 'died': '실패',
   // verdict
   'The best variant from each direction you picked, plus the no-spend baseline. Survived = hit your order goal in that many of 20 bad months without running out of budget early.': '고른 방향마다 최고 버전과 돈을 안 쓰는 기준선입니다. 생존 = 나쁜 달 20개 중 그만큼에서 예산을 일찍 소진하지 않고 주문 목표를 달성.',
   'Week 1': '1주차', 'Week 2': '2주차', 'Week 3': '3주차', 'Week 4': '4주차', 'Review opens next month': '다음 달 리뷰 시작', 'Your month, generated on commit': '확정하면 만들어지는 이번 달 계획', 'Make it happen →': '실행하기 →', 'Review October': '10월 리뷰', 'Just post · baseline': '그냥 포스팅 · 기준선', 'Verdict: no paid direction holds this month.': '결론: 이번 달엔 돈 쓰는 방향 중 버티는 게 없습니다.',
@@ -59,6 +59,7 @@ const KO = {
 
 const WORDS = { 'on hand': '착용(손)', 'close up': '클로즈업', 'flat lay': '플랫레이', 'on neck': '착용(목)', 'on-hand': '착용(손)', 'close-up': '클로즈업', 'flat-lay': '플랫레이', 'on-neck': '착용(목)', women: '여성', men: '남성', everyone: '모두', 'or better': '이상', 'or worse': '이하', 'inside range': '범위 안', 'above range': '범위 위', 'below range': '범위 아래', high: '높음', medium: '보통', low: '낮음', unsure: '불확실' };
 const w = s => WORDS[s] || s;
+const LV = { ads: '광고', creators: '크리에이터', 'a sale': '세일' };
 const mixKo = s => s.split(', ').map(p => p.replace(/^(\d+%) (.+)$/, (m, a, b) => `${w(b)} ${a}`)).join(', ');
 const shock = s => s.split(' + ').map(x => KO[x] || x).join(' + ');
 const planKo = s => s.replace(/^post (\S+)×\/wk \((.+?)\), (\d+) creators, (\$[\d,]+) ads(?:, (\d+%) off in week (\d+))?$/, (m, a, mix, c, ads, off, wk) => `주 ${a}회 포스트(${mixKo(mix)}), 크리에이터 ${c}명, 광고 ${ads}` + (off ? `, ${wk}주차 ${off} 할인` : ''));
@@ -71,6 +72,10 @@ const KO_RX = [
   [/^Reasoned from the demo account @(.+)'s mock Instagram and Threads data \((\d+) days; not your real numbers\) and sourced public statistics · not stress-tested$/, (m, h, d) => `데모 계정 @${h}의 목 인스타그램·스레드 데이터(${d}일, 실제 숫자 아님)와 출처 있는 공개 통계로 판단 · 스트레스 테스트 대상 아님`],
   [/^(\w+): pick one or two directions$/, (m, a) => `${KO[a] || a}: 방향 한두 개 고르기`], [/^Plan (\w+)$/, (m, a) => `${KO[a] || a} 계획하기`],
   [/^(\d+% [a-z ]+(?:, \d+% [a-z ]+)*)$/, (m, a) => mixKo(a)], [/^(\d+%) off in week (\d+)$/, (m, off, wk) => `${wk}주차 ${off} 할인`],
+  [/^Your history used ads in (\d+) weeks?(.*?), creators in (\d+) weeks?(.*?), a sale in (\d+) weeks?(.*?)\. A lever used in fewer than 6 weeks is thin evidence; one never used is shown but not rated\.$/, (m, a, af, c, cf, s, sf) => { const f = x => x.includes('thin') ? '(얇음)' : x.includes('never') ? '(없음)' : ''; return `지난 기록에서 광고 ${a}주${f(af)}, 크리에이터 ${c}주${f(cf)}, 세일 ${s}주${f(sf)} 사용. 6주 미만이면 근거가 얇고, 한 번도 안 썼으면 보여주되 평가하지 않습니다.`; }],
+  [/^Thin evidence: your history used (ads|creators|a sale) in only (\d+) weeks, so the \1 rate rests on a handful of observations\.$/, (m, l, n) => `근거 얇음: 지난 기록에서 ${LV[l]}을(를) ${n}주만 써서, 그 비율은 관측 몇 개에 기대고 있습니다.`],
+  [/^Not rated: your history has no weeks with (.+?), so the engine cannot say what \1 would do for you\. Run a small test first; do not trust a number here\.$/, (m, l) => `평가 안 함: 지난 기록에 ${l.split(' or ').map(x => LV[x] || x).join('·')}을(를) 쓴 주가 없어서 엔진이 효과를 말할 수 없습니다. 먼저 작게 시험해 보세요. 여기 숫자는 믿지 마세요.`],
+  [/^Your history never used (.+?), so the engine cannot rate this direction\. You can still test it, but its numbers will not mean anything until you have run a small trial\.$/, (m, l) => `지난 기록에 ${l.split(' or ').map(x => LV[x] || x).join('·')}이(가) 없어서 엔진이 이 방향을 평가할 수 없습니다. 테스트는 되지만, 작게 시험해 보기 전까지 숫자는 의미가 없습니다.`],
   [/^Most of your photos: (.+)$/, (m, a) => `사진 대부분: ${w(a)}`], [/^Confidence: (.+)$/, (m, a) => `확신도: ${w(a)}`],
   [/^(\S+) followers · (\d+%) are (\S+) · (\d+%) women · (\d+%) in (.+)$/, (m, f, a, band, wm, c, city) => `팔로워 ${f}명 · ${band}가 ${a} · 여성 ${wm} · ${city} ${c}`],
   [/^Last (\d+) days: Reels reach (.+)× your feed posts · (.+) get the most saves · Threads (\d+) replies per post$/, (m, d, r, t, th) => `최근 ${d}일: 릴스 도달이 피드의 ${r}배 · 저장은 ${w(t)}이 가장 많음 · 스레드 글당 답글 ${th}개`],

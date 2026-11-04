@@ -1,0 +1,40 @@
+{
+ "coverage": [
+  {
+   "lever": "ads",
+   "weeks": 10,
+   "status": "ok"
+  },
+  {
+   "lever": "creators",
+   "weeks": 4,
+   "status": "thin"
+  },
+  {
+   "lever": "sale",
+   "weeks": 2,
+   "status": "thin"
+  }
+ ],
+ "no_ads": [
+  {
+   "lever": "ads",
+   "weeks": 0,
+   "status": "none"
+  },
+  {
+   "lever": "creators",
+   "weeks": 4,
+   "status": "thin"
+  },
+  {
+   "lever": "sale",
+   "weeks": 2,
+   "status": "thin"
+  }
+ ],
+ "untested_ads_plan": [
+  "ads"
+ ],
+ "tested_ads_plan": []
+}

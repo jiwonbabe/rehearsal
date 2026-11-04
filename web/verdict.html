@@ -87,7 +87,16 @@ function renderTodo(p) {
     document.getElementById('sub').textContent += ' ' + stateLine(data.goal, data.budget, data.month_name);
     data.verdict.forEach(v => {
       const c = el('div'); c.className = 'card';
-      c.appendChild(el('div', 'font-size:15px;font-weight:600', `${titleOf(v.plan)} · survived ${v.survived} / ${v.total}`));
+      const un = (data.untested || {})[v.plan.plan_id] || [];
+      const uses = { ads: v.plan.ads_usd > 0, creators: v.plan.creator_count > 0, sale: v.plan.promo_week != null };
+      c.appendChild(el('div', 'font-size:15px;font-weight:600', un.length ? `${titleOf(v.plan)} · not rated` : `${titleOf(v.plan)} · survived ${v.survived} / ${v.total}`));
+      if (un.length) {
+        c.appendChild(el('div', 'font-size:12.5px;color:#5c6066;line-height:1.45', planText(v.plan)));
+        c.appendChild(el('div', 'font-size:13px;color:#c2410c;line-height:1.5', `Not rated: your history has no weeks with ${un.map(l => LEVER[l]).join(' or ')}, so the engine cannot say what ${un.map(l => LEVER[l]).join(' or ')} would do for you. Run a small test first; do not trust a number here.`));
+        document.getElementById('cards').appendChild(c);
+        return;
+      }
+      thinLevers(uses, data.coverage).forEach(l => c.appendChild(el('div', 'font-size:12.5px;color:#8a6d1f;line-height:1.45', `Thin evidence: your history used ${LEVER[l]} in only ${(data.coverage.find(x => x.lever === l) || {}).weeks} weeks, so the ${LEVER[l]} rate rests on a handful of observations.`)));
       c.appendChild(el('div', 'font-size:12.5px;color:#5c6066;line-height:1.45', planText(v.plan)));
       c.appendChild(el('div', 'font-size:13.5px', `Orders, bad month ${Math.round(v.orders_bad_month[0])}–${Math.round(v.orders_bad_month[1])}`));
       c.appendChild(el('div', 'font-size:13.5px', `Spend ${money(v.spend_usd)}`));

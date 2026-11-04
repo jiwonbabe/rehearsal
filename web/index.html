@@ -93,6 +93,7 @@
     </table></details>
     <div style="font-size:13px;color:#5c6066;line-height:1.5">The smaller the miss, the more the plans on the next pages are worth. The engine's sale-week guesses are its weakest, so sale plans carry a wider range.</div>
     <div id="bt-weak" style="display:none;font-size:13px;color:#c2410c">Known weakness: at least one sale week landed outside the engine's range.</div>
+    <div id="coverage" style="font-size:13px;line-height:1.5"></div>
     <div id="bt-insample" style="font-size:13px;color:#5c6066"></div>
     <div id="truth" style="display:none;flex-direction:column;gap:10px;border-top:1px solid #e6e7e2;padding-top:14px">
       <div class="label">Known-answer check · only possible on synthetic data</div>
@@ -129,6 +130,7 @@ async function loadBacktest() {
   $('bt-err').textContent = bt.median_abs_pct_error + '%';
   $('bt-in').textContent = bt.weeks_inside_range + ' of ' + bt.weeks_total;
   $('bt-sub').textContent = `We hid the last ${bt.weeks_total} weeks from the engine. It learned your rates from the weeks before, then we asked it for the hidden weeks' orders (given the posts, ads, creators and sale weeks you really ran) and compared with what you really got.`;
+  $('coverage').textContent = coverageLine(tr.coverage);
   $('bt-insample').textContent = `If the engine may also learn from those ${bt.weeks_total} weeks (in-sample), the miss is ${ins.median_abs_pct_error}% and it gets ${ins.weeks_inside_range} of ${ins.weeks_total} right. The holdout number above is the honest one.`;
   if (tr.synthetic && tr.truth.length) {
     $('truth').style.display = 'flex';

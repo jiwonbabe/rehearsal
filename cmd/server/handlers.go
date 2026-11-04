@@ -27,22 +27,24 @@ type directionStress struct {
 }
 
 type stressResponse struct {
-	Directions []directionStress  `json:"directions"`
-	Verdict    []engine.Verdict   `json:"verdict"`
-	Flip       *engine.Flip       `json:"flip"`
-	FlipA      string             `json:"flip_a"`
-	FlipB      string             `json:"flip_b"`
-	Catalog    map[string]string  `json:"catalog"`
-	Priors     map[string]float64 `json:"priors"`
-	Check      string             `json:"check"`
-	Gaps       []engine.Gap       `json:"gaps"`
-	Goal       float64            `json:"goal"`
-	Budget     float64            `json:"budget"`
-	AvgPrice   float64            `json:"avg_price_usd"`
-	Month      int                `json:"month"`
-	MonthName  string             `json:"month_name"`
-	SeasonGoal int                `json:"season_goal"`
-	Demand     float64            `json:"demand"`
+	Directions []directionStress   `json:"directions"`
+	Verdict    []engine.Verdict    `json:"verdict"`
+	Flip       *engine.Flip        `json:"flip"`
+	FlipA      string              `json:"flip_a"`
+	FlipB      string              `json:"flip_b"`
+	Catalog    map[string]string   `json:"catalog"`
+	Priors     map[string]float64  `json:"priors"`
+	Check      string              `json:"check"`
+	Gaps       []engine.Gap        `json:"gaps"`
+	Goal       float64             `json:"goal"`
+	Budget     float64             `json:"budget"`
+	AvgPrice   float64             `json:"avg_price_usd"`
+	Month      int                 `json:"month"`
+	MonthName  string              `json:"month_name"`
+	SeasonGoal int                 `json:"season_goal"`
+	Demand     float64             `json:"demand"`
+	Coverage   []engine.Coverage   `json:"coverage"`
+	Untested   map[string][]string `json:"untested"` // plan_id -> levers the history never used
 }
 
 func writeError(w http.ResponseWriter, code int, msg string) {
@@ -148,12 +150,13 @@ func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
 		out = append(out, directionOut{d, playbookFor(d.ID)})
 	}
 	resp := struct {
-		Month      int              `json:"month"`
-		Directions []directionOut   `json:"directions"`
-		LastMonth  *engine.Review   `json:"last_month"`
-		Channels   []map[string]any `json:"channels"`
-		Season     map[string]any   `json:"season"`
-	}{s.month, out, s.lastReview, s.channels(), s.seasonOut()}
+		Month      int               `json:"month"`
+		Directions []directionOut    `json:"directions"`
+		LastMonth  *engine.Review    `json:"last_month"`
+		Channels   []map[string]any  `json:"channels"`
+		Season     map[string]any    `json:"season"`
+		Coverage   []engine.Coverage `json:"coverage"`
+	}{s.month, out, s.lastReview, s.channels(), s.seasonOut(), engine.LeverCoverage(s.brand)}
 	s.writeJSON(w, resp)
 }
 
@@ -367,6 +370,10 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	merged.Combos = engine.FallbackCombos // fixed catalog list: baseline must not depend on click order
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
 	resp.Gaps = engine.BaselineGaps(resp.Verdict)
+	resp.Coverage, resp.Untested = engine.LeverCoverage(s.brand), map[string][]string{}
+	for _, v := range resp.Verdict {
+		resp.Untested[v.Plan.PlanID] = engine.Untested(v.Plan, resp.Coverage)
+	}
 	resp.Goal, resp.Budget, resp.AvgPrice = s.brand.Brand.GoalOrdersPerMonth, s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.AvgPriceUsd
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
 	resp.Month, resp.MonthName = se.Month, se.Name

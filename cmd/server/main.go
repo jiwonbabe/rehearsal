@@ -84,7 +84,7 @@ func (s *server) routes() *http.ServeMux {
 		s.writeJSON(w, engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13)))
 	}))
 	mux.HandleFunc("/api/trust", s.locked(func(w http.ResponseWriter, r *http.Request) {
-		s.writeJSON(w, map[string]any{"holdout": engine.RunHoldout(s.brand, 13), "in_sample": engine.RunBacktest(s.brand, s.rates, 13),
+		s.writeJSON(w, map[string]any{"holdout": engine.RunHoldout(s.brand, 13), "in_sample": engine.RunBacktest(s.brand, s.rates, 13), "coverage": engine.LeverCoverage(s.brand),
 			"truth": engine.RunTruthCheck(s.brand, s.rates), "synthetic": s.brand.Brand.Synthetic})
 	}))
 	mux.HandleFunc("/api/goals", s.locked(func(w http.ResponseWriter, r *http.Request) {

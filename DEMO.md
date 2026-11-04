@@ -13,7 +13,7 @@ fly deploy --ha=false
 
 State (month, rates) lives in server memory, so run exactly one machine; restart it to reset to month 1.
 
-Live: https://rehearsal-jaunty-harborwave-867.fly.dev (in README). Reset to month 1 before a demo: `fly machines restart`. Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
+Live: https://rehearsal-jaunty-harborwave-867.fly.dev (in README). Reset to month 1 before a demo: `fly machines restart 801e09c6137d68` (the machine id; `fly machines list` shows it). Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
 
 ## Meta ad account (optional, makes Launch live)
 

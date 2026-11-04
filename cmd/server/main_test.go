@@ -411,6 +411,10 @@ func TestLaunchSpecMatchesEngine(t *testing.T) {
 		if out.AdRequest["campaign"]["status"] != "PAUSED" || out.AdRequest["campaign"]["is_adset_budget_sharing_enabled"] != false {
 			t.Errorf("campaign %v", out.AdRequest["campaign"])
 		}
+		targeting, _ := out.AdRequest["adset"]["targeting"].(map[string]any)
+		if auto, _ := targeting["targeting_automation"].(map[string]any); auto["advantage_audience"] != 0.0 {
+			t.Errorf("ad set targeting must state advantage_audience: %v", targeting)
+		}
 	}
 }
 

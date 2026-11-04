@@ -99,6 +99,8 @@ func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, 
 		return nil, nil
 	}
 	targeting, country := targetingFor(info)
+	// Meta requires an explicit choice on Advantage+ audience expansion; 0 keeps the audience exactly as confirmed.
+	targeting["targeting_automation"] = map[string]any{"advantage_audience": 0}
 	// OUTCOME_TRAFFIC + LINK_CLICKS needs no pixel; the ad set ends at midnight after the last day so all days are bought.
 	// Meta rejects a start in the past: a month already under way starts today and keeps its end; a month
 	// entirely past starts today and keeps its length (the engine's dates come from the data; only this request looks at the clock).

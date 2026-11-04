@@ -75,7 +75,7 @@ The demo runs from `spark/cache/` with no live calls.
 
 ## Live
 
-https://rehearsal-run.fly.dev (one Fly machine, state in memory; restart it to reset to month 1: `fly machines restart <machine id>`). Deploy: see DEMO.md
+Code: https://github.com/jiwonbabe/rehearsal · Live: https://rehearsal-run.fly.dev (one Fly machine, state in memory; restart it to reset to month 1: `fly machines restart <machine id>`). Deploy: see DEMO.md
 
 ## Next
 

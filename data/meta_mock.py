@@ -25,7 +25,9 @@ CREATORS = [("demo.soft.daily", 6200, "slow mornings, coffee, tiny rings ✨ Por
 PEERS = [("demo.mellow.gold", 24100, 412, [0.6, 0.25, 0.1, 0.05], 520), ("demo.une.pieces", 11300, 236, [0.35, 0.45, 0.15, 0.05], 260), ("demo.hazel.jewel", 38400, 690, [0.5, 0.2, 0.2, 0.1], 740)]
 # Mock accounts for the other synthetic brands (data/brands/*.json): same shapes, their own handles, cities, tags and creators.
 PROFILES = {
-    "demo.apparel": {"SEED": 11, "CITIES": {"Austin": 0.33, "Dallas": 0.14, "Houston": 0.09, "Los Angeles": 0.06, "New York": 0.05},
+    "demo.apparel": {"SEED": 11, "FOLLOWERS": 12840, "SCALE": 1.6,
+                     "AGE": {"18-24": 0.14, "25-34": 0.38, "35-44": 0.29, "45-54": 0.14, "55+": 0.05},
+                     "GENDER": {"women": 0.71, "men": 0.26, "unknown": 0.03}, "CITIES": {"Austin": 0.33, "Dallas": 0.14, "Houston": 0.09, "Los Angeles": 0.06, "New York": 0.05},
                      "HASHTAGS": ["#slowfashion", "#capsulewardrobe"],
                      "CREATORS": [("demo.linen.days", 7400, "linen, coffee, slow weekends · Austin", [0.6, 0.2, 0.2, 0], 360),
                                   ("demo.june.wears", 18900, "outfit diaries · thrifted + small brands", [0.4, 0.3, 0.2, 0.1], 640),
@@ -34,7 +36,9 @@ PROFILES = {
                                   ("demo.marg.market", 8800, "farmers markets · film", [0.2, 0.1, 0.6, 0.1], 320),
                                   ("demo.ada.office", 23500, "workwear that is not boring", [0.5, 0.3, 0.1, 0.1], 700)],
                      "PEERS": [("demo.ferry.street", 31000, 480, [0.6, 0.25, 0.1, 0.05], 700), ("demo.loom.co", 12600, 310, [0.35, 0.45, 0.15, 0.05], 330), ("demo.north.knit", 44000, 820, [0.5, 0.2, 0.2, 0.1], 900)]},
-    "demo.beauty": {"SEED": 23, "CITIES": {"Los Angeles": 0.29, "New York": 0.17, "Miami": 0.09, "Chicago": 0.06, "Atlanta": 0.05},
+    "demo.beauty": {"SEED": 23, "FOLLOWERS": 28300, "SCALE": 2.4,
+                    "AGE": {"18-24": 0.44, "25-34": 0.34, "35-44": 0.14, "45-54": 0.06, "55+": 0.02},
+                    "GENDER": {"women": 0.86, "men": 0.11, "unknown": 0.03}, "CITIES": {"Los Angeles": 0.29, "New York": 0.17, "Miami": 0.09, "Chicago": 0.06, "Atlanta": 0.05},
                     "HASHTAGS": ["#skincareroutine", "#cleanbeauty"],
                     "CREATORS": [("demo.glow.notes", 9800, "skin diaries · sensitive skin · LA", [0.6, 0.2, 0.2, 0], 520),
                                  ("demo.rae.routine", 27000, "morning routines · honest reviews", [0.4, 0.3, 0.2, 0.1], 980),
@@ -47,6 +51,10 @@ PROFILES = {
 OUT = os.path.join(os.path.dirname(__file__), "meta", HANDLE)
 END = date(2026, 10, 26)
 
+FOLLOWERS = 5561
+AGE = {"18-24": 0.22, "25-34": 0.46, "35-44": 0.21, "45-54": 0.08, "55+": 0.03}
+GENDER = {"women": 0.78, "men": 0.19, "unknown": 0.03}
+SCALE = 1.0  # account size: scales reach and threads views
 REACH = {"FEED": 1800, "REELS": 5400, "STORY": 900}
 SAVES_RATE = {"on_hand": 0.052, "close_up": 0.038, "flat_lay": 0.021, "on_neck": 0.030}
 TAPS_RATE = {"FEED": 0.011, "REELS": 0.016, "STORY": 0.024}
@@ -76,17 +84,17 @@ def main():
         globals()["HANDLE"] = sys.argv[1]
         OUT = os.path.join(os.path.dirname(__file__), "meta", HANDLE)
     rng = random.Random(SEED)
-    dump("account", {"source": "mock", "username": HANDLE, "followers_count": 5561,
+    dump("account", {"source": "mock", "username": HANDLE, "followers_count": FOLLOWERS,
                      "follower_demographics": {
-                         "age": {"18-24": 0.22, "25-34": 0.46, "35-44": 0.21, "45-54": 0.08, "55+": 0.03},
-                         "gender": {"women": 0.78, "men": 0.19, "unknown": 0.03},
+                         "age": AGE,
+                         "gender": GENDER,
                          "city": CITIES}})
     media = []
     kinds = ["FEED"] * 12 + ["REELS"] * 8 + ["STORY"] * 4
     rng.shuffle(kinds)
     for i, kind in enumerate(kinds):
         t = rng.choices(POST_TYPES, weights=[0.45, 0.3, 0.15, 0.1])[0]
-        reach = int(REACH[kind] * {"on_hand": 1.25, "close_up": 1.0, "flat_lay": 0.75, "on_neck": 0.9}[t] * rng.uniform(0.75, 1.25))
+        reach = int(REACH[kind] * SCALE * {"on_hand": 1.25, "close_up": 1.0, "flat_lay": 0.75, "on_neck": 0.9}[t] * rng.uniform(0.75, 1.25))
         media.append({"id": f"1789{i:03d}", "timestamp": (END - timedelta(days=89 - i * 3)).isoformat() + "T09:00:00+0000",
                       "media_product_type": kind, "post_type": t,
                       "insights": {"reach": reach, "views": int(reach * rng.uniform(1.4, 2.2)),
@@ -98,7 +106,7 @@ def main():
     dump("media", {"source": "mock", "labelled_by": "spark-vision (mock labels)", "days": 90, "data": media})
     threads = []
     for i in range(10):
-        views = int(2200 * rng.uniform(0.6, 1.6))
+        views = int(2200 * SCALE * rng.uniform(0.6, 1.6))
         threads.append({"id": f"th{i+1}", "timestamp": (END - timedelta(days=80 - i * 8)).isoformat() + "T12:00:00+0000",
                         "text_kind": rng.choice(["behind the scenes", "question to followers", "new piece", "styling tip"]),
                         "insights": {"views": views, "likes": int(views * 0.028), "replies": int(views * 0.009), "reposts": int(views * 0.003)}})
@@ -111,10 +119,10 @@ def main():
     dump("creators", {"source": "mock", "data": [
         {"username": u, "followers_count": f, "biography": b, "recent": posts(rng, 6, w, lb)} for u, f, b, w, lb in CREATORS]})
     dump("reach_estimate", {"source": "mock", "targeting": {"countries": ["US"], "age_min": 25, "age_max": 34, "genders": ["women"]},
-                            "data": {"instagram_reels": {"estimate_dau": 412000, "estimate_mau": 1260000},
-                                     "instagram_feed": {"estimate_dau": 388000, "estimate_mau": 1310000},
-                                     "instagram_stories": {"estimate_dau": 351000, "estimate_mau": 1190000},
-                                     "facebook_feed": {"estimate_dau": 96000, "estimate_mau": 540000}}})
+                            "data": {"instagram_reels": {"estimate_dau": int(412000 * SCALE), "estimate_mau": int(1260000 * SCALE)},
+                                     "instagram_feed": {"estimate_dau": int(388000 * SCALE), "estimate_mau": int(1310000 * SCALE)},
+                                     "instagram_stories": {"estimate_dau": int(351000 * SCALE), "estimate_mau": int(1190000 * SCALE)},
+                                     "facebook_feed": {"estimate_dau": int(96000 * SCALE), "estimate_mau": int(540000 * SCALE)}}})
     print("mock written to", OUT)
 
 

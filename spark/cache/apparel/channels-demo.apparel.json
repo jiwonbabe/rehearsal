@@ -2,31 +2,38 @@
  "channels": [
   {
    "channel": "instagram_reels",
-   "how": "Post calm on-hand try-ons in natural light a few times each week, opening with the fabric close to camera. First post a slow turn in the fall linen set showing how it moves from front to hem.",
+   "how": "Post on-hand styling Reels twice weekly opening on fabric movement in natural light. First post is a calm earthy try-on of the fall drop basics worn around Austin.",
    "verdict": "lead",
-   "why_category": "Shoppers for linen basics save wearing clips to compare drape and fit before ordering the fall drop.",
-   "why_data": "Your Reels averaged 5149 reach with 2.39 times the reach of feed."
+   "why_category": "Shoppers for everyday linen want to see movement and fit on real bodies before they trust and order.",
+   "why_data": "Your Reels averaged 8239 reach at 2.39 vs feed."
   },
   {
    "channel": "instagram_feed",
-   "how": "Share clean on-hand flat photos in earthy tones weekly with a simple styling caption. First post the fall drop styled as mix-and-match outfits on a calm background.",
+   "how": "Share on-hand grid photos twice weekly with capsule pairing notes in caption. First post is the fall drop tile restyled on hand in soft daylight.",
    "verdict": "support",
-   "why_category": "Women shopping everyday basics use saved feed photos to build capsule outfits and return to buy later.",
-   "why_data": "Your feed posts averaged 2155 reach and 103 saves."
+   "why_category": "Buyers save clean flat and detail shots to plan capsule outfits and return to buy later.",
+   "why_data": "Feed posts averaged 3449 reach with 165 saves."
+  },
+  {
+   "channel": "instagram_stories",
+   "how": "Use daily polls and try-on clips with link stickers for fall basics. First Story is a poll on which linen color to restock next.",
+   "verdict": "support",
+   "why_category": "Regulars tap Stories for restocks and behind-seams trust before ordering staples.",
+   "why_data": "Stories averaged 1745 reach across 4 posts."
   },
   {
    "channel": "threads",
-   "how": "Post short open questions and behind-the-seams notes about linen care a few times each week. First post ask which fall color to restock next with photos of the options worn on hand.",
+   "how": "Post short fit questions and slow-fashion notes a few times weekly. First post asks how followers style everyday cotton basics for fall.",
    "verdict": "support",
-   "why_category": "Shoppers for small-made basics ask honest fit and fabric questions in replies before trusting a new brand enough to order.",
-   "why_data": "Your Threads averaged 2456 views and 22 replies."
+   "why_category": "Linen buyers join calm Threads chats for fit advice and honest reviews before ordering.",
+   "why_data": "Threads averaged 3930 views with 35 replies."
   },
   {
-   "channel": "x",
-   "how": "Do not post here for now and put that time into Reels fittings. If you test later, start with a fall drop wearing photo tied to a Threads question.",
+   "channel": "tiktok",
+   "how": "Hold TikTok until Reels winners exist, then repost one proven on-hand clip to test. First test would be the best fall try-on with a hook in the opening moment.",
    "verdict": "skip",
-   "why_category": "Buyers of soft everyday basics rarely shop from quick debate feeds where fit and fabric trust cannot be shown.",
-   "why_data": "20% of US adults aged 30-49 say they ever use X."
+   "why_category": "New viewers need quick worn hooks to trust soft basics without feeling the fabric.",
+   "why_data": "45% of US adults 30-49 use TikTok, but we have no brand results there yet."
   }
  ]
 }

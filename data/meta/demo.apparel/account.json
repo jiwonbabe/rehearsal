@@ -1,18 +1,18 @@
 {
  "source": "mock",
  "username": "demo.apparel",
- "followers_count": 5561,
+ "followers_count": 12840,
  "follower_demographics": {
   "age": {
-   "18-24": 0.22,
-   "25-34": 0.46,
-   "35-44": 0.21,
-   "45-54": 0.08,
-   "55+": 0.03
+   "18-24": 0.14,
+   "25-34": 0.38,
+   "35-44": 0.29,
+   "45-54": 0.14,
+   "55+": 0.05
   },
   "gender": {
-   "women": 0.78,
-   "men": 0.19,
+   "women": 0.71,
+   "men": 0.26,
    "unknown": 0.03
   },
   "city": {

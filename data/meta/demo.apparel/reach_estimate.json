@@ -12,20 +12,20 @@
  },
  "data": {
   "instagram_reels": {
-   "estimate_dau": 412000,
-   "estimate_mau": 1260000
+   "estimate_dau": 659200,
+   "estimate_mau": 2016000
   },
   "instagram_feed": {
-   "estimate_dau": 388000,
-   "estimate_mau": 1310000
+   "estimate_dau": 620800,
+   "estimate_mau": 2096000
   },
   "instagram_stories": {
-   "estimate_dau": 351000,
-   "estimate_mau": 1190000
+   "estimate_dau": 561600,
+   "estimate_mau": 1904000
   },
   "facebook_feed": {
-   "estimate_dau": 96000,
-   "estimate_mau": 540000
+   "estimate_dau": 153600,
+   "estimate_mau": 864000
   }
  }
 }

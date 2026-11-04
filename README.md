@@ -2,7 +2,15 @@
 
 Built Nov 2–4, 2026 during the Meta Global AI Developer Hackathon. No external code; Go stdlib only.
 
-Stress-test a small brand's monthly marketing plan before the money is spent. Go, stdlib only. See SPEC.md.
+**The model proposes. The engine tests. A person decides.**
+
+Rehearsal stress-tests a small brand's monthly marketing plan before the money is spent. The point of the design is what the LLM is *not* trusted with:
+
+- **Muse Spark proposes** directions, parameter ranges, the bad months to try and the words around them. It never writes an order count, a revenue figure or a rate. A sentence that quotes a number the engine did not produce is dropped by validation.
+- **A deterministic engine tests.** Each direction becomes 60 plans; every plan runs against 20 bad months the adversary invents. Same input, same output. The Go engine is checked against an independent Python reference with golden fixtures.
+- **So a plan's result is a measurement, not a guess.** "Survived 15 of 20 bad months", "dies if ad cost rises 60% and reach drops", "the one assumption that flips the answer" all come from running the plan, and the engine shows its own error (a hidden-weeks backtest) and refuses to rate levers it has no history for.
+
+Go, stdlib only. See SPEC.md.
 
 ```
 python data/synthetic.py            # synthetic demo brand

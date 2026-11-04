@@ -7,7 +7,7 @@ Live: https://rehearsal-run.fly.dev. Attach the demo video. Demo brands are synt
 ```
 Your marketing plan looks great until a rival runs a sale and your creators don't post.
 
-Rehearsal stress-tests a small brand's month BEFORE the money is spent: 20 bad months, 240 plans, one assumption that flips the answer.
+The AI proposes plans. A deterministic engine tests each one against 20 bad months. Every number is computed, none is written by the model.
 
 https://rehearsal-run.fly.dev
 ```
@@ -30,9 +30,9 @@ Then 4 direction families x 60 variants (240 plans) run against every one of the
 
 3/5
 ```
-Muse Spark only proposes text and parameter ranges. It never writes an order count, revenue or rate.
+The LLM is not trusted with the numbers. Muse Spark only proposes text and parameter ranges; it never writes an order count, revenue or rate.
 
-A deterministic engine computes every number on screen: same inputs, same outputs. You see which plans survived, what each dies if, and where the money goes.
+A deterministic engine computes every number: same inputs, same outputs. So "survived 15 of 20 bad months" is a measurement, not a guess.
 ```
 
 4/5

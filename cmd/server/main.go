@@ -44,6 +44,7 @@ type server struct {
 	evidence         *engine.Evidence
 	metaHandle       string
 	seasonNote       string
+	reachLive        map[string]any
 	stats            []engine.StatRow
 	mu               sync.Mutex
 }

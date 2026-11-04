@@ -44,7 +44,7 @@ function adsCard(d) {
   if (d.reach && d.reach.instagram_reels && d.reach.instagram_feed && d.reach.instagram_stories) {
     const r = d.reach;
     const line = el('div', 'font-size:13px;color:#5c6066;line-height:1.5');
-    line.textContent = `Meta estimate for this audience: ${Number(r.instagram_reels.estimate_mau).toLocaleString('en-US')} reachable on Reels, ${Number(r.instagram_feed.estimate_mau).toLocaleString('en-US')} on feed, ${Number(r.instagram_stories.estimate_mau).toLocaleString('en-US')} on Stories (monthly)`;
+    line.textContent = `Meta estimate for this audience: ${Number(r.instagram_reels.estimate_mau).toLocaleString('en-US')} reachable on Reels, ${Number(r.instagram_feed.estimate_mau).toLocaleString('en-US')} on feed, ${Number(r.instagram_stories.estimate_mau).toLocaleString('en-US')} on Stories (monthly) · ${d.reach_source === 'meta' ? 'live from your ad account' : 'demo numbers'}`;
     c.appendChild(line);
   }
   const pre = el('pre'); pre.className = 'req'; pre.textContent = JSON.stringify(d.ad_request, null, 1);

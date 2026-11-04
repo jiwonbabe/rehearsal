@@ -726,3 +726,53 @@ func TestPlansCarryTheSeasonMonth(t *testing.T) {
 		}
 	}
 }
+
+func TestLaunchReachLiveFromMeta(t *testing.T) {
+	var specs []string
+	graph := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/act_123/delivery_estimate" || r.URL.Query().Get("access_token") != "tok" {
+			w.WriteHeader(400)
+			w.Write([]byte(`{"error":{"message":"bad path"}}`))
+			return
+		}
+		specs = append(specs, r.URL.Query().Get("targeting_spec"))
+		fmt.Fprintf(w, `{"data":[{"estimate_dau":%d,"estimate_mau_lower_bound":%d,"estimate_mau_upper_bound":%d,"estimate_ready":true}]}`, 1000*len(specs), 20000*len(specs), 30000*len(specs))
+	}))
+	defer graph.Close()
+	t.Setenv("META_GRAPH_URL", graph.URL)
+	t.Setenv("META_ACCESS_TOKEN", "tok")
+	t.Setenv("META_AD_ACCOUNT_ID", "act_123")
+	ts := newTestServer(t)
+	var out struct {
+		Reach       map[string]map[string]float64 `json:"reach"`
+		ReachSource string                        `json:"reach_source"`
+	}
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	if out.ReachSource != "meta" || out.Reach["instagram_reels"]["estimate_mau"] != 25000 || out.Reach["instagram_feed"]["estimate_dau"] != 2000 {
+		t.Errorf("%s %v", out.ReachSource, out.Reach)
+	}
+	if len(specs) != 4 || !strings.Contains(specs[0], `"instagram_positions":["reels"]`) || !strings.Contains(specs[0], `"countries":["US"]`) {
+		t.Errorf("specs %v", specs)
+	}
+}
+
+func TestLaunchReachFallsBackToMock(t *testing.T) {
+	graph := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(400)
+		w.Write([]byte(`{"error":{"message":"Invalid token"}}`))
+	}))
+	defer graph.Close()
+	t.Setenv("META_GRAPH_URL", graph.URL)
+	t.Setenv("META_ACCESS_TOKEN", "tok")
+	t.Setenv("META_AD_ACCOUNT_ID", "123")
+	ts := newTestServer(t)
+	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"demo.brand"}`, nil)
+	var out struct {
+		Reach       map[string]any `json:"reach"`
+		ReachSource string         `json:"reach_source"`
+	}
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	if out.ReachSource != "mock" || out.Reach["instagram_reels"] == nil {
+		t.Errorf("%s %v", out.ReachSource, out.Reach)
+	}
+}

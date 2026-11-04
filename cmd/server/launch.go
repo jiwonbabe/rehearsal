@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -65,11 +66,8 @@ func metaEnv() (token, account string) {
 	return os.Getenv("META_ACCESS_TOKEN"), strings.TrimPrefix(os.Getenv("META_AD_ACCOUNT_ID"), "act_")
 }
 
-// adRequest: the Meta Marketing API objects for this plan, both PAUSED. nil when the plan has no ads.
-func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, title string) (campaign, adset map[string]any) {
-	if plan.AdsUsd <= 0 {
-		return nil, nil
-	}
+// targetingFor: the Marketing API targeting spec for the confirmed customer (country, age band, gender).
+func targetingFor(info engine.BrandInfo) (map[string]any, string) {
 	country := info.Market
 	if country != "US" && country != "KR" {
 		country = "US"
@@ -89,6 +87,15 @@ func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, 
 	case "men":
 		targeting["genders"] = []int{1}
 	}
+	return targeting, country
+}
+
+// adRequest: the Meta Marketing API objects for this plan, both PAUSED. nil when the plan has no ads.
+func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, title string) (campaign, adset map[string]any) {
+	if plan.AdsUsd <= 0 {
+		return nil, nil
+	}
+	targeting, country := targetingFor(info)
 	// OUTCOME_TRAFFIC + LINK_CLICKS needs no pixel; the ad set ends at midnight after the last day so all days are bought.
 	endDay, _ := time.Parse("2006-01-02", spec.EndDate)
 	campaign = map[string]any{"name": "Rehearsal · " + title + " · " + spec.StartDate, "objective": "OUTCOME_TRAFFIC",
@@ -145,6 +152,7 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	token, account := metaEnv()
+	reach, reachSource := s.reach()
 	campaign, adset := adRequest(l.Spec, l.Plan, s.brand.Brand, l.Title)
 	var adReq map[string]any
 	if campaign != nil {
@@ -156,7 +164,8 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		"playbook":        l.Playbook,
 		"ad_request":      adReq,
 		"ads_connected":   token != "" && account != "",
-		"reach":           s.reach(),
+		"reach":           reach,
+		"reach_source":    reachSource,
 		"creators":        s.suggestedCreators(),
 		"creators_source": s.metaSource(),
 	})
@@ -300,12 +309,80 @@ func (s *server) metaSource() string {
 	return s.evidence.Source
 }
 
-// reach: Meta's delivery estimate for the target, once an account is connected.
-func (s *server) reach() map[string]any {
-	if s.evidence == nil {
-		return nil
+var placements = []struct {
+	Key  string
+	Spec map[string]any
+}{
+	{"instagram_reels", map[string]any{"publisher_platforms": []string{"instagram"}, "instagram_positions": []string{"reels"}}},
+	{"instagram_feed", map[string]any{"publisher_platforms": []string{"instagram"}, "instagram_positions": []string{"stream"}}},
+	{"instagram_stories", map[string]any{"publisher_platforms": []string{"instagram"}, "instagram_positions": []string{"story"}}},
+	{"facebook_feed", map[string]any{"publisher_platforms": []string{"facebook"}, "facebook_positions": []string{"feed"}}},
+}
+
+// metaReach: Marketing API delivery_estimate per placement for the confirmed customer. Audience size depends on
+// targeting and the auction, not on the product, so any ad account gives the same numbers.
+func metaReach(base, account, token string, info engine.BrandInfo) (map[string]any, error) {
+	out := map[string]any{}
+	client := &http.Client{Timeout: 30 * time.Second}
+	for _, pl := range placements {
+		targeting, _ := targetingFor(info)
+		for k, v := range pl.Spec {
+			targeting[k] = v
+		}
+		spec, _ := json.Marshal(targeting)
+		q := url.Values{"optimization_goal": {"LINK_CLICKS"}, "targeting_spec": {string(spec)}, "access_token": {token}}
+		resp, err := client.Get(strings.TrimRight(base, "/") + "/act_" + account + "/delivery_estimate?" + q.Encode())
+		if err != nil {
+			return nil, err
+		}
+		raw, _ := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if resp.StatusCode >= 300 {
+			return nil, fmt.Errorf("meta %s: %s", resp.Status, string(raw))
+		}
+		var body struct {
+			Data []struct {
+				DAU      float64  `json:"estimate_dau"`
+				MAU      *float64 `json:"estimate_mau"`
+				MAULower float64  `json:"estimate_mau_lower_bound"`
+				MAUUpper float64  `json:"estimate_mau_upper_bound"`
+			} `json:"data"`
+		}
+		if err := json.Unmarshal(raw, &body); err != nil || len(body.Data) == 0 {
+			return nil, fmt.Errorf("meta: unexpected reply: %s", string(raw))
+		}
+		d := body.Data[0]
+		mau := (d.MAULower + d.MAUUpper) / 2
+		if d.MAU != nil {
+			mau = *d.MAU
+		}
+		out[pl.Key] = map[string]any{"estimate_dau": d.DAU, "estimate_mau": mau}
 	}
-	return s.evidence.Reach
+	return out, nil
+}
+
+// reach: Meta's delivery estimate for the target: live from the connected ad account when credentials are set
+// (cached for the process), else the mock account's numbers, else nil. The second value names the source.
+func (s *server) reach() (map[string]any, string) {
+	if token, account := metaEnv(); token != "" && account != "" {
+		if s.reachLive != nil {
+			return s.reachLive, "meta"
+		}
+		base := os.Getenv("META_GRAPH_URL")
+		if base == "" {
+			base = "https://graph.facebook.com/v21.0"
+		}
+		if r, err := metaReach(base, account, token, s.brand.Brand); err == nil {
+			s.reachLive = r
+			return r, "meta"
+		} else {
+			log.Printf("meta delivery_estimate failed, using demo numbers: %v", err)
+		}
+	}
+	if s.evidence == nil {
+		return nil, ""
+	}
+	return s.evidence.Reach, "mock"
 }
 
 // suggestedCreators: creators found for the brief (business_discovery) with engine stats and, when cached, Spark's fit read.

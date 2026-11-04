@@ -85,7 +85,7 @@ const KO_RX = [
   [/^October: (inside range|above range|below range)\. Here is what was off\.$/, (m, r) => `10월: ${w(r)}. 무엇이 어긋났는지 봅시다.`], [/^You ran (.+)\.$/, (m, p) => `실행한 플랜: ${planKo(p)}.`], [/^(\d+) vs (\d+)–(\d+)$/, (m, a, b, c) => `${a}건 vs ${b}–${c}건`], [/^(\d+) of (\d+)$/, (m, a, b) => `${b}명 중 ${a}명`],
   [/^Only (\d+) of (\d+) seeded creators posted, so the seeded engagement never arrived\. Your own posts and conversion held up\. This was a creator problem, not a product or audience problem\.$/, (m, a, b) => `시딩한 크리에이터 ${b}명 중 ${a}명만 게시해서 기대한 반응이 오지 않았습니다. 자체 포스트와 전환은 괜찮았습니다. 제품이나 고객 문제가 아니라 크리에이터 문제였습니다.`],
   [/^(\$[\d,]+) over (\d+) days · (\$[\d,]+)\/day · paused until you switch it on$/, (m, a, d, b) => `${d}일간 ${a} · 하루 ${b} · 켜기 전까지 일시정지`],
-  [/^Meta estimate for this audience: (\S+) reachable on Reels, (\S+) on feed, (\S+) on Stories \(monthly\)$/, (m, a, b, c) => `이 타겟에 대한 Meta 추정: 릴스 월 ${a}명, 피드 ${b}명, 스토리 ${c}명 도달 가능`],
+  [/^Meta estimate for this audience: (\S+) reachable on Reels, (\S+) on feed, (\S+) on Stories \(monthly\) · (live from your ad account|demo numbers)$/, (m, a, b, c, src) => `이 타겟에 대한 Meta 추정: 릴스 월 ${a}명, 피드 ${b}명, 스토리 ${c}명 도달 가능 · ${src === 'demo numbers' ? '데모 숫자' : '내 광고 계정에서 실시간'}`],
   [/^Created paused: campaign (.+), ad set (.+)\. $/, (m, a, b) => `일시정지 상태로 생성: 캠페인 ${a}, 광고세트 ${b}. `],
   [/^Ship (\d+) pieces \((\$[\d,]+) at cost\) · send (\d+) DMs, expect about half to answer$/, (m, n, c, d) => `${n}개 발송(원가 ${c}) · DM ${d}개 보내기, 절반쯤 답한다고 가정`],
   [/^([\d,]+) followers · (\w+) · ([\d.]+)% engagement · mostly (.+)$/, (m, f, b, e, t) => `팔로워 ${f} · ${KO[b] || b} · 참여율 ${e}% · 주로 ${w(t)}`], [/^(high|medium|low|unsure) fit · (.*) account$/, (m, f, b) => `적합도 ${w(f)} · ${KO[b] || b} 계정`],

@@ -37,9 +37,9 @@ type SeasonCatalog struct {
 }
 
 type SeasonCategory struct {
-	Label  string             `json:"label"`
-	Demand map[string]float64 `json:"demand"`
-	Source map[string]any     `json:"source"`
+	Label   string             `json:"label"`
+	Demand  map[string]float64 `json:"demand"`
+	Sources []map[string]any   `json:"sources"`
 }
 
 func LoadSeasonCatalog(path string) (*SeasonCatalog, error) {
@@ -64,7 +64,7 @@ func (c *SeasonCatalog) For(category string) *Seasonality {
 		return nil
 	}
 	return &Seasonality{Market: c.Market, Category: category, Label: cat.Label, Demand: cat.Demand, AdCost: c.AdCost,
-		Sources: []map[string]any{cat.Source, c.AdCostSource}, Note: c.Note}
+		Sources: append(append([]map[string]any{}, cat.Sources...), c.AdCostSource), Note: c.Note}
 }
 
 // LoadSeasonality: the catalog's table for one category.

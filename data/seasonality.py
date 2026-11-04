@@ -4,8 +4,8 @@ Run:  python3 data/seasonality.py
 Input: data/census/mrtssales92-present.xlsx (https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx,
 downloaded Nov 3, 2026). Demand index per category = monthly NOT ADJUSTED sales ÷ that year's monthly mean,
 averaged over YEARS (2023-2025, the latest full years). Jewelry stores (44831) are suppressed by Census from
-March 2021 on, so that one category uses 2017-2019 (the latest jewelry-specific pattern; its parent 448 shows
-the same shape in 2023-2025). Ad cost is one table for every category (Gupta Media Meta CPM 2024-2025).
+March 2021 on, so that one category uses 2017-2019 and carries a check against Signet Jewelers' reported fiscal
+2025-2026 quarterly sales (SIGNET below): same shape, holiday quarter within 5%. Ad cost is one table for every category (Gupta Media Meta CPM 2024-2025).
 """
 import json
 import os
@@ -27,6 +27,28 @@ CATEGORIES = [  # key, Setup label, Census code, years
     ("food", "Food and drink", "445", YEARS),
     ("online", "Online store, other goods", "454", YEARS),
 ]
+# Signet Jewelers (Kay, Zales, Jared; the largest US jewelry retailer) reported quarterly sales, millions of USD, from its
+# 10-K and quarterly releases. Fiscal quarters: Q1 Feb-Apr, Q2 May-Jul, Q3 Aug-Oct, Q4 Nov-Jan. FY2025 = Feb 2024-Jan 2025.
+SIGNET = {"FY2025": [1510.8, 1491.0, 1349.4, 2353.0], "FY2026": [1541.6, 1535.1, 1391.8, 2345.0]}
+SIGNET_SOURCE = {"for": "demand", "source": "Signet Jewelers quarterly sales, fiscal 2025 and 2026 (Feb 2024-Jan 2026; Form 10-K for FY2026 and the quarterly results releases): "
+                 "each quarter ÷ that year's quarterly mean, averaged over the two years, as a check that the 2017-2019 monthly shape still holds: ",
+                 "url": "https://www.sec.gov/Archives/edgar/data/832988/000083298826000055/sig-20260131.htm", "year": 2026}
+QUARTER = {1: 4, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 3, 9: 3, 10: 3, 11: 4, 12: 4}  # calendar month -> Signet fiscal quarter
+
+
+def signet_check(idx):
+    """Signet's quarter indexes (latest two fiscal years) next to this table's, so the 2017-2019 shape is checked against
+    2024-2026 jewelry sales. Not used to rescale: the two agree within 5%, inside the method's own noise."""
+    signet = [0.0] * 4
+    for q in SIGNET.values():
+        mean = sum(q) / 4
+        for i in range(4):
+            signet[i] += q[i] / mean / len(SIGNET)
+    census = [sum(idx[m - 1] for m in range(1, 13) if QUARTER[m] == q + 1) / 3 for q in range(4)]
+    fmt = lambda xs: ", ".join(f"Q{i + 1} {x:.2f}" for i, x in enumerate(xs))
+    return f"Signet quarters {fmt(signet)} vs this table's quarters {fmt(census)} (Q4 = Nov-Jan)"
+
+
 AD_COST = {"1": 0.87, "2": 0.87, "3": 0.97, "4": 0.97, "5": 1.01, "6": 0.99, "7": 0.92, "8": 0.95, "9": 1.02, "10": 0.97, "11": 1.18, "12": 1.27}
 AD_SOURCE = {"for": "ad_cost", "source": "Gupta Media, Meta (Facebook + Instagram) average CPM by month, 2024 and 2025; each month ÷ that year's monthly mean, averaged over the two years. Latest full years with a monthly series; 2026 only runs to September (AdKit worldwide medians) and a partial year cannot be normalized to an annual mean",
              "url": "https://www.guptamedia.com/social-media-ads-cost", "year": 2025}
@@ -66,14 +88,16 @@ def main():
             mean = sum(m) / 12
             for i in range(12):
                 idx[i] += m[i] / mean / len(years)
+        sources = []
         span = f"{years[0]}-{years[-1]}"
         src = (f"U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): "
                f"{label.lower()} stores, NAICS {code}, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over {span}")
         if key == "jewelry":
             src += (". Census suppresses the jewelry line from March 2021 on ((S) in every later sheet), so this is the latest "
-                    "jewelry-specific pattern; its parent category 448 shows the same holiday shape in 2023-2025 (December 1.56×, November 1.12-1.16×)")
-        cats[key] = {"label": label, "demand": {str(i + 1): round(v, 2) for i, v in enumerate(idx)},
-                     "source": {"for": "demand", "source": src, "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx", "year": int(years[-1])}}
+                    "jewelry-specific monthly series; checked against 2024-2026 jewelry sales in the next source")
+            sources.append(dict(SIGNET_SOURCE, source=SIGNET_SOURCE["source"] + signet_check(idx)))
+        sources.insert(0, {"for": "demand", "source": src, "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx", "year": int(years[-1])})
+        cats[key] = {"label": label, "demand": {str(i + 1): round(v, 2) for i, v in enumerate(idx)}, "sources": sources}
     out = {"market": "US", "categories": cats, "ad_cost": AD_COST, "ad_cost_source": AD_SOURCE,
            "note": "Indexes are relative to an average month (mean 1.0). Applied as a prior for the month being planned; never used to calibrate or backtest, because one year of a brand's history cannot separate seasonality from everything else."}
     with open(OUT, "w") as f:

@@ -17,12 +17,20 @@
     "11": 1.04,
     "12": 2.23
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): jewelry stores, NAICS 44831, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2017-2019. Census suppresses the jewelry line from March 2021 on ((S) in every later sheet), so this is the latest jewelry-specific pattern; its parent category 448 shows the same holiday shape in 2023-2025 (December 1.56×, November 1.12-1.16×)",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2019
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): jewelry stores, NAICS 44831, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2017-2019. Census suppresses the jewelry line from March 2021 on ((S) in every later sheet), so this is the latest jewelry-specific monthly series; checked against 2024-2026 jewelry sales in the next source",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2019
+    },
+    {
+     "for": "demand",
+     "source": "Signet Jewelers quarterly sales, fiscal 2025 and 2026 (Feb 2024-Jan 2026; Form 10-K for FY2026 and the quarterly results releases): each quarter ÷ that year's quarterly mean, averaged over the two years, as a check that the 2017-2019 monthly shape still holds: Signet quarters Q1 0.90, Q2 0.90, Q3 0.81, Q4 1.39 vs this table's quarters Q1 0.88, Q2 0.94, Q3 0.86, Q4 1.32 (Q4 = Nov-Jan)",
+     "url": "https://www.sec.gov/Archives/edgar/data/832988/000083298826000055/sig-20260131.htm",
+     "year": 2026
+    }
+   ]
   },
   "apparel": {
    "label": "Clothing and accessories",
@@ -40,12 +48,14 @@
     "11": 1.13,
     "12": 1.57
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): clothing and accessories stores, NAICS 448, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): clothing and accessories stores, NAICS 448, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   },
   "beauty": {
    "label": "Beauty, health and personal care",
@@ -63,12 +73,14 @@
     "11": 1.0,
     "12": 1.14
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): beauty, health and personal care stores, NAICS 446, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): beauty, health and personal care stores, NAICS 446, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   },
   "home": {
    "label": "Furniture and home",
@@ -86,12 +98,14 @@
     "11": 1.07,
     "12": 1.07
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): furniture and home stores, NAICS 442, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): furniture and home stores, NAICS 442, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   },
   "electronics": {
    "label": "Electronics and appliances",
@@ -109,12 +123,14 @@
     "11": 1.15,
     "12": 1.35
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): electronics and appliances stores, NAICS 443, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): electronics and appliances stores, NAICS 443, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   },
   "hobby": {
    "label": "Sporting goods, hobby, music and books",
@@ -132,12 +148,14 @@
     "11": 1.12,
     "12": 1.45
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): sporting goods, hobby, music and books stores, NAICS 451, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): sporting goods, hobby, music and books stores, NAICS 451, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   },
   "food": {
    "label": "Food and drink",
@@ -155,12 +173,14 @@
     "11": 1.02,
     "12": 1.09
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): food and drink stores, NAICS 445, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): food and drink stores, NAICS 445, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   },
   "online": {
    "label": "Online store, other goods",
@@ -178,12 +198,14 @@
     "11": 1.13,
     "12": 1.28
    },
-   "source": {
-    "for": "demand",
-    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): online store, other goods stores, NAICS 454, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
-    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
-    "year": 2025
-   }
+   "sources": [
+    {
+     "for": "demand",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): online store, other goods stores, NAICS 454, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+     "year": 2025
+    }
+   ]
   }
  },
  "ad_cost": {

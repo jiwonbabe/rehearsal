@@ -442,7 +442,7 @@ func TestSeasonCatalogPerCategory(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if j := c.For("jewelry"); j == nil || j.Demand["12"] != 2.23 || j.Label != "Jewelry" || len(j.Sources) != 2 {
+	if j := c.For("jewelry"); j == nil || j.Demand["12"] != 2.23 || j.Label != "Jewelry" || len(j.Sources) != 3 {
 		t.Errorf("jewelry table: %+v", j)
 	}
 	if a := c.For("apparel"); a == nil || a.Demand["12"] != 1.57 || a.AdCost["12"] != 1.27 {

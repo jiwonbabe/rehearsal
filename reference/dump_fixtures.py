@@ -70,8 +70,8 @@ def main():
     dump("season", {"november": run_plan(nov, rates, season_brand), "december": run_plan(dec, rates, season_brand),
                     "december_flat": run_plan(dec, rates, season_brand, shocks=["season_flat"]),
                     "no_month": run_plan(plans[0], rates, season_brand),
-                    "goal_november": season_goal(brand["brand"]["goal_orders_per_month"], 1.04),
-                    "goal_december": season_goal(brand["brand"]["goal_orders_per_month"], 2.23)})
+                    "goal_november": season_goal(brand["brand"]["goal_orders_per_month"], season_brand["season"]["demand"]["11"]),
+                    "goal_december": season_goal(brand["brand"]["goal_orders_per_month"], season_brand["season"]["demand"]["12"])})
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
     dump("evidence", evidence(load_meta(os.path.join(ROOT, "data", "meta", "demo.brand"))))

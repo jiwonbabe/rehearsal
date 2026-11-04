@@ -408,8 +408,8 @@ func TestLaunchSpecMatchesEngine(t *testing.T) {
 		if out.AdRequest["adset"]["daily_budget"] != float64(out.Spec.AdsDailyCents) {
 			t.Errorf("adset %v", out.AdRequest["adset"])
 		}
-		if out.AdRequest["campaign"]["status"] != "PAUSED" {
-			t.Error("campaign not paused")
+		if out.AdRequest["campaign"]["status"] != "PAUSED" || out.AdRequest["campaign"]["is_adset_budget_sharing_enabled"] != false {
+			t.Errorf("campaign %v", out.AdRequest["campaign"])
 		}
 	}
 }

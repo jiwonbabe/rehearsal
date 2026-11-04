@@ -110,8 +110,9 @@ func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, 
 		}
 		startDay = now
 	}
+	// No campaign-level budget (the ad set carries it), so Meta requires is_adset_budget_sharing_enabled to be stated.
 	campaign = map[string]any{"name": "Rehearsal · " + title + " · " + spec.StartDate, "objective": "OUTCOME_TRAFFIC",
-		"status": "PAUSED", "special_ad_categories": []string{}}
+		"status": "PAUSED", "special_ad_categories": []string{}, "is_adset_budget_sharing_enabled": false}
 	adset = map[string]any{"name": fmt.Sprintf("%s · %s %s %s", title, country, info.Target["gender"], info.Target["age"]),
 		"daily_budget": spec.AdsDailyCents, "billing_event": "IMPRESSIONS", "optimization_goal": "LINK_CLICKS",
 		"bid_strategy": "LOWEST_COST_WITHOUT_CAP", "targeting": targeting,
@@ -125,7 +126,7 @@ func formOf(m map[string]any) url.Values {
 		switch x := v.(type) {
 		case string:
 			form.Set(k, x)
-		case int, float64:
+		case int, float64, bool:
 			form.Set(k, fmt.Sprint(x))
 		default:
 			raw, _ := json.Marshal(x)

@@ -873,3 +873,32 @@ func TestStaticFilesRevalidate(t *testing.T) {
 		t.Errorf("app.js: %d cache-control %q", resp.StatusCode, resp.Header.Get("Cache-Control"))
 	}
 }
+
+func TestImportCreatorsBecomesThePool(t *testing.T) {
+	ts := newTestServer(t)
+	csvText := "username,followers,avg_likes,biography\\n@real.one,8200,410,rings and coffee\\nreal.two,\\\"24,500\\\",700,daily looks\\nnobody,0,0,\\n"
+	var out struct {
+		Count    int                  `json:"count"`
+		Source   string               `json:"source"`
+		Creators []engine.CreatorStat `json:"creators"`
+	}
+	if code := call(t, ts, "POST", "/api/creators", `{"text":"`+csvText+`"}`, &out); code != 200 || out.Count != 2 || out.Source != "import" {
+		t.Fatalf("import: %d %+v", code, out)
+	}
+	if c := out.Creators[1]; c.Username != "real.two" || c.Followers != 24500 || c.FollowersBand != "mid" || c.EngagementRate != 0.029 {
+		t.Errorf("parsed creator: %+v", c)
+	}
+	var d struct {
+		CreatorBands []engine.CreatorBand `json:"creator_bands"`
+	}
+	call(t, ts, "POST", "/api/directions", "", &d)
+	if len(d.CreatorBands) != 2 || d.CreatorBands[0].Band != "small" || d.CreatorBands[1].Band != "mid" {
+		t.Errorf("bands from the imported pool: %+v", d.CreatorBands)
+	}
+	if code := call(t, ts, "POST", "/api/creators", `{"text":"[{\"account\":\"j\",\"followers\":\"12.5k\",\"engagement_rate\":\"3.1%\"}]"}`, &out); code != 200 || out.Count != 1 || out.Creators[0].EngagementRate != 0.031 || out.Creators[0].Followers != 12500 {
+		t.Errorf("json import: %d %+v", code, out)
+	}
+	if code := call(t, ts, "POST", "/api/creators", `{"text":"username\\nx\\n"}`, nil); code != 400 {
+		t.Errorf("useless list should be 400, got %d", code)
+	}
+}

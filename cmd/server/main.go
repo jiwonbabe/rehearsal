@@ -43,6 +43,7 @@ type server struct {
 	meta             *engine.MetaData
 	evidence         *engine.Evidence
 	metaHandle       string
+	imported         []engine.CreatorStat // creator list the owner pasted (a dataset export); becomes the creator pool
 	seasonNote       string
 	catalog          *engine.SeasonCatalog
 	goalMonth        int // month the goal was last sized for via "Use N for <month>"; 0 = owner's own number
@@ -101,6 +102,7 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/launch/calendar", s.locked(s.handleLaunchCalendar))
 	mux.HandleFunc("POST /api/launch/creator", s.locked(s.handleCreatorFit))
 	mux.HandleFunc("POST /api/meta/connect", s.locked(s.handleMetaConnect))
+	mux.HandleFunc("POST /api/creators", s.locked(s.handleImportCreators))
 	mux.HandleFunc("/api/evidence", s.locked(s.handleEvidence))
 	mux.HandleFunc("/api/i18n/ko", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, spark.KoreanMap()) }))
 	mux.HandleFunc("/setup.html", func(w http.ResponseWriter, r *http.Request) { http.Redirect(w, r, "/", http.StatusFound) })

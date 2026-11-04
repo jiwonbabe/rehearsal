@@ -189,14 +189,9 @@ func RunEvidence(m MetaData) Evidence {
 	}
 	e.Creators = []CreatorStat{}
 	for _, c := range m.Creators.Data {
-		band := "large"
-		if c.FollowersCount < 10000 {
-			band = "small"
-		} else if c.FollowersCount < 100000 {
-			band = "mid"
-		}
-		e.Creators = append(e.Creators, CreatorStat{Username: c.Username, Followers: c.FollowersCount, FollowersBand: band,
-			EngagementRate: roundTo(float64(avgInt(likesOf(c.Recent)))/c.FollowersCount, 3), PostMix: postMix(c.Recent), Biography: c.Biography})
+		cs := ImportedCreator(c.Username, c.FollowersCount, float64(avgInt(likesOf(c.Recent)))/c.FollowersCount, c.Biography)
+		cs.PostMix = postMix(c.Recent)
+		e.Creators = append(e.Creators, cs)
 	}
 	return e
 }
@@ -292,4 +287,22 @@ func EvidenceLabels(e Evidence, stats []StatRow) []string {
 		add(s.AgeBand)
 	}
 	return out
+}
+
+// FollowersBand: small (<10k), mid (<100k), large.
+func FollowersBand(followers float64) string {
+	switch {
+	case followers < 10000:
+		return "small"
+	case followers < 100000:
+		return "mid"
+	}
+	return "large"
+}
+
+// ImportedCreator: a creator from any public-profile source (business_discovery, a dataset export): username,
+// followers, engagement rate (average likes ÷ followers), biography. Post types are unknown until Spark reads them.
+func ImportedCreator(username string, followers, rate float64, bio string) CreatorStat {
+	return CreatorStat{Username: username, Followers: followers, FollowersBand: FollowersBand(followers),
+		EngagementRate: roundTo(rate, 3), PostMix: map[string]float64{}, Biography: bio}
 }

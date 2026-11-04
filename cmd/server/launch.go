@@ -186,7 +186,7 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		"creators":           s.suggestedCreators(),
 		"creator_math":       engine.CreatorMath(l.Plan.CreatorCount, s.rates, s.brand, l.Plan.Month),
 		"creator_bands":      engine.CreatorBands(s.rates, s.brand, l.Plan.Month),
-		"creators_source":    s.metaSource(),
+		"creators_source":    s.creatorSource(),
 	})
 }
 
@@ -405,12 +405,24 @@ func (s *server) reach() (map[string]any, string) {
 }
 
 // suggestedCreators: creators found for the brief (business_discovery) with engine stats and, when cached, Spark's fit read.
+// creatorSource: where the creator pool came from: "import" for a pasted list, else the Meta data's source.
+func (s *server) creatorSource() string {
+	if len(s.imported) > 0 {
+		return "import"
+	}
+	return s.metaSource()
+}
+
 func (s *server) suggestedCreators() []map[string]any {
-	if s.evidence == nil {
+	pool := s.imported
+	if len(pool) == 0 && s.evidence != nil {
+		pool = s.evidence.Creators
+	}
+	if len(pool) == 0 {
 		return nil
 	}
 	out := []map[string]any{}
-	for _, c := range s.evidence.Creators {
+	for _, c := range pool {
 		row := map[string]any{"username": c.Username, "followers": c.Followers, "followers_band": c.FollowersBand,
 			"engagement_rate": c.EngagementRate, "post_mix": c.PostMix, "biography": c.Biography, "fit": nil,
 			"expected_engagement": engine.ExpectedEngagement(c)}

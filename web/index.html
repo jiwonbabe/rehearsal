@@ -29,6 +29,13 @@
       <div style="font-weight:500">Check these and fix anything wrong. This decides which directions we suggest.</div>
     </div>
     <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #e6e7e2;padding-top:12px"><button id="connect" class="btn ghost" style="min-height:40px">Connect Instagram · demo account</button><span id="connect-status" style="font-size:12px;color:#2f5d8a"></span></div>
+    <details style="font-size:13px"><summary style="cursor:pointer;color:#5c6066">Have your own creator list? Paste it (CSV or JSON from a public-profile export, e.g. Bright Data)</summary>
+      <div style="display:flex;flex-direction:column;gap:8px;padding-top:8px">
+        <div style="color:#5c6066;line-height:1.5">Columns: username, followers, and engagement_rate or avg_likes (biography optional). The list becomes the creators every plan is counted against and the list Launch shows. Nothing here is demo data.</div>
+        <textarea id="creators-text" rows="5" placeholder="username,followers,avg_likes&#10;@someone,8200,410" style="font-family:IBM Plex Mono,monospace;font-size:12px;border:1px solid #d9dbd4;border-radius:8px;padding:8px"></textarea>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button id="creators-import" class="btn ghost" style="min-height:36px;font-size:13px">Use these creators</button><span id="creators-status" style="font-size:12px;color:#2f5d8a"></span></div>
+      </div>
+    </details>
     <div id="aud" style="display:none;flex-direction:column;gap:6px;font-size:14px;line-height:1.5">
       <div class="label">Demo account followers · mock Instagram insights <span id="aud-prov"></span></div>
       <div id="aud-line"></div>
@@ -210,6 +217,14 @@ $('read').onclick = async () => {
     G.prof = p; if (p.success_metric) G.unit = p.success_metric; G.pick = p.ambition || G.pick; showGoals();
     try { sessionStorage.setItem('rehearsal.read', JSON.stringify(p)); } catch (err) { /* private window */ }
   } catch (e) { $('read-status').textContent = 'Could not read: ' + e.message; $('read-status').style.color = '#c2410c'; }
+};
+$('creators-import').onclick = async () => {
+  const st = $('creators-status'); st.style.color = '';
+  try {
+    const out = await api('/api/creators', { text: $('creators-text').value });
+    st.textContent = `Using ${out.count} imported creators · ${out.creators.map(c => '@' + c.username).slice(0, 4).join(', ')}${out.count > 4 ? '…' : ''}`;
+    st.replaceChildren(st.textContent, ' ', prov('real', 'Real · your list'));
+  } catch (e) { st.textContent = 'Could not read the list: ' + e.message; st.style.color = '#c2410c'; }
 };
 $('connect').onclick = async () => {
   try {

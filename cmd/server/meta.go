@@ -28,7 +28,9 @@ func (s *server) connectMeta(source, handle string) (int, string) {
 		}
 		ev := engine.RunEvidence(m)
 		s.meta, s.evidence, s.metaHandle = &m, &ev, handle
-		s.brand.CreatorPool = ev.Creators
+		if len(s.imported) == 0 {
+			s.brand.CreatorPool = ev.Creators
+		}
 		return 200, ""
 	case "instagram":
 		return 400, "Instagram Login needs a token and Meta App Review; use source \"mock\" for the demo"

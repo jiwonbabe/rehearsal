@@ -98,7 +98,7 @@ function creatorsCard(d) {
 // creatorList: accounts found for the search terms, with engine stats and Spark's fit read when cached.
 function creatorList(list, source) {
   const box = el('div', 'display:flex;flex-direction:column;gap:8px;border-top:1px solid #e6e7e2;padding-top:12px');
-  box.appendChild(el('div', 'font-size:13.5px;font-weight:600', source === 'mock' ? 'Found for your search terms · Instagram · demo data, fictional accounts' : 'Found for your search terms · Instagram'));
+  box.appendChild(el('div', 'font-size:13.5px;font-weight:600', source === 'mock' ? 'Found for your search terms · Instagram · demo data, fictional accounts' : source === 'import' ? 'Your imported creator list · real public profiles' : 'Found for your search terms · Instagram'));
   const tone = { high: '#2f6f3e', medium: '#8a6d1f', low: '#c2410c' };
   list.slice().sort((a, b) => ({ high: 0, medium: 1, low: 2 }[(a.fit || {}).fit] ?? 3) - ({ high: 0, medium: 1, low: 2 }[(b.fit || {}).fit] ?? 3)).forEach(cr => {
     const row = el('div', 'display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:1.45');

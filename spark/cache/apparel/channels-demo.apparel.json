@@ -1,0 +1,32 @@
+{
+ "channels": [
+  {
+   "channel": "instagram_reels",
+   "how": "Post calm on-hand try-ons in natural light a few times each week, opening with the fabric close to camera. First post a slow turn in the fall linen set showing how it moves from front to hem.",
+   "verdict": "lead",
+   "why_category": "Shoppers for linen basics save wearing clips to compare drape and fit before ordering the fall drop.",
+   "why_data": "Your Reels averaged 5149 reach with 2.39 times the reach of feed."
+  },
+  {
+   "channel": "instagram_feed",
+   "how": "Share clean on-hand flat photos in earthy tones weekly with a simple styling caption. First post the fall drop styled as mix-and-match outfits on a calm background.",
+   "verdict": "support",
+   "why_category": "Women shopping everyday basics use saved feed photos to build capsule outfits and return to buy later.",
+   "why_data": "Your feed posts averaged 2155 reach and 103 saves."
+  },
+  {
+   "channel": "threads",
+   "how": "Post short open questions and behind-the-seams notes about linen care a few times each week. First post ask which fall color to restock next with photos of the options worn on hand.",
+   "verdict": "support",
+   "why_category": "Shoppers for small-made basics ask honest fit and fabric questions in replies before trusting a new brand enough to order.",
+   "why_data": "Your Threads averaged 2456 views and 22 replies."
+  },
+  {
+   "channel": "x",
+   "how": "Do not post here for now and put that time into Reels fittings. If you test later, start with a fall drop wearing photo tied to a Threads question.",
+   "verdict": "skip",
+   "why_category": "Buyers of soft everyday basics rarely shop from quick debate feeds where fit and fabric trust cannot be shown.",
+   "why_data": "20% of US adults aged 30-49 say they ever use X."
+  }
+ ]
+}

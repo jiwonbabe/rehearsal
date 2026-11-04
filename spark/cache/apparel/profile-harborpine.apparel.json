@@ -1,0 +1,23 @@
+{
+ "ambition": "stretch",
+ "best_post_type": "on_hand",
+ "confidence": "medium",
+ "handle": "harborpine.apparel",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "80-200"
+ },
+ "market": "US",
+ "post_types_seen": {
+  "close_up": "some",
+  "flat_lay": "most",
+  "on_hand": "some",
+  "on_neck": "none"
+ },
+ "style": "Calm minimal earthy style",
+ "success_metric": "orders",
+ "what_they_sell": "Linen and cotton everyday basics",
+ "why": "Bio states small made basics and grid centers on fall drop tile",
+ "why_goal": "Success means converting fall drop attention into orders while seasonal interest is high"
+}

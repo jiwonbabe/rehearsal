@@ -1,0 +1,143 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "홍보를 부탁드린 분들 중 절반이 글을 올리지 않으셔서, 받으시는 사진이 훨씬 적어지는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "글이 잘 안 보여서, 부탁드린 분들의 글을 보는 사람이 줄어드는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "손님들이 사장님 가게가 아니라 옆 가게 세일에서 사시는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "계절 특수가 없어서, 부탁드린 분들의 글로 물건이 덜 팔리는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "배송이 늦어져서, 게시물로 생긴 좋은 흐름이 끊기는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "글 하나가 운 좋게 잘 터져야만 계획이 되는 건지 확인하는 추정이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "나눠드린 제품이 알려지려면 글도 잘 보이고 부탁드린 분들도 올려주셔야 해서, 그 점을 보는 추정이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "올라오는 글이 적은데 옆 가게까지 세일을 해서, 주문이 줄어드는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "season_flat"
+   ],
+   "why": "올라오는 글도 별로 없는데 장사도 조용한 달이라, 찾는 분이 아주 적어지는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "올라오는 글도 적은데 배송까지 늦어져서, 손님들의 믿음이 깨지는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "보는 사람이 적은데 옆 가게가 세일을 해서, 물건이 잘 안 팔리는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "글이 잘 안 보이는데 장사도 조용한 달이라, 새로 오시는 손님이 거의 없는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "글을 보는 분도 적고 배송도 늦어져서, 사려던 분들이 그만두시는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "옆 가게 세일로 손님을 뺏기는데 배송까지 늦어져서 사장님이 어려워지는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "장사가 조용한 달에 옆 가게까지 세일을 해서, 더 바랄 게 없어지는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "올라오는 글도 적고 잘 보이지도 않는데 옆 가게 세일까지 겹쳐서, 판매가 많이 줄어드는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "올라오는 글도 적고 잘 보이지도 않는데 장사까지 조용한 달이라, 금방 어려워지는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "올라오는 글도 적은데 옆 가게 세일과 배송 늦음이 겹쳐서, 판매가 많이 줄어드는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "올라오는 글도 적고 잘 보이지도 않고 배송까지 늦어져서, 좋은 흐름이 멈추는 상황을 짐작한 내용이에요."
+  },
+  {
+   "codes": [
+    "viral_post",
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "글 하나가 운 좋게 잘돼서, 글을 안 올리신 분들의 빈자리를 메울 수 있는지 보는 추정이에요."
+  }
+ ]
+}

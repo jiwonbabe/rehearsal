@@ -1,0 +1,198 @@
+{
+ "directions": [
+  {
+   "caution": null,
+   "id": "pay_for_reach",
+   "plain": "We pick your best photos and show them to more women like your buyers. You spend a little each day and we keep what works.",
+   "ranges": {
+    "ads_usd": [
+     150,
+     600
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 1,
+   "title": "Boost Your Best Wearing Photos",
+   "why_for_you": "Your on-hand photos get the most response, so we would back those first. Last month came in above the expected range, so interest is there to build on.",
+   "you_would_do": "Post three to five times a week using mostly on-hand shots and pick two winners to back with ad money."
+  },
+  {
+   "caution": null,
+   "id": "one_week_sale",
+   "plain": "You lower prices for a single week and tell followers when it ends. Shoppers who were waiting choose to buy now.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     400
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     10,
+     25
+    ],
+    "promo_week": [
+     1,
+     4
+    ]
+   },
+   "rank": 2,
+   "title": "Run One Simple Discount Week",
+   "why_for_you": "Sales have lifted buying a lot for you in the past. Your on-hand shots can carry the news well.",
+   "you_would_do": "Post four to five times that week with mostly on-hand and close-up shots and remind people when the sale ends."
+  },
+  {
+   "caution": null,
+   "id": "just_post",
+   "plain": "You share new photos almost every weekday and spend nothing extra. You grow slowly from people who already follow you.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 3,
+   "title": "Post Often With No Extra Spend",
+   "why_for_you": "Your on-hand photos already get the most response. Our past checks were right most weeks, so this is a safe base.",
+   "you_would_do": "Post four to five times a week with mostly on-hand shots plus a few close-ups and flat lays."
+  },
+  {
+   "caution": "Last month only one of a few creators posted, so this can be slow and uneven.",
+   "id": "send_to_creators",
+   "plain": "You mail free pieces to small creators your buyers follow. They try them on and share wearing photos if they like them.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     50
+    ],
+    "creator_count": [
+     4,
+     10
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 4,
+   "title": "Send Pieces To New Creators",
+   "why_for_you": "Creator wearing shots tend to earn strong response when they do post.",
+   "you_would_do": "Message about ten creators, ship up to eight pieces, and ask for on-hand wearing photos."
+  }
+ ],
+ "season_note": "December brings strong shopping interest at 1.57 with higher ad prices at 1.27 so favor low-cost posts and a clear sale."
+}

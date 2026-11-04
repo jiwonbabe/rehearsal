@@ -1,0 +1,142 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "광고비가 오르면 같은 돈으로 보여주는 횟수가 훨씬 줄어들어요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop"
+   ],
+   "why": "공짜로 보여주는 게 줄어들 때 하필 광고비도 더 나가요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "광고비가 비싼데 다른 가게가 세일을 해서 손님을 뺏어가면 더 아파요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "돈을 더 써서 손님을 데려왔는데 배송이 늦어져서 헛돈이 돼요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat"
+   ],
+   "why": "짐작했던 바쁜 시기가 오지 않으면 비싼 광고비가 더 아까워요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "광고비도 비싸고 다른 가게 세일에 배송까지 늦으면 장사가 많이 어려워져요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "돈 낸 홍보도 공짜로 보여주는 것도 다 잘 안 될 때 다른 가게가 값을 내리면 힘들어요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "광고비는 더 드는데 공짜로 보여주는 건 줄고 배송도 늦어져요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat",
+    "competitor_sale"
+   ],
+   "why": "손님이 잘 안 늘 때 광고비는 비싸고 다른 가게가 세일을 하면 돈이 아까워져요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "찾는 사람이 그대로인데 주문까지 늦게 가면 비싼 홍보가 소용이 없어요."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "viral_post"
+   ],
+   "why": "운 좋게 글이 한번 잘 되면 돈 낸 홍보를 너무 많이 쓴 게 가려져요."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "돈 내고 밀기 전에 제일 좋은 사진을 공짜로 보는 여성분들이 줄어들어요."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "맞설 할인도 없는데 다른 가게가 세일을 하면 손님이 빠져나가요."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "짐작했던 바쁜 철이 왔는데 돈 낸 글이 그때를 놓쳐요."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "배송이 늦으면 돈 주고 데려온 손님이 그냥 떠나가요."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "운 좋은 글 하나 때문에 약한 홍보도 잘한 것처럼 보여요."
+  },
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "올려주는 분이 아무도 없으면 실패는 다 사장님 광고 탓이 돼요."
+  },
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "찾는 사람이 줄어도 밀어줄 할인도 없어서 장사를 살리기 어려워요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "공짜로 보여주는 게 줄고 다른 가게가 세일을 하면 홍보가 다 떠맡아요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "광고비를 헛쓰지 않아도 보여주는 게 적고 다른 가게 세일에 늦어지면 타격이 커요."
+  }
+ ]
+}

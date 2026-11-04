@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "Ad prices jump so your $200-$500 buys far fewer views."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Free reach falls so you have fewer strong posts to boost."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "A rival sale steals shoppers you just paid to reach."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "No seasonal lift means paid views convert less."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "You pay for reach then a week 3 delay kills checkout."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "One lucky viral post checks if the plan needs luck to work."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop"
+   ],
+   "why": "You pay more for ads while free reach also collapses."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Expensive ads send shoppers who then buy from the rival sale."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat"
+   ],
+   "why": "Higher ad costs hurt more when shoppers are not buying seasonally."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "You overpay for clicks that then quit over slow shipping."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "viral_post"
+   ],
+   "why": "Even a lucky viral post cannot offset much higher ad costs."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Fewer free views and a rival sale leave boosted posts with little to convert."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low organic reach plus flat demand starves your best photos."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Flat demand plus a rival sale tanks conversion on paid reach."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Costly ads, less free reach, and a rival sale waste your budget."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "You pay more for less reach in a month with no seasonal help."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Paid and free reach both drop before shipping issues kill sales."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Expensive ads convert poorly against a rival sale with flat demand."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "High ad costs are wasted when rivals and delays block checkout."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "You pay premium ad prices with no season lift and late shipping."
+  }
+ ]
+}

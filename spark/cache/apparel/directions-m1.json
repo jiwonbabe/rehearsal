@@ -1,0 +1,198 @@
+{
+ "directions": [
+  {
+   "caution": null,
+   "id": "just_post",
+   "plain": "You post often and spend nothing. You keep the steady pace that works.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 1,
+   "title": "Keep Posting What Already Works",
+   "why_for_you": "Last month you came very close to your goal with no spend. Your on hand photos get the most love.",
+   "you_would_do": "Post five times a week using mostly on hand photos with a few close ups and flat lays."
+  },
+  {
+   "caution": "Some sent pieces never get posted, so start early and do not count on every parcel.",
+   "id": "send_to_creators",
+   "plain": "You send free pieces to women your shopper follows. They post real wearing photos for you.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     4,
+     10
+    ],
+    "post_mix": {
+     "close_up": [
+      0.1,
+      0.3
+     ],
+     "flat_lay": [
+      0.1,
+      0.2
+     ],
+     "on_hand": [
+      0.5,
+      0.7
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 2,
+   "title": "Send Pieces To Small Creators",
+   "why_for_you": "Creator posts earn more love than your own posts. That fits young women who trust real faces.",
+   "you_would_do": "Message twenty small creators your shopper follows and ship pieces to those who reply, then share their on hand photos."
+  },
+  {
+   "caution": "Use this sparingly or shoppers may learn to wait for a sale.",
+   "id": "one_week_sale",
+   "plain": "You pick one week for a small price cut. You tell followers it ends on Sunday.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     15,
+     25
+    ],
+    "promo_week": [
+     1,
+     4
+    ]
+   },
+   "rank": 3,
+   "title": "Run One Simple Discount Week",
+   "why_for_you": "Sale weeks pull much stronger in your past data. That can help in a busy shopping month.",
+   "you_would_do": "Post five times that week with mostly on hand and close up photos and put the sale dates in each caption."
+  },
+  {
+   "caution": "Ads cost more this month and you spent nothing on ads last month, so test small before you spend big.",
+   "id": "pay_for_reach",
+   "plain": "You put money behind photos that already work. You show them to more women like your buyer.",
+   "ranges": {
+    "ads_usd": [
+     200,
+     600
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 4,
+   "title": "Boost Your Best Posts With Ads",
+   "why_for_you": "Your on hand photos already get the most love, so they are the safest to boost.",
+   "you_would_do": "Pick your two best on hand posts and show them as ads all month to women like your buyer."
+  }
+ ],
+ "season_note": "November brings stronger demand at 1.13 but pricier ads at 1.18."
+}

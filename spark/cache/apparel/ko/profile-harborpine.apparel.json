@@ -1,0 +1,23 @@
+{
+ "ambition": "stretch",
+ "best_post_type": "on_hand",
+ "confidence": "medium",
+ "handle": "harborpine.apparel",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "80-200"
+ },
+ "market": "US",
+ "post_types_seen": {
+  "close_up": "some",
+  "flat_lay": "most",
+  "on_hand": "some",
+  "on_neck": "none"
+ },
+ "style": "차분하고 깔끔하고 자연스러운 스타일입니다",
+ "success_metric": "orders",
+ "what_they_sell": "린넨과 면으로 만든 매일 입기 편한 기본 옷입니다",
+ "why": "소개글에 소량으로 만든 기본 옷이라고 쓰여 있고, 게시물 목록은 가을 신상품 안내에 맞춰져 있습니다",
+ "why_goal": "가을 신상품에 대한 관심이 높을 때 주문으로 이어지면 성공이라고 할 수 있습니다"
+}

@@ -1,0 +1,145 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "Sale week brings fewer extra buyers than hoped."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "A rival sale steals buyers in weeks 2-3."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Fewer followers see your sale posts."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "No seasonal boost to lift the sale week."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late shipping scares buyers off after week 3."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "Checks you are not counting on viral luck to hit goal."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale"
+   ],
+   "why": "Weak sale plus rival sale leaves few buyers."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop"
+   ],
+   "why": "Weak sale plus low reach means few see and buy."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat"
+   ],
+   "why": "Weak sale with no seasonal help falls flat."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "shipping_delay"
+   ],
+   "why": "Weak sale plus shipping worries kills buying."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "Low reach plus rival sale hides your offer."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Rival sale wins when no season lifts all buying."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Few see posts and no season lifts demand."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "Weak sale, rival sale, and low reach together."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Weak sale loses to rival with no season help."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Weak sale few see with no season boost."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Hidden posts lose to rival without season demand."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Weak sale loses to rival then shipping delays hit."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Weak sale few see then shipping worries stop buying."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Weak sale with no season lift plus shipping delay."
+  }
+ ]
+}

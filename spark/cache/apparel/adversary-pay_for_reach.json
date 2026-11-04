@@ -1,0 +1,142 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "cpm_spike"
+   ],
+   "why": "Your ad budget buys far fewer views when ad costs jump."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop"
+   ],
+   "why": "You pay more for ads right when free reach drops too."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Pricey ads hurt more when a rival sale steals buyers."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "shipping_delay"
+   ],
+   "why": "You pay extra to drive shoppers who then hit a shipping delay."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat"
+   ],
+   "why": "Costly ads sting when the expected busy season never comes."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Expensive ads plus a rival sale and late shipping crush results."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Paid and free reach both falter while a competitor discounts."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Ads cost more while free reach falls and delivery runs late."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat",
+    "competitor_sale"
+   ],
+   "why": "High ad costs with flat demand and a rival sale waste spend."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Pricey boosts fail when demand is flat and orders arrive late."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "viral_post"
+   ],
+   "why": "A lucky viral post can hide that your paid boosts overspent."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Fewer women see your best photos for free before you boost them."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "A rival sale pulls buyers away while you have no offer to fight back."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "Your boosted posts miss the seasonal rush you counted on."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late shipping turns your paid traffic into lost sales."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "One lucky post can make a weak boost plan look good."
+  },
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "With no creators posting, every miss falls on your ads."
+  },
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "You have no promo to rescue sales if demand softens."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Less free reach plus a rival sale leaves boosts to do all the work."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Low reach, a rival sale, and delays hit even without ad waste."
+  }
+ ]
+}

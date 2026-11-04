@@ -1,0 +1,23 @@
+{
+ "ambition": "stretch",
+ "best_post_type": "flat_lay",
+ "confidence": "medium",
+ "handle": "lumen.skincare",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "30-80"
+ },
+ "market": "US",
+ "post_types_seen": {
+  "close_up": "some",
+  "flat_lay": "most",
+  "on_hand": "none",
+  "on_neck": "none"
+ },
+ "style": "깨끗하고 차분한 느낌으로 베이지색 위주로 단정하게 정리하셨습니다.",
+ "success_metric": "orders",
+ "what_they_sell": "매일 쓰기 편한 간단한 스킨케어와 세트 상품을 파십니다.",
+ "why": "소개글에는 로스앤젤레스를 중심으로 미국 배송을 하신다고 나와 있고, 게시물은 베이지색 제품 사진의 겨울 세트 위주로 올리셨습니다.",
+ "why_goal": "지금 새로 내놓으신 때라 계절 때문에 관심을 가지신 분들이 세트 상품을 주문하시면 성공이라고 보시면 됩니다."
+}

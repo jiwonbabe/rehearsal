@@ -1,0 +1,143 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "선물로 보내드린 제품의 절반은 게시물로 올라오지 않습니다."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "손님들이 사장님의 정상가 제품 대신 경쟁 업체의 세일 제품을 사십니다."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "계절 특수도 없어서 올라오는 게시물이 적으면 메우기 어렵습니다."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "홍보해 주시는 분들의 사진을 보시는 손님이 줄어듭니다."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "게시물이 올라온 뒤에 배송이 늦어지면 손님들이 사고 싶은 마음이 식어버립니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "게시물을 올려주시는 분도 적고, 그 게시물을 보시는 손님도 적습니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "게시물을 올려주시는 분은 적은데 손님들은 경쟁 업체의 세일로 몰리십니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "season_flat"
+   ],
+   "why": "게시물을 올려주시는 분도 적고 계절 특수도 없어서 빈자리가 그대로 드러납니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "게시물을 올려주시는 분도 적고 배송까지 늦어지면 손님들이 구매를 멈추십니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "viral_post"
+   ],
+   "why": "운 좋게 반응이 좋은 게시물이 하나 있어도, 절반이나 비어버린 자리를 채우지 못합니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "게시물을 보시는 분도 적고, 보신 분들마저 경쟁 업체의 세일 제품을 사십니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "게시물을 보시는 분도 적고 계절 특수도 없어서 판매에 도움이 되지 않습니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "게시물을 보시는 분도 적고, 배송까지 늦어지면 나머지 손님도 떠나십니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "계절 특수도 없는데 경쟁 업체의 세일에 손님들을 빼앗기게 됩니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "경쟁 업체의 세일에 손님들을 빼앗기고, 늦은 배송에 나머지 손님도 떠나십니다."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "계절 특수도 없고 배송도 늦어지면 게시물을 올려도 보람이 없습니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "올려주시는 분도 적고 보시는 분도 적고, 손님들은 경쟁 업체의 세일 제품을 사십니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "올려주시는 분도 적고 보시는 분도 적고, 계절 특수도 없어서 도와주지 못합니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "올려주시는 분도 적고 보시는 분도 적고, 배송까지 늦어지면 손님들이 사지 않으십니다."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "반응이 아주 좋은 게시물이 하나 있어도, 게시물도 적고 보시는 분도 적으면 살리기 어렵습니다."
+  }
+ ]
+}

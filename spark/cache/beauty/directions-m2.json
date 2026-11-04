@@ -1,0 +1,198 @@
+{
+ "directions": [
+  {
+   "caution": null,
+   "id": "one_week_sale",
+   "plain": "You pick one week to offer a small discount. You post every day that week to remind people.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     300
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.4,
+      0.6
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.2,
+      0.4
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     0.15,
+     0.25
+    ],
+    "promo_week": [
+     1,
+     4
+    ]
+   },
+   "rank": 1,
+   "title": "One Week Sale for Holiday Shoppers",
+   "why_for_you": "Sale weeks pull extra strong for you, and your own posts held up last month even when creators went quiet.",
+   "you_would_do": "Post five times that sale week using mostly close-ups and a few on-hand shots."
+  },
+  {
+   "caution": null,
+   "id": "just_post",
+   "plain": "You post often and spend nothing. You show the jewelry up close so people stop and look.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.4,
+      0.6
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.2,
+      0.4
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 2,
+   "title": "Keep Posting Close-Ups Every Week",
+   "why_for_you": "Close-up posts get the most love from your shoppers, and your own posts held steady last month.",
+   "you_would_do": "Post four to five times each week with mostly close-ups and some on-hand shots."
+  },
+  {
+   "caution": "Ads cost more this month, so results can swing a lot.",
+   "id": "pay_for_reach",
+   "plain": "You pay to show your best posts to more people. You pick only the photos that already do well.",
+   "ranges": {
+    "ads_usd": [
+     150,
+     400
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.4,
+      0.6
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.2,
+      0.4
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 3,
+   "title": "Boost Best Posts to Young Women",
+   "why_for_you": "Your close-ups already earn strong attention from young shoppers.",
+   "you_would_do": "Post three to five times each week and put ad money behind your top two close-ups."
+  },
+  {
+   "caution": "Last month only one of four creators posted, so this can be slow and quiet.",
+   "id": "send_to_creators",
+   "plain": "You mail jewelry to small creators who fit your style. They post wearing shots for you.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     4,
+     12
+    ],
+    "post_mix": {
+     "close_up": [
+      0.3,
+      0.5
+     ],
+     "flat_lay": [
+      0.1,
+      0.2
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 4,
+   "title": "Send Pieces to More Micro Creators",
+   "why_for_you": "Creator posts can bring lots of new eyes, and on-hand shots help young shoppers see the fit.",
+   "you_would_do": "Message twenty new creators, send pieces to up to twelve, and ask for close-up and on-hand photos."
+  }
+ ],
+ "season_note": "December brings stronger demand but pricier ads with demand at 1.14 and ad costs at 1.27."
+}

@@ -1,0 +1,143 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "Half the pieces you gift never turn into posts."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "Shoppers buy the competitor's sale instead of your full-price piece."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "No seasonal bump arrives to cover thin creator posts."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Fewer shoppers ever see the creator photos you earn."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late delivery kills buying buzz after posts go live."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "Few creators post and few shoppers see those posts."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Few creators post while shoppers chase the competitor's sale."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "season_flat"
+   ],
+   "why": "Few creators post and no season lift hides the gap."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "Few creators post and late shipping stops buyers."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "viral_post"
+   ],
+   "why": "Even one lucky post cannot replace half the creators missing."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Few see your posts and those who do buy the rival sale."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Few see your posts and no season lift helps sales."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Few see your posts and late shipping loses the rest."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Rival sale steals buyers with no season lift to help you."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Rival sale steals buyers and late shipping loses the rest."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "No season lift and late shipping leave posts with no payoff."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Few post, few see it, and shoppers buy the rival sale."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Few post, few see it, and no season lift saves you."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Few post, few see it, and late shipping stops buyers."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "Even a viral post cannot save few posts seen by few."
+  }
+ ]
+}

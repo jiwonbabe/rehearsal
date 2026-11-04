@@ -1,0 +1,23 @@
+{
+ "ambition": "stretch",
+ "best_post_type": "flat_lay",
+ "confidence": "medium",
+ "handle": "lumen.skincare",
+ "likely_customer": {
+  "age": "25-34",
+  "gender": "women",
+  "price_band": "30-80"
+ },
+ "market": "US",
+ "post_types_seen": {
+  "close_up": "some",
+  "flat_lay": "most",
+  "on_hand": "none",
+  "on_neck": "none"
+ },
+ "style": "Clean calm minimal beige aesthetic.",
+ "success_metric": "orders",
+ "what_they_sell": "Minimal everyday skincare routine and kits.",
+ "why": "Bio shows Los Angeles base with US shipping and grid centers on winter kit with beige product shots.",
+ "why_goal": "Success means converting seasonal interest into kit orders during this launch moment."
+}

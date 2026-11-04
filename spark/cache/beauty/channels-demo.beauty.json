@@ -1,0 +1,39 @@
+{
+ "channels": [
+  {
+   "channel": "instagram_reels",
+   "how": "Post on-hand texture clips in beige bathroom light twice weekly with a texture hook in the opening moment, starting with the winter kit routine on skin from pump to blend.",
+   "verdict": "lead",
+   "why_category": "Shoppers for calm everyday skincare save and shop from short wearing shots that prove texture and routine fit before they order kits.",
+   "why_data": "Reels averaged 6191 in reach with 3.22 reach vs feed."
+  },
+  {
+   "channel": "instagram_feed",
+   "how": "Share beige flat-lay and on-hand stills a couple times each week to anchor the winter kit, starting with a calm hero shot of the full kit laid out together.",
+   "verdict": "support",
+   "why_category": "Buyers of minimal skincare use the grid to compare kits and trust clean stills when deciding to gift or restock.",
+   "why_data": "Feed posts averaged 1922 in reach with 88 in saves."
+  },
+  {
+   "channel": "threads",
+   "how": "Post short routine questions and morning notes a few mornings each week, starting with a Los Angeles sensitive-skin diary asking followers to pick their winter kit step.",
+   "verdict": "support",
+   "why_category": "Skincare shoppers ask sensitive-skin questions in replies and trust honest routine talk before committing to a new kit.",
+   "why_data": "Threads averaged 2745 views with 24 replies."
+  },
+  {
+   "channel": "tiktok",
+   "how": "Hold TikTok for now and revisit only after Reels routine proves out, starting later with a reposted on-hand texture clip if you test.",
+   "verdict": "skip",
+   "why_category": "New skincare discovery there rewards fast hooks and face-led demos, which does not match this calm beige stills grid yet.",
+   "why_data": "65% of US adults 18-29 use TikTok."
+  },
+  {
+   "channel": "x",
+   "how": "Skip posting here for this launch and keep routine talk on Threads, returning only with a care tip thread if launch questions spike.",
+   "verdict": "skip",
+   "why_category": "Skincare kit buyers rarely shop from text debate there and need visual proof of texture and results before ordering.",
+   "why_data": "31% of US adults 18-29 use X."
+  }
+ ]
+}

@@ -1,0 +1,143 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "creator_noshow"
+   ],
+   "why": "Half your creators never post, so you get far fewer photos."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Fewer people see creator posts when reach drops."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "Shoppers buy from the competitor sale instead of you."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "Without seasonal lift, creator posts drive less buying."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late shipments kill momentum from creator posts."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "Checks if the plan only works when one post gets lucky."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "Seeding plans need both reach and creators to show up."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale"
+   ],
+   "why": "Fewer posts plus a rival sale means fewer orders."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "season_flat"
+   ],
+   "why": "Few posts in a flat month means very little demand."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "shipping_delay"
+   ],
+   "why": "Few posts plus late delivery ruins trust."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Fewer eyes plus a rival sale hurts conversion."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low reach in a flat month starves new customers."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Few people see posts and late shipping stops buyers."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Rival sale steals buyers while delays hurt you."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Rival sale in a flat month leaves you nothing extra."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Few posts, low reach, and a rival sale together crush sales."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Few posts with low reach in a flat month fails fast."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Few posts plus rival sale and delays kill sales."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Few posts, low reach, and delays stop momentum."
+  },
+  {
+   "codes": [
+    "viral_post",
+    "creator_noshow",
+    "reach_drop"
+   ],
+   "why": "Tests if one lucky post can save missing creators."
+  }
+ ]
+}

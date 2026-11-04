@@ -1,0 +1,142 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "한 번 하시는 세일 주간에 주문이 생각보다 적게 들어옵니다."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "2-3주 차에 손님들이 다른 가게 세일을 고르십니다."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "장사가 잘될 달인데도 손님이 늘지 않습니다."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "세일 글을 보시는 분이 줄어듭니다."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "3주 차에 배송이 늦어져서 세일 뒤의 좋은 흐름이 끊어집니다."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "글 하나가 운 좋게 잘 돼야만 계획이 되는지를 살펴봅니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale"
+   ],
+   "why": "힘이 약한 세일이 다른 가게 세일에 밀립니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat"
+   ],
+   "why": "조용한 달에 세일까지 약하면 더 힘들어집니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop"
+   ],
+   "why": "이미 약한 세일을 보시는 분이 더 줄어듭니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "shipping_delay"
+   ],
+   "why": "세일이 약한데 배송까지 늦어지면 다시 주문하시는 분이 끊어집니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "손님이 적은데 다른 가게 세일까지 겹쳐서 손님이 나뉩니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "글이 잘 안 퍼져서 손님들이 다른 가게 글만 보게 됩니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "조용한 달에 보는 분까지 적어서 세일이 힘을 못 씁니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "viral_post"
+   ],
+   "why": "약한 세일이 운 좋게 터져야 버티는지를 살펴봅니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "다른 가게 세일에 사장님 쪽 배송 지연까지 겹쳐서 믿음이 떨어집니다."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "조용한 달에 배송이 느리면 주문으로 이어지지 않습니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "세일이 약한데 다른 가게 세일까지 겹치고 때가 돼도 손님이 늘지 않습니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "사장님 세일을 보시는 분은 적은데 다른 가게가 손님을 가져갑니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "글이 잘 안 퍼지고 손님도 적어서 약한 세일이 가라앉습니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "약한 세일이 다른 가게에 밀린 뒤에 배송 문제까지 겹쳐서 끝납니다."
+  }
+ ]
+}

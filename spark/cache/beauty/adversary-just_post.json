@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "With no ads, fewer people seeing posts means fewer sales."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "Shoppers pick the rival sale instead of your full-price posts."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late shipping kills the trust your posts were building."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "Posts alone cannot make up for a missing seasonal rush."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "Checks if the plan only works when one post gets lucky."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Fewer views plus a rival sale leaves your posts with no chance."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Fewer views plus late shipping stops post-driven trust."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low reach in a flat month leaves posting with no lift."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "Tests if even a lucky post can save low reach."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Rival sale plus late shipping ruins post-driven buying."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Rival sale in a flat month buries your organic posts."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "Slow shipping in a flat month wastes weeks of posting."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Tests if a lucky post can beat the rival sale."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "Tests if a lucky post can survive late shipping."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "viral_post"
+   ],
+   "why": "Tests if a lucky post can create its own season."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Low reach, rival sale, and delays starve post sales."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Low reach plus rival sale in a flat month kills posts."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "Low reach with delays in a flat month wastes posting."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "Rival sale, delays, and no season overwhelm good posts."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Tests if luck can save low reach during a rival sale."
+  }
+ ]
+}

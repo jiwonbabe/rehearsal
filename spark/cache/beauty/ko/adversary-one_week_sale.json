@@ -1,0 +1,145 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "세일 주간에 생각보다 추가 손님이 덜 오시는 경우입니다."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "2-3주에 다른 가게 세일 때문에 손님을 빼앗기는 경우입니다."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "팔로워분들이 사장님의 세일 글을 덜 보게 되는 경우입니다."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "계절 특수가 없어서 세일 주간에 힘이 안 붙는 경우입니다."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "3주 이후에 배송이 늦어져서 손님이 떠나시는 경우입니다."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "목표를 위해 글이 우연히 크게 퍼지는 운에 기대지 않는지를 보는 짐작입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale"
+   ],
+   "why": "세일이 약한데 다른 가게도 세일을 해서 손님이 적게 남는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop"
+   ],
+   "why": "세일도 약하고 글도 잘 안 보여서 보고 사시는 분이 적은 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat"
+   ],
+   "why": "세일이 약한데 계절 도움도 없어서 힘이 없는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "shipping_delay"
+   ],
+   "why": "세일도 약한데 배송 걱정까지 있어서 구매가 끊기는 경우입니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "글이 잘 안 보이는 데다 다른 가게 세일이 있어서 사장님 상품이 가려지는 경우입니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "계절 특수가 없어서 전체 구매가 안 느는데 다른 가게 세일이 이기는 경우입니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "글을 보는 분이 적고 계절 도움도 없어서 찾는 분이 적은 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "세일이 약하고, 다른 가게 세일이 있고, 글도 잘 안 보이는 상황이 함께 오는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "계절 도움이 없는데 세일이 약해서 다른 가게에 밀리는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "세일이 약한데 보는 분도 적고 계절 도움도 없는 경우입니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "글이 잘 안 보여서 계절에 찾는 손님도 없이 다른 가게에 밀리는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "약한 세일이 다른 가게에 밀린 뒤에 배송 늦어짐까지 겹치는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "세일이 약해서 잘 안 보이는데 배송 걱정까지 있어서 구매가 멈추는 경우입니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "세일이 약하고 계절 도움도 없는데 배송까지 늦어지는 경우입니다."
+  }
+ ]
+}

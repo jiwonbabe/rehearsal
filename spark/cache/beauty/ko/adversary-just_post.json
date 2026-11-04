@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "광고를 안 하시면 글을 보는 분이 적어져서 판매도 줄어드는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "손님들이 사장님의 정상 가격 글 대신 경쟁 업체 세일을 고르시는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "배송이 늦어지면 글에서 쌓아 오신 믿음이 깨지는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "계절 대목이 없으면 글만으로는 부족한지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "글 하나가 운 좋게 잘돼야만 계획이 되는지 짐작해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "보는 분이 적은데 경쟁 업체 세일까지 겹치면 글이 힘을 못 쓰는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "보는 분도 적은데 배송까지 늦어지면 글에서 오는 믿음이 멈추는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "조용한 달에 보는 분까지 적으면 글을 올려도 도움이 안 되는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "운 좋은 글 하나가 보는 분이 적은 상황을 살릴 수 있는지 짐작해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "경쟁 업체 세일에 배송 늦어짐까지 겹치면 글로 인한 구매가 어려워지는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "조용한 달에 경쟁 업체 세일이 있으면 사장님의 글이 묻히는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "조용한 달에 배송이 느리면 몇 주 동안 올리신 글이 아까워지는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "운 좋은 글 하나가 경쟁 업체 세일을 이길 수 있는지 짐작해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "운 좋은 글 하나가 배송이 늦어도 괜찮을지 짐작해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "viral_post"
+   ],
+   "why": "운 좋은 글 하나가 스스로 대목을 만들 수 있는지 짐작해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "보는 분이 적고 경쟁 업체 세일에 배송까지 늦어지면 글에서 오는 판매가 마르는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "조용한 달에 보는 분도 적고 경쟁 업체 세일까지 있으면 글이 힘을 잃는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "조용한 달에 보는 분도 적고 배송까지 늦어지면 글을 올리셔도 아까워지는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "경쟁 업체 세일에 배송 늦어짐, 대목 없음까지 겹치면 좋은 글도 버거워지는지 추정해 볼 수 있어요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "경쟁 업체 세일 중에 보는 분이 적어도 운으로 만회할 수 있는지 짐작해 볼 수 있어요."
+  }
+ ]
+}

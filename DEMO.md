@@ -26,6 +26,15 @@ BRAND=data/brands/beauty.json  MUSE_API_KEY=... go run ./cmd/sparkcache
 
 Caches land in `spark/cache/apparel/` and `spark/cache/beauty/`. To run or record a brand: `BRAND=data/brands/beauty.json go run ./cmd/server` (restart = reset to month 1). The jewelry numbers in the script below are jewelry's; read the other brands' from the screen. Post types keep the jewelry labels (on hand, close up, flat lay, on neck): the engine's four post types are fixed, so for apparel and skincare read them as "worn", "close-up", "flat lay", "other".
 
+What the other two brands show on the first pass (November, caches generated Nov 4 with the real key; read them off the screen, Spark's wording varies):
+
+| Brand | Holdout miss | Top verdict | Survived (top / second / baseline) |
+|---|---|---|---|
+| Harbor & Pine Apparel (goal 70) | 14.8%, 8 of 13 inside | Send Pieces To Small Creators | 5 / 4 / 1 of 20 |
+| Lumen Skincare (goal 113) | 18.5%, 6 of 13 inside | Send Pieces To Small Creators | 11 / 7 / 1 of 20 |
+
+Apparel is a hard month for the goal (nothing clears it often), which is the tool saying so; skincare has a creator-post-rate flip at 30%.
+
 ## Meta ad account (optional, makes Launch live)
 
 Before recording, in the shell that starts the server: `export META_AD_ACCOUNT_ID=<act id> META_ACCESS_TOKEN=<60-day token>`. Launch then shows Meta's live delivery estimate for the audience and "Create paused campaign" really creates a paused campaign + ad set in that account (verified Nov 3: both land PAUSED with the daily budget and the confirmed audience; nothing spends; delete them in Ads Manager afterwards). Without the two variables the button shows the request it would send. Never commit the token.

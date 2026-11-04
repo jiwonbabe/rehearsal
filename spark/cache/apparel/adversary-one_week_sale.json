@@ -1,0 +1,142 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "promo_underestimate"
+   ],
+   "why": "Your one sale week pulls fewer orders than expected."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "Shoppers pick a competitor's sale in weeks 2-3 instead."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "The busy-month boost never shows up."
+  },
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "Fewer followers see your sale posts."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "A week 3 delay kills momentum after your sale."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "Checks if your plan only works when one post gets lucky."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale"
+   ],
+   "why": "Your weak sale loses to a competitor sale."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat"
+   ],
+   "why": "A weak sale in a flat month hurts more."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop"
+   ],
+   "why": "Fewer people see an already weak sale."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "shipping_delay"
+   ],
+   "why": "A weak sale plus late shipping stops repeat orders."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Flat demand plus a rival sale splits shoppers."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "Low reach means shoppers only see the competitor."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Fewer views in a flat month starves the sale."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "viral_post"
+   ],
+   "why": "Tests if a weak sale needs viral luck to survive."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "A rival sale plus your shipping delay loses trust."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "season_flat"
+   ],
+   "why": "Slow shipping in a flat month kills conversion."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Weak sale, rival sale, and no seasonal lift together."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "reach_drop"
+   ],
+   "why": "Few see your sale while the competitor takes demand."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low reach and flat demand sink a weak sale."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Weak sale loses to rival then shipping issues finish it."
+  }
+ ]
+}

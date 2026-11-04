@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "무료 게시물에만 의지하고 계셔서 글이 덜 보이면 판매마다 바로 타격을 받으시는 추정이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "손님들이 사장님의 정상가 게시물보다 경쟁 가게의 세일 상품을 고르시는 경우라는 추정이에요."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "할인을 하지 않으셔서 목표를 채우시려면 잘 팔리는 계절 시기가 꼭 필요하시다는 추정이에요."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "게시물이 판매의 전부인데 배송이 늦으면 손님들의 믿음이 깨지신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "게시물 하나가 운 좋게 잘 돼야만 계획이 돌아가는지 살펴보는 짐작이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "게시물을 보시는 분이 줄고, 보신 분들도 경쟁 가게에서 사신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "글이 덜 보이고 계절 특수도 없으면 게시물만으로 목표에 못 미치신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "보시는 분이 줄고 배송까지 늦으면 사시는 분이 크게 줄으신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "운 좋은 글이 하나 있어도 글이 잘 안 보이는 상황을 살릴 수 없는지 보는 짐작이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "계절 특수가 없는데 손님들이 경쟁 가게 세일을 고르신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "경쟁 가게 할인과 사장님 쪽 배송 늦음이 겹쳐서 손님들이 다른 곳으로 가신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "주문이 평소 수준인데 배송까지 늦으면 게시물로 이어지는 판매가 멈추신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "운만으로는 세일을 고르는 손님들을 돌릴 수 없는지 보는 짐작이에요."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "viral_post"
+   ],
+   "why": "운만으로 부족한 계절 특수를 채울 수 있는지 보는 짐작이에요."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "보는 분이 늘어도 배송이 늦으면 여전히 어려우신지 보는 짐작이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "글이 잘 안 보이고, 경쟁 가게 세일이 있고, 계절 특수도 없는 상황이 함께 온다는 추정이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "보시는 분이 적고, 경쟁 가게 할인이 있고, 배송까지 늦어서 구매가 멈추신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "글이 잘 안 보이고, 주문도 평소 수준이고, 배송까지 늦으면 잘 안 되신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "경쟁 가게 세일에 주문도 평소 수준인데 배송까지 늦어서 주문이 끊기신다는 추정이에요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "경쟁 가게 세일 때문에 운이 좋아도 잘 안 보이는 글을 살리기 어려운지 보는 짐작이에요."
+  }
+ ]
+}

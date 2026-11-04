@@ -1,0 +1,144 @@
+{
+ "shocks": [
+  {
+   "codes": [
+    "reach_drop"
+   ],
+   "why": "You rely only on free posts so a reach cut hits every sale."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "Shoppers pick the competitor sale instead of your full-price posts."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "With no promo you need the seasonal bump to hit goal."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late shipping kills trust when posts are your only driver."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "Shows if the plan only works when one post gets lucky."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale"
+   ],
+   "why": "Fewer people see posts and those who do buy from the competitor."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Less reach with no seasonal lift leaves posts short of goal."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Fewer views plus late delivery crushes conversion."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "viral_post"
+   ],
+   "why": "Tests if even one lucky post cannot save low reach."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "No seasonal help while shoppers choose the competitor sale."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Competitor deal plus your delays sends buyers elsewhere."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Average demand plus late shipping stalls post-driven sales."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Tests if luck cannot overcome shoppers picking the sale."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "viral_post"
+   ],
+   "why": "Tests if luck alone replaces the missing seasonal lift."
+  },
+  {
+   "codes": [
+    "shipping_delay",
+    "viral_post"
+   ],
+   "why": "Tests if extra views still fail when delivery is late."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Low reach, rival sale, and no seasonal lift together."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Few views, rival deal, and late delivery stop buyers."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Low reach with flat demand and late shipping fails."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Rival sale with flat demand and delays kills orders."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Tests if luck cannot save low reach against a sale."
+  }
+ ]
+}

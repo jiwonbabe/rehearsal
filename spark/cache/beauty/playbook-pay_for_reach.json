@@ -1,0 +1,35 @@
+{
+ "ad": {
+  "audience": "Young women in the US who like calm everyday skincare and simple routines.",
+  "creative": "Put money behind close-up photos that already got love. They show soft texture up close and feel calm and true. Start slow since ads are new for you.",
+  "placements": [
+   "instagram_feed",
+   "instagram_reels",
+   "instagram_stories"
+  ]
+ },
+ "creator_brief": null,
+ "platform": "instagram",
+ "weeks": [
+  {
+   "do": "Post a Reels clip on Monday showing pump to blend in beige bathroom light. Share a feed flat-lay of the winter kit on Thursday and ask a Threads question about morning skin on Friday.",
+   "post_idea": "Close flat-lay of the winter kit on a beige towel by a stone sink in soft Los Angeles morning light with the pump cap off.",
+   "week": 1
+  },
+  {
+   "do": "Post a Reels close-up on Tuesday showing cream texture on hand. Share a calm feed photo of the winter kit on beige linen on Sunday and post a Threads note about Los Angeles dry mornings on Wednesday.",
+   "post_idea": "Close-up of cream melting on the back of a hand over beige tile with the winter kit softly blurred behind.",
+   "week": 2
+  },
+  {
+   "do": "Post a Reels clip on Monday with texture in soft daylight. Share a feed close-up of cream swirl on Friday and ask on Threads which winter kit step feels most calming.",
+   "post_idea": "Top view of cream swirl in the jar lid next to the winter kit on beige linen with calm shadows.",
+   "week": 3
+  },
+  {
+   "do": "Post a Reels on-hand clip on Tuesday from your bathroom sink. Refresh the feed with a beige flat-lay on Thursday and close the month with a gentle Threads check-in on Sunday.",
+   "post_idea": "Calm flat-lay of the full winter kit laid out together on a beige bath mat with a folded beige towel beside it.",
+   "week": 4
+  }
+ ]
+}

@@ -1,0 +1,198 @@
+{
+ "directions": [
+  {
+   "caution": "You sent to no creators last month, so this is new for you and results can vary.",
+   "id": "send_to_creators",
+   "plain": "You send free pieces to small creators. They share photos wearing your pieces with their followers.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     4,
+     13
+    ],
+    "post_mix": {
+     "close_up": [
+      0.3,
+      0.5
+     ],
+     "flat_lay": [
+      0.1,
+      0.2
+     ],
+     "on_hand": [
+      0.3,
+      0.5
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 1,
+   "title": "Send Pieces To Small Creators",
+   "why_for_you": "Creator posts earn more love than your own posts, and most creators you send to do post.",
+   "you_would_do": "Message about twenty small creators, send pieces to those who reply, and post three to five times with mostly close-ups."
+  },
+  {
+   "caution": "Sales pull future buys forward, so use this only now and then.",
+   "id": "one_week_sale",
+   "plain": "You pick one week for a simple price cut. Shoppers who were waiting decide to buy now.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.4,
+      0.6
+     ],
+     "flat_lay": [
+      0.1,
+      0.2
+     ],
+     "on_hand": [
+      0.2,
+      0.4
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     15,
+     25
+    ],
+    "promo_week": [
+     1,
+     4
+    ]
+   },
+   "rank": 2,
+   "title": "Run One Simple Discount Week",
+   "why_for_you": "Sales have lifted you a lot in the past, and you were close to your goal last month with no spend.",
+   "you_would_do": "Pick one sale week, tell followers clearly, and post four to five times with mostly close-ups."
+  },
+  {
+   "caution": null,
+   "id": "just_post",
+   "plain": "You post often with no spend. It is slow and safe and builds trust over time.",
+   "ranges": {
+    "ads_usd": [
+     0,
+     0
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.4,
+      0.6
+     ],
+     "flat_lay": [
+      0.1,
+      0.2
+     ],
+     "on_hand": [
+      0.2,
+      0.4
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     4,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 3,
+   "title": "Keep Posting Great Photos Weekly",
+   "why_for_you": "Your close-up photos get the most love, and you were close to your goal last month with no spend.",
+   "you_would_do": "Post four to five times a week using mostly close-ups and on-hand shots."
+  },
+  {
+   "caution": "You spent nothing on ads last month, so this is untested for you and ad prices are high now.",
+   "id": "pay_for_reach",
+   "plain": "You put money behind your best photos. More young women see them right away.",
+   "ranges": {
+    "ads_usd": [
+     200,
+     500
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.4,
+      0.6
+     ],
+     "flat_lay": [
+      0.1,
+      0.2
+     ],
+     "on_hand": [
+      0.2,
+      0.4
+     ],
+     "on_neck": [
+      0,
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0,
+     0
+    ],
+    "promo_week": [
+     null
+    ]
+   },
+   "rank": 4,
+   "title": "Boost Best Posts With Ads",
+   "why_for_you": "Your close-up photos get the most love, so they give ads something strong to share.",
+   "you_would_do": "Post three to five times with your best close-ups and put ad money behind the top posts."
+  }
+ ],
+ "season_note": "November has average demand at 1.00 but higher ad costs at 1.18, so posts, creators, and a short sale make your budget go further."
+}

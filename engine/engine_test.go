@@ -483,3 +483,49 @@ func TestLeverCoverageMatchesReference(t *testing.T) {
 		t.Errorf("tested plan must have no untested lever: %v", got)
 	}
 }
+
+func TestCreatorPoolMatchesReference(t *testing.T) {
+	var want struct {
+		Weights    []float64 `json:"weights"`
+		Expected   []float64 `json:"expected"`
+		Plan       Result    `json:"plan"`
+		PlanCycles Result    `json:"plan_cycles"`
+		PlanNoPool Result    `json:"plan_no_pool"`
+		PlanOffset Result    `json:"plan_offset2"`
+	}
+	loadJSON(t, "creator_pool", &want)
+	var ev Evidence
+	loadJSON(t, "evidence", &ev)
+	b := brand(t)
+	r := Calibrate(b)
+	w := CreatorWeights(ev.Creators)
+	if len(w) != len(want.Weights) {
+		t.Fatalf("weights %v want %v", w, want.Weights)
+	}
+	for i := range w {
+		if math.Abs(w[i]-want.Weights[i]) > 1e-9 || ExpectedEngagement(ev.Creators[i]) != want.Expected[i] {
+			t.Errorf("creator %d: weight %v want %v, expected %v want %v", i, w[i], want.Weights[i], ExpectedEngagement(ev.Creators[i]), want.Expected[i])
+		}
+	}
+	mix := map[string]float64{"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}
+	seed := Plan{PlanID: "seed", Direction: "send_to_creators", PostsPerWeek: 3, PostMix: mix, CreatorCount: 4}
+	big := Plan{PlanID: "seed8", Direction: "send_to_creators", PostsPerWeek: 3, PostMix: mix, CreatorCount: 8}
+	noPool := RunPlan(seed, r, b, nil)
+	pb := *b
+	pb.CreatorPool = ev.Creators
+	withPool, cycles := RunPlan(seed, r, &pb, nil), RunPlan(big, r, &pb, nil)
+	for _, c := range []struct {
+		name      string
+		got, want Result
+	}{{"no pool", noPool, want.PlanNoPool}, {"pool", withPool, want.Plan}, {"cycles", cycles, want.PlanCycles}, {"offset 2", RunPlanAt(seed, r, &pb, nil, 2), want.PlanOffset}} {
+		if math.Abs(c.got.Orders-c.want.Orders) > 1e-6 || math.Abs(c.got.SpendUsd-c.want.SpendUsd) > 1e-6 {
+			t.Errorf("%s: orders %v want %v, spend %v want %v", c.name, c.got.Orders, c.want.Orders, c.got.SpendUsd, c.want.SpendUsd)
+		}
+	}
+	if withPool.Orders == noPool.Orders {
+		t.Error("the pool must change the creator plan's orders")
+	}
+	if RunBacktest(&pb, r, 13).MedianAbsPctError != RunBacktest(b, r, 13).MedianAbsPctError {
+		t.Error("history must never use the pool")
+	}
+}

@@ -3,6 +3,7 @@
 No model calls here. No randomness except seeded sampling in sample.py.
 """
 import json
+import math
 import statistics
 
 POST_TYPES = ["on_hand", "close_up", "flat_lay", "on_neck"]
@@ -136,7 +137,32 @@ def season_goal(goal, demand):
     return int(math.floor(goal * demand + 0.5))
 
 
-def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods, month=0):
+def expected_engagement(creator):
+    """A creator's expected engagement on one post: followers × their engagement rate."""
+    return int(math.floor(creator["followers"] * creator["engagement_rate"] + 0.5))
+
+
+def creator_weights(pool):
+    """Each pool creator's expected engagement relative to the pool's mean (1.0 = an average creator in this pool)."""
+    if not pool:
+        return None
+    w = [c["followers"] * c["engagement_rate"] for c in pool]
+    mean = sum(w) / len(w)
+    if mean == 0:
+        return None
+    return [x / mean for x in w]
+
+
+def creator_units(seeded, pool, offset=0):
+    """How many average creators N seeded creators amount to: N consecutive pool creators from offset (cycling)."""
+    w = creator_weights(pool)
+    if w is None:
+        return seeded
+    n = int(math.floor(seeded + 0.5))
+    return sum(w[(offset + i) % len(w)] for i in range(n))
+
+
+def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods, month=0, pool=None, offset=0):
     """One week of the funnel. `mods` is a dict of multipliers from shocks (see shocks.py).
     `month` applies the seasonal prior: demand lift on the order rate, ad-cost index on ad engagement."""
     demand, ad_cost = season_for(brand, month)
@@ -145,7 +171,7 @@ def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods, mont
     organic *= mods.get("organic_mult", 1.0)
 
     post_rate = rates.seed_post_rate * mods.get("seed_post_rate_mult", 1.0)
-    creators_posted = creators_seeded * post_rate
+    creators_posted = creator_units(creators_seeded, pool, offset) * post_rate
     creator_eng = creators_posted * rates.eng_per_creator_post
 
     ad_eng = ads_usd * rates.ad_eng_per_usd * mods.get("ad_eng_mult", 1.0) / ad_cost
@@ -160,7 +186,7 @@ def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods, mont
     return {"engagement": engagement, "orders": orders, "spend_usd": spend}
 
 
-def run_plan(plan, rates, brand, shocks=None, weeks=HORIZON_WEEKS):
+def run_plan(plan, rates, brand, shocks=None, weeks=HORIZON_WEEKS, offset=0):
     from engine.shocks import mods_for_week
     shocks = shocks or []
     rows = []
@@ -168,7 +194,7 @@ def run_plan(plan, rates, brand, shocks=None, weeks=HORIZON_WEEKS):
         posts, creators, ads_usd, discount = week_inputs_from_plan(plan, i)
         mods = mods_for_week(shocks, i, rates)
         creators = int(round(creators * mods.get("creator_count_mult", 1.0)))
-        rows.append(run_week(posts, creators, ads_usd, discount, rates, brand, mods, plan.month))
+        rows.append(run_week(posts, creators, ads_usd, discount, rates, brand, mods, plan.month, brand.get("creator_pool"), offset))
     return {
         "plan_id": plan.plan_id,
         "weeks": rows,

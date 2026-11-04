@@ -111,8 +111,8 @@ func Stress(plans []Plan, combos [][]string, r Rates, b *Brand) Stressed {
 	out := Stressed{Combos: combos, Matrix: map[string][]Cell{}}
 	for _, p := range plans {
 		var cells []Cell
-		for _, combo := range combos {
-			res := RunPlan(p, r, b, combo)
+		for ci, combo := range combos {
+			res := RunPlanAt(p, r, b, combo, ci)
 			cells = append(cells, Cell{Shocks: combo, Orders: round1(res.Orders), SpendUsd: round1(res.SpendUsd),
 				Survived: Survived(res, b)})
 		}

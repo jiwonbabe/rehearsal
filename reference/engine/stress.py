@@ -56,8 +56,8 @@ def stress(plans, shock_combos, rates, brand):
     matrix = {}
     for plan in plans:
         cells = []
-        for combo in combos:
-            result = run_plan(plan, rates, brand, shocks=combo)
+        for ci, combo in enumerate(combos):
+            result = run_plan(plan, rates, brand, shocks=combo, offset=ci)
             cells.append({
                 "shocks": combo,
                 "orders": round(result["orders"], 1),

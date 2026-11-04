@@ -78,7 +78,15 @@ def main():
     ads_plan = Plan("x", "pay_for_reach", 4, {"on_hand": 0.6, "close_up": 0.2, "flat_lay": 0.1, "on_neck": 0.1}, 0, 300)
     dump("coverage", {"coverage": lever_coverage(brand), "no_ads": lever_coverage(no_ads),
                       "untested_ads_plan": untested(ads_plan, lever_coverage(no_ads)), "tested_ads_plan": untested(ads_plan, lever_coverage(brand))})
-    dump("evidence", evidence(load_meta(os.path.join(ROOT, "data", "meta", "demo.brand"))))
+    ev = evidence(load_meta(os.path.join(ROOT, "data", "meta", "demo.brand")))
+    dump("evidence", ev)
+    pool_brand = dict(brand, creator_pool=ev["creators"])
+    seed_plan = Plan("seed", "send_to_creators", 3, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 4, 0)
+    big_plan = Plan("seed8", "send_to_creators", 3, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 8, 0)
+    from engine.model import creator_weights, expected_engagement
+    dump("creator_pool", {"weights": creator_weights(ev["creators"]), "expected": [expected_engagement(c) for c in ev["creators"]],
+                          "plan": run_plan(seed_plan, rates, pool_brand), "plan_cycles": run_plan(big_plan, rates, pool_brand),
+                          "plan_no_pool": run_plan(seed_plan, rates, brand), "plan_offset2": run_plan(seed_plan, rates, pool_brand, offset=2)})
     dec = Plan.from_dict(dict(committed.to_dict(), month=12))
     dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand), "december": launch_spec(dec, brand)})
     dump("gaps", baseline_gaps(out))

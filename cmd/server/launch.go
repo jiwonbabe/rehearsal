@@ -410,7 +410,8 @@ func (s *server) suggestedCreators() []map[string]any {
 	out := []map[string]any{}
 	for _, c := range s.evidence.Creators {
 		row := map[string]any{"username": c.Username, "followers": c.Followers, "followers_band": c.FollowersBand,
-			"engagement_rate": c.EngagementRate, "post_mix": c.PostMix, "biography": c.Biography, "fit": nil}
+			"engagement_rate": c.EngagementRate, "post_mix": c.PostMix, "biography": c.Biography, "fit": nil,
+			"expected_engagement": engine.ExpectedEngagement(c)}
 		if raw, err := spark.CreatorFit(c.Username, nil, nil, nil); err == nil {
 			row["fit"] = spark.ValidateCreatorFit(raw)
 		}

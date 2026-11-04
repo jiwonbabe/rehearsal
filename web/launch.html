@@ -104,6 +104,7 @@ function creatorList(list, source) {
     top.appendChild(el('span', 'font-weight:600', '@' + cr.username));
     const mix = Object.entries(cr.post_mix || {}).sort((a, b) => b[1] - a[1])[0];
     top.appendChild(el('span', 'color:#5c6066', `${Number(cr.followers).toLocaleString('en-US')} followers · ${cr.followers_band} · ${(cr.engagement_rate * 100).toFixed(1)}% engagement · mostly ${mix ? mix[0].replace('_', ' ') : '—'}`));
+    if (cr.expected_engagement != null) top.appendChild(el('span', 'color:#5c6066', `expected engagement per post ${cr.expected_engagement}`));
     if (cr.fit && cr.fit.fit) top.appendChild(el('span', `font-weight:600;color:${tone[cr.fit.fit] || '#5c6066'}`, `${cr.fit.fit} fit`));
     row.appendChild(top);
     if (cr.fit && cr.fit.why) row.appendChild(el('div', 'color:#5c6066;font-size:12.5px', cr.fit.why + (cr.fit.send ? ' · Send: ' + cr.fit.send : '')));

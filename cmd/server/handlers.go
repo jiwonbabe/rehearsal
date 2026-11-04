@@ -27,24 +27,25 @@ type directionStress struct {
 }
 
 type stressResponse struct {
-	Directions []directionStress   `json:"directions"`
-	Verdict    []engine.Verdict    `json:"verdict"`
-	Flip       *engine.Flip        `json:"flip"`
-	FlipA      string              `json:"flip_a"`
-	FlipB      string              `json:"flip_b"`
-	Catalog    map[string]string   `json:"catalog"`
-	Priors     map[string]float64  `json:"priors"`
-	Check      string              `json:"check"`
-	Gaps       []engine.Gap        `json:"gaps"`
-	Goal       float64             `json:"goal"`
-	Budget     float64             `json:"budget"`
-	AvgPrice   float64             `json:"avg_price_usd"`
-	Month      int                 `json:"month"`
-	MonthName  string              `json:"month_name"`
-	SeasonGoal int                 `json:"season_goal"`
-	Demand     float64             `json:"demand"`
-	Coverage   []engine.Coverage   `json:"coverage"`
-	Untested   map[string][]string `json:"untested"` // plan_id -> levers the history never used
+	Directions  []directionStress   `json:"directions"`
+	Verdict     []engine.Verdict    `json:"verdict"`
+	Flip        *engine.Flip        `json:"flip"`
+	FlipA       string              `json:"flip_a"`
+	FlipB       string              `json:"flip_b"`
+	Catalog     map[string]string   `json:"catalog"`
+	Priors      map[string]float64  `json:"priors"`
+	Check       string              `json:"check"`
+	Gaps        []engine.Gap        `json:"gaps"`
+	Goal        float64             `json:"goal"`
+	Budget      float64             `json:"budget"`
+	AvgPrice    float64             `json:"avg_price_usd"`
+	Month       int                 `json:"month"`
+	MonthName   string              `json:"month_name"`
+	SeasonGoal  int                 `json:"season_goal"`
+	Demand      float64             `json:"demand"`
+	Coverage    []engine.Coverage   `json:"coverage"`
+	CreatorPool []map[string]any    `json:"creator_pool"` // creators a seeding plan counts, in order, with expected engagement per post
+	Untested    map[string][]string `json:"untested"`     // plan_id -> levers the history never used
 }
 
 func writeError(w http.ResponseWriter, code int, msg string) {
@@ -370,7 +371,10 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	merged.Combos = engine.FallbackCombos // fixed catalog list: baseline must not depend on click order
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
 	resp.Gaps = engine.BaselineGaps(resp.Verdict)
-	resp.Coverage, resp.Untested = engine.LeverCoverage(s.brand), map[string][]string{}
+	resp.Coverage, resp.Untested, resp.CreatorPool = engine.LeverCoverage(s.brand), map[string][]string{}, []map[string]any{}
+	for _, c := range s.brand.CreatorPool {
+		resp.CreatorPool = append(resp.CreatorPool, map[string]any{"username": c.Username, "expected_engagement": engine.ExpectedEngagement(c)})
+	}
 	for _, v := range resp.Verdict {
 		resp.Untested[v.Plan.PlanID] = engine.Untested(v.Plan, resp.Coverage)
 	}

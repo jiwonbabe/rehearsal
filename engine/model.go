@@ -18,6 +18,10 @@ type Brand struct {
 	Weeks  []Week       `json:"weeks"`
 	Truth  *Truth       `json:"generator_truth,omitempty"`
 	Season *Seasonality `json:"season,omitempty"` // set by cmd/ from data/seasonality.json; a planning prior only
+	// CreatorPool: the creators found for the brief (Meta business_discovery), set by cmd/ after a connect. Plans
+	// count the first N of them by expected engagement (followers × engagement rate) instead of N average creators.
+	// History (calibration, backtest) never uses it.
+	CreatorPool []CreatorStat `json:"creator_pool,omitempty"`
 }
 
 type BrandInfo struct {
@@ -184,7 +188,50 @@ func weekInputs(p Plan, weekIndex int) (posts map[string]float64, creators, adsU
 // RunWeek: one week of the funnel. mods are multipliers from shocks (see shocks.go).
 // RunWeek: one week of the funnel. month applies the seasonal prior (demand lift on the order rate,
 // ad-cost index on ad engagement); 0 means none. Same formulas as reference/engine/model.py run_week.
-func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64, r Rates, b *Brand, mods map[string]float64, month int) WeekResult {
+// ExpectedEngagement: a creator's expected engagement on one post, followers × their engagement rate.
+func ExpectedEngagement(c CreatorStat) float64 {
+	return float64(halfUp(c.Followers * c.EngagementRate))
+}
+
+// CreatorWeights: each pool creator's expected engagement relative to the pool's mean (1.0 = an average creator
+// in this pool), so the history-calibrated rate per creator post keeps its meaning. nil when the pool says nothing.
+func CreatorWeights(pool []CreatorStat) []float64 {
+	if len(pool) == 0 {
+		return nil
+	}
+	w := make([]float64, len(pool))
+	mean := 0.0
+	for i, c := range pool {
+		w[i] = c.Followers * c.EngagementRate
+		mean += w[i]
+	}
+	mean /= float64(len(pool))
+	if mean == 0 {
+		return nil
+	}
+	for i := range w {
+		w[i] /= mean
+	}
+	return w
+}
+
+// creatorUnits: how many average creators N seeded creators amount to: N consecutive creators of the pool
+// starting at offset (cycling), or N itself without a pool. The stress test gives every bad month a different
+// offset, so which creators the owner lands varies the way it does in life while the mean stays calibrated.
+func creatorUnits(seeded float64, pool []CreatorStat, offset int) float64 {
+	w := CreatorWeights(pool)
+	if w == nil {
+		return seeded
+	}
+	n := int(math.Floor(seeded + 0.5))
+	units := 0.0
+	for i := 0; i < n; i++ {
+		units += w[(offset+i)%len(w)]
+	}
+	return units
+}
+
+func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64, r Rates, b *Brand, pool []CreatorStat, offset int, mods map[string]float64, month int) WeekResult {
 	mult := func(key string) float64 {
 		if v, ok := mods[key]; ok {
 			return v
@@ -200,7 +247,7 @@ func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64,
 	organic *= mult("organic_mult")
 
 	postRate := r.SeedPostRate * mult("seed_post_rate_mult")
-	creatorsPosted := creatorsSeeded * postRate
+	creatorsPosted := creatorUnits(creatorsSeeded, pool, offset) * postRate
 	creatorEng := creatorsPosted * r.EngPerCreatorPost
 
 	adEng := adsUsd * r.AdEngPerUsd * mult("ad_eng_mult") / season.AdCost
@@ -218,7 +265,10 @@ func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64,
 	return WeekResult{Engagement: engagement, Orders: orders, SpendUsd: spend}
 }
 
-func RunPlan(p Plan, r Rates, b *Brand, shocks []string) Result {
+func RunPlan(p Plan, r Rates, b *Brand, shocks []string) Result { return RunPlanAt(p, r, b, shocks, 0) }
+
+// RunPlanAt: RunPlan with a creator-pool offset (the stress test passes the bad month's index).
+func RunPlanAt(p Plan, r Rates, b *Brand, shocks []string, offset int) Result {
 	out := Result{PlanID: p.PlanID}
 	for i := 0; i < HorizonWeeks; i++ {
 		posts, creators, adsUsd, discount := weekInputs(p, i)
@@ -226,7 +276,7 @@ func RunPlan(p Plan, r Rates, b *Brand, shocks []string) Result {
 		if m, ok := mods["creator_count_mult"]; ok {
 			creators = math.Round(creators * m)
 		}
-		wr := RunWeek(posts, creators, adsUsd, discount, r, b, mods, p.Month)
+		wr := RunWeek(posts, creators, adsUsd, discount, r, b, b.CreatorPool, offset, mods, p.Month)
 		out.Weeks = append(out.Weeks, wr)
 		out.Orders += wr.Orders
 		out.SpendUsd += wr.SpendUsd
@@ -275,7 +325,7 @@ func RunBacktest(b *Brand, r Rates, weeksBack int) Backtest {
 		start = 0
 	}
 	for _, w := range b.Weeks[start:] {
-		wr := RunWeek(w.Posts, w.CreatorsSeeded, w.AdsUsd, w.PromoDiscount, r, b, map[string]float64{}, 0)
+		wr := RunWeek(w.Posts, w.CreatorsSeeded, w.AdsUsd, w.PromoDiscount, r, b, nil, 0, map[string]float64{}, 0)
 		errors = append(errors, safeDiv(math.Abs(wr.Orders-w.Orders), w.Orders))
 		lo, hi := wr.Orders*0.8, wr.Orders*1.2
 		if lo <= w.Orders && w.Orders <= hi {

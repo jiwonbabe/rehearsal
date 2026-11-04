@@ -3,6 +3,7 @@
   "name": "Wrenfield Jewelry (demo)",
   "synthetic": true,
   "market": "US",
+  "category": "jewelry",
   "target": {
    "gender": "women",
    "age": "25-34",

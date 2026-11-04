@@ -101,12 +101,34 @@ func (s *server) seasonGoalOffer(se engine.Season) int {
 	return engine.SeasonGoal(s.brand.Brand.GoalOrdersPerMonth, se.Demand)
 }
 
+// categories: what Setup can pick, sorted by key; the brand's own category first.
+func (s *server) categories() []map[string]string {
+	keys := []string{}
+	if s.catalog != nil {
+		for k := range s.catalog.Categories {
+			keys = append(keys, k)
+		}
+	}
+	mine := s.brand.Brand.Category
+	sort.Slice(keys, func(i, j int) bool {
+		if (keys[i] == mine) != (keys[j] == mine) {
+			return keys[i] == mine
+		}
+		return keys[i] < keys[j]
+	})
+	out := []map[string]string{}
+	for _, k := range keys {
+		out = append(out, map[string]string{"id": k, "label": s.catalog.Categories[k].Label})
+	}
+	return out
+}
+
 func (s *server) seasonOut() map[string]any {
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
 	out := map[string]any{"month": se.Month, "name": se.Name, "demand": se.Demand, "ad_cost": se.AdCost, "note": s.seasonNote, "applied": s.brand.Season != nil,
 		"goal": s.brand.Brand.GoalOrdersPerMonth, "season_goal": s.seasonGoalOffer(se)}
 	if s.brand.Season != nil {
-		out["sources"], out["table_note"], out["category"], out["market"] = s.brand.Season.Sources, s.brand.Season.Note, s.brand.Season.Category, s.brand.Season.Market
+		out["sources"], out["table_note"], out["category"], out["label"], out["market"] = s.brand.Season.Sources, s.brand.Season.Note, s.brand.Season.Category, s.brand.Season.Label, s.brand.Season.Market
 	}
 	return out
 }
@@ -142,6 +164,7 @@ func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 		GoalMonth *int               `json:"goal_month"`
 		Target    *map[string]string `json:"target"`
 		Market    *string            `json:"market"`
+		Category  *string            `json:"category"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
 		writeError(w, 400, err.Error())
@@ -172,6 +195,14 @@ func (s *server) handleSetup(w http.ResponseWriter, r *http.Request) {
 	}
 	if in.Market != nil {
 		b.Market = *in.Market
+	}
+	if in.Category != nil {
+		if s.catalog.For(*in.Category) == nil {
+			writeError(w, 400, "unknown category")
+			return
+		}
+		b.Category = *in.Category
+		s.brand.Season = s.catalog.For(b.Category)
 	}
 	s.writeJSON(w, *b)
 }

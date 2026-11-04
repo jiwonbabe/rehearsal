@@ -12,6 +12,7 @@ import (
 type Seasonality struct {
 	Market   string             `json:"market"`
 	Category string             `json:"category"`
+	Label    string             `json:"label"`
 	Demand   map[string]float64 `json:"demand"`
 	AdCost   map[string]float64 `json:"ad_cost"`
 	Sources  []map[string]any   `json:"sources"`
@@ -25,16 +26,54 @@ type Season struct {
 	AdCost float64 `json:"ad_cost"`
 }
 
-func LoadSeasonality(path string) (*Seasonality, error) {
+// SeasonCatalog: data/seasonality.json. One demand table per category (Census monthly retail sales by kind of
+// business), one ad-cost table shared by every category.
+type SeasonCatalog struct {
+	Market       string                    `json:"market"`
+	Categories   map[string]SeasonCategory `json:"categories"`
+	AdCost       map[string]float64        `json:"ad_cost"`
+	AdCostSource map[string]any            `json:"ad_cost_source"`
+	Note         string                    `json:"note"`
+}
+
+type SeasonCategory struct {
+	Label  string             `json:"label"`
+	Demand map[string]float64 `json:"demand"`
+	Source map[string]any     `json:"source"`
+}
+
+func LoadSeasonCatalog(path string) (*SeasonCatalog, error) {
 	raw, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	var s Seasonality
-	if err := json.Unmarshal(raw, &s); err != nil {
+	var c SeasonCatalog
+	if err := json.Unmarshal(raw, &c); err != nil {
 		return nil, err
 	}
-	return &s, nil
+	return &c, nil
+}
+
+// For: the active table for a category; nil when the catalog or the category is unknown (no seasonal prior).
+func (c *SeasonCatalog) For(category string) *Seasonality {
+	if c == nil {
+		return nil
+	}
+	cat, ok := c.Categories[category]
+	if !ok {
+		return nil
+	}
+	return &Seasonality{Market: c.Market, Category: category, Label: cat.Label, Demand: cat.Demand, AdCost: c.AdCost,
+		Sources: []map[string]any{cat.Source, c.AdCostSource}, Note: c.Note}
+}
+
+// LoadSeasonality: the catalog's table for one category.
+func LoadSeasonality(path, category string) (*Seasonality, error) {
+	c, err := LoadSeasonCatalog(path)
+	if err != nil {
+		return nil, err
+	}
+	return c.For(category), nil
 }
 
 // SeasonFor: the indexes for a calendar month (1-12); 1.0 / 1.0 when the table is nil or month is 0.
@@ -73,7 +112,7 @@ func SeasonBlock(t *Seasonality, month int) string {
 	}
 	return fmt.Sprintf("Month: %s. Demand index %.2f (1.00 = an average month; %s %s, public data). Ad cost index %.2f (1.00 = average month). "+
 		"The engine multiplies the order rate by the demand index and divides ad reach by the ad cost index; the adversary can take the seasonal lift away.",
-		s.Name, s.Demand, t.Market, t.Category, s.AdCost)
+		s.Name, s.Demand, t.Market, t.Label, s.AdCost)
 }
 
 // SeasonGoal: a month-sized goal, the average-month goal scaled by the month's demand index (half-up).

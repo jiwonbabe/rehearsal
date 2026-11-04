@@ -44,6 +44,7 @@ type server struct {
 	evidence         *engine.Evidence
 	metaHandle       string
 	seasonNote       string
+	catalog          *engine.SeasonCatalog
 	goalMonth        int // month the goal was last sized for via "Use N for <month>"; 0 = owner's own number
 	reachLive        map[string]any
 	stats            []engine.StatRow
@@ -64,15 +65,17 @@ func newServer(brandPath string) (*server, error) {
 	if err != nil {
 		return nil, err
 	}
-	brand.Season, _ = engine.LoadSeasonality("data/seasonality.json") // optional: no table, no seasonal prior
+	catalog, _ := engine.LoadSeasonCatalog("data/seasonality.json") // optional: no table, no seasonal prior
+	brand.Season = catalog.For(brand.Brand.Category)
 	rates := engine.Calibrate(brand)
 	stats, _ := engine.LoadStats("data/platform_stats.json") // optional: no table, no public-data lines
-	return &server{brand: brand, baseRates: rates, rates: rates, month: 1, stats: stats}, nil
+	return &server{brand: brand, baseRates: rates, rates: rates, month: 1, stats: stats, catalog: catalog}, nil
 }
 
 func (s *server) routes() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/brand", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.brand.Brand) }))
+	mux.HandleFunc("/api/categories", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.categories()) }))
 	mux.HandleFunc("/api/rates", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.rates) }))
 	mux.HandleFunc("/api/backtest", s.locked(func(w http.ResponseWriter, r *http.Request) {
 		s.writeJSON(w, engine.RunBacktest(s.brand, s.rates, 13))

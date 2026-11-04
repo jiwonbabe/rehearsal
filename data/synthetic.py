@@ -22,6 +22,7 @@ BRAND = {
     "name": "Wrenfield Jewelry (demo)",
     "synthetic": True,
     "market": "US",
+    "category": "jewelry",
     "target": {"gender": "women", "age": "25-34", "price_band": "80-200"},
     "avg_price_usd": 120,
     "product_cost_usd": 45,

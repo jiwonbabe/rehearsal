@@ -55,7 +55,7 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	brand.Season, _ = engine.LoadSeasonality("data/seasonality.json")
+	brand.Season, _ = engine.LoadSeasonality("data/seasonality.json", brand.Brand.Category)
 	rates := engine.Calibrate(brand)
 	backtest := engine.RunBacktest(brand, rates, 13)
 

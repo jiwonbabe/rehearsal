@@ -63,7 +63,8 @@ def main():
     r = review(brand, committed, rates)
     season_brand = dict(brand)
     with open(os.path.join(ROOT, "data", "seasonality.json")) as f:
-        season_brand["season"] = json.load(f)
+        catalog = json.load(f)
+    season_brand["season"] = {"demand": catalog["categories"][brand["brand"]["category"]]["demand"], "ad_cost": catalog["ad_cost"]}
     nov = Plan.from_dict(dict(plans[0].to_dict(), month=11))
     dec = Plan.from_dict(dict(plans[0].to_dict(), month=12))
     dump("season", {"november": run_plan(nov, rates, season_brand), "december": run_plan(dec, rates, season_brand),

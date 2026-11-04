@@ -123,7 +123,7 @@ function renderSeason(se) {
     g.appendChild(t); g.appendChild(b); box.appendChild(g);
   }
   const line = document.createElement('div'); line.style.cssText = 'font-size:12.5px;color:#5c6066;line-height:1.5';
-  line.textContent = `Seasonal prior from public data (${se.market} ${se.category}), applied to the order rate and ad reach for this month only; the adversary tests the month turning out average. Not learned from your history: one year cannot separate seasons from everything else.`;
+  line.textContent = `Seasonal prior from public data (${se.market} · ${se.label || se.category}), applied to the order rate and ad reach for this month only; the adversary tests the month turning out average. Not learned from your history: one year cannot separate seasons from everything else.`;
   box.appendChild(line);
   (se.sources || []).forEach(src => { const a = document.createElement('a'); a.href = src.url; a.target = '_blank'; a.style.cssText = 'font-size:11.5px;color:#5c6066'; a.textContent = `Source (${src.for}): ${src.source}, ${src.year}`; box.appendChild(a); });
   box.style.display = 'flex';

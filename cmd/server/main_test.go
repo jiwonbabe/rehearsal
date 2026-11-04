@@ -838,3 +838,26 @@ func TestStressCarriesGapsAndState(t *testing.T) {
 		t.Errorf("setup.html should redirect home, landed on %s", resp.Request.URL.Path)
 	}
 }
+
+func TestSetupCategorySwapsSeasonTable(t *testing.T) {
+	ts := newTestServer(t)
+	var cats []map[string]string
+	if code := call(t, ts, "GET", "/api/categories", "", &cats); code != 200 || len(cats) != 8 || cats[0]["id"] != "jewelry" {
+		t.Fatalf("categories: %d %v", code, cats)
+	}
+	if code := call(t, ts, "POST", "/api/setup", `{"category":"nope"}`, nil); code != 400 {
+		t.Errorf("unknown category should be 400, got %d", code)
+	}
+	call(t, ts, "POST", "/api/setup", `{"category":"apparel"}`, nil)
+	var d struct {
+		Season struct {
+			Category string  `json:"category"`
+			Label    string  `json:"label"`
+			Demand   float64 `json:"demand"`
+		} `json:"season"`
+	}
+	call(t, ts, "POST", "/api/directions", "", &d)
+	if d.Season.Category != "apparel" || d.Season.Label != "Clothing and accessories" || d.Season.Demand != 1.13 {
+		t.Errorf("november apparel: %+v", d.Season)
+	}
+}

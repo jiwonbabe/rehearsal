@@ -47,7 +47,9 @@
 
   <div class="card" style="padding:24px;gap:16px">
     <div class="label">Step 2 · Who you sell to</div>
-    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">What you sell
+        <select id="category" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"></select></label>
       <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Market
         <select id="market" style="min-height:40px;border-radius:8px;border:1px solid #d9dbd4;padding:0 8px;font-family:inherit;font-size:14px"><option value="US">United States</option><option value="KR">South Korea</option></select></label>
       <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#5c6066">Gender
@@ -114,7 +116,7 @@ const $ = id => document.getElementById(id);
 function fill(b) {
   $('brand-name').textContent = b.name;
   $('budget').value = b.budget_usd_per_month;
-  $('market').value = b.market;
+  $('market').value = b.market; $('category').value = b.category;
   $('gender').value = b.target.gender;
   $('age').value = b.target.age;
   $('price_band').value = b.target.price_band;
@@ -149,7 +151,7 @@ $('save').onclick = async () => {
     const b = await api('/api/setup', {
       budget_usd_per_month: Number($('budget').value),
       goal_orders_per_month: G.unit === 'revenue' ? Math.round(Number($('goal').value) / G.g.avg_price_usd) : Number($('goal').value),
-      target: { gender: $('gender').value, age: $('age').value, price_band: $('price_band').value }, market: $('market').value });
+      target: { gender: $('gender').value, age: $('age').value, price_band: $('price_band').value }, market: $('market').value, category: $('category').value });
     fill(b); G.g.current_goal = b.goal_orders_per_month; G.g.current_budget = b.budget_usd_per_month; $('saved').textContent = 'Confirmed'; $('unsaved').style.display = 'none'; await loadBacktest();
   } catch (e) { $('saved').textContent = ''; showError(e); }
 };
@@ -222,7 +224,7 @@ $('connect').onclick = async () => {
   } catch (e) { $('connect-status').textContent = 'Could not connect: ' + e.message; $('connect-status').style.color = '#c2410c'; }
 };
 // Anything edited after the last Confirm is flagged until Confirm is clicked again.
-['market', 'gender', 'age', 'price_band', 'goal', 'budget'].forEach(id => $(id).addEventListener('input', () => { $('unsaved').style.display = 'block'; $('saved').textContent = ''; }));
+['category', 'market', 'gender', 'age', 'price_band', 'goal', 'budget'].forEach(id => $(id).addEventListener('input', () => { $('unsaved').style.display = 'block'; $('saved').textContent = ''; }));
 $('g-cards').addEventListener('click', () => { $('unsaved').style.display = 'block'; $('saved').textContent = ''; });
 const G = { g: null, unit: 'orders', pick: '', prof: null };
 const AMB = { hold: 'Hold', grow: 'Grow', stretch: 'Stretch' };
@@ -248,6 +250,7 @@ function showGoals() {
 $('u-orders').onclick = () => { G.unit = 'orders'; showGoals(); };
 $('u-revenue').onclick = () => { G.unit = 'revenue'; showGoals(); };
 (async () => { try {
+  (await api('/api/categories')).forEach(c => { const o = document.createElement('option'); o.value = c.id; o.textContent = c.label; $('category').appendChild(o); });
   fill(await api('/api/brand')); G.g = await api('/api/goals'); showGoals(); await loadBacktest();
   const remembered = sessionStorage.getItem('rehearsal.read');
   if (remembered) { const p = JSON.parse(remembered); G.prof = p; showRead(p); $('read-status').textContent = 'Remembered from your last read'; }

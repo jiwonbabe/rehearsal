@@ -24,6 +24,7 @@ type BrandInfo struct {
 	Name               string            `json:"name"`
 	Synthetic          bool              `json:"synthetic"`
 	Market             string            `json:"market"`
+	Category           string            `json:"category"` // key into data/seasonality.json categories
 	Target             map[string]string `json:"target"`
 	AvgPriceUsd        float64           `json:"avg_price_usd"`
 	ProductCostUsd     float64           `json:"product_cost_usd"`

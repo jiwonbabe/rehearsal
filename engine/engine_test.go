@@ -362,7 +362,7 @@ func TestSeasonMatchesReference(t *testing.T) {
 	var plans []Plan
 	loadJSON(t, "plans", &plans)
 	b := brand(t)
-	season, err := LoadSeasonality(filepath.Join(root(), "data", "seasonality.json"))
+	season, err := LoadSeasonality(filepath.Join(root(), "data", "seasonality.json"), "jewelry")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -434,5 +434,21 @@ func TestSeasonGoalMatchesReference(t *testing.T) {
 	}
 	if SeasonGoal(46, 1) != 46 {
 		t.Error("average month keeps the goal")
+	}
+}
+
+func TestSeasonCatalogPerCategory(t *testing.T) {
+	c, err := LoadSeasonCatalog(filepath.Join(root(), "data", "seasonality.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if j := c.For("jewelry"); j == nil || j.Demand["12"] != 2.23 || j.Label != "Jewelry" || len(j.Sources) != 2 {
+		t.Errorf("jewelry table: %+v", j)
+	}
+	if a := c.For("apparel"); a == nil || a.Demand["12"] != 1.57 || a.AdCost["12"] != 1.27 {
+		t.Errorf("apparel table: %+v", a)
+	}
+	if c.For("nope") != nil || (*SeasonCatalog)(nil).For("jewelry") != nil {
+		t.Error("unknown category or nil catalog must mean no prior")
 	}
 }

@@ -1,19 +1,190 @@
 {
  "market": "US",
- "category": "jewelry",
- "demand": {
-  "1": 0.68,
-  "2": 0.94,
-  "3": 0.83,
-  "4": 0.86,
-  "5": 1.08,
-  "6": 0.88,
-  "7": 0.86,
-  "8": 0.9,
-  "9": 0.83,
-  "10": 0.86,
-  "11": 1.04,
-  "12": 2.23
+ "categories": {
+  "jewelry": {
+   "label": "Jewelry",
+   "demand": {
+    "1": 0.68,
+    "2": 0.94,
+    "3": 0.83,
+    "4": 0.87,
+    "5": 1.08,
+    "6": 0.88,
+    "7": 0.86,
+    "8": 0.89,
+    "9": 0.83,
+    "10": 0.86,
+    "11": 1.04,
+    "12": 2.23
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): jewelry stores, NAICS 44831, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2017-2019. Census suppresses the jewelry line from March 2021 on ((S) in every later sheet), so this is the latest jewelry-specific pattern; its parent category 448 shows the same holiday shape in 2023-2025 (December 1.56×, November 1.12-1.16×)",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2019
+   }
+  },
+  "apparel": {
+   "label": "Clothing and accessories",
+   "demand": {
+    "1": 0.74,
+    "2": 0.8,
+    "3": 0.95,
+    "4": 0.93,
+    "5": 1.04,
+    "6": 0.95,
+    "7": 0.98,
+    "8": 1.05,
+    "9": 0.9,
+    "10": 0.96,
+    "11": 1.13,
+    "12": 1.57
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): clothing and accessories stores, NAICS 448, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  },
+  "beauty": {
+   "label": "Beauty, health and personal care",
+   "demand": {
+    "1": 0.95,
+    "2": 0.9,
+    "3": 0.98,
+    "4": 0.96,
+    "5": 1.0,
+    "6": 0.98,
+    "7": 0.99,
+    "8": 1.02,
+    "9": 1.01,
+    "10": 1.07,
+    "11": 1.0,
+    "12": 1.14
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): beauty, health and personal care stores, NAICS 446, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  },
+  "home": {
+   "label": "Furniture and home",
+   "demand": {
+    "1": 0.94,
+    "2": 0.93,
+    "3": 1.03,
+    "4": 0.96,
+    "5": 1.02,
+    "6": 0.98,
+    "7": 1.01,
+    "8": 1.04,
+    "9": 0.98,
+    "10": 0.98,
+    "11": 1.07,
+    "12": 1.07
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): furniture and home stores, NAICS 442, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  },
+  "electronics": {
+   "label": "Electronics and appliances",
+   "demand": {
+    "1": 0.96,
+    "2": 0.9,
+    "3": 0.95,
+    "4": 0.89,
+    "5": 0.97,
+    "6": 0.95,
+    "7": 0.98,
+    "8": 1.0,
+    "9": 0.95,
+    "10": 0.96,
+    "11": 1.15,
+    "12": 1.35
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): electronics and appliances stores, NAICS 443, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  },
+  "hobby": {
+   "label": "Sporting goods, hobby, music and books",
+   "demand": {
+    "1": 0.84,
+    "2": 0.79,
+    "3": 0.96,
+    "4": 0.9,
+    "5": 0.97,
+    "6": 0.98,
+    "7": 0.99,
+    "8": 1.09,
+    "9": 0.95,
+    "10": 0.95,
+    "11": 1.12,
+    "12": 1.45
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): sporting goods, hobby, music and books stores, NAICS 451, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  },
+  "food": {
+   "label": "Food and drink",
+   "demand": {
+    "1": 0.97,
+    "2": 0.91,
+    "3": 0.99,
+    "4": 0.97,
+    "5": 1.03,
+    "6": 0.99,
+    "7": 1.02,
+    "8": 1.02,
+    "9": 0.98,
+    "10": 1.01,
+    "11": 1.02,
+    "12": 1.09
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): food and drink stores, NAICS 445, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  },
+  "online": {
+   "label": "Online store, other goods",
+   "demand": {
+    "1": 0.94,
+    "2": 0.88,
+    "3": 0.96,
+    "4": 0.95,
+    "5": 0.99,
+    "6": 0.94,
+    "7": 0.99,
+    "8": 0.97,
+    "9": 0.94,
+    "10": 1.03,
+    "11": 1.13,
+    "12": 1.28
+   },
+   "source": {
+    "for": "demand",
+    "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): online store, other goods stores, NAICS 454, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+    "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
+    "year": 2025
+   }
+  }
  },
  "ad_cost": {
   "1": 0.87,
@@ -29,19 +200,11 @@
   "11": 1.18,
   "12": 1.27
  },
- "sources": [
-  {
-   "for": "demand",
-   "source": "U.S. Census Bureau, Monthly Retail Trade: Jewelry Stores (NAICS 44831), not seasonally adjusted, via FRED MRTSSM44831USN; monthly sales ÷ that year's monthly mean, averaged over 2017-2019. Census suppresses the jewelry line from March 2021 on ((S) in mrtssales92-present.xlsx, checked Nov 3, 2026), so this is the latest jewelry-specific pattern published. Cross-checked against the parent category (448, clothing and accessories stores) for 2023-2025: December 1.56× and November 1.12-1.16× in both 2019 and 2023-2025, so the holiday shape has not moved",
-   "url": "https://fred.stlouisfed.org/series/MRTSSM44831USN",
-   "year": 2019
-  },
-  {
-   "for": "ad_cost",
-   "source": "Gupta Media, Meta (Facebook + Instagram) average CPM by month, 2024 and 2025; each month ÷ that year's monthly mean, averaged over the two years. Latest full years with a monthly series; 2026 only runs to September (AdKit worldwide medians) and a partial year cannot be normalized to an annual mean",
-   "url": "https://www.guptamedia.com/social-media-ads-cost",
-   "year": 2025
-  }
- ],
+ "ad_cost_source": {
+  "for": "ad_cost",
+  "source": "Gupta Media, Meta (Facebook + Instagram) average CPM by month, 2024 and 2025; each month ÷ that year's monthly mean, averaged over the two years. Latest full years with a monthly series; 2026 only runs to September (AdKit worldwide medians) and a partial year cannot be normalized to an annual mean",
+  "url": "https://www.guptamedia.com/social-media-ads-cost",
+  "year": 2025
+ },
  "note": "Indexes are relative to an average month (mean 1.0). Applied as a prior for the month being planned; never used to calibrate or backtest, because one year of a brand's history cannot separate seasonality from everything else."
 }

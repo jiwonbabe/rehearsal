@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"strings"
@@ -305,4 +306,71 @@ func FollowersBand(followers float64) string {
 func ImportedCreator(username string, followers, rate float64, bio string) CreatorStat {
 	return CreatorStat{Username: username, Followers: followers, FollowersBand: FollowersBand(followers),
 		EngagementRate: roundTo(rate, 3), PostMix: map[string]float64{}, Biography: bio}
+}
+
+// pewBand: the Setup age band -> the age band the public statistics use.
+func pewBand(age string) string {
+	switch age {
+	case "18-24", "25-34":
+		return "18-29"
+	case "35-44":
+		return "30-49"
+	case "45-54", "55+":
+		return "50-64"
+	}
+	return age
+}
+
+// TargetPlatforms: the public-statistics rows for the brand's market and target age, most used first.
+func TargetPlatforms(stats []StatRow, market, age string) []StatRow {
+	band := pewBand(age)
+	out := []StatRow{}
+	for _, r := range stats {
+		if r.Market == market && r.AgeBand == band {
+			out = append(out, r)
+		}
+	}
+	sort.SliceStable(out, func(i, j int) bool { return out[i].Share > out[j].Share })
+	return out
+}
+
+// ChannelChecks: where the channel verdicts (a model's judgment) disagree with public data: a platform that at
+// least half of the target uses but the verdicts skip or never mention. One sentence each; the owner decides.
+func ChannelChecks(channels []map[string]any, rows []StatRow, market, age string) []string {
+	verdict := map[string]string{} // platform -> best verdict among its channels
+	rank := map[string]int{"lead": 3, "support": 2, "skip": 1}
+	for _, c := range channels {
+		ch, _ := c["channel"].(string)
+		v, _ := c["verdict"].(string)
+		p := strings.SplitN(ch, "_", 2)[0]
+		if rank[v] > rank[verdict[p]] {
+			verdict[p] = v
+		}
+	}
+	names := map[string]string{"instagram": "Instagram", "tiktok": "TikTok", "facebook": "Facebook", "x": "X", "threads": "Threads"}
+	out := []string{}
+	for _, r := range rows {
+		if r.Share < 0.5 {
+			continue
+		}
+		name := names[r.Platform]
+		if name == "" {
+			name = r.Platform
+		}
+		pct := fmt.Sprintf("%d%%", int(math.Floor(r.Share*100+0.5)))
+		switch verdict[r.Platform] {
+		case "skip":
+			out = append(out, fmt.Sprintf("The verdicts skip %s, but %s of %s adults %s use it (%s, %d). Check that call against your own numbers.", name, pct, market, r.AgeBand, shortSource(r.Source), r.Year))
+		case "":
+			out = append(out, fmt.Sprintf("No verdict covers %s, used by %s of %s adults %s (%s, %d).", name, pct, market, r.AgeBand, shortSource(r.Source), r.Year))
+		}
+	}
+	return out
+}
+
+func shortSource(s string) string {
+	if i := strings.Index(s, ","); i > 0 {
+		return s[:i]
+	}
+	return s
 }

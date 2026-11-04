@@ -1,0 +1,384 @@
+{
+ "apparel": {
+  "rates": {
+   "eng_per_post": {
+    "on_hand": 392.25,
+    "close_up": 217.34848484848484,
+    "flat_lay": 268.04477611940297,
+    "on_neck": 107.5
+   },
+   "order_per_engagement": 0.011925067424739413,
+   "promo_multiplier": 2.3219587204379004,
+   "seed_post_rate": 0.3,
+   "eng_per_creator_post": 467.6666666666667,
+   "ad_eng_per_usd": 5.791666666666667
+  },
+  "holdout": {
+   "rows": [
+    {
+     "week": "2026-08-03",
+     "engine": 14.5,
+     "actual": 17,
+     "low": 11.6,
+     "high": 17.4,
+     "promo": false
+    },
+    {
+     "week": "2026-08-10",
+     "engine": 15.6,
+     "actual": 19,
+     "low": 12.5,
+     "high": 18.7,
+     "promo": false
+    },
+    {
+     "week": "2026-08-17",
+     "engine": 14.5,
+     "actual": 16,
+     "low": 11.6,
+     "high": 17.4,
+     "promo": false
+    },
+    {
+     "week": "2026-08-24",
+     "engine": 14.5,
+     "actual": 16,
+     "low": 11.6,
+     "high": 17.4,
+     "promo": false
+    },
+    {
+     "week": "2026-08-31",
+     "engine": 12.5,
+     "actual": 15,
+     "low": 10.0,
+     "high": 15.0,
+     "promo": false
+    },
+    {
+     "week": "2026-09-07",
+     "engine": 15.5,
+     "actual": 16,
+     "low": 12.4,
+     "high": 18.6,
+     "promo": false
+    },
+    {
+     "week": "2026-09-14",
+     "engine": 14.5,
+     "actual": 18,
+     "low": 11.6,
+     "high": 17.4,
+     "promo": false
+    },
+    {
+     "week": "2026-09-21",
+     "engine": 14.5,
+     "actual": 17,
+     "low": 11.6,
+     "high": 17.4,
+     "promo": false
+    },
+    {
+     "week": "2026-09-28",
+     "engine": 13.0,
+     "actual": 16,
+     "low": 10.4,
+     "high": 15.6,
+     "promo": false
+    },
+    {
+     "week": "2026-10-05",
+     "engine": 19.9,
+     "actual": 25,
+     "low": 15.9,
+     "high": 23.9,
+     "promo": false
+    },
+    {
+     "week": "2026-10-12",
+     "engine": 16.4,
+     "actual": 16,
+     "low": 13.1,
+     "high": 19.6,
+     "promo": false
+    },
+    {
+     "week": "2026-10-19",
+     "engine": 23.1,
+     "actual": 24,
+     "low": 18.5,
+     "high": 27.8,
+     "promo": false
+    },
+    {
+     "week": "2026-10-26",
+     "engine": 27.6,
+     "actual": 29,
+     "low": 22.1,
+     "high": 33.2,
+     "promo": false
+    }
+   ],
+   "median_abs_pct_error": 14.8,
+   "weeks_inside_range": 8,
+   "weeks_total": 13
+  },
+  "truth": [
+   {
+    "rate": "eng_per_post.on_hand",
+    "true": 394.48,
+    "engine": 392.25,
+    "err_pct": 0.6,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "eng_per_post.close_up",
+    "true": 221.895,
+    "engine": 217.3485,
+    "err_pct": 2.0,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "eng_per_post.flat_lay",
+    "true": 271.205,
+    "engine": 268.0448,
+    "err_pct": 1.2,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "eng_per_post.on_neck",
+    "true": 110.9475,
+    "engine": 107.5,
+    "err_pct": 3.1,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "order_per_engagement",
+    "true": 0.012,
+    "engine": 0.0119,
+    "err_pct": 0.6,
+    "note": ""
+   },
+   {
+    "rate": "promo_multiplier",
+    "true": 2.4,
+    "engine": 2.322,
+    "err_pct": 3.3,
+    "note": ""
+   },
+   {
+    "rate": "seed_post_rate",
+    "true": 0.7,
+    "engine": 0.3,
+    "err_pct": 57.1,
+    "note": "October carries a planted creator no-show"
+   },
+   {
+    "rate": "eng_per_creator_post",
+    "true": 450,
+    "engine": 467.6667,
+    "err_pct": 3.9,
+    "note": ""
+   },
+   {
+    "rate": "ad_eng_per_usd",
+    "true": 6.0,
+    "engine": 5.7917,
+    "err_pct": 3.5,
+    "note": ""
+   }
+  ]
+ },
+ "beauty": {
+  "rates": {
+   "eng_per_post": {
+    "on_hand": 319.5125,
+    "close_up": 361.9852941176471,
+    "flat_lay": 199.27692307692308,
+    "on_neck": 168.8
+   },
+   "order_per_engagement": 0.018051673597382235,
+   "promo_multiplier": 2.8083922336757157,
+   "seed_post_rate": 0.6,
+   "eng_per_creator_post": 585.0,
+   "ad_eng_per_usd": 7.897979797979798
+  },
+  "holdout": {
+   "rows": [
+    {
+     "week": "2026-08-03",
+     "engine": 20.4,
+     "actual": 25,
+     "low": 16.3,
+     "high": 24.5,
+     "promo": false
+    },
+    {
+     "week": "2026-08-10",
+     "engine": 36.8,
+     "actual": 39,
+     "low": 29.5,
+     "high": 44.2,
+     "promo": false
+    },
+    {
+     "week": "2026-08-17",
+     "engine": 23.7,
+     "actual": 32,
+     "low": 19.0,
+     "high": 28.5,
+     "promo": false
+    },
+    {
+     "week": "2026-08-24",
+     "engine": 20.4,
+     "actual": 24,
+     "low": 16.3,
+     "high": 24.5,
+     "promo": false
+    },
+    {
+     "week": "2026-08-31",
+     "engine": 18.3,
+     "actual": 23,
+     "low": 14.6,
+     "high": 22.0,
+     "promo": false
+    },
+    {
+     "week": "2026-09-07",
+     "engine": 20.4,
+     "actual": 24,
+     "low": 16.3,
+     "high": 24.5,
+     "promo": false
+    },
+    {
+     "week": "2026-09-14",
+     "engine": 17.8,
+     "actual": 24,
+     "low": 14.3,
+     "high": 21.4,
+     "promo": false
+    },
+    {
+     "week": "2026-09-21",
+     "engine": 21.2,
+     "actual": 23,
+     "low": 16.9,
+     "high": 25.4,
+     "promo": false
+    },
+    {
+     "week": "2026-09-28",
+     "engine": 21.2,
+     "actual": 28,
+     "low": 16.9,
+     "high": 25.4,
+     "promo": false
+    },
+    {
+     "week": "2026-10-05",
+     "engine": 44.6,
+     "actual": 40,
+     "low": 35.6,
+     "high": 53.5,
+     "promo": false
+    },
+    {
+     "week": "2026-10-12",
+     "engine": 36.3,
+     "actual": 27,
+     "low": 29.0,
+     "high": 43.5,
+     "promo": false
+    },
+    {
+     "week": "2026-10-19",
+     "engine": 28.9,
+     "actual": 40,
+     "low": 23.1,
+     "high": 34.7,
+     "promo": false
+    },
+    {
+     "week": "2026-10-26",
+     "engine": 35.4,
+     "actual": 39,
+     "low": 28.3,
+     "high": 42.4,
+     "promo": false
+    }
+   ],
+   "median_abs_pct_error": 18.5,
+   "weeks_inside_range": 6,
+   "weeks_total": 13
+  },
+  "truth": [
+   {
+    "rate": "eng_per_post.on_hand",
+    "true": 319.1825,
+    "engine": 319.5125,
+    "err_pct": 0.1,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "eng_per_post.close_up",
+    "true": 368.2875,
+    "engine": 361.9853,
+    "err_pct": 1.7,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "eng_per_post.flat_lay",
+    "true": 196.42,
+    "engine": 199.2769,
+    "err_pct": 1.5,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "eng_per_post.on_neck",
+    "true": 171.8675,
+    "engine": 168.8,
+    "err_pct": 1.8,
+    "note": "generator value scaled by average followers"
+   },
+   {
+    "rate": "order_per_engagement",
+    "true": 0.018,
+    "engine": 0.0181,
+    "err_pct": 0.3,
+    "note": ""
+   },
+   {
+    "rate": "promo_multiplier",
+    "true": 2.8,
+    "engine": 2.8084,
+    "err_pct": 0.3,
+    "note": ""
+   },
+   {
+    "rate": "seed_post_rate",
+    "true": 0.65,
+    "engine": 0.6,
+    "err_pct": 7.7,
+    "note": "October carries a planted creator no-show"
+   },
+   {
+    "rate": "eng_per_creator_post",
+    "true": 600,
+    "engine": 585.0,
+    "err_pct": 2.5,
+    "note": ""
+   },
+   {
+    "rate": "ad_eng_per_usd",
+    "true": 8.0,
+    "engine": 7.898,
+    "err_pct": 1.3,
+    "note": ""
+   }
+  ]
+ }
+}

@@ -573,3 +573,91 @@ func TestCreatorBandsMatchReference(t *testing.T) {
 		t.Error("no pool, no bands")
 	}
 }
+
+// The engine on two more synthetic brands (apparel, beauty): calibration, holdout and known-answer recovery
+// agree with the Python reference, and the stress test still orders plans sensibly.
+func TestOtherBrandsMatchReference(t *testing.T) {
+	var want map[string]struct {
+		Rates   Rates      `json:"rates"`
+		Holdout Backtest   `json:"holdout"`
+		Truth   []TruthRow `json:"truth"`
+	}
+	loadJSON(t, "brands", &want)
+	if len(want) != 2 {
+		t.Fatalf("brands fixture: %d entries", len(want))
+	}
+	for key, w := range want {
+		b, err := LoadBrand(filepath.Join(root(), "data", "brands", key+".json"))
+		if err != nil {
+			t.Fatalf("%s: %v (run `python3 data/synthetic.py %s`)", key, err, key)
+		}
+		r := Calibrate(b)
+		if math.Abs(r.OrderPerEngagement-w.Rates.OrderPerEngagement) > 1e-9 || math.Abs(r.AdEngPerUsd-w.Rates.AdEngPerUsd) > 1e-9 || math.Abs(r.SeedPostRate-w.Rates.SeedPostRate) > 1e-9 {
+			t.Errorf("%s rates %+v want %+v", key, r, w.Rates)
+		}
+		h := RunHoldout(b, 13)
+		if h.MedianAbsPctError != w.Holdout.MedianAbsPctError || h.WeeksInsideRange != w.Holdout.WeeksInsideRange {
+			t.Errorf("%s holdout %+v want %+v", key, h, w.Holdout)
+		}
+		truth := RunTruthCheck(b, r)
+		if len(truth) != len(w.Truth) || len(truth) != 9 {
+			t.Fatalf("%s truth rows %d want %d", key, len(truth), len(w.Truth))
+		}
+		close := 0
+		for i := range truth {
+			if truth[i] != w.Truth[i] {
+				t.Errorf("%s truth row %d: %+v want %+v", key, i, truth[i], w.Truth[i])
+			}
+			if math.Abs(truth[i].ErrPct) <= 10 {
+				close++
+			}
+		}
+		if h.MedianAbsPctError > 40 || close < 5 {
+			t.Errorf("%s: engine does not fit this brand: holdout miss %v%%, %d of 9 rates within 10%%", key, h.MedianAbsPctError, close)
+		}
+		mix := map[string]float64{"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}
+		plans := []Plan{BaselinePlan(),
+			{PlanID: "ads", Direction: "pay_for_reach", PostsPerWeek: 4, PostMix: mix, AdsUsd: b.Brand.BudgetUsdPerMonth * 0.8},
+			{PlanID: "seed", Direction: "send_to_creators", PostsPerWeek: 4, PostMix: mix, CreatorCount: math.Floor(b.Brand.BudgetUsdPerMonth / b.Brand.ProductCostUsd / 2)}}
+		v := RunVerdict(plans, Stress(plans, FallbackCombos, r, b), r, b)
+		best, base := 0, 0
+		for _, x := range v {
+			if x.Survived > best {
+				best = x.Survived
+			}
+			if x.Plan.PlanID == "baseline" {
+				base = x.Survived
+			}
+		}
+		if best < base || best == 0 {
+			t.Errorf("%s: spending should not do worse than doing nothing: best %d baseline %d", key, best, base)
+		}
+		t.Logf("%s: holdout miss %v%% (%d of %d inside), %d of 9 rates within 10%%, best plan survived %d/20, baseline %d/20", key, h.MedianAbsPctError, h.WeeksInsideRange, h.WeeksTotal, close, best, base)
+	}
+}
+
+func TestTargetPlatformsAndChannelChecks(t *testing.T) {
+	stats, err := LoadStats(filepath.Join(root(), "data", "platform_stats.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	rows := TargetPlatforms(stats, "US", "25-34")
+	if len(rows) != 4 || rows[0].Platform != "instagram" || rows[1].Platform != "facebook" || rows[2].Platform != "tiktok" || rows[0].AgeBand != "18-29" {
+		t.Errorf("25-34 → 18-29, most used first: %+v", rows)
+	}
+	if r := TargetPlatforms(stats, "US", "35-44"); len(r) != 4 || r[0].Platform != "facebook" || r[0].AgeBand != "30-49" {
+		t.Errorf("35-44 → 30-49: %+v", r)
+	}
+	if len(TargetPlatforms(stats, "US", "nope")) != 0 {
+		t.Error("unknown band: no rows")
+	}
+	channels := []map[string]any{{"channel": "instagram_reels", "verdict": "lead"}, {"channel": "tiktok", "verdict": "skip"}}
+	checks := ChannelChecks(channels, rows, "US", "25-34")
+	if len(checks) != 2 || !strings.Contains(checks[0], "No verdict covers Facebook") || !strings.Contains(checks[1], "skip TikTok, but 65%") {
+		t.Errorf("checks: %v", checks)
+	}
+	teen := []map[string]any{{"channel": "tiktok", "verdict": "lead"}, {"channel": "instagram_feed", "verdict": "support"}, {"channel": "facebook", "verdict": "support"}}
+	if c := ChannelChecks(teen, TargetPlatforms(stats, "US", "18-24"), "US", "18-24"); len(c) != 0 {
+		t.Errorf("verdicts that cover every platform half the target uses get no check: %v", c)
+	}
+}

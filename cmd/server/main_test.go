@@ -902,3 +902,24 @@ func TestImportCreatorsBecomesThePool(t *testing.T) {
 		t.Errorf("useless list should be 400, got %d", code)
 	}
 }
+
+func TestChannelChecksAgainstPublicData(t *testing.T) {
+	ts := newTestServer(t)
+	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"demo.brand"}`, nil)
+	var d struct {
+		TargetPlatforms []engine.StatRow `json:"target_platforms"`
+		ChannelChecks   []string         `json:"channel_checks"`
+	}
+	call(t, ts, "POST", "/api/directions", "", &d)
+	if len(d.TargetPlatforms) != 4 || d.TargetPlatforms[0].Platform != "instagram" {
+		t.Errorf("target platforms for US 25-34: %+v", d.TargetPlatforms)
+	}
+	if len(d.ChannelChecks) != 2 {
+		t.Errorf("the demo verdicts skip TikTok and never mention Facebook, both used by half of US 18-29: %v", d.ChannelChecks)
+	}
+	call(t, ts, "POST", "/api/setup", `{"target":{"age":"35-44"}}`, nil)
+	call(t, ts, "POST", "/api/directions", "", &d)
+	if d.TargetPlatforms[0].AgeBand != "30-49" {
+		t.Errorf("target age change must move the public-data band: %+v", d.TargetPlatforms[0])
+	}
+}

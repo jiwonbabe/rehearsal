@@ -27,6 +27,14 @@ Rehearsal grounds its advice in the brand's own Meta data, not in generic market
 
 After a Meta connect the creators found for the brief (`business_discovery`) become the brand's creator pool. A seeding plan counts its N creators as consecutive members of that pool, weighted by expected engagement (followers × engagement rate, relative to the pool mean), and every bad month in the stress test starts at a different creator. The mean stays calibrated to the brand's history; the spread comes from the creators' real audience sizes. History never uses the pool (`RunPlanAt`, fixture `creator_pool.json`).
 
+## The model's channel picks are checked against public data
+
+`data/platform_stats.json` holds Pew's 2026 shares of US adults who use Instagram, TikTok, Facebook and X by age band (18–29, 30–49, 50–64). `engine.TargetPlatforms` maps the owner's target age to the band and sorts the platforms; `engine.ChannelChecks` flags any platform that at least half of the target uses but Spark's verdicts skip or never mention. The Channels card shows the public-data line and the checks (the demo gets two: the verdicts skip TikTok and never mention Facebook, both used by over 60% of US 18–29). Changing the target age on Setup moves the band. The model's own judgment can only be re-tested by regenerating `channels-*.json` with the key; the check is what runs without it.
+
+## Tested on more than one brand
+
+`python3 data/synthetic.py apparel|beauty` writes two more synthetic brands (different true rates, prices, seeds, same calendar). `reference/fixtures/brands.json` holds the Python reference's calibration, holdout and known-answer rows for them and `TestOtherBrandsMatchReference` checks the Go engine against it and that spending never scores below doing nothing. Holdout miss: jewelry 14.7%, apparel 14.8%, beauty 18.5%; rates within 10%: 7, 8 and 9 of 9. `BRAND=data/brands/apparel.json go run ./cmd/server` starts the server on one of them (engine numbers only; the Spark caches stay the demo's).
+
 ## Your own creator list
 
 `POST /api/creators {text}` takes a CSV or JSON of public creator profiles (username, followers, engagement_rate or avg_likes, biography), for example a Bright Data Instagram export. Setup has a paste box for it. The list replaces the demo pool: creator plans are counted against these accounts, the size bands and expected orders come from them, and Launch lists them with a "Real · your list" chip. Finding creators is still the owner's job (Instagram has no search API); rating what they are worth is the engine's.

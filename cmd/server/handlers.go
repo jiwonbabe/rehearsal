@@ -158,14 +158,16 @@ func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
 		out = append(out, o)
 	}
 	resp := struct {
-		Month        int                  `json:"month"`
-		Directions   []directionOut       `json:"directions"`
-		LastMonth    *engine.Review       `json:"last_month"`
-		Channels     []map[string]any     `json:"channels"`
-		Season       map[string]any       `json:"season"`
-		Coverage     []engine.Coverage    `json:"coverage"`
-		CreatorBands []engine.CreatorBand `json:"creator_bands"`
-	}{s.month, out, s.lastReview, s.channels(), s.seasonOut(), engine.LeverCoverage(s.brand), engine.CreatorBands(s.rates, s.brand, s.planMonth())}
+		Month           int                  `json:"month"`
+		Directions      []directionOut       `json:"directions"`
+		LastMonth       *engine.Review       `json:"last_month"`
+		Channels        []map[string]any     `json:"channels"`
+		Season          map[string]any       `json:"season"`
+		Coverage        []engine.Coverage    `json:"coverage"`
+		CreatorBands    []engine.CreatorBand `json:"creator_bands"`
+		TargetPlatforms []engine.StatRow     `json:"target_platforms"`
+		ChannelChecks   []string             `json:"channel_checks"`
+	}{s.month, out, s.lastReview, s.channels(), s.seasonOut(), engine.LeverCoverage(s.brand), engine.CreatorBands(s.rates, s.brand, s.planMonth()), s.targetPlatforms(), s.channelChecks()}
 	s.writeJSON(w, resp)
 }
 

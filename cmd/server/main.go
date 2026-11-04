@@ -127,7 +127,11 @@ func (s *server) locked(h http.HandlerFunc) http.HandlerFunc {
 
 func main() {
 	os.Unsetenv("MUSE_API_KEY") // demo is cache-only; cmd/sparkcache is the only live caller
-	s, err := newServer("data/brand.json")
+	brandPath := "data/brand.json"
+	if p := os.Getenv("BRAND"); p != "" { // another synthetic brand (data/brands/*.json): engine numbers only, the Spark caches stay the demo's
+		brandPath = p
+	}
+	s, err := newServer(brandPath)
 	if err != nil {
 		log.Fatalf("load brand: %v (run `python data/synthetic.py`)", err)
 	}

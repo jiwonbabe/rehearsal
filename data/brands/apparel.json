@@ -1,0 +1,1282 @@
+{
+ "brand": {
+  "name": "Harbor & Pine Apparel (demo)",
+  "synthetic": true,
+  "market": "US",
+  "category": "apparel",
+  "target": {
+   "gender": "women",
+   "age": "25-34",
+   "price_band": "30-80"
+  },
+  "avg_price_usd": 55,
+  "product_cost_usd": 20,
+  "goal_orders_per_month": 68,
+  "budget_usd_per_month": 600
+ },
+ "weeks": [
+  {
+   "week": "2025-11-03",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 345,
+    "close_up": 190,
+    "flat_lay": 422,
+    "on_neck": 0
+   },
+   "followers": 3900,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 11,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-11-10",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 563,
+    "close_up": 179,
+    "flat_lay": 484,
+    "on_neck": 0
+   },
+   "followers": 3943,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-11-17",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 702,
+    "close_up": 156,
+    "flat_lay": 188,
+    "on_neck": 0
+   },
+   "followers": 3991,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 12,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-11-24",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 672,
+    "close_up": 181,
+    "flat_lay": 232,
+    "on_neck": 0
+   },
+   "followers": 4034,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 14,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-12-01",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 298,
+    "close_up": 342,
+    "flat_lay": 194,
+    "on_neck": 0
+   },
+   "followers": 4062,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 10,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-12-08",
+   "posts": {
+    "on_hand": 3,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 971,
+    "close_up": 210,
+    "flat_lay": 217,
+    "on_neck": 0
+   },
+   "followers": 4083,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-12-15",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 375,
+    "close_up": 399,
+    "flat_lay": 200,
+    "on_neck": 0
+   },
+   "followers": 4117,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 12,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-12-22",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 379,
+    "close_up": 403,
+    "flat_lay": 222,
+    "on_neck": 90
+   },
+   "followers": 4146,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 12,
+   "spend_usd": 0
+  },
+  {
+   "week": "2025-12-29",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 286,
+    "close_up": 341,
+    "flat_lay": 264,
+    "on_neck": 0
+   },
+   "followers": 4190,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 10,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-01-05",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 371,
+    "close_up": 367,
+    "flat_lay": 405,
+    "on_neck": 0
+   },
+   "followers": 4226,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 13,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-01-12",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 304,
+    "close_up": 185,
+    "flat_lay": 487,
+    "on_neck": 90
+   },
+   "followers": 4272,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 120,
+   "ad_engagement": 743,
+   "promo_discount": 0.0,
+   "orders": 23,
+   "spend_usd": 120
+  },
+  {
+   "week": "2026-01-19",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 2
+   },
+   "engagement": {
+    "on_hand": 356,
+    "close_up": 189,
+    "flat_lay": 209,
+    "on_neck": 167
+   },
+   "followers": 4318,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 90,
+   "ad_engagement": 497,
+   "promo_discount": 0.0,
+   "orders": 18,
+   "spend_usd": 90
+  },
+  {
+   "week": "2026-01-26",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 358,
+    "close_up": 183,
+    "flat_lay": 432,
+    "on_neck": 0
+   },
+   "followers": 4359,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 12,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-02-02",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 396,
+    "close_up": 360,
+    "flat_lay": 206,
+    "on_neck": 92
+   },
+   "followers": 4402,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 12,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-02-09",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 315,
+    "close_up": 191,
+    "flat_lay": 272,
+    "on_neck": 114
+   },
+   "followers": 4439,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.15,
+   "orders": 26,
+   "spend_usd": 214
+  },
+  {
+   "week": "2026-02-16",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 708,
+    "close_up": 192,
+    "flat_lay": 231,
+    "on_neck": 86
+   },
+   "followers": 4465,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 13,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-02-23",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 628,
+    "close_up": 410,
+    "flat_lay": 265,
+    "on_neck": 0
+   },
+   "followers": 4503,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 17,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-03-02",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 407,
+    "close_up": 454,
+    "flat_lay": 243,
+    "on_neck": 111
+   },
+   "followers": 4544,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-03-09",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 378,
+    "close_up": 180,
+    "flat_lay": 525,
+    "on_neck": 0
+   },
+   "followers": 4585,
+   "creators_seeded": 3,
+   "creators_posted": 1,
+   "creator_engagement": 492,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 19,
+   "spend_usd": 60
+  },
+  {
+   "week": "2026-03-16",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 745,
+    "close_up": 196,
+    "flat_lay": 223,
+    "on_neck": 0
+   },
+   "followers": 4638,
+   "creators_seeded": 3,
+   "creators_posted": 1,
+   "creator_engagement": 478,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 21,
+   "spend_usd": 60
+  },
+  {
+   "week": "2026-03-23",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 3,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 376,
+    "close_up": 680,
+    "flat_lay": 245,
+    "on_neck": 0
+   },
+   "followers": 4686,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-03-30",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 824,
+    "close_up": 228,
+    "flat_lay": 236,
+    "on_neck": 0
+   },
+   "followers": 4725,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-04-06",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 404,
+    "close_up": 243,
+    "flat_lay": 488,
+    "on_neck": 0
+   },
+   "followers": 4759,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 60,
+   "ad_engagement": 335,
+   "promo_discount": 0.0,
+   "orders": 17,
+   "spend_usd": 60
+  },
+  {
+   "week": "2026-04-13",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 404,
+    "close_up": 230,
+    "flat_lay": 582,
+    "on_neck": 0
+   },
+   "followers": 4806,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 90,
+   "ad_engagement": 593,
+   "promo_discount": 0.0,
+   "orders": 21,
+   "spend_usd": 90
+  },
+  {
+   "week": "2026-04-20",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 727,
+    "close_up": 209,
+    "flat_lay": 279,
+    "on_neck": 0
+   },
+   "followers": 4866,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 14,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-04-27",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 854,
+    "close_up": 252,
+    "flat_lay": 238,
+    "on_neck": 0
+   },
+   "followers": 4903,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-05-04",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 731,
+    "close_up": 236,
+    "flat_lay": 292,
+    "on_neck": 112
+   },
+   "followers": 4936,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 17,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-05-11",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 458,
+    "close_up": 201,
+    "flat_lay": 302,
+    "on_neck": 118
+   },
+   "followers": 4985,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 14,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-05-18",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 730,
+    "close_up": 252,
+    "flat_lay": 235,
+    "on_neck": 0
+   },
+   "followers": 5023,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-05-25",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 463,
+    "close_up": 200,
+    "flat_lay": 617,
+    "on_neck": 0
+   },
+   "followers": 5062,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-06-01",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 933,
+    "close_up": 259,
+    "flat_lay": 260,
+    "on_neck": 0
+   },
+   "followers": 5104,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 120,
+   "ad_engagement": 721,
+   "promo_discount": 0.0,
+   "orders": 24,
+   "spend_usd": 120
+  },
+  {
+   "week": "2026-06-08",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 411,
+    "close_up": 199,
+    "flat_lay": 310,
+    "on_neck": 100
+   },
+   "followers": 5162,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 90,
+   "ad_engagement": 487,
+   "promo_discount": 0.0,
+   "orders": 17,
+   "spend_usd": 90
+  },
+  {
+   "week": "2026-06-15",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 425,
+    "close_up": 247,
+    "flat_lay": 616,
+    "on_neck": 114
+   },
+   "followers": 5201,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 90,
+   "ad_engagement": 593,
+   "promo_discount": 0.0,
+   "orders": 24,
+   "spend_usd": 90
+  },
+  {
+   "week": "2026-06-22",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 471,
+    "close_up": 218,
+    "flat_lay": 303,
+    "on_neck": 134
+   },
+   "followers": 5250,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 13,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-06-29",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 431,
+    "close_up": 216,
+    "flat_lay": 293,
+    "on_neck": 118
+   },
+   "followers": 5281,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 14,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-07-06",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 488,
+    "close_up": 212,
+    "flat_lay": 514,
+    "on_neck": 0
+   },
+   "followers": 5323,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-07-13",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 381,
+    "close_up": 473,
+    "flat_lay": 322,
+    "on_neck": 135
+   },
+   "followers": 5364,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.15,
+   "orders": 35,
+   "spend_usd": 288
+  },
+  {
+   "week": "2026-07-20",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 769,
+    "close_up": 264,
+    "flat_lay": 255,
+    "on_neck": 0
+   },
+   "followers": 5414,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-07-27",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 769,
+    "close_up": 262,
+    "flat_lay": 266,
+    "on_neck": 0
+   },
+   "followers": 5455,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-08-03",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 856,
+    "close_up": 249,
+    "flat_lay": 271,
+    "on_neck": 0
+   },
+   "followers": 5498,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 17,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-08-10",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 1
+   },
+   "engagement": {
+    "on_hand": 408,
+    "close_up": 267,
+    "flat_lay": 333,
+    "on_neck": 139
+   },
+   "followers": 5547,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 60,
+   "ad_engagement": 340,
+   "promo_discount": 0.0,
+   "orders": 19,
+   "spend_usd": 60
+  },
+  {
+   "week": "2026-08-17",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 795,
+    "close_up": 231,
+    "flat_lay": 328,
+    "on_neck": 0
+   },
+   "followers": 5587,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-08-24",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 949,
+    "close_up": 216,
+    "flat_lay": 281,
+    "on_neck": 0
+   },
+   "followers": 5623,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-08-31",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 479,
+    "close_up": 462,
+    "flat_lay": 271,
+    "on_neck": 0
+   },
+   "followers": 5672,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 15,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-09-07",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 404,
+    "close_up": 464,
+    "flat_lay": 564,
+    "on_neck": 0
+   },
+   "followers": 5719,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-09-14",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 874,
+    "close_up": 256,
+    "flat_lay": 318,
+    "on_neck": 0
+   },
+   "followers": 5766,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 18,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-09-21",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 889,
+    "close_up": 251,
+    "flat_lay": 359,
+    "on_neck": 0
+   },
+   "followers": 5805,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 17,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-09-28",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 2,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 423,
+    "close_up": 269,
+    "flat_lay": 611,
+    "on_neck": 0
+   },
+   "followers": 5841,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 0
+  },
+  {
+   "week": "2026-10-05",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 1,
+    "flat_lay": 3,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 523,
+    "close_up": 279,
+    "flat_lay": 1047,
+    "on_neck": 0
+   },
+   "followers": 5877,
+   "creators_seeded": 2,
+   "creators_posted": 1,
+   "creator_engagement": 433,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 25,
+   "spend_usd": 40
+  },
+  {
+   "week": "2026-10-12",
+   "posts": {
+    "on_hand": 1,
+    "close_up": 2,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 405,
+    "close_up": 511,
+    "flat_lay": 340,
+    "on_neck": 0
+   },
+   "followers": 5937,
+   "creators_seeded": 2,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 0,
+   "ad_engagement": 0,
+   "promo_discount": 0.0,
+   "orders": 16,
+   "spend_usd": 40
+  },
+  {
+   "week": "2026-10-19",
+   "posts": {
+    "on_hand": 2,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 865,
+    "close_up": 234,
+    "flat_lay": 330,
+    "on_neck": 0
+   },
+   "followers": 5977,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 120,
+   "ad_engagement": 637,
+   "promo_discount": 0.0,
+   "orders": 24,
+   "spend_usd": 120
+  },
+  {
+   "week": "2026-10-26",
+   "posts": {
+    "on_hand": 3,
+    "close_up": 1,
+    "flat_lay": 1,
+    "on_neck": 0
+   },
+   "engagement": {
+    "on_hand": 1335,
+    "close_up": 267,
+    "flat_lay": 332,
+    "on_neck": 0
+   },
+   "followers": 6041,
+   "creators_seeded": 0,
+   "creators_posted": 0,
+   "creator_engagement": 0,
+   "ads_usd": 120,
+   "ad_engagement": 614,
+   "promo_discount": 0.0,
+   "orders": 29,
+   "spend_usd": 120
+  }
+ ],
+ "generator_truth": {
+  "eng_per_post": {
+   "on_hand": 320,
+   "close_up": 180,
+   "flat_lay": 220,
+   "on_neck": 90
+  },
+  "order_per_engagement": 0.012,
+  "promo_multiplier": 2.4,
+  "seed_post_rate": 0.7,
+  "eng_per_creator_post": 450,
+  "ad_eng_per_usd": 6.0,
+  "followers_base": 4000,
+  "note": "eng_per_post scales with followers/4000; October carries a planted creator no-show, so seed_post_rate in the data is below 0.75 on purpose."
+ }
+}

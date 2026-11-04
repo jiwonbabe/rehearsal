@@ -27,7 +27,7 @@
 <script src="/app.js"></script>
 <script>
 renderHeader(1, 'Directions · this month');
-let dirs = [], coverage = [], data = {}, sel = getSelected().slice(0, 2);
+let dirs = [], coverage = [], data = {}, brandTarget = {}, sel = getSelected().slice(0, 2);
 const line = (label, text) => { const r = document.createElement('div'); r.innerHTML = '<span style="font-weight:600"></span> <span></span>'; r.firstChild.textContent = label; r.lastChild.textContent = text; return r; };
 function renderPlaybook(box, pb) {
   if (!pb || !pb.weeks || !pb.weeks[0].do) return;
@@ -152,6 +152,14 @@ function renderChannels(list, connected, handle, ev) {
   const chips = document.createElement('div'); chips.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px';
   ['lead', 'support', 'skip'].forEach(v => { const names = list.filter(c => c.verdict === v).map(c => CH[c.channel] || c.channel); if (!names.length) return; const [label, fg, bg] = VERDICT[v]; chips.appendChild(badge(label, bg, fg)); const t = document.createElement('span'); t.textContent = names.join(', '); t.style.marginRight = '10px'; chips.appendChild(t); });
   box.appendChild(chips);
+  const tp = data.target_platforms || [];
+  if (tp.length) {
+    const names = { instagram: 'Instagram', tiktok: 'TikTok', facebook: 'Facebook', x: 'X', threads: 'Threads' };
+    const line = tagged('Public data', '#e4edf6', '#2f5d8a', `Among ${tp[0].market} adults ${tp[0].age_band}: ` + tp.map(r => `${names[r.platform] || r.platform} ${Math.round(r.share * 100)}%`).join(' · ') + ` (${tp[0].source.split(',')[0]}, ${tp[0].year}). Your target: ${(brandTarget.gender || '')} ${(brandTarget.age || '')}.`);
+    box.appendChild(line);
+    const src = document.createElement('a'); src.href = tp[0].url; src.target = '_blank'; src.style.cssText = 'font-size:11.5px;color:#5c6066'; src.textContent = `Source: ${tp[0].source}`; box.appendChild(src);
+  }
+  (data.channel_checks || []).forEach(s => box.appendChild(tagged('Check', '#fbe9e4', '#c2410c', s)));
   const det = document.createElement('details'); det.innerHTML = '<summary style="cursor:pointer;font-size:12.5px;color:#5c6066">Show why, channel by channel</summary>';
   const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:12px';
   list.forEach(c => {
@@ -177,6 +185,7 @@ $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
 (async () => {
   try {
     data = await api('/api/directions');
+    try { brandTarget = (await api('/api/brand')).target || {}; } catch (e) { brandTarget = {}; }
     dirs = data.directions.slice().sort((a, b) => a.rank - b.rank); coverage = data.coverage || [];
     renderSeason(data.season);
     try { const ev = data.channels ? await api('/api/evidence') : null; renderChannels(data.channels, !!ev, ev && ev.handle, ev); } catch (e) { renderChannels(null, false); }

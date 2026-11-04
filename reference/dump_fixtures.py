@@ -72,6 +72,12 @@ def main():
                     "no_month": run_plan(plans[0], rates, season_brand),
                     "goal_november": season_goal(brand["brand"]["goal_orders_per_month"], season_brand["season"]["demand"]["11"]),
                     "goal_december": season_goal(brand["brand"]["goal_orders_per_month"], season_brand["season"]["demand"]["12"])})
+    others = {}
+    for key in ("apparel", "beauty"):
+        ob = load_brand(os.path.join(ROOT, "data", "brands", key + ".json"))
+        orates = calibrate(ob)
+        others[key] = {"rates": vars(orates), "holdout": holdout(ob, 13), "truth": truth_check(ob, orates)}
+    dump("brands", others)
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
     no_ads = dict(brand, weeks=[dict(w, ads_usd=0, ad_engagement=0) for w in brand["weeks"]])

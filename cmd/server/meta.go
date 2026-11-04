@@ -52,7 +52,7 @@ func (s *server) channels() []map[string]any {
 
 func (s *server) evidenceOut() map[string]any {
 	return map[string]any{"connected": s.evidence != nil, "handle": s.metaHandle, "evidence": s.evidence,
-		"stats": s.stats, "channels": s.channels()}
+		"stats": s.stats, "channels": s.channels(), "target_platforms": s.targetPlatforms(), "channel_checks": s.channelChecks()}
 }
 
 func (s *server) handleMetaConnect(w http.ResponseWriter, r *http.Request) {
@@ -77,4 +77,14 @@ func (s *server) handleEvidence(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.writeJSON(w, s.evidenceOut())
+}
+
+// targetPlatforms / channelChecks: public platform-use data for the brand's target, and where the channel
+// verdicts disagree with it (engine, deterministic; the owner decides).
+func (s *server) targetPlatforms() []engine.StatRow {
+	return engine.TargetPlatforms(s.stats, s.brand.Brand.Market, s.brand.Brand.Target["age"])
+}
+
+func (s *server) channelChecks() []string {
+	return engine.ChannelChecks(s.channels(), s.targetPlatforms(), s.brand.Brand.Market, s.brand.Brand.Target["age"])
 }

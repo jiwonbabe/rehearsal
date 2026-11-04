@@ -1,10 +1,13 @@
 """Generate data/brand.json: one synthetic brand, 52 weekly rows, seeded.
 
-Run:  python data/synthetic.py
+Run:  python data/synthetic.py              # the demo brand (jewelry) -> data/brand.json
+      python data/synthetic.py apparel      # another synthetic brand -> data/brands/apparel.json (engine tests)
+      python data/synthetic.py beauty
 """
 import json
 import os
 import random
+import sys
 from datetime import date, timedelta
 
 SEED = 7
@@ -28,6 +31,22 @@ BRAND = {
     "product_cost_usd": 45,
     "goal_orders_per_month": 46,
     "budget_usd_per_month": 400,
+}
+
+
+# Other synthetic brands, same marketing calendar, different true rates, prices and seeds. They exist so the
+# engine is checked on more than one shape of business (reference/dump_fixtures.py, engine tests, README table).
+PROFILES = {
+    "apparel": {"SEED": 11, "BRAND": {"name": "Harbor & Pine Apparel (demo)", "synthetic": True, "market": "US", "category": "apparel",
+                                      "target": {"gender": "women", "age": "25-34", "price_band": "30-80"},
+                                      "avg_price_usd": 55, "product_cost_usd": 20, "goal_orders_per_month": 0, "budget_usd_per_month": 600},
+                "TRUE_ENG_PER_POST": {"on_hand": 320, "close_up": 180, "flat_lay": 220, "on_neck": 90}, "TRUE_ORDER_PER_ENG": 0.012,
+                "TRUE_PROMO_MULT": 2.4, "TRUE_ENG_PER_CREATOR_POST": 450, "TRUE_AD_ENG_PER_USD": 6.0, "TRUE_SEED_POST_RATE": 0.7},
+    "beauty": {"SEED": 23, "BRAND": {"name": "Lumen Skincare (demo)", "synthetic": True, "market": "US", "category": "beauty",
+                                     "target": {"gender": "women", "age": "18-24", "price_band": "30-80"},
+                                     "avg_price_usd": 38, "product_cost_usd": 12, "goal_orders_per_month": 0, "budget_usd_per_month": 500},
+               "TRUE_ENG_PER_POST": {"on_hand": 260, "close_up": 300, "flat_lay": 160, "on_neck": 140}, "TRUE_ORDER_PER_ENG": 0.018,
+               "TRUE_PROMO_MULT": 2.8, "TRUE_ENG_PER_CREATOR_POST": 600, "TRUE_AD_ENG_PER_USD": 8.0, "TRUE_SEED_POST_RATE": 0.65},
 }
 
 
@@ -102,6 +121,9 @@ def make_weeks(rng):
 
 
 def main():
+    profile = sys.argv[1] if len(sys.argv) > 1 else ""
+    if profile:
+        globals().update(PROFILES[profile])
     rng = random.Random(SEED)
     out = {"brand": BRAND, "weeks": make_weeks(rng),
            # The rates the generator used. The engine never reads these; the trust check compares its
@@ -112,6 +134,12 @@ def main():
                                "followers_base": 4000,
                                "note": "eng_per_post scales with followers/4000; October carries a planted creator no-show, so seed_post_rate in the data is below 0.75 on purpose."}}
     path = os.path.join(os.path.dirname(__file__), "brand.json")
+    if profile:
+        # goal = a month of the brand's own typical weeks, so "Hold" means the current pace
+        mean_week = sum(w["orders"] for w in out["weeks"]) / len(out["weeks"])
+        out["brand"]["goal_orders_per_month"] = int(mean_week * 4 + 0.5)
+        os.makedirs(os.path.join(os.path.dirname(__file__), "brands"), exist_ok=True)
+        path = os.path.join(os.path.dirname(__file__), "brands", profile + ".json")
     with open(path, "w") as f:
         json.dump(out, f, indent=1)
     total_orders = sum(w["orders"] for w in out["weeks"])

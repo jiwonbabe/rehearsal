@@ -1,5 +1,132 @@
 [
- {"market": "US", "age_band": "18-29", "platform": "instagram", "share": 0.80, "source": "Pew Research Center, Americans' Social Media Use (2025 survey)", "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/", "year": 2025, "note": "share of US adults 18-29 who say they ever use Instagram"},
- {"market": "US", "age_band": "18-29", "platform": "tiktok", "share": 0.63, "source": "Pew Research Center, Americans' Social Media Use (2025 survey)", "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/", "year": 2025, "note": "share of US adults 18-29 who say they ever use TikTok"},
- {"market": "KR", "age_band": "30-39", "platform": "threads", "share": 0.19, "source": "KT Nasmedia, 2026 NPR Target Infographics", "url": "https://www.i-boss.co.kr/ab-3208-1746", "year": 2026, "note": "share of Korean internet users in their 30s using Threads; above the all-ages average"}
+ {
+  "market": "US",
+  "age_band": "18-29",
+  "platform": "instagram",
+  "share": 0.79,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 18-29 who say they ever use Instagram"
+ },
+ {
+  "market": "US",
+  "age_band": "18-29",
+  "platform": "tiktok",
+  "share": 0.65,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 18-29 who say they ever use TikTok"
+ },
+ {
+  "market": "US",
+  "age_band": "18-29",
+  "platform": "facebook",
+  "share": 0.69,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 18-29 who say they ever use Facebook"
+ },
+ {
+  "market": "US",
+  "age_band": "18-29",
+  "platform": "x",
+  "share": 0.31,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 18-29 who say they ever use X"
+ },
+ {
+  "market": "US",
+  "age_band": "30-49",
+  "platform": "instagram",
+  "share": 0.64,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 30-49 who say they ever use Instagram"
+ },
+ {
+  "market": "US",
+  "age_band": "30-49",
+  "platform": "tiktok",
+  "share": 0.45,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 30-49 who say they ever use TikTok"
+ },
+ {
+  "market": "US",
+  "age_band": "30-49",
+  "platform": "facebook",
+  "share": 0.78,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 30-49 who say they ever use Facebook"
+ },
+ {
+  "market": "US",
+  "age_band": "30-49",
+  "platform": "x",
+  "share": 0.2,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 30-49 who say they ever use X"
+ },
+ {
+  "market": "US",
+  "age_band": "50-64",
+  "platform": "instagram",
+  "share": 0.41,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 50-64 who say they ever use Instagram"
+ },
+ {
+  "market": "US",
+  "age_band": "50-64",
+  "platform": "tiktok",
+  "share": 0.31,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 50-64 who say they ever use TikTok"
+ },
+ {
+  "market": "US",
+  "age_band": "50-64",
+  "platform": "facebook",
+  "share": 0.71,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 50-64 who say they ever use Facebook"
+ },
+ {
+  "market": "US",
+  "age_band": "50-64",
+  "platform": "x",
+  "share": 0.17,
+  "source": "Pew Research Center, Americans' Social Media Use (National Public Opinion Reference Survey, Jan 30 - Jun 18 2026, published Oct 19 2026)",
+  "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+  "year": 2026,
+  "note": "share of US adults 50-64 who say they ever use X"
+ },
+ {
+  "market": "KR",
+  "age_band": "30-39",
+  "platform": "threads",
+  "share": 0.19,
+  "source": "KT Nasmedia, 2026 NPR Target Infographics",
+  "url": "https://www.i-boss.co.kr/ab-3208-1746",
+  "year": 2026,
+  "note": "share of Korean internet users in their 30s using Threads; above the all-ages average"
+ }
 ]

@@ -1,0 +1,20 @@
+{
+ "sale": {
+  "ads_usd": 0.0,
+  "creator_count": 0,
+  "creator_ship_usd": 0.0,
+  "discount_usd": 417.0,
+  "total_usd": 417.0,
+  "budget_usd": 400,
+  "left_usd": -17.0
+ },
+ "mixed": {
+  "ads_usd": 150.0,
+  "creator_count": 3,
+  "creator_ship_usd": 135.0,
+  "discount_usd": 0.0,
+  "total_usd": 285.0,
+  "budget_usd": 400,
+  "left_usd": 115.0
+ }
+}

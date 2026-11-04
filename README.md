@@ -23,6 +23,10 @@ Rehearsal grounds its advice in the brand's own Meta data, not in generic market
 
 Each paid plan's Verdict card says what its extra orders cost versus just posting: dollars per extra purchase (the incremental cost per purchase) and the revenue those orders bring per extra dollar. Blended cost per purchase over all orders is not shown on purpose: organic orders make any plan look cheap. Engine numbers (Go + Python + fixture).
 
+## Where the money goes
+
+Every Verdict card and the Launch page state the plan's spend as parts (ads, pieces shipped to creators at cost, revenue given up in sale discounts) and what is left of, or over, the monthly budget (`engine.SpendBreakdown`, Go + Python + fixture). A plan over budget is flagged in orange; the stress test already counts overspending as a failed month.
+
 ## Switching the demo brand
 
 The header has a brand picker (jewelry, apparel, skincare). Switching resets the server to month 1 for that brand: its history, its Spark cache (`spark/cache/<brand>/`), nothing connected. `GET /api/brands`, `POST /api/brand/switch {brand}`.

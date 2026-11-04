@@ -46,6 +46,7 @@ type stressResponse struct {
 	Coverage     []engine.Coverage                 `json:"coverage"`
 	CreatorPool  []map[string]any                  `json:"creator_pool"` // creators a seeding plan counts, in order, with expected engagement per post
 	CreatorMath  map[string]engine.CreatorPlanMath `json:"creator_math"` // plan_id -> what its creators mean in numbers
+	Breakdown    map[string]engine.Breakdown       `json:"breakdown"`    // plan_id -> where its money goes
 	CreatorBands []engine.CreatorBand              `json:"creator_bands"`
 	Untested     map[string][]string               `json:"untested"` // plan_id -> levers the history never used
 }
@@ -385,9 +386,11 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	for _, c := range s.brand.CreatorPool {
 		resp.CreatorPool = append(resp.CreatorPool, map[string]any{"username": c.Username, "expected_engagement": engine.ExpectedEngagement(c)})
 	}
+	resp.Breakdown = map[string]engine.Breakdown{}
 	resp.CreatorMath, resp.CreatorBands = map[string]engine.CreatorPlanMath{}, engine.CreatorBands(s.rates, s.brand, s.planMonth())
 	for _, v := range resp.Verdict {
 		resp.Untested[v.Plan.PlanID] = engine.Untested(v.Plan, resp.Coverage)
+		resp.Breakdown[v.Plan.PlanID] = engine.SpendBreakdown(v.Plan, s.rates, s.brand)
 		if v.Plan.CreatorCount > 0 {
 			resp.CreatorMath[v.Plan.PlanID] = engine.CreatorMath(v.Plan.CreatorCount, s.rates, s.brand, v.Plan.Month)
 		}

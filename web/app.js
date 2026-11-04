@@ -85,6 +85,16 @@ function creatorFinder(terms, bands) {
   if (bands && bands.length) { const r = document.createElement('div'); r.style.color = '#5c6066'; r.textContent = `Your budget ships ${bands[0].pieces_for_budget} pieces at cost. Numbers from the creators found for your search terms and your own order rate; the stress test above is what survives when some do not post.`; box.appendChild(r); }
   return box;
 }
+// breakdownText: where the money goes against the budget, one sentence. bd is engine.Breakdown.
+function breakdownText(bd) {
+  const parts = [];
+  if (bd.ads_usd > 0) parts.push(`${money(bd.ads_usd)} on ads`);
+  if (bd.creator_count > 0) parts.push(`${money(bd.creator_ship_usd)} on ${bd.creator_count} pieces for creators`);
+  if (bd.discount_usd > 0) parts.push(`${money(bd.discount_usd)} given up in sale discounts`);
+  if (!parts.length) return `Where the money goes: nothing. Your ${money(bd.budget_usd)} budget stays whole.`;
+  const left = bd.left_usd >= 0 ? `${money(bd.left_usd)} of your ${money(bd.budget_usd)} budget left` : `${money(-bd.left_usd)} over your ${money(bd.budget_usd)} budget`;
+  return `Where the money goes: ${parts.join(' + ')} = ${money(bd.total_usd)} · ${left}`;
+}
 const DIRS = { just_post: 'Just post', pay_for_reach: 'Pay for reach', send_to_creators: 'Send to creators', one_week_sale: 'One-week sale' };
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function planText(plan) {

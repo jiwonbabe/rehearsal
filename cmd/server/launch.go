@@ -185,6 +185,7 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		"reach_source":       reachSource,
 		"creators":           s.suggestedCreators(),
 		"creator_math":       engine.CreatorMath(l.Plan.CreatorCount, s.rates, s.brand, l.Plan.Month),
+		"breakdown":          engine.SpendBreakdown(l.Plan, s.rates, s.brand),
 		"creator_bands":      engine.CreatorBands(s.rates, s.brand, l.Plan.Month),
 		"creators_source":    s.creatorSource(),
 	})

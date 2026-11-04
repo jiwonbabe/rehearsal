@@ -183,3 +183,27 @@ func CreatorBands(r Rates, b *Brand, month int) []CreatorBand {
 	}
 	return out
 }
+
+// Breakdown: where a plan's money goes in a plain month, against the monthly budget. Ads and pieces shipped to
+// creators are what the owner pays; discounts are revenue given up on the orders the plan brings.
+type Breakdown struct {
+	AdsUsd         float64 `json:"ads_usd"`
+	CreatorCount   int     `json:"creator_count"`
+	CreatorShipUsd float64 `json:"creator_ship_usd"`
+	DiscountUsd    float64 `json:"discount_usd"`
+	TotalUsd       float64 `json:"total_usd"`
+	BudgetUsd      float64 `json:"budget_usd"`
+	LeftUsd        float64 `json:"left_usd"` // budget minus total; negative = over budget
+}
+
+func SpendBreakdown(p Plan, r Rates, b *Brand) Breakdown {
+	clean := RunPlan(p, r, b, nil)
+	n := halfUp(p.CreatorCount)
+	ship := float64(n) * b.Brand.ProductCostUsd
+	discount := math.Max(0, clean.SpendUsd-p.AdsUsd-ship)
+	bd := Breakdown{AdsUsd: math.Round(p.AdsUsd), CreatorCount: n, CreatorShipUsd: math.Round(ship), DiscountUsd: math.Round(discount),
+		BudgetUsd: b.Brand.BudgetUsdPerMonth}
+	bd.TotalUsd = bd.AdsUsd + bd.CreatorShipUsd + bd.DiscountUsd
+	bd.LeftUsd = bd.BudgetUsd - bd.TotalUsd
+	return bd
+}

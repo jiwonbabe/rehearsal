@@ -189,6 +189,7 @@ function calendarCard(d) {
     }
     document.getElementById('sub').textContent = `Starts ${d.spec.start_date} · ${d.spec.days} days · total ${money(d.spec.total_spend_usd)} · ${d.ads_connected ? 'Meta ad account connected' : 'no Meta ad account connected'}`;
     const cards = document.getElementById('cards');
+    if (d.breakdown) { const bl = el('div', `font-size:13.5px;line-height:1.5;padding:12px 16px;border-radius:10px;background:#f3f4f1;color:${d.breakdown.left_usd < 0 ? '#c2410c' : '#17181c'}`, breakdownText(d.breakdown)); cards.parentNode.insertBefore(bl, cards); }
     if (d.ad_request) cards.appendChild(adsCard(d));
     if (d.spec.creator_count > 0) cards.appendChild(creatorsCard(d));
     cards.appendChild(calendarCard(d));

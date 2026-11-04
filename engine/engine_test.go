@@ -662,3 +662,26 @@ func TestTargetPlatformsAndChannelChecks(t *testing.T) {
 		t.Errorf("verdicts that cover every platform half the target uses get no check: %v", c)
 	}
 }
+
+func TestSpendBreakdownMatchesReference(t *testing.T) {
+	var want map[string]Breakdown
+	loadJSON(t, "breakdown", &want)
+	b := brand(t)
+	r := Calibrate(b)
+	mix := map[string]float64{"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}
+	wk := 2
+	plans := map[string]Plan{
+		"sale":  {PlanID: "sale", Direction: "one_week_sale", PostsPerWeek: 4, PostMix: mix, PromoWeek: &wk, PromoDiscount: 0.2},
+		"mixed": {PlanID: "mixed", Direction: "send_to_creators", PostsPerWeek: 4, PostMix: mix, CreatorCount: 3, AdsUsd: 150}}
+	for k, p := range plans {
+		if got := SpendBreakdown(p, r, b); got != want[k] {
+			t.Errorf("%s: %+v want %+v", k, got, want[k])
+		}
+	}
+	if m := want["mixed"]; m.AdsUsd != 150 || m.CreatorShipUsd != 135 || m.DiscountUsd != 0 || m.LeftUsd != m.BudgetUsd-285 {
+		t.Errorf("mixed plan sums: %+v", m)
+	}
+	if want["sale"].DiscountUsd <= 0 || want["sale"].AdsUsd != 0 {
+		t.Errorf("a sale plan spends on discounts only: %+v", want["sale"])
+	}
+}

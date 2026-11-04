@@ -94,3 +94,19 @@ def creator_bands(rates, brand, month=0):
                     "orders_per_contact": round(sum(e) / len(e) * order_per_eng * rates.seed_post_rate, 1),
                     "pieces_for_budget": pieces})
     return out
+
+
+def spend_breakdown(plan, rates, brand):
+    """Where a plan's money goes in a plain month: ads, pieces shipped to creators, discounts given up."""
+    import math
+    from engine.model import run_plan
+    clean = run_plan(plan, rates, brand)
+    n = int(math.floor(plan.creator_count + 0.5))
+    ship = n * brand["brand"]["product_cost_usd"]
+    discount = max(0.0, clean["spend_usd"] - plan.ads_usd - ship)
+    rd = lambda x: float(math.floor(x + 0.5))
+    ads, shipr, disc = rd(plan.ads_usd), rd(ship), rd(discount)
+    budget = brand["brand"]["budget_usd_per_month"]
+    total = ads + shipr + disc
+    return {"ads_usd": ads, "creator_count": n, "creator_ship_usd": shipr, "discount_usd": disc, "total_usd": total,
+            "budget_usd": budget, "left_usd": budget - total}

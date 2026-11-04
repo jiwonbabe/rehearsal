@@ -78,6 +78,10 @@ def main():
         orates = calibrate(ob)
         others[key] = {"rates": vars(orates), "holdout": holdout(ob, 13), "truth": truth_check(ob, orates)}
     dump("brands", others)
+    from engine.launch import spend_breakdown
+    sale = Plan("sale", "one_week_sale", 4, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 0, 0, 2, 0.2)
+    mixed = Plan("mixed", "send_to_creators", 4, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 3, 150)
+    dump("breakdown", {"sale": spend_breakdown(sale, rates, brand), "mixed": spend_breakdown(mixed, rates, brand)})
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
     no_ads = dict(brand, weeks=[dict(w, ads_usd=0, ad_engagement=0) for w in brand["weeks"]])

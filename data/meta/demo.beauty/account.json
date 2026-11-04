@@ -1,0 +1,26 @@
+{
+ "source": "mock",
+ "username": "demo.beauty",
+ "followers_count": 5561,
+ "follower_demographics": {
+  "age": {
+   "18-24": 0.22,
+   "25-34": 0.46,
+   "35-44": 0.21,
+   "45-54": 0.08,
+   "55+": 0.03
+  },
+  "gender": {
+   "women": 0.78,
+   "men": 0.19,
+   "unknown": 0.03
+  },
+  "city": {
+   "Los Angeles": 0.29,
+   "New York": 0.17,
+   "Miami": 0.09,
+   "Chicago": 0.06,
+   "Atlanta": 0.05
+  }
+ }
+}

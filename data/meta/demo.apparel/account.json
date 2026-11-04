@@ -1,0 +1,26 @@
+{
+ "source": "mock",
+ "username": "demo.apparel",
+ "followers_count": 5561,
+ "follower_demographics": {
+  "age": {
+   "18-24": 0.22,
+   "25-34": 0.46,
+   "35-44": 0.21,
+   "45-54": 0.08,
+   "55+": 0.03
+  },
+  "gender": {
+   "women": 0.78,
+   "men": 0.19,
+   "unknown": 0.03
+  },
+  "city": {
+   "Austin": 0.33,
+   "Dallas": 0.14,
+   "Houston": 0.09,
+   "Los Angeles": 0.06,
+   "New York": 0.05
+  }
+ }
+}

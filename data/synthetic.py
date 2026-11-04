@@ -23,6 +23,8 @@ TRUE_SEED_POST_RATE = 0.75
 
 BRAND = {
     "name": "Wrenfield Jewelry (demo)",
+    "handle": "wrenfield.jewelry",
+    "demo_handle": "demo.brand",
     "synthetic": True,
     "market": "US",
     "category": "jewelry",
@@ -37,12 +39,12 @@ BRAND = {
 # Other synthetic brands, same marketing calendar, different true rates, prices and seeds. They exist so the
 # engine is checked on more than one shape of business (reference/dump_fixtures.py, engine tests, README table).
 PROFILES = {
-    "apparel": {"SEED": 11, "BRAND": {"name": "Harbor & Pine Apparel (demo)", "synthetic": True, "market": "US", "category": "apparel",
+    "apparel": {"SEED": 11, "BRAND": {"name": "Harbor & Pine Apparel (demo)", "handle": "harborpine.apparel", "demo_handle": "demo.apparel", "synthetic": True, "market": "US", "category": "apparel",
                                       "target": {"gender": "women", "age": "25-34", "price_band": "30-80"},
                                       "avg_price_usd": 55, "product_cost_usd": 20, "goal_orders_per_month": 0, "budget_usd_per_month": 600},
                 "TRUE_ENG_PER_POST": {"on_hand": 320, "close_up": 180, "flat_lay": 220, "on_neck": 90}, "TRUE_ORDER_PER_ENG": 0.012,
                 "TRUE_PROMO_MULT": 2.4, "TRUE_ENG_PER_CREATOR_POST": 450, "TRUE_AD_ENG_PER_USD": 6.0, "TRUE_SEED_POST_RATE": 0.7},
-    "beauty": {"SEED": 23, "BRAND": {"name": "Lumen Skincare (demo)", "synthetic": True, "market": "US", "category": "beauty",
+    "beauty": {"SEED": 23, "BRAND": {"name": "Lumen Skincare (demo)", "handle": "lumen.skincare", "demo_handle": "demo.beauty", "synthetic": True, "market": "US", "category": "beauty",
                                      "target": {"gender": "women", "age": "18-24", "price_band": "30-80"},
                                      "avg_price_usd": 38, "product_cost_usd": 12, "goal_orders_per_month": 0, "budget_usd_per_month": 500},
                "TRUE_ENG_PER_POST": {"on_hand": 260, "close_up": 300, "flat_lay": 160, "on_neck": 140}, "TRUE_ORDER_PER_ENG": 0.018,

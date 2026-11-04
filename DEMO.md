@@ -15,6 +15,17 @@ State (month, rates) lives in server memory, so run exactly one machine; restart
 
 Live: https://rehearsal-jaunty-harborwave-867.fly.dev (in README). Reset to month 1 before a demo: `fly machines restart 801e09c6137d68` (the machine id; `fly machines list` shows it). Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
 
+## Three brands
+
+The demo brand is jewelry (`data/brand.json`, caches in `spark/cache/`). Two more synthetic brands exist with their own mock Meta accounts and profile screenshots: apparel (`data/brands/apparel.json`, @harborpine.apparel, mock @demo.apparel) and skincare (`data/brands/beauty.json`, @lumen.skincare, mock @demo.beauty). Each needs its own Spark cache once (with the key, never in the server):
+
+```
+BRAND=data/brands/apparel.json MUSE_API_KEY=... go run ./cmd/sparkcache
+BRAND=data/brands/beauty.json  MUSE_API_KEY=... go run ./cmd/sparkcache
+```
+
+Caches land in `spark/cache/apparel/` and `spark/cache/beauty/`. To run or record a brand: `BRAND=data/brands/beauty.json go run ./cmd/server` (restart = reset to month 1). The jewelry numbers in the script below are jewelry's; read the other brands' from the screen. Post types keep the jewelry labels (on hand, close up, flat lay, on neck): the engine's four post types are fixed, so for apparel and skincare read them as "worn", "close-up", "flat lay", "other".
+
 ## Meta ad account (optional, makes Launch live)
 
 Before recording, in the shell that starts the server: `export META_AD_ACCOUNT_ID=<act id> META_ACCESS_TOKEN=<60-day token>`. Launch then shows Meta's live delivery estimate for the audience and "Create paused campaign" really creates a paused campaign + ad set in that account (verified Nov 3: both land PAUSED with the daily budget and the confirmed audience; nothing spends; delete them in Ads Manager afterwards). Without the two variables the button shows the request it would send. Never commit the token.

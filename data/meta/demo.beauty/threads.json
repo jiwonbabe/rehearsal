@@ -1,0 +1,116 @@
+{
+ "source": "mock",
+ "days": 90,
+ "data": [
+  {
+   "id": "th1",
+   "timestamp": "2026-08-07T12:00:00+0000",
+   "text_kind": "behind the scenes",
+   "insights": {
+    "views": 3127,
+    "likes": 87,
+    "replies": 28,
+    "reposts": 9
+   }
+  },
+  {
+   "id": "th2",
+   "timestamp": "2026-08-15T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 2039,
+    "likes": 57,
+    "replies": 18,
+    "reposts": 6
+   }
+  },
+  {
+   "id": "th3",
+   "timestamp": "2026-08-23T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 2091,
+    "likes": 58,
+    "replies": 18,
+    "reposts": 6
+   }
+  },
+  {
+   "id": "th4",
+   "timestamp": "2026-08-31T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 3205,
+    "likes": 89,
+    "replies": 28,
+    "reposts": 9
+   }
+  },
+  {
+   "id": "th5",
+   "timestamp": "2026-09-08T12:00:00+0000",
+   "text_kind": "new piece",
+   "insights": {
+    "views": 3447,
+    "likes": 96,
+    "replies": 31,
+    "reposts": 10
+   }
+  },
+  {
+   "id": "th6",
+   "timestamp": "2026-09-16T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 2986,
+    "likes": 83,
+    "replies": 26,
+    "reposts": 8
+   }
+  },
+  {
+   "id": "th7",
+   "timestamp": "2026-09-24T12:00:00+0000",
+   "text_kind": "styling tip",
+   "insights": {
+    "views": 2493,
+    "likes": 69,
+    "replies": 22,
+    "reposts": 7
+   }
+  },
+  {
+   "id": "th8",
+   "timestamp": "2026-10-02T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 2779,
+    "likes": 77,
+    "replies": 25,
+    "reposts": 8
+   }
+  },
+  {
+   "id": "th9",
+   "timestamp": "2026-10-10T12:00:00+0000",
+   "text_kind": "new piece",
+   "insights": {
+    "views": 2958,
+    "likes": 82,
+    "replies": 26,
+    "reposts": 8
+   }
+  },
+  {
+   "id": "th10",
+   "timestamp": "2026-10-18T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 2324,
+    "likes": 65,
+    "replies": 20,
+    "reposts": 6
+   }
+  }
+ ]
+}

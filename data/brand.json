@@ -1,6 +1,8 @@
 {
  "brand": {
   "name": "Wrenfield Jewelry (demo)",
+  "handle": "wrenfield.jewelry",
+  "demo_handle": "demo.brand",
   "synthetic": true,
   "market": "US",
   "category": "jewelry",

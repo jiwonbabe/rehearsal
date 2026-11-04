@@ -33,7 +33,7 @@ After a Meta connect the creators found for the brief (`business_discovery`) bec
 
 ## Tested on more than one brand
 
-`python3 data/synthetic.py apparel|beauty` writes two more synthetic brands (different true rates, prices, seeds, same calendar). `reference/fixtures/brands.json` holds the Python reference's calibration, holdout and known-answer rows for them and `TestOtherBrandsMatchReference` checks the Go engine against it and that spending never scores below doing nothing. Holdout miss: jewelry 14.7%, apparel 14.8%, beauty 18.5%; rates within 10%: 7, 8 and 9 of 9. `BRAND=data/brands/apparel.json go run ./cmd/server` starts the server on one of them (engine numbers only; the Spark caches stay the demo's).
+`python3 data/synthetic.py apparel|beauty` writes two more synthetic brands (different true rates, prices, seeds, same calendar). `reference/fixtures/brands.json` holds the Python reference's calibration, holdout and known-answer rows for them and `TestOtherBrandsMatchReference` checks the Go engine against it and that spending never scores below doing nothing. Holdout miss: jewelry 14.7%, apparel 14.8%, beauty 18.5%; rates within 10%: 7, 8 and 9 of 9. `BRAND=data/brands/apparel.json go run ./cmd/server` starts the server on one of them with its own Spark cache in `spark/cache/apparel/` (generate it once with `BRAND=... go run ./cmd/sparkcache`); each brand carries its handle, a mock Meta account (`data/meta/<demo_handle>/`, `data/meta_mock.py <demo_handle>`) and a mock profile screenshot (`web/demo-posts/<handle>.png`).
 
 ## Your own creator list
 

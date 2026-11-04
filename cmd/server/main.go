@@ -29,6 +29,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"strings"
 	"sync"
 
 	"rehearsal/engine"
@@ -128,8 +130,9 @@ func (s *server) locked(h http.HandlerFunc) http.HandlerFunc {
 func main() {
 	os.Unsetenv("MUSE_API_KEY") // demo is cache-only; cmd/sparkcache is the only live caller
 	brandPath := "data/brand.json"
-	if p := os.Getenv("BRAND"); p != "" { // another synthetic brand (data/brands/*.json): engine numbers only, the Spark caches stay the demo's
+	if p := os.Getenv("BRAND"); p != "" { // another synthetic brand (data/brands/<key>.json) with its own Spark cache (spark/cache/<key>/)
 		brandPath = p
+		spark.CacheDir = filepath.Join("spark", "cache", strings.TrimSuffix(filepath.Base(p), ".json"))
 	}
 	s, err := newServer(brandPath)
 	if err != nil {

@@ -1,0 +1,116 @@
+{
+ "source": "mock",
+ "days": 90,
+ "data": [
+  {
+   "id": "th1",
+   "timestamp": "2026-08-07T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 2416,
+    "likes": 67,
+    "replies": 21,
+    "reposts": 7
+   }
+  },
+  {
+   "id": "th2",
+   "timestamp": "2026-08-15T12:00:00+0000",
+   "text_kind": "new piece",
+   "insights": {
+    "views": 2039,
+    "likes": 57,
+    "replies": 18,
+    "reposts": 6
+   }
+  },
+  {
+   "id": "th3",
+   "timestamp": "2026-08-23T12:00:00+0000",
+   "text_kind": "styling tip",
+   "insights": {
+    "views": 1756,
+    "likes": 49,
+    "replies": 15,
+    "reposts": 5
+   }
+  },
+  {
+   "id": "th4",
+   "timestamp": "2026-08-31T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 3088,
+    "likes": 86,
+    "replies": 27,
+    "reposts": 9
+   }
+  },
+  {
+   "id": "th5",
+   "timestamp": "2026-09-08T12:00:00+0000",
+   "text_kind": "styling tip",
+   "insights": {
+    "views": 3256,
+    "likes": 91,
+    "replies": 29,
+    "reposts": 9
+   }
+  },
+  {
+   "id": "th6",
+   "timestamp": "2026-09-16T12:00:00+0000",
+   "text_kind": "new piece",
+   "insights": {
+    "views": 1803,
+    "likes": 50,
+    "replies": 16,
+    "reposts": 5
+   }
+  },
+  {
+   "id": "th7",
+   "timestamp": "2026-09-24T12:00:00+0000",
+   "text_kind": "question to followers",
+   "insights": {
+    "views": 1781,
+    "likes": 49,
+    "replies": 16,
+    "reposts": 5
+   }
+  },
+  {
+   "id": "th8",
+   "timestamp": "2026-10-02T12:00:00+0000",
+   "text_kind": "behind the scenes",
+   "insights": {
+    "views": 2412,
+    "likes": 67,
+    "replies": 21,
+    "reposts": 7
+   }
+  },
+  {
+   "id": "th9",
+   "timestamp": "2026-10-10T12:00:00+0000",
+   "text_kind": "new piece",
+   "insights": {
+    "views": 2884,
+    "likes": 80,
+    "replies": 25,
+    "reposts": 8
+   }
+  },
+  {
+   "id": "th10",
+   "timestamp": "2026-10-18T12:00:00+0000",
+   "text_kind": "behind the scenes",
+   "insights": {
+    "views": 3128,
+    "likes": 87,
+    "replies": 28,
+    "reposts": 9
+   }
+  }
+ ]
+}

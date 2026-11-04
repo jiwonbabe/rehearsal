@@ -1,6 +1,8 @@
 {
  "brand": {
   "name": "Lumen Skincare (demo)",
+  "handle": "lumen.skincare",
+  "demo_handle": "demo.beauty",
   "synthetic": true,
   "market": "US",
   "category": "beauty",

@@ -1,6 +1,8 @@
 {
  "brand": {
   "name": "Harbor & Pine Apparel (demo)",
+  "handle": "harborpine.apparel",
+  "demo_handle": "demo.apparel",
   "synthetic": true,
   "market": "US",
   "category": "apparel",

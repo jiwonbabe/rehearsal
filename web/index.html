@@ -41,7 +41,7 @@
       <div id="aud-line"></div>
       <div id="aud-fmt" style="color:#5c6066;font-size:13px"></div>
     </div>
-    <div style="font-size:12px;color:#5c6066">Demo: @wrenfield.jewelry is a fictional US brand (mock profile screenshot), synthetic sales data, mock Instagram insights shaped like the Graph API. Instagram Login replaces the mock after Meta App Review.</div>
+    <div id="demo-note" style="font-size:12px;color:#5c6066"></div>
   </div>
 
   <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:20px">
@@ -121,7 +121,9 @@
 <script>
 renderHeader(0, 'Setup · once');
 const $ = id => document.getElementById(id);
+let B = { handle: 'wrenfield.jewelry', demo_handle: 'demo.brand' };
 function fill(b) {
+  B = b; $('demo-note').textContent = `Demo: @${b.handle} is a fictional US brand (mock profile screenshot), synthetic sales data, mock Instagram insights shaped like the Graph API. Instagram Login replaces the mock after Meta App Review.`;
   $('brand-name').textContent = b.name;
   $('budget').value = b.budget_usd_per_month;
   $('market').value = b.market; $('category').value = b.category;
@@ -189,8 +191,8 @@ $('shots').onchange = async () => {
 };
 $('demo-shot').onclick = async () => {
   try {
-    const blob = await (await fetch('/demo-posts/wrenfield-profile.png')).blob();
-    shots = [await shrink(blob)]; $('handle').value = 'wrenfield.jewelry'; $('read-status').textContent = 'Demo screenshot loaded';
+    const blob = await (await fetch(`/demo-posts/${B.handle}.png`)).blob();
+    shots = [await shrink(blob)]; $('handle').value = B.handle; $('read-status').textContent = 'Demo screenshot loaded';
   } catch (e) { showError(e); }
 };
 function showRead(p) {
@@ -201,7 +203,7 @@ function showRead(p) {
   $('r-cust').append(`${c.gender}, ${c.age}, $${c.price_band}, ${p.market}`);
   $('r-conf').textContent = 'Confidence: ' + p.confidence; $('r-why').textContent = p.why;
   $('read-out').style.display = 'flex';
-  $('read-prov').replaceChildren(p.handle === 'wrenfield.jewelry' ? prov('demo', 'Demo input · mock profile screenshot') : prov('real', 'Real · your screenshot'));
+  $('read-prov').replaceChildren(p.handle === B.handle ? prov('demo', 'Demo input · mock profile screenshot') : prov('real', 'Real · your screenshot'));
 }
 $('read').onclick = async () => {
   try {
@@ -229,7 +231,7 @@ $('creators-import').onclick = async () => {
 $('connect').onclick = async () => {
   try {
     $('connect-status').textContent = 'Loading…';
-    const ev = await api('/api/meta/connect', { source: 'mock', handle: 'demo.brand' });
+    const ev = await api('/api/meta/connect', { source: 'mock', handle: B.demo_handle });
     const a = ev.evidence.audience, f = {};
     ev.evidence.formats.forEach(x => { f[x.format] = x; });
     $('aud-line').textContent = `${a.followers.toLocaleString('en-US')} followers · ${pct(a.top_age_share)} are ${a.top_age} · ${pct(a.women_share)} women · ${pct(a.top_city_share)} in ${a.top_city}`;

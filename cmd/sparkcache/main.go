@@ -49,12 +49,22 @@ func toDirection(m map[string]any) engine.Direction {
 	return d
 }
 
+// handle: the brand's own Instagram handle (profile screenshot web/demo-posts/<handle>.png); demoHandle: its mock
+// Meta data folder data/meta/<demoHandle>/. Both come from the brand file.
+var handle, demoHandle string
+
 func main() {
-	brand, err := engine.LoadBrand("data/brand.json")
+	brandPath := "data/brand.json"
+	if p := os.Getenv("BRAND"); p != "" { // data/brands/<key>.json -> spark/cache/<key>/
+		brandPath = p
+		spark.CacheDir = filepath.Join("spark", "cache", strings.TrimSuffix(filepath.Base(p), ".json"))
+	}
+	brand, err := engine.LoadBrand(brandPath)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	handle, demoHandle = brand.Brand.Handle, brand.Brand.DemoHandle
 	brand.Season, _ = engine.LoadSeasonality("data/seasonality.json", brand.Brand.Category)
 	rates := engine.Calibrate(brand)
 	backtest := engine.RunBacktest(brand, rates, 13)
@@ -163,11 +173,11 @@ func dataURLs(glob string) []string {
 	return images
 }
 
-// profileStep reads the demo screenshots in web/demo-posts/ into a profile read for wrenfield.jewelry.
+// profileStep reads the brand's demo screenshot (web/demo-posts/<handle>.png) into a profile read.
 func profileStep() {
-	name := "profile-wrenfield.jewelry"
-	images := dataURLs("web/demo-posts/*")
-	raw, err := spark.Profile("wrenfield.jewelry", images)
+	name := "profile-" + spark.SafeHandle(handle)
+	images := dataURLs("web/demo-posts/" + handle + ".png")
+	raw, err := spark.Profile(handle, images)
 	if err != nil {
 		fail(name, err)
 		return
@@ -179,7 +189,7 @@ func profileStep() {
 
 // playbookStep writes the executor brief for every direction id, using the cached profile read.
 func playbookStep(dirs []map[string]any, brand *engine.Brand, channels any) {
-	rawProfile, err := spark.Profile("wrenfield.jewelry", nil)
+	rawProfile, err := spark.Profile(handle, nil)
 	if err != nil {
 		fail("playbook", err)
 		return
@@ -209,7 +219,7 @@ func playbookStep(dirs []map[string]any, brand *engine.Brand, channels any) {
 	}
 }
 
-// creatorStep reads every creator in the mock business_discovery data, plus any web/demo-creators/<handle>.png,
+// creatorStep reads every creator in the mock business_discovery data, plus any web/demo-creators/<demoHandle>/<creator>.png,
 // against the send_to_creators brief.
 func creatorStep() {
 	raw, err := spark.Playbook(map[string]any{"id": "send_to_creators"}, nil, nil, nil)
@@ -226,13 +236,13 @@ func creatorStep() {
 		p := spark.ValidateCreatorFit(out)
 		fmt.Printf("ok creator-%s: %v %v %q\n", handle, p["fit"], p["size_band"], p["why"])
 	}
-	if meta, err := engine.LoadMeta("data/meta/demo.brand"); err == nil {
+	if meta, err := engine.LoadMeta("data/meta/" + demoHandle); err == nil {
 		for _, c := range engine.RunEvidence(meta).Creators {
 			out, err := spark.CreatorFit(c.Username, brief, nil, c)
 			report(c.Username, out, err)
 		}
 	}
-	files, _ := filepath.Glob("web/demo-creators/*")
+	files, _ := filepath.Glob("web/demo-creators/" + demoHandle + "/*")
 	for _, f := range files {
 		handle := strings.TrimSuffix(filepath.Base(f), filepath.Ext(f))
 		out, err := spark.CreatorFit(handle, brief, dataURLs(f), nil)
@@ -240,9 +250,9 @@ func creatorStep() {
 	}
 }
 
-// channelsStep: evidence from the mock Meta data + sourced statistics -> channel verdicts for wrenfield.jewelry.
+// channelsStep: evidence from the brand's mock Meta data + sourced statistics -> channel verdicts.
 func channelsStep(brand *engine.Brand) any {
-	meta, err := engine.LoadMeta("data/meta/demo.brand")
+	meta, err := engine.LoadMeta("data/meta/" + demoHandle)
 	if err != nil {
 		fail("channels", err)
 		return nil
@@ -253,13 +263,13 @@ func channelsStep(brand *engine.Brand) any {
 		return nil
 	}
 	ev := engine.RunEvidence(meta)
-	rawProfile, err := spark.Profile("wrenfield.jewelry", nil)
+	rawProfile, err := spark.Profile(handle, nil)
 	if err != nil {
 		fail("channels", err)
 		return nil
 	}
 	basics := map[string]any{"name": brand.Brand.Name, "market": brand.Brand.Market, "target": brand.Brand.Target, "avg_price_usd": brand.Brand.AvgPriceUsd}
-	raw, err := spark.Channels("demo.brand", ev, spark.ValidateProfile(rawProfile), stats, basics)
+	raw, err := spark.Channels(demoHandle, ev, spark.ValidateProfile(rawProfile), stats, basics)
 	if err != nil {
 		fail("channels", err)
 		return nil

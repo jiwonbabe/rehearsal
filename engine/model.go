@@ -26,6 +26,8 @@ type Brand struct {
 
 type BrandInfo struct {
 	Name               string            `json:"name"`
+	Handle             string            `json:"handle"`      // the brand's Instagram handle (demo: fictional)
+	DemoHandle         string            `json:"demo_handle"` // the mock Meta data folder under data/meta/
 	Synthetic          bool              `json:"synthetic"`
 	Market             string            `json:"market"`
 	Category           string            `json:"category"` // key into data/seasonality.json categories

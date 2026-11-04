@@ -99,7 +99,7 @@ def main():
                           "two": creator_math(2, rates, pool_brand, 0)})
     dec = Plan.from_dict(dict(committed.to_dict(), month=12))
     dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand), "december": launch_spec(dec, brand)})
-    dump("gaps", baseline_gaps(out))
+    dump("gaps", baseline_gaps(out, brand["brand"]["avg_price_usd"]))
     r["new_rates"] = r["new_rates"].to_dict()
     dump("review", r)
     dump("goals", goal_suggestions(brand))

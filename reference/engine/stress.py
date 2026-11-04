@@ -132,7 +132,7 @@ def flip(plan_a, plan_b, combos, rates, brand, param="seed_post_rate", lo=0.3, h
     return None
 
 
-def baseline_gaps(verdict):
+def baseline_gaps(verdict, price):
     """What each paid plan buys over the baseline: extra orders in a bad month (midpoints) and the price of each."""
     base = next((v for v in verdict if v["plan"]["plan_id"] == "baseline"), None)
     if base is None:
@@ -145,5 +145,6 @@ def baseline_gaps(verdict):
         extra = int(round(mid(v) - mid(base)))
         spend = v["spend_usd"] - base["spend_usd"]
         out.append({"direction": v["plan"]["direction"], "plan_id": v["plan"]["plan_id"], "extra_orders": extra,
-                    "extra_spend_usd": spend, "usd_per_extra_order": round(spend / extra, 2) if extra > 0 else 0})
+                    "extra_spend_usd": spend, "usd_per_extra_order": round(spend / extra, 2) if extra > 0 else 0,
+                    "roas_extra": round(extra * price / spend, 1) if extra > 0 and spend > 0 else 0})
     return out

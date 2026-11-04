@@ -4,13 +4,15 @@
   "plan_id": "pay_for_reach-018",
   "extra_orders": 12,
   "extra_spend_usd": 240,
-  "usd_per_extra_order": 20.0
+  "usd_per_extra_order": 20.0,
+  "roas_extra": 6.0
  },
  {
   "direction": "send_to_creators",
   "plan_id": "send_to_creators-007",
   "extra_orders": 9,
   "extra_spend_usd": 335,
-  "usd_per_extra_order": 37.22
+  "usd_per_extra_order": 37.22,
+  "roas_extra": 3.2
  }
 ]

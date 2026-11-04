@@ -51,6 +51,7 @@ type server struct {
 	goalMonth        int // month the goal was last sized for via "Use N for <month>"; 0 = owner's own number
 	reachLive        map[string]any
 	stats            []engine.StatRow
+	brandKey         string // jewelry | apparel | beauty
 	mu               sync.Mutex
 }
 
@@ -63,6 +64,64 @@ func (s *server) writeJSON(w http.ResponseWriter, v any) {
 	}
 }
 
+// demoBrands: the three synthetic demo brands the header can switch between, in display order.
+var demoBrands = []struct{ Key, Path, Cache string }{
+	{"jewelry", "data/brand.json", "spark/cache"},
+	{"apparel", "data/brands/apparel.json", "spark/cache/apparel"},
+	{"beauty", "data/brands/beauty.json", "spark/cache/beauty"},
+}
+
+func brandKeyOf(path string) string {
+	for _, b := range demoBrands {
+		if filepath.Clean(path) == b.Path {
+			return b.Key
+		}
+	}
+	return strings.TrimSuffix(filepath.Base(path), ".json")
+}
+
+// reset: become a fresh server for another brand (month 1, nothing connected, rates re-learned from its history).
+func (s *server) reset(fresh *server) {
+	s.brand, s.baseRates, s.rates, s.month = fresh.brand, fresh.baseRates, fresh.rates, 1
+	s.lastReview, s.meta, s.evidence, s.metaHandle, s.imported = nil, nil, nil, "", nil
+	s.seasonNote, s.catalog, s.goalMonth, s.reachLive, s.stats, s.brandKey = "", fresh.catalog, 0, nil, fresh.stats, fresh.brandKey
+}
+
+func (s *server) handleBrands(w http.ResponseWriter, r *http.Request) {
+	out := []map[string]any{}
+	for _, b := range demoBrands {
+		if bb, err := engine.LoadBrand(b.Path); err == nil {
+			out = append(out, map[string]any{"key": b.Key, "name": bb.Brand.Name, "category": bb.Brand.Category, "handle": bb.Brand.Handle, "current": b.Key == s.brandKey})
+		}
+	}
+	s.writeJSON(w, out)
+}
+
+func (s *server) handleBrandSwitch(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		Brand string `json:"brand"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&in); err != nil {
+		writeError(w, 400, err.Error())
+		return
+	}
+	for _, b := range demoBrands {
+		if b.Key != in.Brand {
+			continue
+		}
+		fresh, err := newServer(b.Path)
+		if err != nil {
+			writeError(w, 500, err.Error())
+			return
+		}
+		spark.CacheDir = b.Cache
+		s.reset(fresh)
+		s.writeJSON(w, s.brand.Brand)
+		return
+	}
+	writeError(w, 400, "unknown brand")
+}
+
 func newServer(brandPath string) (*server, error) {
 	brand, err := engine.LoadBrand(brandPath)
 	if err != nil {
@@ -72,12 +131,14 @@ func newServer(brandPath string) (*server, error) {
 	brand.Season = catalog.For(brand.Brand.Category)
 	rates := engine.Calibrate(brand)
 	stats, _ := engine.LoadStats("data/platform_stats.json") // optional: no table, no public-data lines
-	return &server{brand: brand, baseRates: rates, rates: rates, month: 1, stats: stats, catalog: catalog}, nil
+	return &server{brand: brand, baseRates: rates, rates: rates, month: 1, stats: stats, catalog: catalog, brandKey: brandKeyOf(brandPath)}, nil
 }
 
 func (s *server) routes() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/brand", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.brand.Brand) }))
+	mux.HandleFunc("/api/brands", s.locked(s.handleBrands))
+	mux.HandleFunc("POST /api/brand/switch", s.locked(s.handleBrandSwitch))
 	mux.HandleFunc("/api/categories", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.categories()) }))
 	mux.HandleFunc("/api/rates", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, s.rates) }))
 	mux.HandleFunc("/api/backtest", s.locked(func(w http.ResponseWriter, r *http.Request) {

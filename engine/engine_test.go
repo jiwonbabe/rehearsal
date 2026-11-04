@@ -393,7 +393,7 @@ func TestBaselineGapsMatchReference(t *testing.T) {
 	loadJSON(t, "gaps", &want)
 	var verdict []Verdict
 	loadJSON(t, "verdict", &verdict)
-	got := BaselineGaps(verdict)
+	got := BaselineGaps(verdict, brand(t).Brand.AvgPriceUsd)
 	if len(got) != len(want) || len(got) == 0 {
 		t.Fatalf("gaps %d want %d", len(got), len(want))
 	}
@@ -402,8 +402,9 @@ func TestBaselineGapsMatchReference(t *testing.T) {
 			t.Errorf("%d: %+v want %+v", i, got[i], want[i])
 		}
 		near(t, got[i].Direction+" usd", got[i].UsdPerExtraOrder, want[i].UsdPerExtraOrder)
+		near(t, got[i].Direction+" roas", got[i].RoasExtra, want[i].RoasExtra)
 	}
-	if len(BaselineGaps(verdict[:1])) != 0 {
+	if len(BaselineGaps(verdict[:1], 120)) != 0 {
 		t.Error("no baseline → no gaps")
 	}
 }

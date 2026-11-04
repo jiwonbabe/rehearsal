@@ -266,10 +266,11 @@ type Gap struct {
 	PlanID           string  `json:"plan_id"`
 	ExtraOrders      int     `json:"extra_orders"`
 	ExtraSpendUsd    float64 `json:"extra_spend_usd"`
-	UsdPerExtraOrder float64 `json:"usd_per_extra_order"`
+	UsdPerExtraOrder float64 `json:"usd_per_extra_order"` // cost per extra purchase (incremental CPP)
+	RoasExtra        float64 `json:"roas_extra"`          // revenue from the extra orders per extra dollar spent
 }
 
-func BaselineGaps(verdict []Verdict) []Gap {
+func BaselineGaps(verdict []Verdict, price float64) []Gap {
 	var base *Verdict
 	for i := range verdict {
 		if verdict[i].Plan.PlanID == "baseline" {
@@ -293,6 +294,9 @@ func BaselineGaps(verdict []Verdict) []Gap {
 		g := Gap{Direction: v.Plan.Direction, PlanID: v.Plan.PlanID, ExtraOrders: extra, ExtraSpendUsd: spend}
 		if extra > 0 {
 			g.UsdPerExtraOrder = roundTo(spend/float64(extra), 2)
+			if spend > 0 {
+				g.RoasExtra = roundTo(float64(extra)*price/spend, 1)
+			}
 		}
 		out = append(out, g)
 	}

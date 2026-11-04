@@ -12,6 +12,17 @@ function renderHeader(step, subtitle) {
     <div class="badge">Demo brand · synthetic data</div></div>
     <div style="display:flex;gap:6px;font-size:13px;align-items:center">${pills}<button class="pill" style="border:1px solid #d9dbd4;background:#fff;cursor:pointer;font:inherit;font-size:12px" onclick="setLang(getLang() === 'ko' ? 'en' : 'ko')">${getLang() === 'ko' ? 'EN' : '한국어'}</button></div>`;
   document.body.prepend(el);
+  const slot = document.createElement('select');
+  slot.title = 'Demo brand'; slot.style.cssText = 'font:inherit;font-size:12px;border:1px solid #d9dbd4;border-radius:14px;padding:3px 8px;background:#fff;max-width:200px';
+  el.querySelector('.badge').after(slot);
+  fetch('/api/brands').then(r => r.json()).then(list => {
+    list.forEach(b => { const o = document.createElement('option'); o.value = b.key; o.textContent = b.name.replace(' (demo)', ''); o.selected = b.current; slot.appendChild(o); });
+    slot.onchange = async () => {
+      slot.disabled = true;
+      try { await api('/api/brand/switch', { brand: slot.value }); ['rehearsal.selected', 'rehearsal.committed', 'rehearsal.read'].forEach(k => { try { sessionStorage.removeItem(k); } catch (e) { /* private window */ } }); location.href = '/'; }
+      catch (e) { slot.disabled = false; showError(e); }
+    };
+  }).catch(() => slot.remove());
 }
 
 async function api(path, body) {

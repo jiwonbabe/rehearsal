@@ -380,7 +380,7 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	}
 	merged.Combos = engine.FallbackCombos // fixed catalog list: baseline must not depend on click order
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
-	resp.Gaps = engine.BaselineGaps(resp.Verdict)
+	resp.Gaps = engine.BaselineGaps(resp.Verdict, s.brand.Brand.AvgPriceUsd)
 	resp.Coverage, resp.Untested, resp.CreatorPool = engine.LeverCoverage(s.brand), map[string][]string{}, []map[string]any{}
 	for _, c := range s.brand.CreatorPool {
 		resp.CreatorPool = append(resp.CreatorPool, map[string]any{"username": c.Username, "expected_engagement": engine.ExpectedEngagement(c)})

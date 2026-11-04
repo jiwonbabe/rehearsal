@@ -923,3 +923,40 @@ func TestChannelChecksAgainstPublicData(t *testing.T) {
 		t.Errorf("target age change must move the public-data band: %+v", d.TargetPlatforms[0])
 	}
 }
+
+func TestBrandSwitch(t *testing.T) {
+	ts := newTestServer(t)
+	defer func() { spark.CacheDir = "spark/cache" }()
+	var list []struct {
+		Key     string `json:"key"`
+		Name    string `json:"name"`
+		Current bool   `json:"current"`
+	}
+	if code := call(t, ts, "GET", "/api/brands", "", &list); code != 200 || len(list) != 3 || list[0].Key != "jewelry" || !list[0].Current {
+		t.Fatalf("brands: %d %+v", code, list)
+	}
+	call(t, ts, "POST", "/api/meta/connect", `{"source":"mock","handle":"demo.brand"}`, nil)
+	if code := call(t, ts, "POST", "/api/brand/switch", `{"brand":"nope"}`, nil); code != 400 {
+		t.Errorf("unknown brand: %d", code)
+	}
+	var b struct {
+		Name     string `json:"name"`
+		Category string `json:"category"`
+	}
+	if code := call(t, ts, "POST", "/api/brand/switch", `{"brand":"beauty"}`, &b); code != 200 || b.Category != "beauty" {
+		t.Fatalf("switch: %d %+v", code, b)
+	}
+	if code := call(t, ts, "GET", "/api/evidence", "", nil); code != 409 {
+		t.Errorf("a switched brand starts unconnected: %d", code)
+	}
+	var d struct {
+		Month  int `json:"month"`
+		Season struct {
+			Label string `json:"label"`
+		} `json:"season"`
+	}
+	if code := call(t, ts, "GET", "/api/directions", "", &d); code != 200 || d.Month != 1 || d.Season.Label != "Beauty, health and personal care" {
+		t.Errorf("beauty directions from its own cache: %d %+v", code, d)
+	}
+	call(t, ts, "POST", "/api/brand/switch", `{"brand":"jewelry"}`, nil)
+}

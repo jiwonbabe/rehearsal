@@ -110,3 +110,22 @@ def spend_breakdown(plan, rates, brand):
     total = ads + shipr + disc
     return {"ads_usd": ads, "creator_count": n, "creator_ship_usd": shipr, "discount_usd": disc, "total_usd": total,
             "budget_usd": budget, "left_usd": budget - total}
+
+
+def combine_plans(a, b, budget, product_cost):
+    """The two plans' levers together in one plan that fits the monthly budget (see engine.CombinePlans)."""
+    import math
+    ads = max(a.ads_usd, b.ads_usd)
+    creators = max(a.creator_count, b.creator_count)
+    pw, pd = a.promo_week, a.promo_discount
+    if pw is None and b.promo_week is not None:
+        pw, pd = b.promo_week, b.promo_discount
+    cost = ads + creators * product_cost
+    if cost > budget and cost > 0:
+        k = budget / cost
+        ads = math.floor(ads * k / 10) * 10
+        creators = math.floor(creators * k)
+        while ads + creators * product_cost > budget and creators > 0:
+            creators -= 1
+    from engine.model import Plan
+    return Plan("mix-001", "mix", max(a.posts_per_week, b.posts_per_week), dict(a.post_mix), creators, ads, pw, pd, a.month)

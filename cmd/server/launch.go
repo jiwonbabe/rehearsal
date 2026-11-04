@@ -18,6 +18,38 @@ import (
 )
 
 // playbookFor loads the cached executor brief for a direction id; nil when the cache is missing.
+// playbookForPlan: a combined plan has no playbook of its own; it takes the week plan of its main lever and adds the
+// ad brief and the creator brief of the directions whose levers it uses.
+func playbookForPlan(p engine.Plan) map[string]any {
+	if p.Direction != "mix" {
+		return playbookFor(p.Direction)
+	}
+	main := "just_post"
+	switch {
+	case p.CreatorCount > 0:
+		main = "send_to_creators"
+	case p.AdsUsd > 0:
+		main = "pay_for_reach"
+	case p.PromoWeek != nil:
+		main = "one_week_sale"
+	}
+	pb := playbookFor(main)
+	if pb == nil {
+		return nil
+	}
+	if p.AdsUsd > 0 && main != "pay_for_reach" {
+		if other := playbookFor("pay_for_reach"); other != nil {
+			pb["ad"] = other["ad"]
+		}
+	}
+	if p.CreatorCount > 0 && main != "send_to_creators" {
+		if other := playbookFor("send_to_creators"); other != nil {
+			pb["creator_brief"] = other["creator_brief"]
+		}
+	}
+	return pb
+}
+
 func playbookFor(id string) map[string]any {
 	raw, err := spark.Playbook(map[string]any{"id": id}, nil, nil, nil)
 	if err != nil {
@@ -51,7 +83,10 @@ func (s *server) launchOf(r *http.Request) (launch, error) {
 	if in.Plan.AdsUsd < 0 || in.Plan.CreatorCount < 0 || in.Plan.AdsUsd+in.Plan.CreatorCount*cost > budget {
 		return launch{}, fmt.Errorf("plan spends more than the $%.0f monthly budget", budget)
 	}
-	l := launch{Plan: in.Plan, Title: in.Plan.Direction, Spec: engine.RunLaunch(in.Plan, s.brand), Playbook: playbookFor(in.Plan.Direction)}
+	l := launch{Plan: in.Plan, Title: in.Plan.Direction, Spec: engine.RunLaunch(in.Plan, s.brand), Playbook: playbookForPlan(in.Plan)}
+	if in.Plan.Direction == "mix" {
+		l.Title = "Both together, budget split"
+	}
 	if dirs, err := s.currentDirections(); err == nil {
 		for _, d := range dirs {
 			if d.ID == in.Plan.Direction {

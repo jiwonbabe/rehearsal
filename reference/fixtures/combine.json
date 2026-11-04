@@ -1,0 +1,50 @@
+{
+ "ads_creators": {
+  "plan_id": "mix-001",
+  "direction": "mix",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.6,
+   "close_up": 0.2,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 5,
+  "ads_usd": 170,
+  "promo_week": null,
+  "promo_discount": 0.0,
+  "month": 0
+ },
+ "sale_creators": {
+  "plan_id": "mix-001",
+  "direction": "mix",
+  "posts_per_week": 4,
+  "post_mix": {
+   "on_hand": 0.5,
+   "close_up": 0.3,
+   "flat_lay": 0.2,
+   "on_neck": 0
+  },
+  "creator_count": 8,
+  "ads_usd": 0,
+  "promo_week": 2,
+  "promo_discount": 0.2,
+  "month": 0
+ },
+ "fits": {
+  "plan_id": "mix-001",
+  "direction": "mix",
+  "posts_per_week": 5,
+  "post_mix": {
+   "on_hand": 0.6,
+   "close_up": 0.2,
+   "flat_lay": 0.1,
+   "on_neck": 0.1
+  },
+  "creator_count": 2,
+  "ads_usd": 280,
+  "promo_week": null,
+  "promo_discount": 0.0,
+  "month": 0
+ }
+}

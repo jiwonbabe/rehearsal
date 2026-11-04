@@ -82,6 +82,12 @@ def main():
     sale = Plan("sale", "one_week_sale", 4, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 0, 0, 2, 0.2)
     mixed = Plan("mixed", "send_to_creators", 4, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 3, 150)
     dump("breakdown", {"sale": spend_breakdown(sale, rates, brand), "mixed": spend_breakdown(mixed, rates, brand)})
+    from engine.launch import combine_plans
+    ads_plan = Plan("a", "pay_for_reach", 5, {"on_hand": 0.6, "close_up": 0.2, "flat_lay": 0.1, "on_neck": 0.1}, 0, 280)
+    cr_plan = Plan("c", "send_to_creators", 4, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 8, 0)
+    sale_plan = Plan("s", "one_week_sale", 3, {"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}, 0, 0, 2, 0.2)
+    dump("combine", {"ads_creators": combine_plans(ads_plan, cr_plan, 400, 45).to_dict(), "sale_creators": combine_plans(sale_plan, cr_plan, 400, 45).to_dict(),
+                     "fits": combine_plans(ads_plan, Plan("c2", "send_to_creators", 4, {"on_hand": 1, "close_up": 0, "flat_lay": 0, "on_neck": 0}, 2, 0), 400, 45).to_dict()})
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
     no_ads = dict(brand, weeks=[dict(w, ads_usd=0, ad_engagement=0) for w in brand["weeks"]])

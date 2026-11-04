@@ -92,17 +92,41 @@ const showPlan = p => {
       document.getElementById('matrices').appendChild(box);
 
       const adv = el('div'); adv.className = 'card'; adv.style.cssText = 'padding:18px 20px;gap:10px';
-      adv.appendChild(el('div', 'font-size:13px;font-weight:600', `Bad months, chosen by the adversary (Muse Spark) · ${d.title}`));
-      combos.forEach((codes, i) => {
-        const row = el('div', 'padding:8px 10px;background:#f3f4f1;border-radius:6px;font-size:12.5px');
-        const prior = codes.length ? data.priors[codes[0]] : undefined;
-        row.appendChild(el('div', 'display:flex;justify-content:space-between;gap:8px', '')).append(
-          el('span', '', `${i + 1}. ${shockText(codes, data.catalog)}`));
-        if (prior !== undefined) row.appendChild(el('div', 'font-size:11.5px;color:#5c6066;margin-top:2px', `happens in about ${pct(prior)} of months`));
-        const sh = d.shocks.find(s => s.codes.join('|') === codes.join('|'));
-        if (sh && sh.why) row.appendChild(el('div', 'font-size:11.5px;color:#5c6066;margin-top:4px', sh.why));
-        adv.appendChild(row);
-      });
+      adv.appendChild(el('div', 'font-size:13px;font-weight:600', `Bad months · ${d.title}`));
+      const survivedAt = (p, i) => ((d.stress.matrix[p.plan_id] || [])[i] || {}).survived === true;
+      const bestPlan = plans.slice().sort((x, y) => combos.filter((_, i) => survivedAt(y, i)).length - combos.filter((_, i) => survivedAt(x, i)).length)[0];
+      const kills = combos.map((codes, i) => ({ codes, i, died: plans.filter(p => !survivedAt(p, i)).length, bestDies: !survivedAt(bestPlan, i) }));
+      const deadly = kills.filter(k => k.bestDies).sort((x, y) => y.died - x.died || x.i - y.i), safe = kills.filter(k => !k.bestDies);
+      adv.appendChild(el('div', 'font-size:12.5px;line-height:1.45', `The best version dies in ${deadly.length} of ${combos.length} bad months and survives ${safe.length}.`));
+      adv.appendChild(el('div', 'font-size:11.5px;color:#5c6066;line-height:1.4', `Picked by the adversary (Muse Spark). Below are the ones that beat it; the bar shows how many of the ${plans.length} version${plans.length === 1 ? '' : 's'} died. Numbers match the columns on the left.`));
+      const rowOf = k => {
+        const row = el('div', 'padding:8px 10px;background:#f3f4f1;border-radius:6px;font-size:12.5px;cursor:pointer');
+        row.appendChild(el('div', '', `${k.i + 1}. ${shockText(k.codes, data.catalog)}`));
+        const bar = el('div', 'display:flex;align-items:center;gap:8px;margin-top:5px');
+        const track = el('div', 'flex:1;height:6px;background:#dfe1da;border-radius:3px;overflow:hidden');
+        track.appendChild(el('div', `height:100%;width:${plans.length ? Math.round(100 * k.died / plans.length) : 0}%;background:#c2410c`));
+        bar.appendChild(track); bar.appendChild(el('span', 'font-size:11.5px;color:#5c6066;white-space:nowrap', `${k.died} of ${plans.length} died`));
+        row.appendChild(bar);
+        const more = el('div', 'display:none;margin-top:6px;font-size:11.5px;color:#5c6066;line-height:1.45');
+        const prior = k.codes.length ? data.priors[k.codes[0]] : undefined;
+        if (prior !== undefined) more.appendChild(el('div', '', `Happens in about ${pct(prior)} of months`));
+        const sh = d.shocks.find(s => s.codes.join('|') === k.codes.join('|'));
+        if (sh && sh.why) more.appendChild(el('div', '', sh.why));
+        row.appendChild(more);
+        row.onclick = () => { more.style.display = more.style.display === 'none' ? 'block' : 'none'; };
+        return row;
+      };
+      const fold = (list, label) => {
+        if (!list.length) return;
+        const det = document.createElement('details');
+        det.innerHTML = `<summary style="cursor:pointer;font-size:12.5px;color:#5c6066;padding:4px 0">${label}</summary>`;
+        const box2 = el('div', 'display:flex;flex-direction:column;gap:8px;margin-top:6px');
+        list.forEach(k => box2.appendChild(rowOf(k)));
+        det.appendChild(box2); adv.appendChild(det);
+      };
+      deadly.slice(0, 4).forEach(k => adv.appendChild(rowOf(k)));
+      fold(deadly.slice(4), `Show the other ${Math.max(0, deadly.length - 4)} that beat it`);
+      fold(safe, `Show the ${safe.length} it survives`);
       document.getElementById('adv').appendChild(adv);
     });
   } catch (e) { showError(e); }

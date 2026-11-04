@@ -360,12 +360,15 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	var allPlans []engine.Plan
 	merged := engine.Stressed{Matrix: map[string][]engine.Cell{}}
 	titles := map[string]string{}
+	var unionCombos [][]string
+	var unionWhys []string
 	for _, d := range picked {
 		combos, whys, err := s.combosFor(d)
 		if err != nil {
 			writeError(w, 500, err.Error())
 			return
 		}
+		unionCombos, unionWhys = append(unionCombos, combos...), append(unionWhys, whys...)
 		plans := engine.SampleVariants(d, 60, 7)
 		for i := range plans {
 			plans[i].Month = s.planMonth()
@@ -381,6 +384,29 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	}
 	merged.Combos = engine.FallbackCombos // fixed catalog list: baseline must not depend on click order
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
+	// Two picks also get one combined plan ("both together"): each pick's best plan merged and scaled into the
+	// budget, stressed against both picks' bad months. The flip and the check line stay between the two picks.
+	flipVerdict := resp.Verdict
+	if len(picked) == 2 {
+		var best []engine.Plan
+		for _, d := range picked {
+			for _, v := range resp.Verdict {
+				if v.Plan.Direction == d.ID {
+					best = append(best, v.Plan)
+				}
+			}
+		}
+		if len(best) == 2 {
+			mix := engine.CombinePlans(best[0], best[1], s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.ProductCostUsd)
+			mix.Month = s.planMonth()
+			st := engine.Stress([]engine.Plan{mix}, unionCombos, s.rates, s.brand)
+			titles["mix"] = "Both together, budget split"
+			resp.Directions = append(resp.Directions, directionStress{ID: "mix", Title: titles["mix"], Plans: []engine.Plan{mix},
+				Shocks: alignShocks(st, unionCombos, unionWhys), Stress: st})
+			merged.Matrix[mix.PlanID] = st.Matrix[mix.PlanID]
+			resp.Verdict = engine.RunVerdict(append(allPlans, mix), merged, s.rates, s.brand)
+		}
+	}
 	resp.Gaps = engine.BaselineGaps(resp.Verdict, s.brand.Brand.AvgPriceUsd)
 	resp.Coverage, resp.Untested, resp.CreatorPool = engine.LeverCoverage(s.brand), map[string][]string{}, []map[string]any{}
 	for _, c := range s.brand.CreatorPool {
@@ -399,9 +425,9 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
 	resp.Month, resp.MonthName = se.Month, se.Name
 	resp.SeasonGoal, resp.Demand = s.seasonGoalOffer(se), se.Demand
-	resp.Flip, resp.Check = s.flipAndCheck(resp.Verdict, titles)
+	resp.Flip, resp.Check = s.flipAndCheck(flipVerdict, titles)
 	if resp.Flip != nil {
-		fa, fb := flipPair(resp.Verdict)
+		fa, fb := flipPair(flipVerdict)
 		resp.FlipA, resp.FlipB = fa.Direction, fb.Direction
 	}
 	s.writeJSON(w, resp)

@@ -37,8 +37,8 @@ const card = (title) => { const c = el('div'); c.className = 'card'; c.appendChi
 function adsCard(d) {
   const ad = (d.playbook && d.playbook.ad) || {}, s = d.spec;
   const c = card('Ads · Meta');
-  if (ad.audience) c.appendChild(kv('Who', ad.audience));
-  if (ad.creative) c.appendChild(kv('Which posts', ad.creative));
+  if (ad.audience) c.appendChild(kv('Who', tx(ad.audience)));
+  if (ad.creative) c.appendChild(kv('Which posts', tx(ad.creative)));
   if (ad.placements && ad.placements.length) c.appendChild(kv('Where', ad.placements.map(p => p.replace('instagram_', 'Instagram ')).join(', ')));
   c.appendChild(el('div', 'font-size:13.5px', `${money(s.ads_usd)} over ${s.days} days · ${money(s.ads_daily_usd)}/day · paused until you switch it on`));
   if (d.reach && d.reach.instagram_reels && d.reach.instagram_feed && d.reach.instagram_stories) {
@@ -73,14 +73,14 @@ function adsCard(d) {
 function creatorsCard(d) {
   const cb = (d.playbook && d.playbook.creator_brief) || {}, s = d.spec;
   const c = card('Creators · seeding kit');
-  if (cb.who) c.appendChild(kv('Who', cb.who));
+  if (cb.who) c.appendChild(kv('Who', tx(cb.who)));
   if (cb.find_them && cb.find_them.length) {
     const row = el('div'); row.appendChild(el('div', 'font-size:13.5px;font-weight:600;margin-bottom:6px', 'Type these into Instagram search'));
     cb.find_them.forEach(f => { const ch = el('span', '', f); ch.className = 'chip'; row.appendChild(ch); });
     c.appendChild(row);
   }
-  if (cb.send) c.appendChild(kv('Send', cb.send));
-  if (cb.ask) c.appendChild(kv('Ask', cb.ask));
+  if (cb.send) c.appendChild(kv('Send', tx(cb.send)));
+  if (cb.ask) c.appendChild(kv('Ask', tx(cb.ask)));
   if (d.creator_math) c.appendChild(el('div', 'font-size:12.5px;color:#2f5d8a;line-height:1.5', creatorMathText(d.creator_math)));
   if ((d.creator_bands || []).length) c.appendChild(creatorFinder([], d.creator_bands));
   c.appendChild(el('div', 'font-size:13.5px', `Ship ${s.creator_count} pieces (${money(s.creator_ship_usd)} at cost) · send ${s.creator_dms} DMs, expect about half to answer`));
@@ -109,7 +109,7 @@ function creatorList(list, source) {
     if (cr.expected_engagement != null) top.appendChild(el('span', 'color:#5c6066', `expected engagement per post ${cr.expected_engagement}`));
     if (cr.fit && cr.fit.fit) top.appendChild(el('span', `font-weight:600;color:${tone[cr.fit.fit] || '#5c6066'}`, `${cr.fit.fit} fit`));
     row.appendChild(top);
-    if (cr.fit && cr.fit.why) row.appendChild(el('div', 'color:#5c6066;font-size:12.5px', cr.fit.why + (cr.fit.send ? ' · Send: ' + cr.fit.send : '')));
+    if (cr.fit && cr.fit.why) row.appendChild(el('div', 'color:#5c6066;font-size:12.5px', tx(cr.fit.why) + (cr.fit.send ? ' · Send: ' + tx(cr.fit.send) : '')));
     box.appendChild(row);
   });
   return box;

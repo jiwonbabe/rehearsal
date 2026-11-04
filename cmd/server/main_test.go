@@ -79,15 +79,15 @@ func TestStressTwoDirections(t *testing.T) {
 	if code := call(t, ts, "POST", "/api/stress", body, &out); code != 200 {
 		t.Fatalf("status %d", code)
 	}
-	if len(out.Directions) != 2 || len(out.Directions[0].Plans) != 60 || len(out.Directions[0].Stress.Combos) != 20 {
+	if len(out.Directions) != 3 || out.Directions[2].ID != "mix" || len(out.Directions[2].Plans) != 1 || len(out.Directions[0].Plans) != 60 || len(out.Directions[0].Stress.Combos) != 20 {
 		t.Fatalf("shape: %d dirs", len(out.Directions))
 	}
 	hasBaseline := false
 	for _, v := range out.Verdict {
 		hasBaseline = hasBaseline || v.Plan.PlanID == "baseline"
 	}
-	if len(out.Verdict) != 3 || !hasBaseline {
-		t.Errorf("verdict should be 2 directions + baseline, got %d", len(out.Verdict))
+	if len(out.Verdict) != 4 || !hasBaseline {
+		t.Errorf("verdict should be 2 directions + both together + baseline, got %d", len(out.Verdict))
 	}
 	if ids := out.FlipA + "+" + out.FlipB; ids != "pay_for_reach+send_to_creators" && ids != "send_to_creators+pay_for_reach" {
 		t.Errorf("flip ids: %q %q", out.FlipA, out.FlipB)
@@ -813,7 +813,7 @@ func TestStressCarriesGapsAndState(t *testing.T) {
 		MonthName string       `json:"month_name"`
 	}
 	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach","send_to_creators"]}`, &out)
-	if len(out.Gaps) != 2 || out.Goal != 46 || out.MonthName != "November" {
+	if len(out.Gaps) != 3 || out.Goal != 46 || out.MonthName != "November" {
 		t.Errorf("gaps %d goal %v month %q", len(out.Gaps), out.Goal, out.MonthName)
 	}
 	var st struct {
@@ -959,4 +959,41 @@ func TestBrandSwitch(t *testing.T) {
 		t.Errorf("beauty directions from its own cache: %d %+v", code, d)
 	}
 	call(t, ts, "POST", "/api/brand/switch", `{"brand":"jewelry"}`, nil)
+}
+
+func TestBothTogetherFitsTheBudgetAndLaunches(t *testing.T) {
+	ts := newTestServer(t)
+	var out struct {
+		Verdict []engine.Verdict `json:"verdict"`
+	}
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach","send_to_creators"]}`, &out)
+	var mix *engine.Plan
+	for i := range out.Verdict {
+		if out.Verdict[i].Plan.Direction == "mix" {
+			mix = &out.Verdict[i].Plan
+		}
+	}
+	if mix == nil || mix.AdsUsd <= 0 || mix.CreatorCount <= 0 || mix.AdsUsd+mix.CreatorCount*45 > 400 {
+		t.Fatalf("both together uses ads and creators inside the $400 budget: %+v", mix)
+	}
+	var l struct {
+		Direction struct {
+			Title string `json:"title"`
+		} `json:"direction"`
+		Playbook map[string]any `json:"playbook"`
+	}
+	body, _ := json.Marshal(map[string]any{"plan": mix})
+	if code := call(t, ts, "POST", "/api/launch", string(body), &l); code != 200 || l.Direction.Title != "Both together, budget split" {
+		t.Fatalf("launch of the combined plan: %d %+v", code, l.Direction)
+	}
+	if l.Playbook["ad"] == nil || l.Playbook["creator_brief"] == nil {
+		t.Errorf("the combined playbook carries both the ad brief and the creator brief: %v", l.Playbook)
+	}
+	var one struct {
+		Directions []directionStress `json:"directions"`
+	}
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &one)
+	if len(one.Directions) != 1 {
+		t.Errorf("one pick has nothing to combine: %d", len(one.Directions))
+	}
 }

@@ -23,6 +23,10 @@ Rehearsal grounds its advice in the brand's own Meta data, not in generic market
 
 Each paid plan's Verdict card says what its extra orders cost versus just posting: dollars per extra purchase (the incremental cost per purchase) and the revenue those orders bring per extra dollar. Blended cost per purchase over all orders is not shown on purpose: organic orders make any plan look cheap. Engine numbers (Go + Python + fixture).
 
+## Two picks also get a combined plan
+
+Pick two directions and the Verdict adds "Both together, budget split": each pick's best plan merged (the busier posting, the larger ads and creator levers, any sale) and scaled down until ads plus pieces for creators fit the monthly budget (`engine.CombinePlans`, Go + Python + fixture). It is stressed against both picks' bad months like any plan, can be committed, and Launch merges the two playbooks. The flip and the check line stay between the two picks.
+
 ## Where the money goes
 
 Every Verdict card and the Launch page state the plan's spend as parts (ads, pieces shipped to creators at cost, revenue given up in sale discounts) and what is left of, or over, the monthly budget (`engine.SpendBreakdown`, Go + Python + fixture). A plan over budget is flagged in orange; the stress test already counts overspending as a failed month.

@@ -685,3 +685,30 @@ func TestSpendBreakdownMatchesReference(t *testing.T) {
 		t.Errorf("a sale plan spends on discounts only: %+v", want["sale"])
 	}
 }
+
+func TestCombinePlansMatchesReference(t *testing.T) {
+	var want map[string]Plan
+	loadJSON(t, "combine", &want)
+	mixA := map[string]float64{"on_hand": 0.6, "close_up": 0.2, "flat_lay": 0.1, "on_neck": 0.1}
+	mixC := map[string]float64{"on_hand": 0.5, "close_up": 0.3, "flat_lay": 0.2, "on_neck": 0}
+	wk := 2
+	ads := Plan{PlanID: "a", Direction: "pay_for_reach", PostsPerWeek: 5, PostMix: mixA, AdsUsd: 280}
+	cr := Plan{PlanID: "c", Direction: "send_to_creators", PostsPerWeek: 4, PostMix: mixC, CreatorCount: 8}
+	sale := Plan{PlanID: "s", Direction: "one_week_sale", PostsPerWeek: 3, PostMix: mixC, PromoWeek: &wk, PromoDiscount: 0.2}
+	cr2 := Plan{PlanID: "c2", Direction: "send_to_creators", PostsPerWeek: 4, PostMix: map[string]float64{"on_hand": 1}, CreatorCount: 2}
+	for k, got := range map[string]Plan{"ads_creators": CombinePlans(ads, cr, 400, 45), "sale_creators": CombinePlans(sale, cr, 400, 45), "fits": CombinePlans(ads, cr2, 400, 45)} {
+		w := want[k]
+		if got.Direction != "mix" || got.PostsPerWeek != w.PostsPerWeek || got.AdsUsd != w.AdsUsd || got.CreatorCount != w.CreatorCount || got.PromoDiscount != w.PromoDiscount || (got.PromoWeek == nil) != (w.PromoWeek == nil) {
+			t.Errorf("%s: %+v want %+v", k, got, w)
+		}
+		if got.AdsUsd+got.CreatorCount*45 > 400 {
+			t.Errorf("%s passes the budget: %+v", k, got)
+		}
+	}
+	if m := CombinePlans(ads, cr, 400, 45); m.AdsUsd != 170 || m.CreatorCount != 5 {
+		t.Errorf("280 ads + 8 creators scaled into $400: %+v", m)
+	}
+	if m := CombinePlans(sale, cr, 400, 45); m.PromoWeek == nil || m.CreatorCount != 8 {
+		t.Errorf("a sale plus creators keeps both: %+v", m)
+	}
+}

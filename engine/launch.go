@@ -207,3 +207,28 @@ func SpendBreakdown(p Plan, r Rates, b *Brand) Breakdown {
 	bd.LeftUsd = bd.BudgetUsd - bd.TotalUsd
 	return bd
 }
+
+// CombinePlans: the two plans' levers together in one plan ("mix") that fits the monthly budget. Posting is the
+// busier of the two, ads and creators the larger of each, the sale from whichever has one; when ads plus pieces for
+// creators would pass the budget both are scaled down by the same factor (ads to the dollar ten, creators down).
+func CombinePlans(a, b Plan, budget, productCost float64) Plan {
+	p := a
+	p.PlanID, p.Direction = "mix-001", "mix"
+	if b.PostsPerWeek > p.PostsPerWeek {
+		p.PostsPerWeek = b.PostsPerWeek
+	}
+	p.AdsUsd = math.Max(a.AdsUsd, b.AdsUsd)
+	p.CreatorCount = math.Max(a.CreatorCount, b.CreatorCount)
+	if p.PromoWeek == nil && b.PromoWeek != nil {
+		p.PromoWeek, p.PromoDiscount = b.PromoWeek, b.PromoDiscount
+	}
+	if cost := p.AdsUsd + p.CreatorCount*productCost; cost > budget && cost > 0 {
+		k := budget / cost
+		p.AdsUsd = math.Floor(p.AdsUsd*k/10) * 10
+		p.CreatorCount = math.Floor(p.CreatorCount * k)
+		for p.AdsUsd+p.CreatorCount*productCost > budget && p.CreatorCount > 0 {
+			p.CreatorCount--
+		}
+	}
+	return p
+}

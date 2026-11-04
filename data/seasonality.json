@@ -32,13 +32,13 @@
  "sources": [
   {
    "for": "demand",
-   "source": "U.S. Census Bureau, Monthly Retail Trade: Jewelry Stores (NAICS 44831), not seasonally adjusted, via FRED MRTSSM44831USN; monthly sales \u00f7 that year's monthly mean, averaged over 2017-2019 (last full pre-2020 years; the series ends in 2021 with the NAICS 2022 revision)",
+   "source": "U.S. Census Bureau, Monthly Retail Trade: Jewelry Stores (NAICS 44831), not seasonally adjusted, via FRED MRTSSM44831USN; monthly sales ÷ that year's monthly mean, averaged over 2017-2019. Census suppresses the jewelry line from March 2021 on ((S) in mrtssales92-present.xlsx, checked Nov 3, 2026), so this is the latest jewelry-specific pattern published. Cross-checked against the parent category (448, clothing and accessories stores) for 2023-2025: December 1.56× and November 1.12-1.16× in both 2019 and 2023-2025, so the holiday shape has not moved",
    "url": "https://fred.stlouisfed.org/series/MRTSSM44831USN",
    "year": 2019
   },
   {
    "for": "ad_cost",
-   "source": "Gupta Media, Meta (Facebook + Instagram) average CPM by month, 2024 and 2025; each month \u00f7 that year's monthly mean, averaged over the two years",
+   "source": "Gupta Media, Meta (Facebook + Instagram) average CPM by month, 2024 and 2025; each month ÷ that year's monthly mean, averaged over the two years. Latest full years with a monthly series; 2026 only runs to September (AdKit worldwide medians) and a partial year cannot be normalized to an annual mean",
    "url": "https://www.guptamedia.com/social-media-ads-cost",
    "year": 2025
   }

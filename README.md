@@ -43,7 +43,7 @@ Deploy: see DEMO.md
 
 ## Next
 
-Instagram Login (Graph API, `instagram_business_basic`) replaces the screenshot: `/api/profile` gains `source: "instagram"` and the server fetches recent media itself; same prompt, same validation. Needs Meta App Review (2–4 weeks).
+Ad-cost prior from the owner's own account: Marketing API `act_<id>/insights?fields=cpm&time_increment=monthly` over the last 12 months replaces the public CPM table once the account has spend history (live, per brand); the public table stays as the fallback. Instagram Login (Graph API, `instagram_business_basic`) replaces the screenshot: `/api/profile` gains `source: "instagram"` and the server fetches recent media itself; same prompt, same validation. Needs Meta App Review (2–4 weeks).
 
 Followers and inquiries as success metrics (the engine models orders only today).
 

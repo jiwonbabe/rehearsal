@@ -815,6 +815,13 @@ func TestStressCarriesGapsAndState(t *testing.T) {
 	if len(out.Gaps) != 2 || out.Goal != 46 || out.MonthName != "November" {
 		t.Errorf("gaps %d goal %v month %q", len(out.Gaps), out.Goal, out.MonthName)
 	}
+	var st struct {
+		SeasonGoal int `json:"season_goal"`
+	}
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &st)
+	if st.SeasonGoal != 48 {
+		t.Errorf("november-sized goal %d want 48", st.SeasonGoal)
+	}
 	resp, _ := http.Get(ts.URL + "/setup.html")
 	if resp.Request.URL.Path != "/" {
 		t.Errorf("setup.html should redirect home, landed on %s", resp.Request.URL.Path)

@@ -66,9 +66,24 @@ function renderTodo(p) {
     const first = data.verdict.find(v => v.plan.plan_id !== 'baseline');
     const gapOf = p => (data.gaps || []).find(g => g.plan_id === p.plan_id);
     const firstGap = first && gapOf(first.plan);
+    const base = data.verdict.find(v => v.plan.plan_id === 'baseline');
+    const easy = base && base.survived >= Math.ceil(base.total * 0.8);
     document.getElementById('title').textContent = !first ? 'Verdict: no paid direction holds this month.'
+      : easy ? `Verdict: just posting already clears a ${data.goal}-order goal in ${base.survived} of ${base.total} bad months.`
       : (firstGap && firstGap.extra_orders <= 2) ? `Verdict: ${titleOf(first.plan)} barely beats just posting this month.`
       : `Verdict: ${titleOf(first.plan)} holds this month.`;
+    if (easy) {
+      const bar = el('div', 'display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;line-height:1.5;padding:12px 14px;background:#fff4ec;border:1px solid #f0c9ad;border-radius:8px');
+      bar.appendChild(el('span', '', data.season_goal && data.season_goal !== data.goal
+        ? `${data.month_name} usually brings ${data.demand}× an average month, so ${data.goal} is a low bar. Either keep the money, or raise the bar to a ${data.month_name}-sized goal of ${data.season_goal} and test again.`
+        : 'This goal is a low bar for this month. Either keep the money, or raise the goal on Setup and test again.'));
+      if (data.season_goal && data.season_goal !== data.goal) {
+        const b = el('button', 'min-height:34px;font-size:13px;padding:0 14px', `Use ${data.season_goal} and re-test`); b.className = 'btn ghost';
+        b.onclick = async () => { b.disabled = true; try { await api('/api/setup', { goal_orders_per_month: data.season_goal }); location.reload(); } catch (e) { b.disabled = false; showError(e); } };
+        bar.appendChild(b);
+      }
+      document.getElementById('main').insertBefore(bar, document.getElementById('cards'));
+    }
     document.getElementById('sub').textContent += ' ' + stateLine(data.goal, data.budget, data.month_name);
     data.verdict.forEach(v => {
       const c = el('div'); c.className = 'card';

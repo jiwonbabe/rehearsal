@@ -75,3 +75,6 @@ func SeasonBlock(t *Seasonality, month int) string {
 		"The engine multiplies the order rate by the demand index and divides ad reach by the ad cost index; the adversary can take the seasonal lift away.",
 		s.Name, s.Demand, t.Market, t.Category, s.AdCost)
 }
+
+// SeasonGoal: a month-sized goal, the average-month goal scaled by the month's demand index (half-up).
+func SeasonGoal(goal, demand float64) int { return halfUp(goal * demand) }

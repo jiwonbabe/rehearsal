@@ -41,6 +41,8 @@ type stressResponse struct {
 	AvgPrice   float64            `json:"avg_price_usd"`
 	Month      int                `json:"month"`
 	MonthName  string             `json:"month_name"`
+	SeasonGoal int                `json:"season_goal"`
+	Demand     float64            `json:"demand"`
 }
 
 func writeError(w http.ResponseWriter, code int, msg string) {
@@ -93,7 +95,8 @@ func (s *server) seasonNumbers() []float64 {
 // seasonOut: what the pages show for the month being planned. Indexes from the table, note from Spark.
 func (s *server) seasonOut() map[string]any {
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
-	out := map[string]any{"month": se.Month, "name": se.Name, "demand": se.Demand, "ad_cost": se.AdCost, "note": s.seasonNote, "applied": s.brand.Season != nil}
+	out := map[string]any{"month": se.Month, "name": se.Name, "demand": se.Demand, "ad_cost": se.AdCost, "note": s.seasonNote, "applied": s.brand.Season != nil,
+		"goal": s.brand.Brand.GoalOrdersPerMonth, "season_goal": engine.SeasonGoal(s.brand.Brand.GoalOrdersPerMonth, se.Demand)}
 	if s.brand.Season != nil {
 		out["sources"], out["table_note"], out["category"], out["market"] = s.brand.Season.Sources, s.brand.Season.Note, s.brand.Season.Category, s.brand.Season.Market
 	}
@@ -323,6 +326,7 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	resp.Goal, resp.Budget, resp.AvgPrice = s.brand.Brand.GoalOrdersPerMonth, s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.AvgPriceUsd
 	se := engine.SeasonFor(s.brand.Season, s.planMonth())
 	resp.Month, resp.MonthName = se.Month, se.Name
+	resp.SeasonGoal, resp.Demand = engine.SeasonGoal(resp.Goal, se.Demand), se.Demand
 	resp.Flip, resp.Check = s.flipAndCheck(resp.Verdict, titles)
 	if resp.Flip != nil {
 		fa, fb := flipPair(resp.Verdict)

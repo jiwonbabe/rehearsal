@@ -9,7 +9,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "reference"))
 
-from engine.model import Plan, calibrate, run_plan, survived, backtest, load_brand  # noqa: E402
+from engine.model import Plan, calibrate, run_plan, survived, backtest, load_brand, season_goal  # noqa: E402
 from engine.stress import sample_variants, stress, verdict, flip, baseline_plan, baseline_gaps  # noqa: E402
 from engine.shocks import FALLBACK_COMBOS  # noqa: E402
 from engine.review import review  # noqa: E402
@@ -68,7 +68,9 @@ def main():
     dec = Plan.from_dict(dict(plans[0].to_dict(), month=12))
     dump("season", {"november": run_plan(nov, rates, season_brand), "december": run_plan(dec, rates, season_brand),
                     "december_flat": run_plan(dec, rates, season_brand, shocks=["season_flat"]),
-                    "no_month": run_plan(plans[0], rates, season_brand)})
+                    "no_month": run_plan(plans[0], rates, season_brand),
+                    "goal_november": season_goal(brand["brand"]["goal_orders_per_month"], 1.04),
+                    "goal_december": season_goal(brand["brand"]["goal_orders_per_month"], 2.23)})
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
     dump("evidence", evidence(load_meta(os.path.join(ROOT, "data", "meta", "demo.brand"))))

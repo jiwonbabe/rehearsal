@@ -349,8 +349,16 @@ func TestHoldoutMatchesReference(t *testing.T) {
 }
 
 func TestSeasonMatchesReference(t *testing.T) {
-	var want map[string]Result
-	loadJSON(t, "season", &want)
+	var raw map[string]json.RawMessage
+	loadJSON(t, "season", &raw)
+	want := map[string]Result{}
+	for _, k := range []string{"november", "december", "december_flat", "no_month"} {
+		var r Result
+		if err := json.Unmarshal(raw[k], &r); err != nil {
+			t.Fatal(err)
+		}
+		want[k] = r
+	}
 	var plans []Plan
 	loadJSON(t, "plans", &plans)
 	b := brand(t)
@@ -411,5 +419,20 @@ func TestLaunchLaterMonthStartsLater(t *testing.T) {
 	p.Month = 11
 	if s := RunLaunch(p, brand(t)).StartDate; s != "2026-11-02" {
 		t.Errorf("november start %s", s)
+	}
+}
+
+func TestSeasonGoalMatchesReference(t *testing.T) {
+	var want map[string]any
+	loadJSON(t, "season", &want)
+	b := brand(t)
+	if got := SeasonGoal(b.Brand.GoalOrdersPerMonth, 2.23); float64(got) != want["goal_december"].(float64) || got != 103 {
+		t.Errorf("december goal %d want %v", got, want["goal_december"])
+	}
+	if got := SeasonGoal(b.Brand.GoalOrdersPerMonth, 1.04); float64(got) != want["goal_november"].(float64) {
+		t.Errorf("november goal %d want %v", got, want["goal_november"])
+	}
+	if SeasonGoal(46, 1) != 46 {
+		t.Error("average month keeps the goal")
 	}
 }

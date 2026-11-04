@@ -114,6 +114,14 @@ function renderSeason(se) {
   idx.textContent = `demand ${se.demand}× · ad cost ${se.ad_cost}× · 1.00 = an average month`;
   head.appendChild(h); head.appendChild(idx); box.appendChild(head);
   if (se.note) box.appendChild(tagged('Spark', '#f3f4f1', '#5c6066', se.note));
+  if (se.season_goal && se.season_goal !== se.goal) {
+    const g = document.createElement('div'); g.style.cssText = 'display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13.5px;line-height:1.5';
+    const t = document.createElement('span');
+    t.textContent = `Your goal of ${se.goal} orders is an average-month goal. A ${se.name}-sized goal is ${se.season_goal} (${se.goal} × ${se.demand}). Test against the month you are actually in:`;
+    const b = document.createElement('button'); b.className = 'btn ghost'; b.style.cssText = 'min-height:34px;font-size:13px;padding:0 14px'; b.textContent = `Use ${se.season_goal} for ${se.name}`;
+    b.onclick = async () => { b.disabled = true; try { await api('/api/setup', { goal_orders_per_month: se.season_goal }); location.reload(); } catch (e) { b.disabled = false; showError(e); } };
+    g.appendChild(t); g.appendChild(b); box.appendChild(g);
+  }
   const line = document.createElement('div'); line.style.cssText = 'font-size:12.5px;color:#5c6066;line-height:1.5';
   line.textContent = `Seasonal prior from public data (${se.market} ${se.category}), applied to the order rate and ad reach for this month only; the adversary tests the month turning out average. Not learned from your history: one year cannot separate seasons from everything else.`;
   box.appendChild(line);

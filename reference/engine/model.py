@@ -130,6 +130,12 @@ def season_for(brand, month):
     return table["demand"].get(str(month), 1.0), table["ad_cost"].get(str(month), 1.0)
 
 
+def season_goal(goal, demand):
+    """A month-sized goal: the average-month goal scaled by the month's demand index (half-up)."""
+    import math
+    return int(math.floor(goal * demand + 0.5))
+
+
 def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods, month=0):
     """One week of the funnel. `mods` is a dict of multipliers from shocks (see shocks.py).
     `month` applies the seasonal prior: demand lift on the order rate, ad-cost index on ad engagement."""

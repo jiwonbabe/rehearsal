@@ -15,6 +15,10 @@ State (month, rates) lives in server memory, so run exactly one machine; restart
 
 Then put `https://rehearsal.fly.dev` in README's Live line. Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
 
+## Meta ad account (optional, makes Launch live)
+
+Before recording, in the shell that starts the server: `export META_AD_ACCOUNT_ID=<act id> META_ACCESS_TOKEN=<60-day token>`. Launch then shows Meta's live delivery estimate for the audience and "Create paused campaign" really creates a paused campaign + ad set in that account (nothing spends; delete it in Ads Manager afterwards). Without the two variables the button shows the request it would send. Never commit the token.
+
 ## Language
 
 Record in English (the default). The header toggle shows the same screens in Korean; mention it in one sentence if time allows.

@@ -12,6 +12,7 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"time"
 
 	"rehearsal/engine"
 	"rehearsal/spark"
@@ -566,6 +567,9 @@ func TestLaunchRejectsUnknownDirectionAndOverBudget(t *testing.T) {
 
 func TestLaunchAdRequestCoversAllDays(t *testing.T) {
 	t.Setenv("META_ACCESS_TOKEN", "")
+	old := today
+	today = func() time.Time { return time.Date(2026, 10, 30, 12, 0, 0, 0, time.UTC) }
+	t.Cleanup(func() { today = old })
 	ts := newTestServer(t)
 	var out struct {
 		AdRequest map[string]map[string]any `json:"ad_request"`
@@ -774,5 +778,24 @@ func TestLaunchReachFallsBackToMock(t *testing.T) {
 	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
 	if out.ReachSource != "mock" || out.Reach["instagram_reels"] == nil {
 		t.Errorf("%s %v", out.ReachSource, out.Reach)
+	}
+}
+
+func TestAdSetStartsNoEarlierThanToday(t *testing.T) {
+	old := today
+	today = func() time.Time { return time.Date(2026, 11, 10, 15, 0, 0, 0, time.UTC) }
+	t.Cleanup(func() { today = old })
+	ts := newTestServer(t)
+	var out struct {
+		AdRequest map[string]map[string]any `json:"ad_request"`
+	}
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	if out.AdRequest["adset"]["start_time"] != "2026-11-10T00:00:00+0000" || out.AdRequest["adset"]["end_time"] != "2026-11-30T00:00:00+0000" {
+		t.Errorf("window %v..%v", out.AdRequest["adset"]["start_time"], out.AdRequest["adset"]["end_time"])
+	}
+	today = func() time.Time { return time.Date(2026, 12, 15, 0, 0, 0, 0, time.UTC) }
+	call(t, ts, "POST", "/api/launch", launchBody(t, ts), &out)
+	if out.AdRequest["adset"]["start_time"] != "2026-12-15T00:00:00+0000" || out.AdRequest["adset"]["end_time"] != "2027-01-12T00:00:00+0000" {
+		t.Errorf("past window must shift to start today and keep its length: %v..%v", out.AdRequest["adset"]["start_time"], out.AdRequest["adset"]["end_time"])
 	}
 }

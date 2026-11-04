@@ -62,6 +62,9 @@ func (s *server) launchOf(r *http.Request) (launch, error) {
 	return l, nil
 }
 
+// today is the clock for the ads request only; tests replace it.
+var today = time.Now
+
 func metaEnv() (token, account string) {
 	return os.Getenv("META_ACCESS_TOKEN"), strings.TrimPrefix(os.Getenv("META_AD_ACCOUNT_ID"), "act_")
 }
@@ -97,13 +100,22 @@ func adRequest(spec engine.LaunchSpec, plan engine.Plan, info engine.BrandInfo, 
 	}
 	targeting, country := targetingFor(info)
 	// OUTCOME_TRAFFIC + LINK_CLICKS needs no pixel; the ad set ends at midnight after the last day so all days are bought.
+	// Meta rejects a start in the past: a month already under way starts today and keeps its end; a month
+	// entirely past starts today and keeps its length (the engine's dates come from the data; only this request looks at the clock).
+	startDay, _ := time.Parse("2006-01-02", spec.StartDate)
 	endDay, _ := time.Parse("2006-01-02", spec.EndDate)
+	if now := today().UTC().Truncate(24 * time.Hour); startDay.Before(now) {
+		if endDay.Before(now) {
+			endDay = now.AddDate(0, 0, spec.Days-1)
+		}
+		startDay = now
+	}
 	campaign = map[string]any{"name": "Rehearsal · " + title + " · " + spec.StartDate, "objective": "OUTCOME_TRAFFIC",
 		"status": "PAUSED", "special_ad_categories": []string{}}
 	adset = map[string]any{"name": fmt.Sprintf("%s · %s %s %s", title, country, info.Target["gender"], info.Target["age"]),
 		"daily_budget": spec.AdsDailyCents, "billing_event": "IMPRESSIONS", "optimization_goal": "LINK_CLICKS",
 		"bid_strategy": "LOWEST_COST_WITHOUT_CAP", "targeting": targeting,
-		"start_time": spec.StartDate + "T00:00:00+0000", "end_time": endDay.AddDate(0, 0, 1).Format("2006-01-02") + "T00:00:00+0000", "status": "PAUSED"}
+		"start_time": startDay.Format("2006-01-02") + "T00:00:00+0000", "end_time": endDay.AddDate(0, 0, 1).Format("2006-01-02") + "T00:00:00+0000", "status": "PAUSED"}
 	return campaign, adset
 }
 

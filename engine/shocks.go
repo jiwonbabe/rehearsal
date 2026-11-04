@@ -15,6 +15,7 @@ var Catalog = map[string]Shock{
 	"shipping_delay":      {"Shipping delay in week 3", []int{2, 3}, map[string]float64{"order_rate_mult": 0.85}},
 	"viral_post":          {"One post goes viral", []int{1}, map[string]float64{"organic_mult": 3.0}},
 	"promo_underestimate": {"Sale week does worse than the engine's weakest estimate", []int{0, 1, 2, 3}, map[string]float64{"promo_mult_mult": 0.8}},
+	"season_flat":         {"The seasonal lift does not come (an average month after all)", []int{0, 1, 2, 3}, map[string]float64{"season_lift_mult": 0.0}},
 }
 
 var FallbackCombos = [][]string{
@@ -24,7 +25,7 @@ var FallbackCombos = [][]string{
 	{"cpm_spike", "competitor_sale"}, {"reach_drop", "shipping_delay"}, {"creator_noshow", "shipping_delay"},
 	{"competitor_sale", "promo_underestimate"}, {"reach_drop", "competitor_sale"},
 	{"reach_drop", "creator_noshow", "competitor_sale"}, {"cpm_spike", "shipping_delay"},
-	{"creator_noshow", "cpm_spike"}, {"reach_drop", "promo_underestimate"}, {"viral_post", "competitor_sale"},
+	{"creator_noshow", "cpm_spike"}, {"season_flat"}, {"season_flat", "competitor_sale"},
 }
 
 // PriorProbabilities: starting weights, from the brand's own history where we have it.
@@ -41,6 +42,7 @@ func PriorProbabilities(r Rates) map[string]float64 {
 		"shipping_delay":      0.12,
 		"viral_post":          0.08,
 		"promo_underestimate": 0.30,
+		"season_flat":         0.25,
 	}
 }
 

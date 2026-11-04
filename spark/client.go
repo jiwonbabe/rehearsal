@@ -126,13 +126,14 @@ func callContent(name string, content []any) (map[string]any, error) {
 	return out, os.WriteFile(path, pretty, 0o644)
 }
 
-// Directions: planner call for the given month (1 or 2). summary comes from engine.Summary; lastMonthBlock is "" on month one.
-func Directions(month int, summary map[string]any, lastMonthBlock string) (map[string]any, error) {
+// Directions: planner call for the given month (1 or 2). summary comes from engine.Summary; lastMonthBlock is ""
+// on month one; seasonBlock comes from engine.SeasonBlock (indexes Spark may quote in season_note).
+func Directions(month int, summary map[string]any, lastMonthBlock, seasonBlock string) (map[string]any, error) {
 	tpl, err := loadPrompt("directions.md")
 	if err != nil {
 		return nil, err
 	}
-	return Call(fmt.Sprintf("directions-m%d", month), fill(tpl, map[string]any{"SUMMARY_JSON": summary, "LAST_MONTH_BLOCK": lastMonthBlock}))
+	return Call(fmt.Sprintf("directions-m%d", month), fill(tpl, map[string]any{"SUMMARY_JSON": summary, "LAST_MONTH_BLOCK": lastMonthBlock, "SEASON_BLOCK": seasonBlock}))
 }
 
 // Adversary: shock-picker call for one direction. priors come from engine.PriorProbabilities.

@@ -4,80 +4,114 @@
    "codes": [
     "creator_noshow"
    ],
-   "why": "제품을 보내드린 분들 중 절반은 착용한 사진을 올리지 않으실 수 있어요."
+   "why": "크리에이터 절반이 글을 올리지 않으시면 보여드릴 사진이 거의 없으세요."
   },
   {
    "codes": [
     "reach_drop"
    ],
-   "why": "크리에이터 사진을 보시는 분이 거의 없어요."
+   "why": "보는 사람이 줄면 크리에이터 사진이 훨씬 덜 보여요."
   },
   {
    "codes": [
     "competitor_sale"
    ],
-   "why": "크리에이터분들이 글을 올릴 때 경쟁 가게 세일로 관심이 쏠릴 수 있어요."
+   "why": "맞대응할 할인이 없으시면 경쟁 업체 할인에 손님을 빼앗기실 수 있어요."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "계절 대목이 오지 않으면 그냥 평범한 한 달이 되세요."
   },
   {
    "codes": [
     "shipping_delay"
    ],
-   "why": "물건이 늦게 도착하면 크리에이터 글도 늦어지고 손님 주문도 늦어져요."
+   "why": "배송이 늦어지면 글이 올라온 직후 손님의 살 마음이 확 식을 수 있어요."
   },
   {
    "codes": [
-    "promo_underestimate"
+    "viral_post"
    ],
-   "why": "세일 주간에도 생각보다 못 팔릴 수 있어요."
+   "why": "운 좋게 터진 글 하나에 전체 계획을 걸으시면 안 돼요."
   },
   {
    "codes": [
     "creator_noshow",
     "reach_drop"
    ],
-   "why": "제품을 보내드리는 일은 많은 분들이 봐주셔야 하고 올려주시는 분도 계셔야 해요."
+   "why": "올라오는 글도 적고 보는 사람도 적으면 제품을 보는 분이 거의 없으세요."
   },
   {
    "codes": [
     "creator_noshow",
     "competitor_sale"
    ],
-   "why": "올라온 글이 적은데 경쟁 가게가 세일을 하면 사시는 분이 거의 없어요."
+   "why": "올리는 분은 적은데 경쟁 업체가 할인하면 손님 눈에 잘 안 띄세요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "season_flat"
+   ],
+   "why": "계절 대목 도움도 없는데 올리는 분까지 없으시면 더 힘드세요."
   },
   {
    "codes": [
     "creator_noshow",
     "shipping_delay"
    ],
-   "why": "올라온 글도 적고 배송도 늦으면 손님들이 사기 어려워요."
+   "why": "겨우 받은 몇 개 글도 배송이 늦으면 소용이 없어져요."
+  },
+  {
+   "codes": [
+    "creator_noshow",
+    "viral_post"
+   ],
+   "why": "크리에이터 절반이 올리지 않으시면 글이 하나 터져도 살리기 어려우세요."
   },
   {
    "codes": [
     "reach_drop",
     "competitor_sale"
    ],
-   "why": "보는 분이 적은데 경쟁 가게가 세일을 하면 사진이 잘 안 보여요."
+   "why": "보는 분이 적은데 경쟁 업체가 할인하면 보는 분도 사는 분도 줄어드세요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "보는 사람이 줄었는데 계절 도움도 없으면 글 반응이 그대로 주저앉아요."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "보는 분도 적고 배송도 늦으면 좋은 흐름이 이어지기 어려워요."
+   "why": "보는 분도 적은데 배송까지 늦으면 보신 분도 사지 않게 되세요."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "조용한 달에 경쟁 업체가 할인하면 빠져나간 손님을 되찾기 어려우세요."
   },
   {
    "codes": [
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "경쟁 가게가 싸게 팔고 배송이 늦어지면 손님들이 안 사세요."
+   "why": "사장님 배송이 늦어지면 손님은 경쟁 업체 할인으로 가세요."
   },
   {
    "codes": [
-    "creator_noshow",
-    "viral_post"
+    "season_flat",
+    "shipping_delay"
    ],
-   "why": "올려주시는 분이 적은데 운 좋게 글 하나가 잘 돼서 가려지는지 확인해요."
+   "why": "조용한 달인데 배송까지 늦으면 늦게 사려던 분까지 막혀서 더 힘드세요."
   },
   {
    "codes": [
@@ -85,63 +119,23 @@
     "reach_drop",
     "competitor_sale"
    ],
-   "why": "올려주시는 분도 없고 보는 분도 적고 경쟁 가게 세일까지 겹치면 거의 못 파세요."
+   "why": "글도 적고 보는 사람도 적고 경쟁 업체 할인까지 겹치면 한 달 장사가 많이 비세요."
   },
   {
    "codes": [
     "creator_noshow",
     "reach_drop",
-    "shipping_delay"
+    "season_flat"
    ],
-   "why": "올라온 글도 없고 보는 분도 적고 배송까지 늦으면 새로 알리기 어려워요."
+   "why": "올리는 분도 없고 보는 사람도 적고 계절 도움도 없으면 늘기가 어려우세요."
   },
   {
    "codes": [
     "creator_noshow",
     "competitor_sale",
-    "shipping_delay"
+    "season_flat"
    ],
-   "why": "올라온 글도 적은데 경쟁 세일에 배송까지 늦어지면 사시기 어려워요."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "competitor_sale",
-    "shipping_delay"
-   ],
-   "why": "보는 분도 적은데 경쟁 세일에 배송까지 늦어지면 사기 어려워져요."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "reach_drop",
-    "viral_post"
-   ],
-   "why": "보는 분도 적고 올려주시는 분도 없을 때 운이 필요한지 확인해요."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "competitor_sale",
-    "viral_post"
-   ],
-   "why": "글이 약하고 경쟁이 심한데 글 하나가 잘 돼서 가려지는지 확인해요."
-  },
-  {
-   "codes": [
-    "creator_noshow",
-    "shipping_delay",
-    "viral_post"
-   ],
-   "why": "올라온 글이 없고 배송이 늦은데 운으로 메워지는지 확인해요."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "competitor_sale",
-    "viral_post"
-   ],
-   "why": "경쟁 가게 세일 중에 보는 분이 적어도 글 하나가 잘 되면 괜찮은지 확인해요."
+   "why": "올리는 분이 없는데 조용한 달에 경쟁 업체 할인까지 겹치면 기댈 곳이 없으세요."
   }
  ]
 }

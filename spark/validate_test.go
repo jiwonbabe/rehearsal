@@ -250,3 +250,11 @@ func TestValidateTranslation(t *testing.T) {
 		t.Errorf("flat %v", flat)
 	}
 }
+
+func TestSeasonNote(t *testing.T) {
+	ok := map[string]any{"season_note": "December lifts demand 2.23 times but ads cost 1.27 times more."}
+	bad := map[string]any{"season_note": "Expect 120 orders in December."}
+	if SeasonNote(ok, []float64{2.23, 1.27}) == "" || SeasonNote(bad, []float64{2.23, 1.27}) != "" || SeasonNote(map[string]any{}, nil) != "" {
+		t.Error("SeasonNote")
+	}
+}

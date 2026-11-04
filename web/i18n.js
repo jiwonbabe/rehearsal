@@ -50,7 +50,7 @@ const KO = {
   'Creators · seeding kit': '크리에이터 · 시딩 키트', 'Type these into Instagram search': '인스타그램 검색창에 이렇게 입력하세요', 'Send': '보낼 것', 'Ask': '부탁할 것', 'Copy DM': 'DM 복사', 'Copied': '복사됨', 'Found for your search terms · Instagram': '검색어로 찾은 계정 · Instagram', 'Found for your search terms · Instagram · demo data, fictional accounts': '검색어로 찾은 계정 · Instagram · 데모 데이터, 가상 계정', 'Public data': '공개 통계', 'Your data · demo': '내 데이터 · 데모', 'Found one? Check the fit': '찾았나요? 맞는지 확인', 'Does this creator fit?': '이 크리에이터, 맞을까요?', 'Reading…': '읽는 중…', 'Loading…': '불러오는 중…',
   'Calendar · 4 weeks': '캘린더 · 4주', 'Download calendar (.ics)': '캘린더 다운로드(.ics)', 'no Meta ad account connected': 'Meta 광고 계정 미연결', 'Meta ad account connected': 'Meta 광고 계정 연결됨', 'small': '소형', 'mid': '중형', 'large': '대형', 'high fit': '적합도 높음', 'medium fit': '적합도 보통', 'low fit': '적합도 낮음',
   // shock catalog (engine text)
-  'Reach drops 40% (algorithm change)': '도달 40% 감소(알고리즘 변경)', 'Half of seeded creators never post': '시딩한 크리에이터 절반이 게시 안 함', 'A competitor runs a 20% sale': '경쟁사가 20% 세일', 'Ad cost per result up 60%': '광고 성과당 비용 60% 상승', 'Shipping delay in week 3': '3주차 배송 지연', 'One post goes viral': '게시물 하나가 터짐', "Sale week does worse than the engine's weakest estimate": '세일 주가 엔진의 가장 보수적인 추정보다 나쁨', 'never': '없음',
+  'Reach drops 40% (algorithm change)': '도달 40% 감소(알고리즘 변경)', 'The seasonal lift does not come (an average month after all)': '시즌 효과가 오지 않음(결국 평범한 달)', 'Spark': 'Spark', 'November': '11월', 'December': '12월', 'January': '1월', 'February': '2월', 'March': '3월', 'April': '4월', 'May': '5월', 'June': '6월', 'July': '7월', 'August': '8월', 'September': '9월', 'October': '10월', 'Half of seeded creators never post': '시딩한 크리에이터 절반이 게시 안 함', 'A competitor runs a 20% sale': '경쟁사가 20% 세일', 'Ad cost per result up 60%': '광고 성과당 비용 60% 상승', 'Shipping delay in week 3': '3주차 배송 지연', 'One post goes viral': '게시물 하나가 터짐', "Sale week does worse than the engine's weakest estimate": '세일 주가 엔진의 가장 보수적인 추정보다 나쁨', 'never': '없음',
 };
 
 const WORDS = { 'on hand': '착용(손)', 'close up': '클로즈업', 'flat lay': '플랫레이', 'on neck': '착용(목)', 'on-hand': '착용(손)', 'close-up': '클로즈업', 'flat-lay': '플랫레이', 'on-neck': '착용(목)', women: '여성', men: '남성', everyone: '모두', 'or better': '이상', 'or worse': '이하', 'inside range': '범위 안', 'above range': '범위 위', 'below range': '범위 아래', high: '높음', medium: '보통', low: '낮음', unsure: '불확실' };
@@ -91,7 +91,9 @@ const KO_RX = [
   [/^([\d,]+) followers · (\w+) · ([\d.]+)% engagement · mostly (.+)$/, (m, f, b, e, t) => `팔로워 ${f} · ${KO[b] || b} · 참여율 ${e}% · 주로 ${w(t)}`], [/^(high|medium|low|unsure) fit · (.*) account$/, (m, f, b) => `적합도 ${w(f)} · ${KO[b] || b} 계정`],
   [/^ship (\d+) pieces$/, (m, n) => `${n}개 발송`], [/^(\$[\d,]+) ads$/, (m, a) => `광고 ${a}`], [/^(\d+%) off$/, (m, p) => `${p} 할인`], [/^(\d+) \((.+)\)$/, (m, n, mix) => `${n} (${mix.split(', ').map(x => x.replace(/^(\d+) (.+)$/, (mm, k, t) => `${w(t)} ${k}`)).join(', ')})`],
   [/^Launch: (.+)$/, (m, t) => `실행: ${tx(t)}`], [/^Starts (\S+) · (\d+) days · total (\$[\d,]+) · (.+)$/, (m, d, n, tot, c) => `시작 ${d} · ${n}일 · 총 ${tot} · ${KO[c] || c}`],
-  [/^Connected · @(.+)$/, (m, h) => `연결됨 · @${h}`], [/^(\d+)% (on hand|close up|flat lay|on neck)$/, (m, p, t) => `${w(t)} ${p}%`],
+  [/^Connected · @(.+)$/, (m, h) => `연결됨 · @${h}`],
+  [/^This month: (\w+)$/, (m, n) => `이번 달: ${KO[n] || n}`], [/^demand (\S+)× · ad cost (\S+)× · 1\.00 = an average month$/, (m, d, a) => `수요 ${d}배 · 광고 단가 ${a}배 · 1.00 = 평범한 달`],
+  [/^Seasonal prior from public data \((\w+) (\w+)\), applied to the order rate and ad reach for this month only; .*$/, (m, mk, cat) => `공개 데이터 기반 계절 지수(${mk} ${cat}). 이번 달의 주문율과 광고 도달에만 적용하고, 공격자는 이 달이 평범하게 끝나는 경우를 시험합니다. 과거 이력에서 배운 값이 아닙니다: 1년치 데이터로는 계절을 분리할 수 없습니다.`], [/^Source \((\w+)\): (.+), (\d{4})$/, (m, f, a, y) => `출처(${f === 'demand' ? '수요' : '광고 단가'}): ${a}, ${y}`], [/^(\d+)% (on hand|close up|flat lay|on neck)$/, (m, p, t) => `${w(t)} ${p}%`],
 ];
 
 let SPARK = {};

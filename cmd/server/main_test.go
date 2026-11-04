@@ -88,13 +88,13 @@ func TestStressTwoDirections(t *testing.T) {
 	if len(out.Verdict) != 3 || !hasBaseline {
 		t.Errorf("verdict should be 2 directions + baseline, got %d", len(out.Verdict))
 	}
-	if out.FlipA != "pay_for_reach" || out.FlipB != "send_to_creators" {
+	if ids := out.FlipA + "+" + out.FlipB; ids != "pay_for_reach+send_to_creators" && ids != "send_to_creators+pay_for_reach" {
 		t.Errorf("flip ids: %q %q", out.FlipA, out.FlipB)
 	}
 	if out.Flip == nil || out.Flip.Param != "seed_post_rate" {
 		t.Errorf("flip: %+v", out.Flip)
 	}
-	if len(out.Catalog) != 7 || len(out.Priors) != 7 {
+	if len(out.Catalog) != 8 || len(out.Priors) != 8 {
 		t.Errorf("catalog/priors missing")
 	}
 	thr := fmt.Sprintf("%d%%", int(math.Round(out.Flip.Threshold*100)))
@@ -702,5 +702,27 @@ func TestTrustEndpoint(t *testing.T) {
 	}
 	if out.Holdout.WeeksTotal != 13 || out.Holdout.MedianAbsPctError < out.InSample.MedianAbsPctError || len(out.Truth) != 9 || !out.Synthetic {
 		t.Errorf("%+v", out)
+	}
+}
+
+func TestPlansCarryTheSeasonMonth(t *testing.T) {
+	ts := newTestServer(t)
+	var dirs struct {
+		Season map[string]any `json:"season"`
+	}
+	call(t, ts, "GET", "/api/directions", "", &dirs)
+	if dirs.Season["month"] != 11.0 || dirs.Season["demand"] != 1.04 || dirs.Season["ad_cost"] != 1.18 {
+		t.Errorf("season %v", dirs.Season)
+	}
+	var st struct {
+		Verdict []struct {
+			Plan engine.Plan `json:"plan"`
+		} `json:"verdict"`
+	}
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &st)
+	for _, v := range st.Verdict {
+		if v.Plan.Month != 11 {
+			t.Errorf("%s month %d", v.Plan.PlanID, v.Plan.Month)
+		}
 	}
 }

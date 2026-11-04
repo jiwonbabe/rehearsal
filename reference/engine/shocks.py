@@ -31,6 +31,11 @@ CATALOG = {
         "weeks": [1],
         "mods": {"organic_mult": 3.0},
     },
+    "season_flat": {
+        "label": "The seasonal lift does not come (an average month after all)",
+        "weeks": [0, 1, 2, 3],
+        "mods": {"season_lift_mult": 0.0},
+    },
     "promo_underestimate": {
         "label": "Sale week does worse than the engine's weakest estimate",
         "weeks": [0, 1, 2, 3],
@@ -45,7 +50,7 @@ FALLBACK_COMBOS = [
     ["cpm_spike", "competitor_sale"], ["reach_drop", "shipping_delay"], ["creator_noshow", "shipping_delay"],
     ["competitor_sale", "promo_underestimate"], ["reach_drop", "competitor_sale"],
     ["reach_drop", "creator_noshow", "competitor_sale"], ["cpm_spike", "shipping_delay"],
-    ["creator_noshow", "cpm_spike"], ["reach_drop", "promo_underestimate"], ["viral_post", "competitor_sale"],
+    ["creator_noshow", "cpm_spike"], ["season_flat"], ["season_flat", "competitor_sale"],
 ]
 
 
@@ -59,6 +64,7 @@ def prior_probabilities(rates):
         "shipping_delay": 0.12,
         "viral_post": 0.08,
         "promo_underestimate": 0.30,
+        "season_flat": 0.25,
     }
 
 

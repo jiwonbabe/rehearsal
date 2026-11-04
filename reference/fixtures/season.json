@@ -1,0 +1,114 @@
+{
+ "november": {
+  "plan_id": "pay_for_reach-000",
+  "weeks": [
+   {
+    "engagement": 1146.5289580683238,
+    "orders": 13.610901229517873,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1146.5289580683238,
+    "orders": 13.610901229517873,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1146.5289580683238,
+    "orders": 13.610901229517873,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1146.5289580683238,
+    "orders": 13.610901229517873,
+    "spend_usd": 35.0
+   }
+  ],
+  "orders": 54.44360491807149,
+  "spend_usd": 140.0,
+  "engagement": 4586.115832273295
+ },
+ "december": {
+  "plan_id": "pay_for_reach-000",
+  "weeks": [
+   {
+    "engagement": 1136.149615509522,
+    "orders": 28.9207068802058,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1136.149615509522,
+    "orders": 28.9207068802058,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1136.149615509522,
+    "orders": 28.9207068802058,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1136.149615509522,
+    "orders": 28.9207068802058,
+    "spend_usd": 35.0
+   }
+  ],
+  "orders": 115.6828275208232,
+  "spend_usd": 140.0,
+  "engagement": 4544.598462038088
+ },
+ "december_flat": {
+  "plan_id": "pay_for_reach-000",
+  "weeks": [
+   {
+    "engagement": 1136.149615509522,
+    "orders": 12.968926852110222,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1136.149615509522,
+    "orders": 12.968926852110222,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1136.149615509522,
+    "orders": 12.968926852110222,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1136.149615509522,
+    "orders": 12.968926852110222,
+    "spend_usd": 35.0
+   }
+  ],
+  "orders": 51.87570740844089,
+  "spend_usd": 140.0,
+  "engagement": 4544.598462038088
+ },
+ "no_month": {
+  "plan_id": "pay_for_reach-000",
+  "weeks": [
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   },
+   {
+    "engagement": 1172.892488167681,
+    "orders": 13.388339596114335,
+    "spend_usd": 35.0
+   }
+  ],
+  "orders": 53.55335838445734,
+  "spend_usd": 140.0,
+  "engagement": 4691.569952670724
+ }
+}

@@ -89,6 +89,8 @@ def verdict(plans, stressed, rates, brand):
         out.append(describe(best["plan"], best["cells"], rates, brand))
 
     base = baseline_plan()
+    if plans:
+        base.month = plans[0].month  # the baseline lives in the same month as the plans it is compared with
     base_cells = stress([base], stressed["combos"], rates, brand)["matrix"]["baseline"]
     out.append(describe(base, base_cells, rates, brand))
     out.sort(key=lambda d: (-d["survived"], d["spend_usd"]))

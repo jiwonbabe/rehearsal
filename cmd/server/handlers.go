@@ -58,10 +58,11 @@ func (s *server) currentDirections() ([]engine.Direction, error) {
 		block = engine.LastMonthBlock(*s.lastReview)
 	}
 	summary := engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13))
-	raw, err := spark.Directions(s.month, summary, block)
+	raw, err := spark.Directions(s.month, summary, block, engine.SeasonBlock(s.brand.Season, s.planMonth()))
 	if err != nil {
 		return nil, fmt.Errorf("directions cache missing or unreadable: %w", err)
 	}
+	s.seasonNote = spark.SeasonNote(raw, s.seasonNumbers())
 	valid, err := spark.ValidateDirections(raw, s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.ProductCostUsd)
 	if err != nil {
 		return nil, err
@@ -72,6 +73,25 @@ func (s *server) currentDirections() ([]engine.Direction, error) {
 	}
 	sort.SliceStable(dirs, func(i, j int) bool { return dirs[i].Rank < dirs[j].Rank })
 	return dirs, nil
+}
+
+// planMonth: the calendar month being planned (November for demo month 1, December for month 2).
+func (s *server) planMonth() int { return engine.PlanMonth(s.brand, s.month-1) }
+
+// seasonNumbers: the two indexes the planner's season_note may quote.
+func (s *server) seasonNumbers() []float64 {
+	se := engine.SeasonFor(s.brand.Season, s.planMonth())
+	return []float64{se.Demand, se.AdCost}
+}
+
+// seasonOut: what the pages show for the month being planned. Indexes from the table, note from Spark.
+func (s *server) seasonOut() map[string]any {
+	se := engine.SeasonFor(s.brand.Season, s.planMonth())
+	out := map[string]any{"month": se.Month, "name": se.Name, "demand": se.Demand, "ad_cost": se.AdCost, "note": s.seasonNote, "applied": s.brand.Season != nil}
+	if s.brand.Season != nil {
+		out["sources"], out["table_note"], out["category"], out["market"] = s.brand.Season.Sources, s.brand.Season.Note, s.brand.Season.Category, s.brand.Season.Market
+	}
+	return out
 }
 
 func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
@@ -93,7 +113,8 @@ func (s *server) handleDirections(w http.ResponseWriter, r *http.Request) {
 		Directions []directionOut   `json:"directions"`
 		LastMonth  *engine.Review   `json:"last_month"`
 		Channels   []map[string]any `json:"channels"`
-	}{s.month, out, s.lastReview, s.channels()}
+		Season     map[string]any   `json:"season"`
+	}{s.month, out, s.lastReview, s.channels(), s.seasonOut()}
 	s.writeJSON(w, resp)
 }
 
@@ -278,6 +299,9 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		plans := engine.SampleVariants(d, 60, 7)
+		for i := range plans {
+			plans[i].Month = s.planMonth()
+		}
 		st := engine.Stress(plans, combos, s.rates, s.brand)
 		resp.Directions = append(resp.Directions, directionStress{ID: d.ID, Title: d.Title, Plans: plans,
 			Shocks: alignShocks(st, combos, whys), Stress: st})

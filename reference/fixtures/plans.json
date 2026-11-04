@@ -12,7 +12,8 @@
   "creator_count": 0,
   "ads_usd": 140,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-001",
@@ -27,7 +28,8 @@
   "creator_count": 0,
   "ads_usd": 240,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-002",
@@ -42,7 +44,8 @@
   "creator_count": 0,
   "ads_usd": 140,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-003",
@@ -57,7 +60,8 @@
   "creator_count": 0,
   "ads_usd": 180,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-004",
@@ -72,7 +76,8 @@
   "creator_count": 0,
   "ads_usd": 140,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-005",
@@ -87,7 +92,8 @@
   "creator_count": 0,
   "ads_usd": 180,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-006",
@@ -102,7 +108,8 @@
   "creator_count": 0,
   "ads_usd": 180,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-007",
@@ -117,7 +124,8 @@
   "creator_count": 0,
   "ads_usd": 260,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-008",
@@ -132,7 +140,8 @@
   "creator_count": 0,
   "ads_usd": 200,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-009",
@@ -147,7 +156,8 @@
   "creator_count": 0,
   "ads_usd": 140,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-010",
@@ -162,7 +172,8 @@
   "creator_count": 0,
   "ads_usd": 260,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-011",
@@ -177,7 +188,8 @@
   "creator_count": 0,
   "ads_usd": 220,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-012",
@@ -192,7 +204,8 @@
   "creator_count": 0,
   "ads_usd": 200,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-013",
@@ -207,7 +220,8 @@
   "creator_count": 0,
   "ads_usd": 200,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-014",
@@ -222,7 +236,8 @@
   "creator_count": 0,
   "ads_usd": 240,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-015",
@@ -237,7 +252,8 @@
   "creator_count": 0,
   "ads_usd": 140,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-016",
@@ -252,7 +268,8 @@
   "creator_count": 0,
   "ads_usd": 180,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-017",
@@ -267,7 +284,8 @@
   "creator_count": 0,
   "ads_usd": 240,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-018",
@@ -282,7 +300,8 @@
   "creator_count": 0,
   "ads_usd": 240,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "pay_for_reach-019",
@@ -297,7 +316,8 @@
   "creator_count": 0,
   "ads_usd": 160,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-000",
@@ -312,7 +332,8 @@
   "creator_count": 4,
   "ads_usd": 20,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-001",
@@ -327,7 +348,8 @@
   "creator_count": 7,
   "ads_usd": 60,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-002",
@@ -342,7 +364,8 @@
   "creator_count": 7,
   "ads_usd": 20,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-003",
@@ -357,7 +380,8 @@
   "creator_count": 4,
   "ads_usd": 40,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-004",
@@ -372,7 +396,8 @@
   "creator_count": 6,
   "ads_usd": 20,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-005",
@@ -387,7 +412,8 @@
   "creator_count": 8,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-006",
@@ -402,7 +428,8 @@
   "creator_count": 6,
   "ads_usd": 40,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-007",
@@ -417,7 +444,8 @@
   "creator_count": 7,
   "ads_usd": 20,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-008",
@@ -432,7 +460,8 @@
   "creator_count": 6,
   "ads_usd": 20,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-009",
@@ -447,7 +476,8 @@
   "creator_count": 7,
   "ads_usd": 40,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-010",
@@ -462,7 +492,8 @@
   "creator_count": 4,
   "ads_usd": 20,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-011",
@@ -477,7 +508,8 @@
   "creator_count": 4,
   "ads_usd": 60,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-012",
@@ -492,7 +524,8 @@
   "creator_count": 7,
   "ads_usd": 60,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-013",
@@ -507,7 +540,8 @@
   "creator_count": 4,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-014",
@@ -522,7 +556,8 @@
   "creator_count": 5,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-015",
@@ -537,7 +572,8 @@
   "creator_count": 6,
   "ads_usd": 40,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-016",
@@ -552,7 +588,8 @@
   "creator_count": 8,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-017",
@@ -567,7 +604,8 @@
   "creator_count": 4,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-018",
@@ -582,7 +620,8 @@
   "creator_count": 7,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  },
  {
   "plan_id": "send_to_creators-019",
@@ -597,6 +636,7 @@
   "creator_count": 8,
   "ads_usd": 0,
   "promo_week": null,
-  "promo_discount": 0.0
+  "promo_discount": 0.0,
+  "month": 0
  }
 ]

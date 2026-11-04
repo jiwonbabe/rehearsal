@@ -1,9 +1,9 @@
 {
  "directions": [
   {
-   "caution": null,
+   "caution": "You have not tried creators yet, so results may vary at first.",
    "id": "send_to_creators",
-   "plain": "You mail pieces to small creators young women already follow. They post real wearing photos for you.",
+   "plain": "You send pieces to small creators who already dress like your customer. They post real wearing photos for you.",
    "ranges": {
     "ads_usd": [
      0,
@@ -15,16 +15,16 @@
     ],
     "post_mix": {
      "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
       0.1,
       0.3
      ],
-     "flat_lay": [
-      0,
-      0.2
-     ],
      "on_hand": [
-      0.5,
-      0.7
+      0.4,
+      0.6
      ],
      "on_neck": [
       0,
@@ -44,18 +44,18 @@
     ]
    },
    "rank": 1,
-   "title": "Let Fans Show Your Pieces Worn",
-   "why_for_you": "Wearing shots get the most love, and creator posts get even more. Most creators you send to end up posting.",
-   "you_would_do": "Message about ten creators, send pieces to four to eight, and ask each for one wearing photo."
+   "title": "Let creators show your pieces",
+   "why_for_you": "Your on-hand photos get the most love, and creator posts earn even more love in your data. Most seeded creators in your data do post.",
+   "you_would_do": "Send pieces to a few creators, message about ten to find them, and ask for on-hand wearing photos each week."
   },
   {
-   "caution": "You spent nothing last month, so we have no paid history to learn from yet.",
-   "id": "pay_for_reach",
-   "plain": "You put money behind your best photos to show them to more young women. It works fast and you can stop any time.",
+   "caution": null,
+   "id": "one_week_sale",
+   "plain": "You pick a week with a small discount. You post every day that week to remind people.",
    "ranges": {
     "ads_usd": [
-     150,
-     400
+     0,
+     0
     ],
     "creator_count": [
      0,
@@ -63,16 +63,16 @@
     ],
     "post_mix": {
      "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
       0.1,
       0.3
      ],
-     "flat_lay": [
-      0,
-      0.2
-     ],
      "on_hand": [
-      0.5,
-      0.7
+      0.4,
+      0.6
      ],
      "on_neck": [
       0,
@@ -84,43 +84,44 @@
      5
     ],
     "promo_discount": [
-     0,
-     0
+     15,
+     25
     ],
     "promo_week": [
-     null
+     1,
+     4
     ]
    },
    "rank": 2,
-   "title": "Boost Best Posts To Young Women",
-   "why_for_you": "Your wearing shots already get the most love. Paid support can show those winners to women your age.",
-   "you_would_do": "Post three to five times a week and pick two wearing shots to support."
+   "title": "Run a simple sale week",
+   "why_for_you": "Sales lift buying a lot in your data, and last month you were close to your goal with no sale.",
+   "you_would_do": "Pick a week, choose a small discount on your best pieces, and post daily with on-hand photos."
   },
   {
-   "caution": "Creator posts can be slow to start, so early days may feel quiet.",
-   "id": "mix",
-   "plain": "You seed a few creators and also support top posts with money. You learn fast without betting all on one idea.",
+   "caution": "You spent nothing last month, so we have no recent ad proof for you.",
+   "id": "pay_for_reach",
+   "plain": "You pay to show your best photos to more women like your customer. It works fast and stops when you stop paying.",
    "ranges": {
     "ads_usd": [
-     100,
-     200
+     150,
+     400
     ],
     "creator_count": [
-     2,
-     4
+     0,
+     0
     ],
     "post_mix": {
      "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
       0.1,
       0.3
      ],
-     "flat_lay": [
-      0,
-      0.2
-     ],
      "on_hand": [
-      0.5,
-      0.7
+      0.4,
+      0.6
      ],
      "on_neck": [
       0,
@@ -140,14 +141,14 @@
     ]
    },
    "rank": 3,
-   "title": "Half Creators Half Boosted Posts Mix",
-   "why_for_you": "Creator posts earn the most attention and your wearing shots lead brand posts. Last month you were close to goal with no spend, so a small lift may help.",
-   "you_would_do": "Message about eight creators to seed two to four, post three to five times, and support the best wearing shot."
+   "title": "Put money behind best photos",
+   "why_for_you": "Your on-hand close-ups already get the most love, so you have strong photos to boost.",
+   "you_would_do": "Pick two on-hand posts, put them in front of women your customer age, and post three times that week."
   },
   {
-   "caution": "Use sales rarely, or shoppers will learn to wait for the next one.",
-   "id": "one_week_sale",
-   "plain": "You pick one week with a small discount on all pieces. Shoppers who waited get a reason to buy now.",
+   "caution": null,
+   "id": "just_post",
+   "plain": "You post most days and spend nothing. Growth is slow but safe.",
    "ranges": {
     "ads_usd": [
      0,
@@ -159,16 +160,16 @@
     ],
     "post_mix": {
      "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
       0.1,
       0.3
      ],
-     "flat_lay": [
-      0,
-      0.2
-     ],
      "on_hand": [
-      0.5,
-      0.7
+      0.4,
+      0.6
      ],
      "on_neck": [
       0,
@@ -180,18 +181,18 @@
      5
     ],
     "promo_discount": [
-     10,
-     20
+     0,
+     0
     ],
     "promo_week": [
-     1,
-     4
+     null
     ]
    },
    "rank": 4,
-   "title": "Run One Simple Discount Week Only",
-   "why_for_you": "Sales lift buying a lot for shops like yours. Last month you were close to goal with no sale, so one week may close the gap.",
-   "you_would_do": "Post four to five times that week, show wearing shots daily, and keep the discount to seven days."
+   "title": "Just post often and steady",
+   "why_for_you": "Last month you stayed close to your goal with no spend, but our check missed a few weeks so stay careful.",
+   "you_would_do": "Post four or five times each week using mostly on-hand photos and some close-ups."
   }
- ]
+ ],
+ "season_note": "November brings a little more shopping interest at 1.04 but ads cost more at 1.18 so favor your own posts and creators."
 }

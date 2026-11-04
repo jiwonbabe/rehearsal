@@ -41,8 +41,9 @@ class Rates:
 
 class Plan:
     def __init__(self, plan_id, direction, posts_per_week, post_mix, creator_count,
-                 ads_usd, promo_week=None, promo_discount=0.0):
+                 ads_usd, promo_week=None, promo_discount=0.0, month=0):
         self.plan_id = plan_id
+        self.month = month
         self.direction = direction
         self.posts_per_week = posts_per_week
         self.post_mix = post_mix
@@ -61,12 +62,13 @@ class Plan:
             "ads_usd": self.ads_usd,
             "promo_week": self.promo_week,
             "promo_discount": self.promo_discount,
+            "month": self.month,
         }
 
     @staticmethod
     def from_dict(d):
         return Plan(d["plan_id"], d["direction"], d["posts_per_week"], d["post_mix"],
-                    d["creator_count"], d["ads_usd"], d.get("promo_week"), d.get("promo_discount", 0.0))
+                    d["creator_count"], d["ads_usd"], d.get("promo_week"), d.get("promo_discount", 0.0), d.get("month", 0))
 
 
 def load_brand(path="data/brand.json"):
@@ -120,8 +122,19 @@ def week_inputs_from_plan(plan, week_index):
     return posts, creators, ads_usd, discount
 
 
-def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods):
-    """One week of the funnel. `mods` is a dict of multipliers from shocks (see shocks.py)."""
+def season_for(brand, month):
+    """Demand and ad-cost indexes for a calendar month (1-12) from brand["season"]; 1.0 when absent or month 0."""
+    table = brand.get("season")
+    if not table or not month:
+        return 1.0, 1.0
+    return table["demand"].get(str(month), 1.0), table["ad_cost"].get(str(month), 1.0)
+
+
+def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods, month=0):
+    """One week of the funnel. `mods` is a dict of multipliers from shocks (see shocks.py).
+    `month` applies the seasonal prior: demand lift on the order rate, ad-cost index on ad engagement."""
+    demand, ad_cost = season_for(brand, month)
+    lift = 1.0 + (demand - 1.0) * mods.get("season_lift_mult", 1.0)
     organic = sum(posts[t] * rates.eng_per_post[t] for t in POST_TYPES)
     organic *= mods.get("organic_mult", 1.0)
 
@@ -129,10 +142,10 @@ def run_week(posts, creators_seeded, ads_usd, discount, rates, brand, mods):
     creators_posted = creators_seeded * post_rate
     creator_eng = creators_posted * rates.eng_per_creator_post
 
-    ad_eng = ads_usd * rates.ad_eng_per_usd * mods.get("ad_eng_mult", 1.0)
+    ad_eng = ads_usd * rates.ad_eng_per_usd * mods.get("ad_eng_mult", 1.0) / ad_cost
 
     engagement = organic + creator_eng + ad_eng
-    order_rate = rates.order_per_engagement * mods.get("order_rate_mult", 1.0)
+    order_rate = rates.order_per_engagement * mods.get("order_rate_mult", 1.0) * lift
     promo_mult = rates.promo_multiplier * mods.get("promo_mult_mult", 1.0) if discount > 0 else 1.0
     orders = engagement * order_rate * promo_mult
 
@@ -149,7 +162,7 @@ def run_plan(plan, rates, brand, shocks=None, weeks=HORIZON_WEEKS):
         posts, creators, ads_usd, discount = week_inputs_from_plan(plan, i)
         mods = mods_for_week(shocks, i, rates)
         creators = int(round(creators * mods.get("creator_count_mult", 1.0)))
-        rows.append(run_week(posts, creators, ads_usd, discount, rates, brand, mods))
+        rows.append(run_week(posts, creators, ads_usd, discount, rates, brand, mods, plan.month))
     return {
         "plan_id": plan.plan_id,
         "weeks": rows,

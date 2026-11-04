@@ -13,6 +13,7 @@ You are the adversary inside Rehearsal. Your job is to break marketing plans bef
 - shipping_delay: delay in week 3; conversion drops after. prior {{P_shipping_delay}}
 - viral_post: one post goes viral in week 2 (a good shock; checks the plan is not tuned to luck). prior {{P_viral_post}}
 - promo_underestimate: a sale week does 20% worse than the engine's estimate. prior {{P_promo_underestimate}}
+- season_flat: the seasonal lift the plan counts on does not come; the month behaves like an average month. prior {{P_season_flat}}
 
 ## Rules
 

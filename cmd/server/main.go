@@ -43,6 +43,7 @@ type server struct {
 	meta             *engine.MetaData
 	evidence         *engine.Evidence
 	metaHandle       string
+	seasonNote       string
 	stats            []engine.StatRow
 	mu               sync.Mutex
 }
@@ -61,6 +62,7 @@ func newServer(brandPath string) (*server, error) {
 	if err != nil {
 		return nil, err
 	}
+	brand.Season, _ = engine.LoadSeasonality("data/seasonality.json") // optional: no table, no seasonal prior
 	rates := engine.Calibrate(brand)
 	stats, _ := engine.LoadStats("data/platform_stats.json") // optional: no table, no public-data lines
 	return &server{brand: brand, baseRates: rates, rates: rates, month: 1, stats: stats}, nil

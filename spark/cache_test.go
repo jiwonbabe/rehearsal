@@ -5,7 +5,7 @@ import "testing"
 func TestCacheFilesValidate(t *testing.T) {
 	CacheDir, PromptDir = "cache", "../prompts"
 	for month := 1; month <= 2; month++ {
-		raw, err := Directions(month, map[string]any{}, "")
+		raw, err := Directions(month, map[string]any{}, "", "")
 		if err != nil {
 			t.Fatal(err)
 		}

@@ -2,12 +2,12 @@
  "directions": [
   {
    "caution": null,
-   "id": "pay_for_reach",
-   "plain": "We put money behind your best photos. More women like you see them.",
+   "id": "one_week_sale",
+   "plain": "You run a short sale for one week. Shoppers who were waiting buy in that week.",
    "ranges": {
     "ads_usd": [
-     150,
-     350
+     0,
+     250
     ],
     "creator_count": [
      0,
@@ -19,8 +19,57 @@
       0.4
      ],
      "flat_lay": [
+      0.1,
+      0.3
+     ],
+     "on_hand": [
+      0.4,
+      0.6
+     ],
+     "on_neck": [
       0,
-      0.2
+      0.1
+     ]
+    },
+    "posts_per_week": [
+     3,
+     5
+    ],
+    "promo_discount": [
+     0.15,
+     0.25
+    ],
+    "promo_week": [
+     1,
+     4
+    ]
+   },
+   "rank": 1,
+   "title": "One Week Gift Sale Push",
+   "why_for_you": "Last month your own posts held up even when creators went quiet. A short sale builds on that steady interest during gift time.",
+   "you_would_do": "Post daily that week using your on-hand photos and pick one week to discount."
+  },
+  {
+   "caution": null,
+   "id": "pay_for_reach",
+   "plain": "You pay to show your best photos to more women like your buyers. You start fast and stop when you want.",
+   "ranges": {
+    "ads_usd": [
+     200,
+     400
+    ],
+    "creator_count": [
+     0,
+     0
+    ],
+    "post_mix": {
+     "close_up": [
+      0.2,
+      0.4
+     ],
+     "flat_lay": [
+      0.1,
+      0.3
      ],
      "on_hand": [
       0.4,
@@ -43,63 +92,15 @@
      null
     ]
    },
-   "rank": 1,
-   "title": "Boost Best Posts to New Women",
-   "why_for_you": "Your on-hand photos get the most love. This puts more eyes on those winners.",
-   "you_would_do": "Pick your 2 best on-hand photos and post 3 to 5 times this week."
-  },
-  {
-   "caution": null,
-   "id": "one_week_sale",
-   "plain": "You run one sale for seven days. Shoppers who waited will buy now.",
-   "ranges": {
-    "ads_usd": [
-     0,
-     100
-    ],
-    "creator_count": [
-     0,
-     0
-    ],
-    "post_mix": {
-     "close_up": [
-      0.2,
-      0.4
-     ],
-     "flat_lay": [
-      0,
-      0.2
-     ],
-     "on_hand": [
-      0.4,
-      0.6
-     ],
-     "on_neck": [
-      0,
-      0.1
-     ]
-    },
-    "posts_per_week": [
-     4,
-     5
-    ],
-    "promo_discount": [
-     15,
-     25
-    ],
-    "promo_week": [
-     2
-    ]
-   },
    "rank": 2,
-   "title": "Run One Short Sale Week",
-   "why_for_you": "Sales pull extra strong for you. Last month you beat your goal even with few posts.",
-   "you_would_do": "Pick one week, pick a simple discount, and post 4 to 5 times that week."
+   "title": "Boost Best Posts to Shoppers",
+   "why_for_you": "Your on-hand photos earn the most love from shoppers. This puts money behind what already works.",
+   "you_would_do": "Post three to five times a week with mostly on-hand shots and pick two to boost."
   },
   {
    "caution": null,
    "id": "just_post",
-   "plain": "You post almost every day. You spend no money and grow slow and steady.",
+   "plain": "You post often and spend nothing. Growth is slow but safe.",
    "ranges": {
     "ads_usd": [
      0,
@@ -115,8 +116,8 @@
       0.4
      ],
      "flat_lay": [
-      0,
-      0.2
+      0.1,
+      0.3
      ],
      "on_hand": [
       0.4,
@@ -140,14 +141,14 @@
     ]
    },
    "rank": 3,
-   "title": "Post Often With No Spending",
-   "why_for_you": "Your on-hand and close-up photos do best on their own. Our past guesses missed a few weeks so this keeps spend safe.",
-   "you_would_do": "Post 4 to 5 times a week using mostly on-hand photos."
+   "title": "Steady Posts With No Spending",
+   "why_for_you": "Your own posts held steady last month when creators did not. Our past checks missed some weeks so keep hopes steady.",
+   "you_would_do": "Post four to five times a week using mostly on-hand and close-up photos."
   },
   {
-   "caution": "Last month few creators posted so plan for extra no-shows.",
+   "caution": "Last month only one of four creators posted so this can be slow and quiet.",
    "id": "send_to_creators",
-   "plain": "You mail pieces to small creators. They post wearing photos for you.",
+   "plain": "You send pieces to small creators who wear them. They post wearing photos if they like them.",
    "ranges": {
     "ads_usd": [
      0,
@@ -163,8 +164,8 @@
       0.4
      ],
      "flat_lay": [
-      0,
-      0.2
+      0.1,
+      0.3
      ],
      "on_hand": [
       0.4,
@@ -176,8 +177,8 @@
      ]
     },
     "posts_per_week": [
-     3,
-     5
+     2,
+     4
     ],
     "promo_discount": [
      0,
@@ -188,9 +189,10 @@
     ]
    },
    "rank": 4,
-   "title": "Send Pieces to More Creators",
-   "why_for_you": "Creator photos earn lots of love when they post. Your best posts are wearing shots.",
-   "you_would_do": "Message 10 women, mail 4 to 8 pieces, and ask for one on-hand photo each."
+   "title": "Gift Pieces to Small Creators",
+   "why_for_you": "Posts from creators often bring lots of kind comments. Your on-hand photos show wearing shots work for you.",
+   "you_would_do": "Message ten new creators and send pieces to four to eight who reply."
   }
- ]
+ ],
+ "season_note": "December brings strong gift demand at 2.23 with pricier ads at 1.27."
 }

@@ -4,73 +4,101 @@
    "codes": [
     "promo_underestimate"
    ],
-   "why": "한 번 하신 할인 행사에 생각보다 새로 사시는 분이 적습니다."
+   "why": "할인 주간에 기대하셨던 것보다 추가 주문이 적게 들어옵니다."
   },
   {
    "codes": [
     "competitor_sale"
    ],
-   "why": "2-3주차에 다른 가게가 할인해서 사장님 할인 주간에 오실 손님이 줄어듭니다."
+   "why": "손님들이 다른 가게의 더 큰 할인을 고르십니다."
   },
   {
    "codes": [
     "reach_drop"
    ],
-   "why": "큰 할인 주간에 사장님 글을 보시는 분이 줄어듭니다."
+   "why": "매일 올리시는 글이 훨씬 적은 분들께 보여집니다."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "계절 도움이 없으면 할인만으로 손님을 모시기가 더 힘듭니다."
   },
   {
    "codes": [
     "shipping_delay"
    ],
-   "why": "3주차에 배송이 늦어지면 할인이 끝나고 사려던 분들이 떠납니다."
-  },
-  {
-   "codes": [
-    "viral_post"
-   ],
-   "why": "글 하나가 운 좋게 잘되는 것에만 기대는 계획이 아닌지 확인합니다."
+   "why": "3주차 이후에는 배송 걱정 때문에 손님들이 구매를 멈추십니다."
   },
   {
    "codes": [
     "promo_underestimate",
     "competitor_sale"
    ],
-   "why": "사장님 할인이 약한데 다른 가게도 할인하면 손님이 고를 이유가 없습니다."
+   "why": "할인이 약하면 다른 곳의 20% 할인에 이기기 어렵습니다."
   },
   {
    "codes": [
     "promo_underestimate",
     "reach_drop"
    ],
-   "why": "글을 보시는 분도 적고 할인 실적도 기대에 못 미칩니다."
+   "why": "보는 분이 적은데 할인도 약하면 사는 분이 적어집니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat"
+   ],
+   "why": "계절 도움이 없으면 약한 할인이 더 아쉽게 느껴집니다."
   },
   {
    "codes": [
     "promo_underestimate",
     "shipping_delay"
    ],
-   "why": "할인이 약한데 배송까지 늦어지면 늦게 사려던 분도 안 삽니다."
+   "why": "할인도 약하고 배송까지 늦으면 서둘러 사야겠다는 마음이 사라집니다."
   },
   {
    "codes": [
     "competitor_sale",
     "reach_drop"
    ],
-   "why": "보시는 분이 적은데 다른 가게까지 할인하면 사장님 할인 주간이 묻힙니다."
+   "why": "글이 잘 안 보이는데 다른 곳 세일까지 겹치면 그 주 장사가 어려워집니다."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "계절 도움이 없는데 다른 곳 세일까지 있으면 손님 발길이 줄어듭니다."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "계절 도움도 없고 글도 잘 안 보이면 올리시는 글이 조용해집니다."
   },
   {
    "codes": [
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "다른 가게가 손님을 가져가고 배송까지 늦어지면 회복하기 어렵습니다."
+   "why": "다른 곳 세일에 배송 걱정까지 겹치면 손님들이 구매를 멈추십니다."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "글을 보시는 분도 적은데 배송까지 늦어지면 보신 분도 안 삽니다."
+   "why": "보시는 분이 적고 배송이 늦어지면 주문이 멈춥니다."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "계절 도움도 없고 배송까지 늦어지면 구매가 잘 이어지지 않습니다."
   },
   {
    "codes": [
@@ -78,7 +106,23 @@
     "competitor_sale",
     "reach_drop"
    ],
-   "why": "보시는 분도 적고 다른 가게도 할인하는데 사장님 할인도 약하면 어렵습니다."
+   "why": "약한 할인에 다른 곳 세일, 잘 안 보이는 글까지 한꺼번에 겹칩니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "계절 도움이 없으면 약한 할인으로는 다른 곳에 지게 됩니다."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "계절 힘도 없는데 약한 할인을 보시는 분도 적습니다."
   },
   {
    "codes": [
@@ -86,60 +130,15 @@
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "다른 가게는 할인하고 사장님 할인은 약한데 배송까지 늦어지면 늦게 사려던 분이 안 삽니다."
+   "why": "할인도 약하고 다른 곳 세일에 배송 걱정까지 겹치면 주문이 멈춥니다."
   },
   {
    "codes": [
+    "viral_post",
     "promo_underestimate",
-    "reach_drop",
-    "shipping_delay"
+    "competitor_sale"
    ],
-   "why": "보시는 분이 적고 할인도 약하고 배송까지 늦어지는 것이 같은 주에 겹칩니다."
-  },
-  {
-   "codes": [
-    "competitor_sale",
-    "reach_drop",
-    "shipping_delay"
-   ],
-   "why": "보시는 분이 적고 다른 가게 할인에 배송까지 늦어지면 주문이 거의 끊깁니다."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "viral_post"
-   ],
-   "why": "글이 하나 잘돼도 할인이 약하면 할인 주간을 살리기 어렵습니다."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "creator_noshow"
-   ],
-   "why": "할인이 약한데 알려주실 분도 없으면 더 어렵습니다."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "cpm_spike"
-   ],
-   "why": "할인도 약한데 돈을 내고 알리려고 하면 비용이 더 듭니다."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "competitor_sale",
-    "creator_noshow"
-   ],
-   "why": "다른 가게는 할인하는데 사장님 할인은 약하고 올려주실 글도 없으면 눈에 잘 안 띕니다."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "reach_drop",
-    "creator_noshow"
-   ],
-   "why": "보시는 분도 적고 할인도 약하고 올려주실 글도 없으면 그 주는 많이 힘듭니다."
+   "why": "글이 하나 많이 퍼져도 다른 곳 앞에서 약한 할인을 살리기는 어렵습니다."
   }
  ]
 }

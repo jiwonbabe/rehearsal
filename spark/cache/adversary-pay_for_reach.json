@@ -4,103 +4,115 @@
    "codes": [
     "cpm_spike"
    ],
-   "why": "Your whole plan is paid reach, so pricier ads burn the budget fast."
-  },
-  {
-   "codes": [
-    "competitor_sale"
-   ],
-   "why": "With no sale of your own, shoppers pick the competitor's 20% off."
+   "why": "Your paid photos cost a lot more to show."
   },
   {
    "codes": [
     "reach_drop"
    ],
-   "why": "Less free reach means you pay more to show those wearing shots."
+   "why": "Fewer women see your posts for free."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "Shoppers pick the competitor's sale instead."
   },
   {
    "codes": [
     "shipping_delay"
    ],
-   "why": "Late shipping kills trust right when paid clicks arrive."
+   "why": "Late arrival kills buying excitement."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "Fewer shoppers are ready to buy this month."
   },
   {
    "codes": [
     "viral_post"
    ],
-   "why": "Checks if the plan only looks good when one post gets lucky."
+   "why": "Tests if success needs one lucky post."
+  },
+  {
+   "codes": [
+    "cpm_spike",
+    "competitor_sale"
+   ],
+   "why": "Expensive ads meet shoppers buying elsewhere."
   },
   {
    "codes": [
     "cpm_spike",
     "reach_drop"
    ],
-   "why": "Free reach falls and paid gets pricier at the same time."
-  },
-  {
-   "codes": [
-    "cpm_spike",
-    "competitor_sale"
-   ],
-   "why": "Ads cost more while a rival sale steals your clicks."
+   "why": "You pay more while free reach shrinks."
   },
   {
    "codes": [
     "cpm_spike",
     "shipping_delay"
    ],
-   "why": "You pay extra for clicks that then don't convert after the delay."
+   "why": "Expensive clicks convert worse after delays."
   },
   {
    "codes": [
-    "reach_drop",
-    "competitor_sale"
+    "cpm_spike",
+    "season_flat"
    ],
-   "why": "Fewer free views and a rival sale leave paid to do all the work."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "shipping_delay"
-   ],
-   "why": "Less free discovery plus late delivery squeezes both ends."
-  },
-  {
-   "codes": [
-    "competitor_sale",
-    "shipping_delay"
-   ],
-   "why": "Rival discount plus your delay gives shoppers two reasons to skip."
+   "why": "Expensive ads with no seasonal buying rush."
   },
   {
    "codes": [
     "cpm_spike",
     "viral_post"
    ],
-   "why": "Tests if pricey ads still work without viral luck helping."
+   "why": "Shows if even luck can't save pricey ads."
   },
   {
    "codes": [
-    "reach_drop",
-    "viral_post"
-   ],
-   "why": "Tests if free reach loss is only covered by one lucky post."
-  },
-  {
-   "codes": [
-    "cpm_spike",
     "reach_drop",
     "competitor_sale"
    ],
-   "why": "Paid gets costly, free reach drops, and rivals discount at once."
+   "why": "Less free reach while competitor steals buyers."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "shipping_delay"
+   ],
+   "why": "Competitor sale plus your late delivery hurts."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "shipping_delay"
+   ],
+   "why": "Fewer see posts and buyers hesitate on delivery."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Few buyers overall and they choose competitor."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low organic reach in a slow buying month."
   },
   {
    "codes": [
     "cpm_spike",
     "reach_drop",
-    "shipping_delay"
+    "competitor_sale"
    ],
-   "why": "Costly ads, less free reach, and late shipping hit together."
+   "why": "Paid and free reach both fail as competitor wins."
   },
   {
    "codes": [
@@ -108,39 +120,23 @@
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "Expensive clicks face a rival sale then a delivery delay."
+   "why": "Pricey ads send shoppers to delays and rival sale."
   },
   {
    "codes": [
+    "cpm_spike",
     "reach_drop",
-    "competitor_sale",
     "shipping_delay"
    ],
-   "why": "No free boost, rival on sale, and your orders arrive late."
-  },
-  {
-   "codes": [
-    "cpm_spike",
-    "reach_drop",
-    "viral_post"
-   ],
-   "why": "Checks if costly ads plus weak reach need viral luck to survive."
+   "why": "You pay more for less reach and late orders."
   },
   {
    "codes": [
     "cpm_spike",
     "competitor_sale",
-    "viral_post"
+    "season_flat"
    ],
-   "why": "Checks if the paid plan beats a rival sale without a lucky hit."
-  },
-  {
-   "codes": [
-    "cpm_spike",
-    "shipping_delay",
-    "viral_post"
-   ],
-   "why": "Checks if pricey ads survive late shipping without going viral."
+   "why": "Expensive ads in a slow month with rival sale."
   }
  ]
 }

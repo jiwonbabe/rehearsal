@@ -67,11 +67,10 @@
    "cpm_spike"
   ],
   [
-   "reach_drop",
-   "promo_underestimate"
+   "season_flat"
   ],
   [
-   "viral_post",
+   "season_flat",
    "competitor_sale"
   ]
  ],
@@ -235,19 +234,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 35.3,
+    "orders": 53.6,
     "spend_usd": 140.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 61.5,
+    "orders": 45.5,
     "spend_usd": 140.0,
     "survived": true
    }
@@ -411,19 +409,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 30.2,
+    "orders": 41.4,
     "spend_usd": 240.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 44.9,
+    "orders": 35.2,
     "spend_usd": 240.0,
     "survived": false
    }
@@ -587,19 +584,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 25.0,
+    "orders": 36.5,
     "spend_usd": 140.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 41.0,
+    "orders": 31.0,
     "spend_usd": 140.0,
     "survived": false
    }
@@ -763,19 +759,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 25.0,
+    "orders": 34.9,
     "spend_usd": 180.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 38.4,
+    "orders": 29.7,
     "spend_usd": 180.0,
     "survived": false
    }
@@ -939,19 +934,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 23.7,
+    "orders": 34.2,
     "spend_usd": 140.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 38.3,
+    "orders": 29.1,
     "spend_usd": 140.0,
     "survived": false
    }
@@ -1115,19 +1109,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 36.7,
+    "orders": 54.4,
     "spend_usd": 180.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 61.7,
+    "orders": 46.2,
     "spend_usd": 180.0,
     "survived": true
    }
@@ -1291,19 +1284,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 36.3,
+    "orders": 53.7,
     "spend_usd": 180.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 60.9,
+    "orders": 45.7,
     "spend_usd": 180.0,
     "survived": true
    }
@@ -1467,21 +1459,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 34.7,
+    "orders": 48.1,
     "spend_usd": 260.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 52.6,
+    "orders": 40.9,
     "spend_usd": 260.0,
-    "survived": true
+    "survived": false
    }
   ],
   "pay_for_reach-008": [
@@ -1643,19 +1634,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 28.3,
+    "orders": 39.6,
     "spend_usd": 200.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 43.6,
+    "orders": 33.7,
     "spend_usd": 200.0,
     "survived": false
    }
@@ -1819,21 +1809,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 34.7,
+    "orders": 52.5,
     "spend_usd": 140.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 60.3,
+    "orders": 44.7,
     "spend_usd": 140.0,
-    "survived": true
+    "survived": false
    }
   ],
   "pay_for_reach-010": [
@@ -1995,19 +1984,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 30.3,
+    "orders": 40.7,
     "spend_usd": 260.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 43.7,
+    "orders": 34.6,
     "spend_usd": 260.0,
     "survived": false
    }
@@ -2171,21 +2159,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 33.3,
+    "orders": 47.2,
     "spend_usd": 220.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 52.4,
+    "orders": 40.2,
     "spend_usd": 220.0,
-    "survived": true
+    "survived": false
    }
   ],
   "pay_for_reach-012": [
@@ -2347,19 +2334,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 26.8,
+    "orders": 37.2,
     "spend_usd": 200.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 40.6,
+    "orders": 31.6,
     "spend_usd": 200.0,
     "survived": false
    }
@@ -2523,19 +2509,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 37.1,
+    "orders": 54.2,
     "spend_usd": 200.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 61.1,
+    "orders": 46.1,
     "spend_usd": 200.0,
     "survived": true
    }
@@ -2699,19 +2684,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 39.3,
+    "orders": 56.6,
     "spend_usd": 240.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 63.1,
+    "orders": 48.1,
     "spend_usd": 240.0,
     "survived": true
    }
@@ -2875,19 +2859,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 24.6,
+    "orders": 35.8,
     "spend_usd": 140.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 40.2,
+    "orders": 30.4,
     "spend_usd": 140.0,
     "survived": false
    }
@@ -3051,19 +3034,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 37.9,
+    "orders": 56.3,
     "spend_usd": 180.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 64.0,
+    "orders": 47.9,
     "spend_usd": 180.0,
     "survived": true
    }
@@ -3227,21 +3209,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 35.1,
+    "orders": 49.5,
     "spend_usd": 240.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 54.7,
+    "orders": 42.1,
     "spend_usd": 240.0,
-    "survived": true
+    "survived": false
    }
   ],
   "pay_for_reach-018": [
@@ -3403,19 +3384,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 41.4,
+    "orders": 60.0,
     "spend_usd": 240.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 67.3,
+    "orders": 51.0,
     "spend_usd": 240.0,
     "survived": true
    }
@@ -3579,19 +3559,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 24.9,
+    "orders": 35.4,
     "spend_usd": 160.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 39.4,
+    "orders": 30.1,
     "spend_usd": 160.0,
     "survived": false
    }
@@ -3755,19 +3734,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 25.3,
+    "orders": 35.6,
     "spend_usd": 200.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 40.7,
+    "orders": 31.6,
     "spend_usd": 200.0,
     "survived": false
    }
@@ -3931,19 +3909,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 39.3,
+    "orders": 53.4,
     "spend_usd": 375.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 59.9,
+    "orders": 47.6,
     "spend_usd": 375.0,
     "survived": true
    }
@@ -4107,21 +4084,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 31.5,
+    "orders": 41.7,
     "spend_usd": 335.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 46.7,
+    "orders": 37.7,
     "spend_usd": 335.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-003": [
@@ -4283,21 +4259,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 30.8,
+    "orders": 44.2,
     "spend_usd": 220.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 50.5,
+    "orders": 38.8,
     "spend_usd": 220.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-004": [
@@ -4459,19 +4434,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 29.1,
+    "orders": 39.3,
     "spend_usd": 290.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 44.2,
+    "orders": 35.3,
     "spend_usd": 290.0,
     "survived": false
    }
@@ -4635,21 +4609,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 33.8,
+    "orders": 45.0,
     "spend_usd": 360.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 50.6,
+    "orders": 40.8,
     "spend_usd": 360.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-006": [
@@ -4811,19 +4784,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 37.3,
+    "orders": 52.2,
     "spend_usd": 310.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 59.2,
+    "orders": 46.2,
     "spend_usd": 310.0,
     "survived": true
    }
@@ -4987,19 +4959,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 38.9,
+    "orders": 54.2,
     "spend_usd": 335.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 61.6,
+    "orders": 48.3,
     "spend_usd": 335.0,
     "survived": true
    }
@@ -5163,21 +5134,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 29.8,
+    "orders": 40.3,
     "spend_usd": 290.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 45.5,
+    "orders": 36.2,
     "spend_usd": 290.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-009": [
@@ -5339,21 +5309,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 32.8,
+    "orders": 43.2,
     "spend_usd": 355.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 48.0,
+    "orders": 38.9,
     "spend_usd": 355.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-010": [
@@ -5515,21 +5484,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 29.9,
+    "orders": 43.4,
     "spend_usd": 200.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 50.0,
+    "orders": 38.2,
     "spend_usd": 200.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-011": [
@@ -5691,21 +5659,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 29.5,
+    "orders": 41.3,
     "spend_usd": 240.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 46.7,
+    "orders": 36.4,
     "spend_usd": 240.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-012": [
@@ -5867,21 +5834,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 33.4,
+    "orders": 43.5,
     "spend_usd": 375.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 48.0,
+    "orders": 39.2,
     "spend_usd": 375.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-013": [
@@ -6043,19 +6009,18 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 25.5,
+    "orders": 36.9,
     "spend_usd": 180.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 42.5,
+    "orders": 32.6,
     "spend_usd": 180.0,
     "survived": false
    }
@@ -6219,21 +6184,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 31.5,
+    "orders": 45.5,
     "spend_usd": 225.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 52.4,
+    "orders": 40.3,
     "spend_usd": 225.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-015": [
@@ -6395,21 +6359,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 31.1,
+    "orders": 41.8,
     "spend_usd": 310.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 46.8,
+    "orders": 37.4,
     "spend_usd": 310.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-016": [
@@ -6571,21 +6534,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 33.4,
+    "orders": 44.3,
     "spend_usd": 360.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 49.8,
+    "orders": 40.2,
     "spend_usd": 360.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-017": [
@@ -6747,21 +6709,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 31.1,
+    "orders": 46.2,
     "spend_usd": 180.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 53.7,
+    "orders": 40.5,
     "spend_usd": 180.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-018": [
@@ -6923,21 +6884,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 30.7,
+    "orders": 41.2,
     "spend_usd": 315.0,
     "survived": false
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 46.5,
+    "orders": 37.3,
     "spend_usd": 315.0,
-    "survived": true
+    "survived": false
    }
   ],
   "send_to_creators-019": [
@@ -7099,21 +7059,20 @@
    },
    {
     "shocks": [
-     "reach_drop",
-     "promo_underestimate"
+     "season_flat"
     ],
-    "orders": 36.4,
+    "orders": 49.3,
     "spend_usd": 360.0,
-    "survived": false
+    "survived": true
    },
    {
     "shocks": [
-     "viral_post",
+     "season_flat",
      "competitor_sale"
     ],
-    "orders": 55.8,
+    "orders": 44.5,
     "spend_usd": 360.0,
-    "survived": true
+    "survived": false
    }
   ]
  }

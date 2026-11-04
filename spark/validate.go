@@ -391,3 +391,12 @@ func FlattenStrings(en, ko any, into map[string]string) {
 		}
 	}
 }
+
+// SeasonNote: the planner's one-line reading of the month; "" unless every figure it quotes is allowed.
+func SeasonNote(raw map[string]any, allowed []float64) string {
+	note := sentence(raw["season_note"])
+	if !quotesAllowed(note, allowed, nil) {
+		return ""
+	}
+	return note
+}

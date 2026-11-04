@@ -26,7 +26,8 @@ func fail(name string, err error) {
 // directionsFor calls and validates one month; nil on error.
 func directionsFor(month int, summary map[string]any, block string, brand *engine.Brand) []map[string]any {
 	name := fmt.Sprintf("directions-m%d", month)
-	raw, err := spark.Directions(month, summary, block)
+	season := engine.SeasonBlock(brand.Season, engine.PlanMonth(brand, month-1))
+	raw, err := spark.Directions(month, summary, block, season)
 	if err != nil {
 		fail(name, err)
 		return nil
@@ -54,6 +55,7 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	brand.Season, _ = engine.LoadSeasonality("data/seasonality.json")
 	rates := engine.Calibrate(brand)
 	backtest := engine.RunBacktest(brand, rates, 13)
 
@@ -99,7 +101,10 @@ func checkLine(dirs []map[string]any, rates engine.Rates, brand *engine.Brand) {
 		d := toDirection(m)
 		titles[d.ID] = d.Title
 		if d.ID == "pay_for_reach" || d.ID == "send_to_creators" {
-			plans = append(plans, engine.SampleVariants(d, 60, 7)...)
+			for _, p := range engine.SampleVariants(d, 60, 7) {
+				p.Month = engine.PlanMonth(brand, 0)
+				plans = append(plans, p)
+			}
 		}
 	}
 	st := engine.Stress(plans, engine.FallbackCombos, rates, brand)

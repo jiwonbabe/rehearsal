@@ -347,3 +347,34 @@ func TestHoldoutMatchesReference(t *testing.T) {
 		t.Errorf("first week %s want %s", got.Rows[0].Week, want.Rows[0].Week)
 	}
 }
+
+func TestSeasonMatchesReference(t *testing.T) {
+	var want map[string]Result
+	loadJSON(t, "season", &want)
+	var plans []Plan
+	loadJSON(t, "plans", &plans)
+	b := brand(t)
+	season, err := LoadSeasonality(filepath.Join(root(), "data", "seasonality.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	b.Season = season
+	r := Calibrate(b)
+	nov, dec := plans[0], plans[0]
+	nov.Month, dec.Month = 11, 12
+	for name, got := range map[string]Result{"november": RunPlan(nov, r, b, nil), "december": RunPlan(dec, r, b, nil),
+		"december_flat": RunPlan(dec, r, b, []string{"season_flat"}), "no_month": RunPlan(plans[0], r, b, nil)} {
+		near(t, name+" orders", got.Orders, want[name].Orders)
+		near(t, name+" spend", got.SpendUsd, want[name].SpendUsd)
+		near(t, name+" engagement", got.Engagement, want[name].Engagement)
+	}
+	if want["december"].Orders <= want["november"].Orders || want["december_flat"].Orders >= want["december"].Orders {
+		t.Errorf("season ordering: nov %v dec %v flat %v", want["november"].Orders, want["december"].Orders, want["december_flat"].Orders)
+	}
+	if s := SeasonFor(season, 11); s.Demand != 1.04 || s.AdCost != 1.18 {
+		t.Errorf("november %+v", s)
+	}
+	if s := SeasonFor(nil, 11); s.Demand != 1 || s.AdCost != 1 {
+		t.Errorf("nil table %+v", s)
+	}
+}

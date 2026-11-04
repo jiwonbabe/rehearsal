@@ -13,9 +13,10 @@
    "creator_count": 0,
    "ads_usd": 240,
    "promo_week": null,
-   "promo_discount": 0.0
+   "promo_discount": 0.0,
+   "month": 0
   },
-  "survived": 13,
+  "survived": 14,
   "total": 20,
   "orders_bad_month": [
    41.4,
@@ -40,9 +41,10 @@
    "creator_count": 7,
    "ads_usd": 20,
    "promo_week": null,
-   "promo_discount": 0.0
+   "promo_discount": 0.0,
+   "month": 0
   },
-  "survived": 11,
+  "survived": 12,
   "total": 20,
   "orders_bad_month": [
    38.5,
@@ -67,9 +69,10 @@
    "creator_count": 0,
    "ads_usd": 0,
    "promo_week": null,
-   "promo_discount": 0.0
+   "promo_discount": 0.0,
+   "month": 0
   },
-  "survived": 2,
+  "survived": 1,
   "total": 20,
   "orders_bad_month": [
    27.0,

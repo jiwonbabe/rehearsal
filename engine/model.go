@@ -14,9 +14,10 @@ var PostTypes = []string{"on_hand", "close_up", "flat_lay", "on_neck"}
 const HorizonWeeks = 4
 
 type Brand struct {
-	Brand BrandInfo `json:"brand"`
-	Weeks []Week    `json:"weeks"`
-	Truth *Truth    `json:"generator_truth,omitempty"`
+	Brand  BrandInfo    `json:"brand"`
+	Weeks  []Week       `json:"weeks"`
+	Truth  *Truth       `json:"generator_truth,omitempty"`
+	Season *Seasonality `json:"season,omitempty"` // set by cmd/ from data/seasonality.json; a planning prior only
 }
 
 type BrandInfo struct {
@@ -72,6 +73,7 @@ type Plan struct {
 	AdsUsd        float64            `json:"ads_usd"`
 	PromoWeek     *int               `json:"promo_week"`
 	PromoDiscount float64            `json:"promo_discount"`
+	Month         int                `json:"month"` // calendar month being planned (1-12); 0 = no seasonal prior
 }
 
 type WeekResult struct {
@@ -179,13 +181,17 @@ func weekInputs(p Plan, weekIndex int) (posts map[string]float64, creators, adsU
 }
 
 // RunWeek: one week of the funnel. mods are multipliers from shocks (see shocks.go).
-func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64, r Rates, b *Brand, mods map[string]float64) WeekResult {
+// RunWeek: one week of the funnel. month applies the seasonal prior (demand lift on the order rate,
+// ad-cost index on ad engagement); 0 means none. Same formulas as reference/engine/model.py run_week.
+func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64, r Rates, b *Brand, mods map[string]float64, month int) WeekResult {
 	mult := func(key string) float64 {
 		if v, ok := mods[key]; ok {
 			return v
 		}
 		return 1.0
 	}
+	season := SeasonFor(b.Season, month)
+	lift := 1.0 + (season.Demand-1.0)*mult("season_lift_mult")
 	organic := 0.0
 	for _, t := range PostTypes {
 		organic += posts[t] * r.EngPerPost[t]
@@ -196,10 +202,10 @@ func RunWeek(posts map[string]float64, creatorsSeeded, adsUsd, discount float64,
 	creatorsPosted := creatorsSeeded * postRate
 	creatorEng := creatorsPosted * r.EngPerCreatorPost
 
-	adEng := adsUsd * r.AdEngPerUsd * mult("ad_eng_mult")
+	adEng := adsUsd * r.AdEngPerUsd * mult("ad_eng_mult") / season.AdCost
 
 	engagement := organic + creatorEng + adEng
-	orderRate := r.OrderPerEngagement * mult("order_rate_mult")
+	orderRate := r.OrderPerEngagement * mult("order_rate_mult") * lift
 	promoMult := 1.0
 	if discount > 0 {
 		promoMult = r.PromoMultiplier * mult("promo_mult_mult")
@@ -219,7 +225,7 @@ func RunPlan(p Plan, r Rates, b *Brand, shocks []string) Result {
 		if m, ok := mods["creator_count_mult"]; ok {
 			creators = math.Round(creators * m)
 		}
-		wr := RunWeek(posts, creators, adsUsd, discount, r, b, mods)
+		wr := RunWeek(posts, creators, adsUsd, discount, r, b, mods, p.Month)
 		out.Weeks = append(out.Weeks, wr)
 		out.Orders += wr.Orders
 		out.SpendUsd += wr.SpendUsd
@@ -268,7 +274,7 @@ func RunBacktest(b *Brand, r Rates, weeksBack int) Backtest {
 		start = 0
 	}
 	for _, w := range b.Weeks[start:] {
-		wr := RunWeek(w.Posts, w.CreatorsSeeded, w.AdsUsd, w.PromoDiscount, r, b, map[string]float64{})
+		wr := RunWeek(w.Posts, w.CreatorsSeeded, w.AdsUsd, w.PromoDiscount, r, b, map[string]float64{}, 0)
 		errors = append(errors, safeDiv(math.Abs(wr.Orders-w.Orders), w.Orders))
 		lo, hi := wr.Orders*0.8, wr.Orders*1.2
 		if lo <= w.Orders && w.Orders <= hi {

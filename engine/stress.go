@@ -193,6 +193,9 @@ func RunVerdict(plans []Plan, st Stressed, r Rates, b *Brand) []Verdict {
 		out = append(out, describe(best[d], st.Matrix[best[d].PlanID], r, b))
 	}
 	base := BaselinePlan()
+	if len(plans) > 0 {
+		base.Month = plans[0].Month // the baseline lives in the same month as the plans it is compared with
+	}
 	baseCells := Stress([]Plan{base}, st.Combos, r, b).Matrix["baseline"]
 	out = append(out, describe(base, baseCells, r, b))
 	sort.SliceStable(out, func(i, j int) bool {

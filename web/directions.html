@@ -15,6 +15,7 @@
     <div id="taught-body" style="font-size:14px;line-height:1.45"></div>
   </div>
   <div style="display:flex;flex-direction:column;gap:6px"><h1 id="title" style="margin:0;font-size:30px;font-weight:600;letter-spacing:-.01em"></h1></div>
+  <div id="season" class="card" style="display:none;padding:18px 22px;gap:8px"></div>
   <div id="channels" class="card" style="display:none;padding:22px;gap:14px"></div>
   <div id="cards" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px"></div>
   <div class="card" style="padding:20px 24px;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
@@ -99,6 +100,22 @@ function tagged(label, bg, fg, text) {
 function statFor(line, stats) {
   return (stats || []).find(r => line.includes(`${Math.round(r.share * 100)}%`));
 }
+function renderSeason(se) {
+  if (!se || !se.applied || !se.month) return;
+  const box = document.getElementById('season');
+  box.innerHTML = '';
+  const head = document.createElement('div'); head.style.cssText = 'display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline';
+  const h = document.createElement('div'); h.style.cssText = 'font-size:16px;font-weight:600'; h.textContent = `This month: ${se.name}`;
+  const idx = document.createElement('div'); idx.className = 'mono'; idx.style.cssText = 'font-size:13px;color:#5c6066';
+  idx.textContent = `demand ${se.demand}× · ad cost ${se.ad_cost}× · 1.00 = an average month`;
+  head.appendChild(h); head.appendChild(idx); box.appendChild(head);
+  if (se.note) box.appendChild(tagged('Spark', '#f3f4f1', '#5c6066', se.note));
+  const line = document.createElement('div'); line.style.cssText = 'font-size:12.5px;color:#5c6066;line-height:1.5';
+  line.textContent = `Seasonal prior from public data (${se.market} ${se.category}), applied to the order rate and ad reach for this month only; the adversary tests the month turning out average. Not learned from your history: one year cannot separate seasons from everything else.`;
+  box.appendChild(line);
+  (se.sources || []).forEach(src => { const a = document.createElement('a'); a.href = src.url; a.target = '_blank'; a.style.cssText = 'font-size:11.5px;color:#5c6066'; a.textContent = `Source (${src.for}): ${src.source}, ${src.year}`; box.appendChild(a); });
+  box.style.display = 'flex';
+}
 function renderChannels(list, connected, handle, ev) {
   const box = document.getElementById('channels');
   box.innerHTML = '';
@@ -133,6 +150,7 @@ $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
   try {
     const data = await api('/api/directions');
     dirs = data.directions.slice().sort((a, b) => a.rank - b.rank);
+    renderSeason(data.season);
     try { const ev = data.channels ? await api('/api/evidence') : null; renderChannels(data.channels, !!ev, ev && ev.handle, ev); } catch (e) { renderChannels(null, false); }
     sel = sel.filter(id => dirs.some(d => d.id === id));
     document.getElementById('title').textContent = (data.month === 2 ? 'November' : 'This month') + ': pick one or two directions';

@@ -4,138 +4,143 @@
    "codes": [
     "reach_drop"
    ],
-   "why": "Daily posts depend entirely on free reach."
+   "why": "Posting daily with no ads fails fast when reach drops."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "With no discount to answer, a rival sale steals your sales."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "Slow steady posting needs seasonal help that may not come."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "Late delivery hurts when you have no paid traffic to replace lost sales."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "A lucky viral hit can mask how slow free posting really is."
   },
   {
    "codes": [
     "reach_drop",
     "competitor_sale"
    ],
-   "why": "Fewer views plus a rival sale kills slow growth."
+   "why": "Fewer eyes plus a rival sale leaves free posts with no buyers."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low reach in a flat month leaves daily posts with nothing to lift them."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "Fewer views plus late delivery stops repeat buyers."
+   "why": "Few views and late shipping means fewer posts turn into sales."
   },
   {
    "codes": [
-    "reach_drop",
     "competitor_sale",
-    "shipping_delay"
+    "season_flat"
    ],
-   "why": "Low reach with weak sales and late shipping stalls growth."
-  },
-  {
-   "codes": [
-    "competitor_sale"
-   ],
-   "why": "A rival sale steals buyers when you offer no discount."
-  },
-  {
-   "codes": [
-    "shipping_delay"
-   ],
-   "why": "Late shipping hurts trust when you rely on word of mouth."
+   "why": "A flat month plus a rival sale overwhelms a no-discount plan."
   },
   {
    "codes": [
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "A rival sale plus late delivery hits conversion twice."
+   "why": "Rival deals and late delivery crush conversion with no ads to help."
   },
   {
    "codes": [
-    "creator_noshow"
+    "season_flat",
+    "shipping_delay"
    ],
-   "why": "With no creators you have no backup reach."
-  },
-  {
-   "codes": [
-    "promo_underestimate"
-   ],
-   "why": "With no promo you miss a chance to fight rival sales."
-  },
-  {
-   "codes": [
-    "cpm_spike"
-   ],
-   "why": "With no ads you cannot buy your way out of low reach."
-  },
-  {
-   "codes": [
-    "viral_post"
-   ],
-   "why": "One lucky viral post can hide weak steady growth."
+   "why": "No seasonal lift and slow shipping stalls slow organic growth."
   },
   {
    "codes": [
     "reach_drop",
     "viral_post"
    ],
-   "why": "Tests if the plan only works when one post goes viral."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "creator_noshow"
-   ],
-   "why": "Low reach with no creators leaves no extra help."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "promo_underestimate"
-   ],
-   "why": "Low reach with no sale to fall back on."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "cpm_spike"
-   ],
-   "why": "Low free reach with pricey ads leaves no rescue."
+   "why": "Even one viral post may not save a month of crushed reach."
   },
   {
    "codes": [
     "competitor_sale",
-    "creator_noshow"
+    "viral_post"
    ],
-   "why": "Rival sale hurts more with no creators to defend you."
-  },
-  {
-   "codes": [
-    "shipping_delay",
-    "creator_noshow"
-   ],
-   "why": "Late delivery hurts more with no creators to reassure buyers."
+   "why": "A viral spike rarely offsets buyers lost to a rival sale."
   },
   {
    "codes": [
     "reach_drop",
     "competitor_sale",
-    "creator_noshow"
+    "season_flat"
    ],
-   "why": "Low reach plus rival sale with no creator backup."
+   "why": "Low reach, no season lift, and a rival sale starves free posts."
   },
   {
    "codes": [
     "reach_drop",
-    "shipping_delay",
-    "promo_underestimate"
+    "competitor_sale",
+    "shipping_delay"
    ],
-   "why": "Low reach plus delays with no promo to recover."
+   "why": "Fewer views, rival deals, and delays leave organic posts no chance."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Weak reach, flat demand, and delays stall a no-spend plan."
   },
   {
    "codes": [
     "competitor_sale",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "Flat demand, rival sale, and delays hit when you have no backup."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "Crushed reach and a rival sale test if one viral post can save you."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat",
+    "viral_post"
+   ],
+   "why": "Flat demand and low reach show if you depend on viral luck."
+  },
+  {
+   "codes": [
+    "reach_drop",
     "shipping_delay",
     "viral_post"
    ],
-   "why": "Even a viral post may not save weak sales and delays."
+   "why": "Low reach and delays test whether viral luck alone drives sales."
   }
  ]
 }

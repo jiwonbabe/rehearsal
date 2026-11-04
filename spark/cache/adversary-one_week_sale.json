@@ -4,73 +4,101 @@
    "codes": [
     "promo_underestimate"
    ],
-   "why": "Your one sale week brings fewer extra buyers than hoped."
+   "why": "Your sale week brings fewer extra orders than hoped."
   },
   {
    "codes": [
     "competitor_sale"
    ],
-   "why": "A rival sale in weeks 2-3 steals shoppers from your sale week."
+   "why": "Shoppers choose the competitor's bigger sale instead."
   },
   {
    "codes": [
     "reach_drop"
    ],
-   "why": "Fewer people see your posts during your big sale week."
+   "why": "Your daily reminders reach far fewer people."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "Without the seasonal bump your sale must work harder."
   },
   {
    "codes": [
     "shipping_delay"
    ],
-   "why": "A week 3 shipping delay scares off buyers right after your sale."
-  },
-  {
-   "codes": [
-    "viral_post"
-   ],
-   "why": "Tests that your plan is not just relying on one lucky viral post."
+   "why": "Shipping worries stop buyers after week 3."
   },
   {
    "codes": [
     "promo_underestimate",
     "competitor_sale"
    ],
-   "why": "Your soft sale plus a rival sale leaves no reason to choose you."
+   "why": "A soft sale can't win against a rival's 20% off."
   },
   {
    "codes": [
     "promo_underestimate",
     "reach_drop"
    ],
-   "why": "Few see your posts and the sale itself underperforms."
+   "why": "Fewer views plus a soft sale means few buyers."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "season_flat"
+   ],
+   "why": "A soft sale hurts more with no seasonal help."
   },
   {
    "codes": [
     "promo_underestimate",
     "shipping_delay"
    ],
-   "why": "A soft sale followed by slow shipping kills late buying."
+   "why": "A soft sale plus late shipping kills urgency."
   },
   {
    "codes": [
     "competitor_sale",
     "reach_drop"
    ],
-   "why": "Low reach plus a rival sale buries your discount week."
+   "why": "Low reach and a rival sale steal your week."
+  },
+  {
+   "codes": [
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "No seasonal lift and a rival sale drain demand."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Low reach with no seasonal help quiets your posts."
   },
   {
    "codes": [
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "A rival sale steals demand then late shipping blocks recovery."
+   "why": "A rival sale plus shipping worries stop buyers."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "Few see your posts and late shipping stops those who do."
+   "why": "Few see your posts and shipping delays stop orders."
+  },
+  {
+   "codes": [
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "No seasonal lift and shipping delays stall buying."
   },
   {
    "codes": [
@@ -78,7 +106,23 @@
     "competitor_sale",
     "reach_drop"
    ],
-   "why": "Few see it, rivals discount too, and your sale still underperforms."
+   "why": "Weak sale, rival sale, and low reach hit at once."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "competitor_sale",
+    "season_flat"
+   ],
+   "why": "Weak sale loses to a rival with no season to help."
+  },
+  {
+   "codes": [
+    "promo_underestimate",
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "Few see a soft sale with no seasonal boost."
   },
   {
    "codes": [
@@ -86,60 +130,15 @@
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "Rival sale, soft own sale, then delays stop late buyers."
+   "why": "Soft sale, rival sale, and shipping fears stop orders."
   },
   {
    "codes": [
+    "viral_post",
     "promo_underestimate",
-    "reach_drop",
-    "shipping_delay"
+    "competitor_sale"
    ],
-   "why": "Low reach, soft sale, and late shipping hit the same week."
-  },
-  {
-   "codes": [
-    "competitor_sale",
-    "reach_drop",
-    "shipping_delay"
-   ],
-   "why": "Low reach and a rival sale plus late shipping wipe out demand."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "viral_post"
-   ],
-   "why": "Even a viral post cannot save a sale week that underperforms."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "creator_noshow"
-   ],
-   "why": "Your sale flops with no extra voices to spread it."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "cpm_spike"
-   ],
-   "why": "Your sale flops and paid boost costs more if you try it."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "competitor_sale",
-    "creator_noshow"
-   ],
-   "why": "Rival sale, soft own sale, and missing posts leave you unseen."
-  },
-  {
-   "codes": [
-    "promo_underestimate",
-    "reach_drop",
-    "creator_noshow"
-   ],
-   "why": "Low reach, soft sale, and missing posts starve your week."
+   "why": "Even one viral post can't save a soft sale against a rival."
   }
  ]
 }

@@ -4,138 +4,143 @@
    "codes": [
     "reach_drop"
    ],
-   "why": "매일 올리는 글이 돈 안 들이고 보여주는 것에만 매달려 있어요."
+   "why": "광고 없이 매일 글을 올리시면, 보여지는 수가 줄 때 금방 힘들어져요."
+  },
+  {
+   "codes": [
+    "competitor_sale"
+   ],
+   "why": "할인 없이 버티시면, 경쟁 가게 세일에 손님을 빼앗기게 돼요."
+  },
+  {
+   "codes": [
+    "season_flat"
+   ],
+   "why": "천천히 꾸준히 올리시는 방식은 제철 특수가 필요한데, 그게 오지 않을 수도 있어요."
+  },
+  {
+   "codes": [
+    "shipping_delay"
+   ],
+   "why": "배송이 늦으면 타격이 큰데, 광고로 새 손님을 모을 수 없어서 잃은 주문을 메우기 어려워요."
+  },
+  {
+   "codes": [
+    "viral_post"
+   ],
+   "why": "운 좋게 글이 한 번 크게 터지면, 돈 안 들이고 올리는 글이 원래 얼마나 느린지 잘 안 보이게 돼요."
   },
   {
    "codes": [
     "reach_drop",
     "competitor_sale"
    ],
-   "why": "보는 분이 줄어든 데다가 경쟁 가게가 세일을 하면 천천히 크던 흐름이 멈춰요."
+   "why": "보여지는 수가 줄고 경쟁 가게가 세일을 하면, 돈 안 들이고 올린 글에는 사시는 분이 거의 없어져요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat"
+   ],
+   "why": "장사가 잘 안 되는 달에 보여지는 수도 적으면, 매일 올리는 글을 끌어올려 줄 게 없어요."
   },
   {
    "codes": [
     "reach_drop",
     "shipping_delay"
    ],
-   "why": "보는 분이 줄어든 데다가 배송까지 늦어지면 다시 사려던 분들이 떨어져 나가요."
+   "why": "보여지는 수가 적고 배송이 늦으면, 글이 주문으로 이어지는 경우가 더 적어져요."
   },
   {
    "codes": [
-    "reach_drop",
     "competitor_sale",
-    "shipping_delay"
+    "season_flat"
    ],
-   "why": "잘 안 보여지고 판매도 시원찮고 배송까지 늦어지면 성장이 멈춰요."
-  },
-  {
-   "codes": [
-    "competitor_sale"
-   ],
-   "why": "사장님께서 할인을 안 하시면 경쟁 가게 세일로 손님이 넘어가요."
-  },
-  {
-   "codes": [
-    "shipping_delay"
-   ],
-   "why": "입소문에 기대고 계신데 배송이 늦어지면 믿음이 깨져요."
+   "why": "장사가 잘 안 되는 달에 경쟁 가게가 세일을 하면, 할인 없이 버티는 계획은 감당하기 어려워요."
   },
   {
    "codes": [
     "competitor_sale",
     "shipping_delay"
    ],
-   "why": "경쟁 가게가 세일을 하는데 배송까지 늦어지면 손님이 사기로 마음먹기가 두 배로 어려워져요."
+   "why": "경쟁 가게 할인과 늦은 배송이 겹치면, 광고 도움도 없어서 주문으로 이어지기 아주 어려워져요."
   },
   {
    "codes": [
-    "creator_noshow"
+    "season_flat",
+    "shipping_delay"
    ],
-   "why": "홍보해 주시는 분이 없으시면 대신 알려줄 방법이 없어요."
-  },
-  {
-   "codes": [
-    "promo_underestimate"
-   ],
-   "why": "행사를 안 하시면 경쟁 가게 세일에 맞설 기회가 없어져요."
-  },
-  {
-   "codes": [
-    "cpm_spike"
-   ],
-   "why": "광고를 안 하시면 잘 안 보여질 때 돈으로 풀 방법이 없어요."
-  },
-  {
-   "codes": [
-    "viral_post"
-   ],
-   "why": "운 좋게 글 하나가 크게 터지면 평소 성장이 약한 게 가려져 보여요."
+   "why": "제철 특수도 없고 배송도 느리면, 돈 안 들이고 천천히 크는 흐름이 멈춰요."
   },
   {
    "codes": [
     "reach_drop",
     "viral_post"
    ],
-   "why": "글 하나가 크게 터져야만 이 계획이 되는 건지 확인하는 거예요."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "creator_noshow"
-   ],
-   "why": "잘 안 보여지는데 홍보해 주시는 분도 없으면 보탬받을 데가 없어요."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "promo_underestimate"
-   ],
-   "why": "잘 안 보여지는데 기댈 만한 할인 행사도 없어요."
-  },
-  {
-   "codes": [
-    "reach_drop",
-    "cpm_spike"
-   ],
-   "why": "돈 안 들이고 보여주는 것도 줄고 광고비도 비싸지면 빠져나갈 방법이 없어요."
+   "why": "글이 한 번 크게 터져도, 보여지는 수가 크게 꺾인 한 달을 살리지 못할 수도 있어요."
   },
   {
    "codes": [
     "competitor_sale",
-    "creator_noshow"
+    "viral_post"
    ],
-   "why": "홍보해 주시는 분이 없으시면 경쟁 가게 세일이 더 아프게 들어와요."
-  },
-  {
-   "codes": [
-    "shipping_delay",
-    "creator_noshow"
-   ],
-   "why": "안심시켜 주실 분이 없으시면 늦은 배송이 손님께 더 크게 느껴져요."
+   "why": "글이 한 번 크게 터져도, 경쟁 가게 세일로 잃은 손님을 메우기는 어려워요."
   },
   {
    "codes": [
     "reach_drop",
     "competitor_sale",
-    "creator_noshow"
+    "season_flat"
    ],
-   "why": "잘 안 보여지는데 경쟁 가게는 세일을 하고 도와줄 분도 없어요."
+   "why": "보여지는 수도 적고, 제철 도움도 없고, 경쟁 가게 세일까지 겹치면, 돈 안 들이고 올린 글은 힘을 못 써요."
   },
   {
    "codes": [
     "reach_drop",
-    "shipping_delay",
-    "promo_underestimate"
+    "competitor_sale",
+    "shipping_delay"
    ],
-   "why": "잘 안 보여지고 배송도 늦어지는데 만회할 행사도 없어요."
+   "why": "보여지는 수가 적고, 경쟁 가게 할인과 배송 지연이 겹치면, 돈 안 들이고 올린 글은 기회가 없어져요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "보여지는 수가 적고, 주문도 잘 없고, 배송도 늦어지면, 돈 안 쓰는 계획은 멈춰 서요."
   },
   {
    "codes": [
     "competitor_sale",
+    "season_flat",
+    "shipping_delay"
+   ],
+   "why": "주문이 뜸하고 경쟁 가게 세일과 배송 지연이 겹치면, 다른 대비책이 없으셔서 타격이 크세요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "competitor_sale",
+    "viral_post"
+   ],
+   "why": "보여지는 수가 크게 꺾이고 경쟁 가게가 세일을 하면, 글 하나가 크게 터진 것만으로 버틸 수 있는지 확인하게 되세요."
+  },
+  {
+   "codes": [
+    "reach_drop",
+    "season_flat",
+    "viral_post"
+   ],
+   "why": "주문이 뜸하고 보여지는 수가 적으면, 운 좋게 터지는 글에만 기대고 계신지 보이게 되세요."
+  },
+  {
+   "codes": [
+    "reach_drop",
     "shipping_delay",
     "viral_post"
    ],
-   "why": "글이 크게 터져도 판매가 약하고 배송이 늦으면 살리기 어려워요."
+   "why": "보여지는 수가 적고 배송이 늦으면, 운 좋게 터지는 것만으로 주문이 나오는지 확인하게 되세요."
   }
  ]
 }

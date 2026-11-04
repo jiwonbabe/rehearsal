@@ -104,7 +104,13 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("/api/evidence", s.locked(s.handleEvidence))
 	mux.HandleFunc("/api/i18n/ko", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, spark.KoreanMap()) }))
 	mux.HandleFunc("/setup.html", func(w http.ResponseWriter, r *http.Request) { http.Redirect(w, r, "/", http.StatusFound) })
-	mux.Handle("/", http.FileServer(http.Dir("web")))
+	// Static files revalidate on every load (Last-Modified still gives 304s): a browser that kept an old app.js
+	// next to a new page showed an empty screen.
+	static := http.FileServer(http.Dir("web"))
+	mux.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Cache-Control", "no-cache")
+		static.ServeHTTP(w, r)
+	}))
 	return mux
 }
 

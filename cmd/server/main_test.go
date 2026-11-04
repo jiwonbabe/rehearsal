@@ -861,3 +861,15 @@ func TestSetupCategorySwapsSeasonTable(t *testing.T) {
 		t.Errorf("november apparel: %+v", d.Season)
 	}
 }
+
+func TestStaticFilesRevalidate(t *testing.T) {
+	ts := newTestServer(t)
+	resp, err := http.Get(ts.URL + "/app.js")
+	if err != nil {
+		t.Fatal(err)
+	}
+	resp.Body.Close()
+	if resp.StatusCode != 200 || resp.Header.Get("Cache-Control") != "no-cache" {
+		t.Errorf("app.js: %d cache-control %q", resp.StatusCode, resp.Header.Get("Cache-Control"))
+	}
+}

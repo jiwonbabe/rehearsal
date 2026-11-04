@@ -49,6 +49,8 @@ function pct(x) { return Math.round(x * 100) + '%'; }
 function shockText(codes, catalog) {
   return codes.length ? codes.map(c => (catalog && catalog[c]) || c).join(' + ') : 'never';
 }
+const DIRS = { just_post: 'Just post', pay_for_reach: 'Pay for reach', send_to_creators: 'Send to creators', one_week_sale: 'One-week sale' };
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 function planText(plan) {
   const m = plan.post_mix || {};
   const keys = Object.keys(m).sort((a, b) => (a === 'on_hand' ? -1 : b === 'on_hand' ? 1 : 0));

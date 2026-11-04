@@ -22,9 +22,8 @@
     <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
       <div class="card" style="padding:18px 20px;gap:10px">
         <div style="font-size:13px;font-weight:600">The version under your cursor</div>
-        <div id="plan-text" style="font-size:13px;line-height:1.45"></div>
         <div style="font-size:12px;color:#5c6066;line-height:1.4">What the planner (Muse Spark) sent to the engine: settings only, never a number for orders or revenue.</div>
-        <pre id="plan" class="mono" style="margin:0;font-size:11.5px;line-height:1.5;background:#17181c;color:#d9dbd4;border-radius:8px;padding:14px;overflow-x:auto"></pre>
+        <div id="plan" style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:13px;line-height:1.45;background:#f3f4f1;border-radius:8px;padding:12px 14px"></div>
       </div>
     </div>
     <div id="matrices" style="display:flex;flex-direction:column;gap:16px;min-width:0"></div>
@@ -40,7 +39,16 @@
 renderHeader(2, 'Simulate · stress test');
 const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
 const planEl = () => document.getElementById('plan');
-const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); document.getElementById('plan-text').textContent = planText(p); };
+// The plan the planner sent, as plain rows: every value is a setting, never an outcome.
+const showPlan = p => {
+  const box = planEl(); box.innerHTML = '';
+  const m = p.post_mix || {};
+  const mix = Object.keys(m).filter(k => m[k] > 0).sort((a, b) => m[b] - m[a]).map(k => `${pct(m[k])} ${k.replace('_', ' ')}`).join(', ');
+  const rows = [['Direction', DIRS[p.direction] || p.direction], ['Posts per week', String(p.posts_per_week)], ['Photo mix', mix],
+    ['Creators seeded', String(p.creator_count)], ['Ad budget', money(p.ads_usd)],
+    ['Sale', p.promo_week != null ? `${pct(p.promo_discount)} off in week ${p.promo_week}` : 'none'], ['Month', p.month ? MONTHS[p.month - 1] : 'not set']];
+  rows.forEach(([k, v]) => { box.appendChild(el('div', 'color:#5c6066;white-space:nowrap', k)); box.appendChild(el('div', 'font-weight:500', v)); });
+};
 (async () => {
   const ids = getSelected();
   if (!ids.length) { document.getElementById('empty').style.display = 'block'; return; }

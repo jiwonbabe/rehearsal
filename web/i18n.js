@@ -34,7 +34,7 @@ const KO = {
   'Each row is one way to run a direction: how many posts a week, how many creators, how much on ads.': '각 행은 방향을 실행하는 한 가지 방식입니다: 주당 포스트 수, 크리에이터 수, 광고비.',
   'Each column is a bad month the adversary invented: reach drops, creators do not post, a rival runs a sale, and so on.': '각 열은 공격자가 만든 나쁜 달입니다: 도달 감소, 크리에이터 미게시, 경쟁사 세일 등.',
   'Hover any square to see which bad month it was and the orders and spend the engine computed.': '칸에 마우스를 올리면 어떤 나쁜 달이었는지, 엔진이 계산한 주문과 지출을 볼 수 있습니다.',
-  'The version under your cursor': '커서 아래의 버전', 'What the planner (Muse Spark) sent to the engine: settings only, never a number for orders or revenue.': '플래너(Muse Spark)가 엔진에 보낸 것: 설정값만, 주문이나 매출 숫자는 없음.', 'See the verdict': '결론 보기', 'survived': '생존', 'died': '실패',
+  'The version under your cursor': '커서 아래의 버전', 'Direction': '방향', 'Posts per week': '주당 포스트', 'Photo mix': '사진 구성', 'Creators seeded': '시딩 크리에이터', 'Ad budget': '광고 예산', 'Sale': '세일', 'Month': '달', 'none': '없음', 'not set': '미지정', 'Just post': '그냥 포스팅', 'Pay for reach': '도달에 돈 쓰기', 'Send to creators': '크리에이터에게 보내기', 'One-week sale': '일주일 세일', 'What the planner (Muse Spark) sent to the engine: settings only, never a number for orders or revenue.': '플래너(Muse Spark)가 엔진에 보낸 것: 설정값만, 주문이나 매출 숫자는 없음.', 'See the verdict': '결론 보기', 'survived': '생존', 'died': '실패',
   // verdict
   'The best variant from each direction you picked, plus the no-spend baseline. Survived = hit your order goal in that many of 20 bad months without running out of budget early.': '고른 방향마다 최고 버전과 돈을 안 쓰는 기준선입니다. 생존 = 나쁜 달 20개 중 그만큼에서 예산을 일찍 소진하지 않고 주문 목표를 달성.',
   'Week 1': '1주차', 'Week 2': '2주차', 'Week 3': '3주차', 'Week 4': '4주차', 'Review opens next month': '다음 달 리뷰 시작', 'Your month, generated on commit': '확정하면 만들어지는 이번 달 계획', 'Make it happen →': '실행하기 →', 'Review October': '10월 리뷰', 'Just post · baseline': '그냥 포스팅 · 기준선', 'Verdict: no paid direction holds this month.': '결론: 이번 달엔 돈 쓰는 방향 중 버티는 게 없습니다.',
@@ -70,6 +70,7 @@ const KO_RX = [
   [/^Connected · demo account @(.+) · mock numbers, not your real account$/, (m, h) => `연결됨 · 데모 계정 @${h} · 목 숫자, 실제 계정 아님`],
   [/^Reasoned from the demo account @(.+)'s mock Instagram and Threads data \((\d+) days; not your real numbers\) and sourced public statistics · not stress-tested$/, (m, h, d) => `데모 계정 @${h}의 목 인스타그램·스레드 데이터(${d}일, 실제 숫자 아님)와 출처 있는 공개 통계로 판단 · 스트레스 테스트 대상 아님`],
   [/^(\w+): pick one or two directions$/, (m, a) => `${KO[a] || a}: 방향 한두 개 고르기`], [/^Plan (\w+)$/, (m, a) => `${KO[a] || a} 계획하기`],
+  [/^(\d+% [a-z ]+(?:, \d+% [a-z ]+)*)$/, (m, a) => mixKo(a)], [/^(\d+%) off in week (\d+)$/, (m, off, wk) => `${wk}주차 ${off} 할인`],
   [/^Most of your photos: (.+)$/, (m, a) => `사진 대부분: ${w(a)}`], [/^Confidence: (.+)$/, (m, a) => `확신도: ${w(a)}`],
   [/^(\S+) followers · (\d+%) are (\S+) · (\d+%) women · (\d+%) in (.+)$/, (m, f, a, band, wm, c, city) => `팔로워 ${f}명 · ${band}가 ${a} · 여성 ${wm} · ${city} ${c}`],
   [/^Last (\d+) days: Reels reach (.+)× your feed posts · (.+) get the most saves · Threads (\d+) replies per post$/, (m, d, r, t, th) => `최근 ${d}일: 릴스 도달이 피드의 ${r}배 · 저장은 ${w(t)}이 가장 많음 · 스레드 글당 답글 ${th}개`],

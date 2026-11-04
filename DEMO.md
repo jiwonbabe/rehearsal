@@ -4,7 +4,7 @@ No live API calls; everything is served from `spark/cache/`. Restart the server 
 
 ## Deploy
 
-Fly CLI was not available when this was written. From the repo root:
+Deployed Nov 4, 2026 as `rehearsal-jaunty-harborwave-867` (sjc, one shared-cpu machine, no Meta secrets). From the repo root:
 
 ```
 fly launch --copy-config --no-deploy
@@ -13,7 +13,7 @@ fly deploy --ha=false
 
 State (month, rates) lives in server memory, so run exactly one machine; restart it to reset to month 1.
 
-Then put `https://rehearsal.fly.dev` in README's Live line. Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
+Live: https://rehearsal-jaunty-harborwave-867.fly.dev (in README). Reset to month 1 before a demo: `fly machines restart`. Local container: `docker build -t rehearsal . && docker run --rm -p 8080:8080 rehearsal`.
 
 ## Meta ad account (optional, makes Launch live)
 

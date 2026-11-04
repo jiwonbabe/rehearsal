@@ -803,3 +803,20 @@ func TestAdSetStartsNoEarlierThanToday(t *testing.T) {
 		t.Errorf("past window must shift to start today and keep its length: %v..%v", out.AdRequest["adset"]["start_time"], out.AdRequest["adset"]["end_time"])
 	}
 }
+
+func TestStressCarriesGapsAndState(t *testing.T) {
+	ts := newTestServer(t)
+	var out struct {
+		Gaps      []engine.Gap `json:"gaps"`
+		Goal      float64      `json:"goal"`
+		MonthName string       `json:"month_name"`
+	}
+	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach","send_to_creators"]}`, &out)
+	if len(out.Gaps) != 2 || out.Goal != 46 || out.MonthName != "November" {
+		t.Errorf("gaps %d goal %v month %q", len(out.Gaps), out.Goal, out.MonthName)
+	}
+	resp, _ := http.Get(ts.URL + "/setup.html")
+	if resp.Request.URL.Path != "/" {
+		t.Errorf("setup.html should redirect home, landed on %s", resp.Request.URL.Path)
+	}
+}

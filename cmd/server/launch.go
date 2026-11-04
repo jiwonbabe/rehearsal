@@ -174,15 +174,17 @@ func (s *server) handleLaunch(w http.ResponseWriter, r *http.Request) {
 		adReq = map[string]any{"campaign": campaign, "adset": adset}
 	}
 	s.writeJSON(w, map[string]any{
-		"direction":       map[string]string{"id": l.Plan.Direction, "title": l.Title},
-		"spec":            l.Spec,
-		"playbook":        l.Playbook,
-		"ad_request":      adReq,
-		"ads_connected":   token != "" && account != "",
-		"reach":           reach,
-		"reach_source":    reachSource,
-		"creators":        s.suggestedCreators(),
-		"creators_source": s.metaSource(),
+		"direction":          map[string]string{"id": l.Plan.Direction, "title": l.Title},
+		"spec":               l.Spec,
+		"playbook":           l.Playbook,
+		"ad_request":         adReq,
+		"ads_connected":      token != "" && account != "",
+		"current_month":      s.planMonth(),
+		"current_month_name": engine.SeasonFor(nil, s.planMonth()).Name,
+		"reach":              reach,
+		"reach_source":       reachSource,
+		"creators":           s.suggestedCreators(),
+		"creators_source":    s.metaSource(),
 	})
 }
 

@@ -30,7 +30,8 @@ const el = (tag, css, text) => { const e = document.createElement(tag); if (css)
     const d = await api('/api/review', {});
     const r = d.review, a = r.actual;
     document.getElementById('main').style.display = 'flex';
-    document.getElementById('title').textContent = `October: ${r.inside_range ? 'inside range' : (a.orders > r.range[1] ? 'above range' : 'below range')}. Here is what was off.`;
+    const where = r.inside_range ? 'inside range' : (a.orders > r.range[1] ? 'above range' : 'below range');
+    document.getElementById('title').textContent = `October: ${where}. ` + (where === 'above range' ? 'Here is what went better than the engine thought.' : where === 'inside range' ? 'Here is what the engine got right.' : 'Here is what was off.');
     document.getElementById('ran').textContent = `You ran ${planText(d.committed)}.`;
     const out = a.orders < r.range[0] || a.orders > r.range[1];
     const rows = document.getElementById('rows');

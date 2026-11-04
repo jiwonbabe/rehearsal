@@ -49,19 +49,31 @@ function draw() {
   $cards.innerHTML = '';
   dirs.forEach(d => {
     const on = sel.includes(d.id), r = d.ranges;
+    const b = document.createElement('button');
+    b.className = on ? 'btn' : 'btn ghost';
+    b.style.minHeight = '36px'; b.style.fontSize = '13px'; b.style.padding = '0 16px';
+    b.textContent = on ? 'Selected' : 'Select';
+    b.onclick = () => {
+      if (on) sel = sel.filter(x => x !== d.id);
+      else if (sel.length < 2) sel.push(d.id);
+      else { $foot.textContent = 'Up to two directions at a time. Unselect one first.'; $foot.style.color = '#c2410c'; return; }
+      draw();
+    };
     const c = document.createElement('div');
     c.className = 'card' + (on ? ' on' : '');
     c.style.padding = '22px';
     const rangeLine = `${money(r.ads_usd[0])}–${money(r.ads_usd[1])} ads · ${r.creator_count[0]}–${r.creator_count[1]} creators · ${r.posts_per_week[0]}–${r.posts_per_week[1]} posts/wk`;
     c.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
         <div style="font-size:12px;font-weight:600;color:${d.rank === 1 ? '#2f5d8a' : '#5c6066'};text-transform:uppercase;letter-spacing:.06em">${d.rank === 1 ? 'Suggested first' : 'Also fits'}</div>
-        <div class="mono" style="font-size:12px;color:#5c6066">${rangeLine}</div></div>
+        <span class="pick"></span></div>
       <div style="font-size:20px;font-weight:600"></div>
+      <div class="mono" style="font-size:12px;color:#5c6066">${rangeLine}</div>
       <div class="plain" style="font-size:14px;color:#5c6066;line-height:1.5"></div>
       <div style="display:flex;gap:10px;padding:10px 12px;background:#f3f4f1;border-radius:8px;font-size:13px;line-height:1.45"><span style="font-weight:600;white-space:nowrap">Why for you</span><span class="why"></span></div>
       <div class="do" style="font-size:12px;color:#5c6066"></div>
       <div class="pb" style="display:none;flex-direction:column;gap:6px;font-size:13px;line-height:1.5;border-top:1px solid #e6e7e2;padding-top:10px"></div>`;
     c.children[1].textContent = d.title;
+    c.querySelector('.pick').appendChild(b);
     c.querySelector('.plain').textContent = d.plain;
     c.querySelector('.why').textContent = d.why_for_you;
     c.querySelector('.do').textContent = 'You would do: ' + d.you_would_do;
@@ -73,22 +85,14 @@ function draw() {
       k.lastChild.textContent = d.caution;
       c.insertBefore(k, c.querySelector('.do'));
     }
-    const b = document.createElement('button');
-    b.className = on ? 'btn' : 'btn ghost';
-    b.style.minHeight = '44px'; b.style.fontSize = '14px';
-    b.textContent = on ? 'Selected' : 'Select';
-    b.onclick = () => {
-      if (on) sel = sel.filter(x => x !== d.id);
-      else if (sel.length < 2) sel.push(d.id);
-      else return;
-      draw();
-    };
-    c.appendChild(b);
     $cards.appendChild(c);
   });
   const n = sel.length;
-  $foot.textContent = `${n} direction${n === 1 ? '' : 's'} selected · the engine will build ${n * 60} variants and attack each with 20 bad months.`;
+  setSelected(sel);
+  $foot.style.color = '';
+  $foot.textContent = n === 0 ? 'Pick one or two directions to test.' : `${n} direction${n === 1 ? '' : 's'} selected · the engine will build ${n * 60} variants and attack each with 20 bad months.`;
   $go.disabled = n === 0;
+  $go.style.opacity = n === 0 ? '.4' : '1';
 }
 const CH = { instagram_reels: 'Instagram Reels', instagram_feed: 'Instagram feed', instagram_stories: 'Instagram Stories', threads: 'Threads', facebook: 'Facebook', naver_blog: 'Naver blog', tiktok: 'TikTok', x: 'X' };
 const VERDICT = { lead: ['Lead', '#2f6f3e', '#e8f3ea'], support: ['Support', '#8a6d1f', '#fbf3dc'], skip: ['Skip', '#5c6066', '#f3f4f1'] };
@@ -126,7 +130,11 @@ function renderChannels(list, connected, handle, ev) {
   sub.textContent = connected ? (demo ? `Reasoned from the demo account @${handle}'s mock Instagram and Threads data (${ev.evidence.days} days; not your real numbers) and sourced public statistics · not stress-tested` : `Reasoned from @${handle}'s Instagram and Threads data (${ev.evidence.days} days) and sourced public statistics · not stress-tested`) : 'Connect your Instagram on Setup to see where to post for your brand.';
   head.appendChild(sub); box.appendChild(head); box.style.display = 'flex';
   if (!list || !list.length) return;
-  const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px';
+  const chips = document.createElement('div'); chips.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px';
+  ['lead', 'support', 'skip'].forEach(v => { const names = list.filter(c => c.verdict === v).map(c => CH[c.channel] || c.channel); if (!names.length) return; const [label, fg, bg] = VERDICT[v]; chips.appendChild(badge(label, bg, fg)); const t = document.createElement('span'); t.textContent = names.join(', '); t.style.marginRight = '10px'; chips.appendChild(t); });
+  box.appendChild(chips);
+  const det = document.createElement('details'); det.innerHTML = '<summary style="cursor:pointer;font-size:12.5px;color:#5c6066">Show why, channel by channel</summary>';
+  const grid = document.createElement('div'); grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:12px';
   list.forEach(c => {
     const card = document.createElement('div'); card.style.cssText = 'display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid #e6e7e2;border-radius:10px';
     const [v, fg, bg] = VERDICT[c.verdict] || VERDICT.skip;
@@ -142,7 +150,7 @@ function renderChannels(list, connected, handle, ev) {
     if (c.how) { const how = document.createElement('div'); how.style.cssText = 'font-size:13px;line-height:1.5;border-top:1px solid #e6e7e2;padding-top:8px'; how.textContent = c.how; card.appendChild(how); }
     grid.appendChild(card);
   });
-  box.appendChild(grid);
+  det.appendChild(grid); box.appendChild(det);
 }
 const $cards = document.getElementById('cards'), $foot = document.getElementById('foot'), $go = document.getElementById('go');
 $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };

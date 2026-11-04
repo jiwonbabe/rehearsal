@@ -23,6 +23,10 @@ def split_posts(total, mix):
 def launch_spec(plan, brand):
     last = datetime.date.fromisoformat(brand["weeks"][-1]["week"])
     start = last + datetime.timedelta(days=7)
+    if plan.month:
+        # a plan for a later month starts 4-week blocks later (the data's weeks are Monday-based)
+        k = (plan.month - start.month) % 12
+        start = start + datetime.timedelta(days=28 * k)
     days = HORIZON_WEEKS * 7
     end = start + datetime.timedelta(days=days - 1)
     count = int(plan.creator_count)

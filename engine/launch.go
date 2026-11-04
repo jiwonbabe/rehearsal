@@ -56,6 +56,11 @@ func splitPosts(total int, mix map[string]float64) map[string]int {
 func RunLaunch(p Plan, b *Brand) LaunchSpec {
 	last, _ := time.Parse("2006-01-02", b.Weeks[len(b.Weeks)-1].Week)
 	start := last.AddDate(0, 0, 7)
+	if p.Month > 0 {
+		// a plan for a later month starts 4-week blocks later (the data's weeks are Monday-based)
+		k := (p.Month - int(start.Month()) + 12) % 12
+		start = start.AddDate(0, 0, 28*k)
+	}
 	days := HorizonWeeks * 7
 	count := int(p.CreatorCount)
 	ship := float64(count) * b.Brand.ProductCostUsd

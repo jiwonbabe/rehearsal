@@ -28,10 +28,13 @@ function getSelected() {
   try { return JSON.parse(sessionStorage.getItem('rehearsal.selected')) || []; } catch (e) { return []; }
 }
 function setSelected(ids) { sessionStorage.setItem('rehearsal.selected', JSON.stringify(ids)); }
+// The committed plan travels with the title and the month it was committed for, so Launch can say
+// when the app has since moved on to another month.
 function getCommitted() {
-  try { return JSON.parse(sessionStorage.getItem('rehearsal.committed')); } catch (e) { return null; }
+  try { const c = JSON.parse(sessionStorage.getItem('rehearsal.committed')); if (!c) return null; return c.plan ? c : { plan: c, title: c.direction, month: c.month }; } catch (e) { return null; }
 }
-function setCommitted(plan) { sessionStorage.setItem('rehearsal.committed', JSON.stringify(plan)); }
+function setCommitted(plan, title, month, monthName) { sessionStorage.setItem('rehearsal.committed', JSON.stringify({ plan, title, month, month_name: monthName })); }
+function stateLine(goal, budget, monthName) { return `Computed for a goal of ${goal} orders, a ${money(budget)} budget, ${monthName}. Change these on Setup and this page recomputes.`; }
 
 // prov: a small chip saying where a block's numbers come from. kind: real | demo | engine | spark
 function prov(kind, text) {

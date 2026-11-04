@@ -259,3 +259,42 @@ func RunFlip(a, b Plan, combos [][]string, r Rates, brand *Brand, param string, 
 	}
 	return nil
 }
+
+// Gap: what a paid plan buys over the no-spend baseline in a bad month (range midpoints), and the price of each extra order.
+type Gap struct {
+	Direction        string  `json:"direction"`
+	PlanID           string  `json:"plan_id"`
+	ExtraOrders      int     `json:"extra_orders"`
+	ExtraSpendUsd    float64 `json:"extra_spend_usd"`
+	UsdPerExtraOrder float64 `json:"usd_per_extra_order"`
+}
+
+func BaselineGaps(verdict []Verdict) []Gap {
+	var base *Verdict
+	for i := range verdict {
+		if verdict[i].Plan.PlanID == "baseline" {
+			base = &verdict[i]
+		}
+	}
+	out := []Gap{}
+	if base == nil {
+		return out
+	}
+	mid := func(v Verdict) float64 { return (v.OrdersBadMonth[0] + v.OrdersBadMonth[1]) / 2 }
+	for _, v := range verdict {
+		if v.Plan.PlanID == "baseline" {
+			continue
+		}
+		extra := halfUp(mid(v) - mid(*base))
+		if mid(v)-mid(*base) < 0 {
+			extra = -halfUp(mid(*base) - mid(v))
+		}
+		spend := v.SpendUsd - base.SpendUsd
+		g := Gap{Direction: v.Plan.Direction, PlanID: v.Plan.PlanID, ExtraOrders: extra, ExtraSpendUsd: spend}
+		if extra > 0 {
+			g.UsdPerExtraOrder = roundTo(spend/float64(extra), 2)
+		}
+		out = append(out, g)
+	}
+	return out
+}

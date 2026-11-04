@@ -378,3 +378,38 @@ func TestSeasonMatchesReference(t *testing.T) {
 		t.Errorf("nil table %+v", s)
 	}
 }
+
+func TestBaselineGapsMatchReference(t *testing.T) {
+	var want []Gap
+	loadJSON(t, "gaps", &want)
+	var verdict []Verdict
+	loadJSON(t, "verdict", &verdict)
+	got := BaselineGaps(verdict)
+	if len(got) != len(want) || len(got) == 0 {
+		t.Fatalf("gaps %d want %d", len(got), len(want))
+	}
+	for i := range got {
+		if got[i].Direction != want[i].Direction || got[i].ExtraOrders != want[i].ExtraOrders {
+			t.Errorf("%d: %+v want %+v", i, got[i], want[i])
+		}
+		near(t, got[i].Direction+" usd", got[i].UsdPerExtraOrder, want[i].UsdPerExtraOrder)
+	}
+	if len(BaselineGaps(verdict[:1])) != 0 {
+		t.Error("no baseline → no gaps")
+	}
+}
+
+func TestLaunchLaterMonthStartsLater(t *testing.T) {
+	var want map[string]LaunchSpec
+	loadJSON(t, "launch", &want)
+	p := OctoberPlan()
+	p.Month = 12
+	got := RunLaunch(p, brand(t))
+	if got.StartDate != want["december"].StartDate || got.StartDate != "2026-11-30" || got.Calendar[0].StartDate != "2026-11-30" {
+		t.Errorf("december start %s want %s", got.StartDate, want["december"].StartDate)
+	}
+	p.Month = 11
+	if s := RunLaunch(p, brand(t)).StartDate; s != "2026-11-02" {
+		t.Errorf("november start %s", s)
+	}
+}

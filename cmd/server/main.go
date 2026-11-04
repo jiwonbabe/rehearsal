@@ -99,6 +99,7 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/meta/connect", s.locked(s.handleMetaConnect))
 	mux.HandleFunc("/api/evidence", s.locked(s.handleEvidence))
 	mux.HandleFunc("/api/i18n/ko", s.locked(func(w http.ResponseWriter, r *http.Request) { s.writeJSON(w, spark.KoreanMap()) }))
+	mux.HandleFunc("/setup.html", func(w http.ResponseWriter, r *http.Request) { http.Redirect(w, r, "/", http.StatusFound) })
 	mux.Handle("/", http.FileServer(http.Dir("web")))
 	return mux
 }

@@ -56,7 +56,7 @@ function adsCard(d) {
   b.onclick = async () => {
     b.disabled = true;
     try {
-      const r = await api('/api/launch/ads', { plan: getCommitted() });
+      const r = await api('/api/launch/ads', { plan: getCommitted().plan });
       if (r.sent) {
         out.textContent = `Created paused: campaign ${r.campaign_id}, ad set ${r.adset_id}. `;
         const a = el('a', '', 'Open Ads Manager'); a.href = r.url; a.target = '_blank'; out.appendChild(a);
@@ -119,7 +119,10 @@ function fitBox(direction) {
   const row = el('div', 'display:flex;gap:8px;flex-wrap:wrap');
   const handle = document.createElement('input'); handle.placeholder = '@creator'; handle.style.cssText = 'flex:1;min-width:120px;padding:8px 10px;border:1px solid #d9dbd4;border-radius:8px;font:inherit;font-size:13.5px';
   const file = document.createElement('input'); file.type = 'file'; file.accept = 'image/*'; file.multiple = true; file.style.fontSize = '12.5px';
-  const b = el('button', 'min-height:40px;font-size:14px', 'Does this creator fit?'); b.className = 'btn ghost';
+  const b = el('button', 'min-height:40px;font-size:14px', 'Does this creator fit?'); b.className = 'btn ghost'; b.disabled = true;
+  const hint = el('div', 'font-size:12px;color:#5c6066', 'Type the handle and add 1–8 screenshots of their profile or posts, then check.');
+  const gate = () => { b.disabled = !(handle.value.trim() && file.files.length); };
+  handle.addEventListener('input', gate); file.addEventListener('change', gate);
   const out = el('div', 'font-size:13.5px;line-height:1.5');
   const readFile = f => new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(f); });
   b.onclick = async () => {
@@ -134,7 +137,7 @@ function fitBox(direction) {
     } catch (e) { out.style.color = '#c2410c'; out.textContent = e.message; }
   };
   row.appendChild(handle); row.appendChild(file);
-  box.appendChild(row); box.appendChild(b); box.appendChild(out);
+  box.appendChild(hint); box.appendChild(row); box.appendChild(b); box.appendChild(out);
   return box;
 }
 
@@ -158,7 +161,8 @@ function calendarCard(d) {
   t.appendChild(tb); c.appendChild(t);
   const b = el('button', 'align-self:flex-start', 'Download calendar (.ics)'); b.className = 'btn ghost';
   b.onclick = async () => {
-    const res = await fetch('/api/launch/calendar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: getCommitted() }) });
+    const res = await fetch('/api/launch/calendar', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan: getCommitted().plan }) });
+    if (!res.ok) { b.textContent = 'Could not build the calendar'; return; }
     const blob = await res.blob();
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `rehearsal-${s.start_date}.ics`; a.click();
   };
@@ -167,13 +171,19 @@ function calendarCard(d) {
 }
 
 (async () => {
-  const plan = getCommitted();
-  if (!plan) { document.getElementById('empty').style.display = 'block'; return; }
+  const committed = getCommitted();
+  if (!committed) { document.getElementById('empty').style.display = 'block'; return; }
+  const plan = committed.plan;
   try {
     await I18N_READY;
     const d = await api('/api/launch', { plan });
     document.getElementById('main').style.display = 'flex';
-    document.getElementById('title').textContent = `Launch: ${d.direction.title}`;
+    document.getElementById('title').textContent = `Launch: ${committed.title || d.direction.title}`;
+    if (committed.month && d.current_month && committed.month !== d.current_month) {
+      const warn = el('div', 'font-size:13.5px;color:#c2410c;line-height:1.5');
+      warn.textContent = `You committed this plan for ${committed.month_name}. The app is now planning ${d.current_month_name}: run the stress test again and commit a ${d.current_month_name} plan.`;
+      document.getElementById('main').insertBefore(warn, document.getElementById('sub'));
+    }
     document.getElementById('sub').textContent = `Starts ${d.spec.start_date} · ${d.spec.days} days · total ${money(d.spec.total_spend_usd)} · ${d.ads_connected ? 'Meta ad account connected' : 'no Meta ad account connected'}`;
     const cards = document.getElementById('cards');
     if (d.ad_request) cards.appendChild(adsCard(d));

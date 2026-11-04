@@ -35,6 +35,12 @@ type stressResponse struct {
 	Catalog    map[string]string  `json:"catalog"`
 	Priors     map[string]float64 `json:"priors"`
 	Check      string             `json:"check"`
+	Gaps       []engine.Gap       `json:"gaps"`
+	Goal       float64            `json:"goal"`
+	Budget     float64            `json:"budget"`
+	AvgPrice   float64            `json:"avg_price_usd"`
+	Month      int                `json:"month"`
+	MonthName  string             `json:"month_name"`
 }
 
 func writeError(w http.ResponseWriter, code int, msg string) {
@@ -313,6 +319,10 @@ func (s *server) handleStress(w http.ResponseWriter, r *http.Request) {
 	}
 	merged.Combos = engine.FallbackCombos // fixed catalog list: baseline must not depend on click order
 	resp.Verdict = engine.RunVerdict(allPlans, merged, s.rates, s.brand)
+	resp.Gaps = engine.BaselineGaps(resp.Verdict)
+	resp.Goal, resp.Budget, resp.AvgPrice = s.brand.Brand.GoalOrdersPerMonth, s.brand.Brand.BudgetUsdPerMonth, s.brand.Brand.AvgPriceUsd
+	se := engine.SeasonFor(s.brand.Season, s.planMonth())
+	resp.Month, resp.MonthName = se.Month, se.Name
 	resp.Flip, resp.Check = s.flipAndCheck(resp.Verdict, titles)
 	if resp.Flip != nil {
 		fa, fb := flipPair(resp.Verdict)

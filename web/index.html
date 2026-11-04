@@ -72,7 +72,8 @@
         <input id="budget" type="number" min="0" class="mono" style="font-size:24px;font-weight:500;border:none;border-bottom:2px solid #17181c;background:transparent;padding:4px 0;color:#17181c;width:100%">
         <span id="g-spend"></span></label>
     </div>
-    <div style="display:flex;align-items:center;gap:12px"><button id="save" class="btn ghost" style="min-height:40px">Confirm</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button id="save" class="btn" style="min-height:40px">Confirm</button><span id="saved" style="font-size:12px;color:#2f5d8a"></span></div>
+    <div id="unsaved" style="display:none;font-size:13px;color:#c2410c">Not confirmed yet: the engine still uses the last confirmed values. Click Confirm before moving on.</div>
   </div>
 
   <div class="card" style="padding:24px;gap:16px">
@@ -83,20 +84,23 @@
       <div style="background:#f3f4f1;border-radius:8px;padding:14px 16px"><div style="font-size:12px;color:#5c6066">Typical miss</div><div id="bt-err" class="mono" style="font-size:28px;font-weight:500"></div><div style="font-size:12px;color:#5c6066">how far off the engine was in a typical week</div></div>
       <div style="background:#f3f4f1;border-radius:8px;padding:14px 16px"><div style="font-size:12px;color:#5c6066">Weeks it got right</div><div id="bt-in" class="mono" style="font-size:28px;font-weight:500"></div><div style="font-size:12px;color:#5c6066">its answer was within 20% of what really happened</div></div>
     </div>
-    <table style="border-collapse:collapse;font-size:13px;width:100%">
+    <details><summary style="cursor:pointer;font-size:13px;color:#5c6066">Show the 13 hidden weeks</summary>
+    <table style="border-collapse:collapse;font-size:13px;width:100%;margin-top:8px">
       <thead><tr style="text-align:left;color:#5c6066"><th>Week</th><th>Orders you got</th><th>Engine said</th><th>Engine's range (low–high)</th><th>Result</th><th></th></tr></thead>
       <tbody id="bt-rows" class="mono"></tbody>
-    </table>
+    </table></details>
     <div style="font-size:13px;color:#5c6066;line-height:1.5">The smaller the miss, the more the plans on the next pages are worth. The engine's sale-week guesses are its weakest, so sale plans carry a wider range.</div>
     <div id="bt-weak" style="display:none;font-size:13px;color:#c2410c">Known weakness: at least one sale week landed outside the engine's range.</div>
     <div id="bt-insample" style="font-size:13px;color:#5c6066"></div>
     <div id="truth" style="display:none;flex-direction:column;gap:10px;border-top:1px solid #e6e7e2;padding-top:14px">
       <div class="label">Known-answer check · only possible on synthetic data</div>
       <div style="font-size:14px;color:#5c6066;line-height:1.5;max-width:760px">The demo data was generated with known rates. The engine never reads them; it learns from the weekly rows alone. Here is what it recovered.</div>
-      <table style="border-collapse:collapse;font-size:13px;width:100%">
+      <div id="truth-sum" style="font-size:14px"></div>
+      <details><summary style="cursor:pointer;font-size:13px;color:#5c6066">Show all nine rates</summary>
+      <table style="border-collapse:collapse;font-size:13px;width:100%;margin-top:8px">
         <thead><tr style="text-align:left;color:#5c6066"><th>Rate</th><th>Generator used</th><th>Engine recovered</th><th>Miss</th><th></th></tr></thead>
         <tbody id="truth-rows" class="mono"></tbody>
-      </table>
+      </table></details>
     </div>
   </div>
 
@@ -126,6 +130,8 @@ async function loadBacktest() {
   $('bt-insample').textContent = `If the engine may also learn from those ${bt.weeks_total} weeks (in-sample), the miss is ${ins.median_abs_pct_error}% and it gets ${ins.weeks_inside_range} of ${ins.weeks_total} right. The holdout number above is the honest one.`;
   if (tr.synthetic && tr.truth.length) {
     $('truth').style.display = 'flex';
+    const within = tr.truth.filter(r => r.err_pct <= 5).length;
+    $('truth-sum').textContent = `${within} of ${tr.truth.length} rates recovered within 5%. The one that is off (creators who post) is off on purpose: October carries a planted no-show.`;
     $('truth-rows').innerHTML = tr.truth.map(r => `<tr><td style="font-family:'IBM Plex Sans',sans-serif">${RATE_NAMES[r.rate] || r.rate}</td><td>${r.true}</td><td>${r.engine}</td><td style="color:${r.err_pct > 10 ? '#c2410c' : '#2f5d8a'}">${r.err_pct}%</td><td style="color:#5c6066;font-family:'IBM Plex Sans',sans-serif">${r.note || ''}</td></tr>`).join('');
   }
   let weak = false;
@@ -144,7 +150,7 @@ $('save').onclick = async () => {
       budget_usd_per_month: Number($('budget').value),
       goal_orders_per_month: G.unit === 'revenue' ? Math.round(Number($('goal').value) / G.g.avg_price_usd) : Number($('goal').value),
       target: { gender: $('gender').value, age: $('age').value, price_band: $('price_band').value }, market: $('market').value });
-    fill(b); G.g.current_goal = b.goal_orders_per_month; G.g.current_budget = b.budget_usd_per_month; $('saved').textContent = 'Confirmed'; await loadBacktest();
+    fill(b); G.g.current_goal = b.goal_orders_per_month; G.g.current_budget = b.budget_usd_per_month; $('saved').textContent = 'Confirmed'; $('unsaved').style.display = 'none'; await loadBacktest();
   } catch (e) { $('saved').textContent = ''; showError(e); }
 };
 
@@ -176,25 +182,30 @@ $('demo-shot').onclick = async () => {
     shots = [await shrink(blob)]; $('handle').value = 'bnd.jewelry'; $('read-status').textContent = 'Demo screenshot loaded';
   } catch (e) { showError(e); }
 };
+function showRead(p) {
+  const c = p.likely_customer;
+  $('r-sell').textContent = p.what_they_sell; $('r-style').textContent = p.style;
+  $('r-post').textContent = 'Most of your photos: ' + (POST[p.best_post_type] || p.best_post_type);
+  $('r-cust').innerHTML = 'Likely customer <span style="color:#5c6066">(guessed from the photos, no prices seen)</span>: ';
+  $('r-cust').append(`${c.gender}, ${c.age}, $${c.price_band}, ${p.market}`);
+  $('r-conf').textContent = 'Confidence: ' + p.confidence; $('r-why').textContent = p.why;
+  $('read-out').style.display = 'flex';
+  $('read-prov').replaceChildren(prov('real', 'Real · your screenshot'));
+}
 $('read').onclick = async () => {
   try {
-    $('read-status').textContent = 'Reading…';
+    $('read-status').style.color = ''; $('read-status').textContent = 'Reading…';
     const p = await api('/api/profile', { source: 'screenshot', handle: handleOf($('handle').value), images: shots });
+    showRead(p);
     const c = p.likely_customer;
-    $('r-sell').textContent = p.what_they_sell; $('r-style').textContent = p.style;
-    $('r-post').textContent = 'Most of your photos: ' + (POST[p.best_post_type] || p.best_post_type);
-    $('r-cust').innerHTML = 'Likely customer <span style="color:#5c6066">(guessed from the photos, no prices seen)</span>: ';
-    $('r-cust').append(`${c.gender}, ${c.age}, $${c.price_band}, ${p.market}`);
-    $('r-conf').textContent = 'Confidence: ' + p.confidence; $('r-why').textContent = p.why;
-    $('read-out').style.display = 'flex';
-    $('read-prov').replaceChildren(prov('real', 'Real · your screenshot'));
     if (p.market) $('market').value = p.market;
     if (c.gender) $('gender').value = c.gender;
     if (c.age) $('age').value = c.age;
     if (c.price_band) $('price_band').value = c.price_band;
     $('read-status').textContent = '';
     G.prof = p; if (p.success_metric) G.unit = p.success_metric; G.pick = p.ambition || G.pick; showGoals();
-  } catch (e) { $('read-status').textContent = ''; showError(e); }
+    try { sessionStorage.setItem('rehearsal.read', JSON.stringify(p)); } catch (err) { /* private window */ }
+  } catch (e) { $('read-status').textContent = 'Could not read: ' + e.message; $('read-status').style.color = '#c2410c'; }
 };
 $('connect').onclick = async () => {
   try {
@@ -208,8 +219,11 @@ $('connect').onclick = async () => {
     $('connect-status').textContent = ev.evidence.source === 'mock' ? `Connected · demo account @${ev.handle} · mock numbers, not your real account` : `Connected · @${ev.handle}`;
     $('aud-prov').replaceChildren(prov('demo', ev.evidence.source === 'mock' ? 'Demo input' : 'Real · Instagram'));
     if (a.top_age) $('age').value = a.top_age;
-  } catch (e) { $('connect-status').textContent = ''; showError(e); }
+  } catch (e) { $('connect-status').textContent = 'Could not connect: ' + e.message; $('connect-status').style.color = '#c2410c'; }
 };
+// Anything edited after the last Confirm is flagged until Confirm is clicked again.
+['market', 'gender', 'age', 'price_band', 'goal', 'budget'].forEach(id => $(id).addEventListener('input', () => { $('unsaved').style.display = 'block'; $('saved').textContent = ''; }));
+$('g-cards').addEventListener('click', () => { $('unsaved').style.display = 'block'; $('saved').textContent = ''; });
 const G = { g: null, unit: 'orders', pick: '', prof: null };
 const AMB = { hold: 'Hold', grow: 'Grow', stretch: 'Stretch' };
 const inUnit = n => G.unit === 'revenue' ? Math.round(n * G.g.avg_price_usd) : n;
@@ -233,7 +247,11 @@ function showGoals() {
 }
 $('u-orders').onclick = () => { G.unit = 'orders'; showGoals(); };
 $('u-revenue').onclick = () => { G.unit = 'revenue'; showGoals(); };
-(async () => { try { fill(await api('/api/brand')); G.g = await api('/api/goals'); showGoals(); await loadBacktest(); } catch (e) { showError(e); } })();
+(async () => { try {
+  fill(await api('/api/brand')); G.g = await api('/api/goals'); showGoals(); await loadBacktest();
+  const remembered = sessionStorage.getItem('rehearsal.read');
+  if (remembered) { const p = JSON.parse(remembered); G.prof = p; showRead(p); $('read-status').textContent = 'Remembered from your last read'; }
+} catch (e) { showError(e); } })();
 </script>
 </body>
 </html>

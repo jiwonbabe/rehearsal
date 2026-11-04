@@ -10,7 +10,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "reference"))
 
 from engine.model import Plan, calibrate, run_plan, survived, backtest, load_brand  # noqa: E402
-from engine.stress import sample_variants, stress, verdict, flip, baseline_plan  # noqa: E402
+from engine.stress import sample_variants, stress, verdict, flip, baseline_plan, baseline_gaps  # noqa: E402
 from engine.shocks import FALLBACK_COMBOS  # noqa: E402
 from engine.review import review  # noqa: E402
 from engine.goals import goal_suggestions  # noqa: E402
@@ -72,7 +72,9 @@ def main():
     dump("truth", truth_check(brand, rates))
     dump("holdout", holdout(brand, 13))
     dump("evidence", evidence(load_meta(os.path.join(ROOT, "data", "meta", "demo.brand"))))
-    dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand)})
+    dec = Plan.from_dict(dict(committed.to_dict(), month=12))
+    dump("launch", {"ads": launch_spec(best["pay_for_reach"], brand), "seeding": launch_spec(committed, brand), "december": launch_spec(dec, brand)})
+    dump("gaps", baseline_gaps(out))
     r["new_rates"] = r["new_rates"].to_dict()
     dump("review", r)
     dump("goals", goal_suggestions(brand))

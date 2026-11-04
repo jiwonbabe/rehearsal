@@ -46,7 +46,7 @@ const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); docum
   if (!ids.length) { document.getElementById('empty').style.display = 'block'; return; }
   try {
     const [data, brand] = await Promise.all([api('/api/stress', { direction_ids: ids }), api('/api/brand')]);
-    document.getElementById('intro-goal').textContent = `Blue square: that version still reached your goal of ${brand.goal_orders_per_month} orders without running past the ${money(brand.budget_usd_per_month)} budget. Red square: it did not.`;
+    document.getElementById('intro-goal').textContent = `Blue square: that version still reached your goal of ${brand.goal_orders_per_month} orders without running past the ${money(brand.budget_usd_per_month)} budget. Red square: it did not. ` + stateLine(data.goal, data.budget, data.month_name);
     document.getElementById('intro').style.display = 'flex';
     document.getElementById('main').style.display = 'grid';
     showPlan(data.directions[0].plans[0]);
@@ -75,6 +75,8 @@ const showPlan = p => { planEl().textContent = JSON.stringify(p, null, 2); docum
           row.appendChild(cell);
         });
         row.onmouseenter = () => showPlan(p);
+        row.onclick = () => showPlan(p);
+        row.style.cursor = 'pointer';
         grid.appendChild(row);
       });
       box.appendChild(grid);

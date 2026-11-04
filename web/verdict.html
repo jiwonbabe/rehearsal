@@ -40,7 +40,8 @@ function renderTodo(p) {
   const box = document.getElementById('todo');
   box.innerHTML = '';
   box.style.display = 'flex';
-  box.appendChild(el('div', 'font-size:13px;font-weight:600', 'Your month, generated on commit'));
+  box.appendChild(el('div', 'font-size:13px;font-weight:600', p.plan_id === 'baseline' ? 'Baseline committed: keep posting, spend nothing' : 'Your month, generated on commit'));
+  if (p.plan_id === 'baseline') box.appendChild(el('div', 'font-size:13px;color:#5c6066', 'This is the do-nothing-new choice. Launch will only give you the posting calendar.'));
   rows.forEach(([k, l]) => {
     const r = el('div', 'display:flex;gap:16px;font-size:13.5px;line-height:1.5');
     r.appendChild(el('div', 'width:70px;font-weight:600;flex:none', k));
@@ -63,17 +64,28 @@ function renderTodo(p) {
     const titleOf = p => p.plan_id === 'baseline' ? 'Just post · baseline' : (titles[p.direction] || p.direction);
     document.getElementById('main').style.display = 'flex';
     const first = data.verdict.find(v => v.plan.plan_id !== 'baseline');
-    document.getElementById('title').textContent = first
-      ? `Verdict: ${titleOf(first.plan)} holds this month.` : 'Verdict: no paid direction holds this month.';
+    const gapOf = p => (data.gaps || []).find(g => g.plan_id === p.plan_id);
+    const firstGap = first && gapOf(first.plan);
+    document.getElementById('title').textContent = !first ? 'Verdict: no paid direction holds this month.'
+      : (firstGap && firstGap.extra_orders <= 2) ? `Verdict: ${titleOf(first.plan)} barely beats just posting this month.`
+      : `Verdict: ${titleOf(first.plan)} holds this month.`;
+    document.getElementById('sub').textContent += ' ' + stateLine(data.goal, data.budget, data.month_name);
     data.verdict.forEach(v => {
       const c = el('div'); c.className = 'card';
       c.appendChild(el('div', 'font-size:15px;font-weight:600', `${titleOf(v.plan)} · survived ${v.survived} / ${v.total}`));
       c.appendChild(el('div', 'font-size:12.5px;color:#5c6066;line-height:1.45', planText(v.plan)));
-      c.appendChild(el('div', 'font-size:13.5px', `Orders, bad month ${v.orders_bad_month[0]}–${v.orders_bad_month[1]}`));
+      c.appendChild(el('div', 'font-size:13.5px', `Orders, bad month ${Math.round(v.orders_bad_month[0])}–${Math.round(v.orders_bad_month[1])}`));
       c.appendChild(el('div', 'font-size:13.5px', `Spend ${money(v.spend_usd)}`));
+      const g = gapOf(v.plan);
+      if (g) {
+        const tone = g.extra_orders <= 2 ? '#c2410c' : (g.usd_per_extra_order > data.avg_price_usd ? '#8a6d1f' : '#2f6f3e');
+        c.appendChild(el('div', `font-size:13px;color:${tone}`, g.extra_orders > 0
+          ? `vs just posting: +${g.extra_orders} orders in a bad month for ${money(g.extra_spend_usd)} more · ${money(g.usd_per_extra_order)} per extra order` + (g.usd_per_extra_order > data.avg_price_usd ? ' (more than a piece sells for)' : '')
+          : `vs just posting: no extra orders in a bad month for ${money(g.extra_spend_usd)} more`));
+      }
       c.appendChild(el('div', 'font-size:13.5px;color:#c2410c', `Dies if ${shockText(v.dies_if, data.catalog)}`));
       const b = el('button', 'align-self:flex-start', 'Commit to this plan'); b.className = 'btn';
-      b.onclick = () => { setCommitted(v.plan); renderTodo(v.plan); document.getElementById('todo').scrollIntoView({ behavior: 'smooth' }); };
+      b.onclick = () => { setCommitted(v.plan, titleOf(v.plan), data.month, data.month_name); renderTodo(v.plan); document.getElementById('todo').scrollIntoView({ behavior: 'smooth' }); };
       c.appendChild(b);
       document.getElementById('cards').appendChild(c);
     });

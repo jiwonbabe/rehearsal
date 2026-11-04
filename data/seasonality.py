@@ -19,7 +19,7 @@ M = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 YEARS = ["2023", "2024", "2025"]
 CATEGORIES = [  # key, Setup label, Census code, years
     ("jewelry", "Jewelry", "44831", ["2017", "2018", "2019"]),
-    ("apparel", "Clothing and accessories", "448", YEARS),
+    ("apparel", "Clothing (apparel and shoes)", "448", YEARS),
     ("beauty", "Beauty, health and personal care", "446", YEARS),
     ("home", "Furniture and home", "442", YEARS),
     ("electronics", "Electronics and appliances", "443", YEARS),

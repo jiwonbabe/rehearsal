@@ -33,7 +33,7 @@
    ]
   },
   "apparel": {
-   "label": "Clothing and accessories",
+   "label": "Clothing (apparel and shoes)",
    "demand": {
     "1": 0.74,
     "2": 0.8,
@@ -51,7 +51,7 @@
    "sources": [
     {
      "for": "demand",
-     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): clothing and accessories stores, NAICS 448, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
+     "source": "U.S. Census Bureau, Monthly Retail Trade (mrtssales92-present.xlsx, downloaded Nov 3, 2026): clothing (apparel and shoes) stores, NAICS 448, not seasonally adjusted; monthly sales ÷ that year's monthly mean, averaged over 2023-2025",
      "url": "https://www.census.gov/retail/mrts/www/mrtssales92-present.xlsx",
      "year": 2025
     }

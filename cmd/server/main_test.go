@@ -857,7 +857,7 @@ func TestSetupCategorySwapsSeasonTable(t *testing.T) {
 		} `json:"season"`
 	}
 	call(t, ts, "POST", "/api/directions", "", &d)
-	if d.Season.Category != "apparel" || d.Season.Label != "Clothing and accessories" || d.Season.Demand != 1.13 {
+	if d.Season.Category != "apparel" || d.Season.Label != "Clothing (apparel and shoes)" || d.Season.Demand != 1.13 {
 		t.Errorf("november apparel: %+v", d.Season)
 	}
 }

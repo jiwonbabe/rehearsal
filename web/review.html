@@ -23,7 +23,7 @@
 <script src="/i18n.js"></script>
 <script src="/app.js"></script>
 <script>
-renderHeader(4, 'Review · October, the month that just ended');
+renderHeader(1, 'Review · October, the month that just ended');
 const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
 (async () => {
   try {
@@ -32,8 +32,8 @@ const el = (tag, css, text) => { const e = document.createElement(tag); if (css)
     document.getElementById('main').style.display = 'flex';
     const where = r.inside_range ? 'inside range' : (a.orders > r.range[1] ? 'above range' : 'below range');
     document.getElementById('title').textContent = `October: ${where}. ` + (where === 'above range' ? 'Here is what went better than the engine thought.' : where === 'inside range' ? 'Here is what the engine got right.' : 'Here is what was off.');
-    document.getElementById('apply').textContent = `Preview ${d.next_month_name || 'next month'} with the re-learned rates`;
-    document.getElementById('apply').insertAdjacentHTML('afterend', '<div style="font-size:12.5px;color:#5c6066;line-height:1.5;margin-top:6px">The data ends in October, so this month\'s plan is November and the review is of October. The preview plans the month after with the rates learned here; it is a look ahead, not a record of November.</div>')
+    document.getElementById('apply').textContent = 'Use what October taught and plan this month';
+    document.getElementById('apply').insertAdjacentHTML('afterend', '<div style="font-size:12.5px;color:#5c6066;line-height:1.5;margin-top:6px">The data ends in October, so the month that just ended is October and the month to plan is November. Applying re-learns the rates; November\'s directions use them.</div>');
     document.getElementById('ran').textContent = `You ran ${planText(d.committed)}.`;
     const out = a.orders < r.range[0] || a.orders > r.range[1];
     const rows = document.getElementById('rows');

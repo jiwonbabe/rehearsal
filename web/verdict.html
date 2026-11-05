@@ -22,7 +22,7 @@
 <script src="/i18n.js"></script>
 <script src="/app.js"></script>
 <script>
-renderHeader(3, 'Verdict');
+renderHeader(4, 'Verdict');
 const el = (tag, css, text) => { const e = document.createElement(tag); if (css) e.style.cssText = css; if (text !== undefined) e.textContent = text; return e; };
 function renderTodo(p) {
   const mix = planText(p).replace(/^post [^(]*\(/, '').replace(/\).*$/, '');

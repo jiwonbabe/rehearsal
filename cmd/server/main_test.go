@@ -216,16 +216,21 @@ func TestReviewApplyIsIdempotent(t *testing.T) {
 	}
 	call(t, ts, "POST", "/api/review/apply", "", &applied)
 	call(t, ts, "POST", "/api/review/apply", "", &applied)
-	if applied.Month != 2 || applied.Rates.SeedPostRate != 0.49 {
-		t.Errorf("after two applies: %+v", applied)
+	if applied.Month != 1 || applied.Rates.SeedPostRate != 0.49 {
+		t.Errorf("after two applies the month is still the one being planned, with re-learned rates: %+v", applied)
 	}
 	var dirs struct {
 		Month     int             `json:"month"`
 		LastMonth json.RawMessage `json:"last_month"`
 	}
 	call(t, ts, "GET", "/api/directions", "", &dirs)
-	if dirs.Month != 2 || len(dirs.LastMonth) < 10 {
-		t.Errorf("directions after apply: month %d", dirs.Month)
+	if dirs.Month != 1 || len(dirs.LastMonth) < 10 {
+		t.Errorf("directions after apply: month %d, last_month %d bytes", dirs.Month, len(dirs.LastMonth))
+	}
+	call(t, ts, "POST", "/api/month/next", "", &applied)
+	call(t, ts, "GET", "/api/directions", "", &dirs)
+	if applied.Month != 2 || dirs.Month != 2 {
+		t.Errorf("next month after the review: %+v / %d", applied, dirs.Month)
 	}
 }
 
@@ -995,5 +1000,12 @@ func TestBothTogetherFitsTheBudgetAndLaunches(t *testing.T) {
 	call(t, ts, "POST", "/api/stress", `{"direction_ids":["pay_for_reach"]}`, &one)
 	if len(one.Directions) != 1 {
 		t.Errorf("one pick has nothing to combine: %d", len(one.Directions))
+	}
+}
+
+func TestNextMonthNeedsTheReviewFirst(t *testing.T) {
+	ts := newTestServer(t)
+	if code := call(t, ts, "POST", "/api/month/next", "", nil); code != 409 {
+		t.Errorf("next month before the review: %d", code)
 	}
 }

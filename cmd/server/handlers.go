@@ -68,7 +68,7 @@ func via(src, dst any) error {
 
 func (s *server) currentDirections() ([]engine.Direction, error) {
 	block := ""
-	if s.month == 2 && s.lastReview != nil {
+	if s.lastReview != nil {
 		block = engine.LastMonthBlock(*s.lastReview)
 	}
 	summary := engine.Summary(s.brand, s.rates, engine.RunBacktest(s.brand, s.rates, 13))
@@ -465,9 +465,18 @@ func (s *server) handleReviewApply(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.rates = review.NewRates
+	s.lastReview = &review // the month being planned keeps its number; its directions now use the re-learned rates
+	s.writeJSON(w, map[string]any{"month": s.month, "rates": s.rates})
+}
+
+// handleNextMonth: move on to the month after this one (a preview with the current rates). Needs the review first.
+func (s *server) handleNextMonth(w http.ResponseWriter, r *http.Request) {
+	if s.lastReview == nil {
+		writeError(w, 409, "review last month first")
+		return
+	}
 	s.month = 2
-	s.lastReview = &review
-	s.writeJSON(w, map[string]any{"month": 2, "rates": s.rates})
+	s.writeJSON(w, map[string]any{"month": s.month, "rates": s.rates})
 }
 
 // handleProfile reads the owner's Instagram screenshots through Spark (cache-only in the demo).

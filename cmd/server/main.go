@@ -160,6 +160,7 @@ func (s *server) routes() *http.ServeMux {
 	mux.HandleFunc("POST /api/stress", s.locked(s.handleStress))
 	mux.HandleFunc("POST /api/review", s.locked(s.handleReview))
 	mux.HandleFunc("POST /api/review/apply", s.locked(s.handleReviewApply))
+	mux.HandleFunc("POST /api/month/next", s.locked(s.handleNextMonth))
 	mux.HandleFunc("POST /api/launch", s.locked(s.handleLaunch))
 	mux.HandleFunc("POST /api/launch/ads", s.locked(s.handleLaunchAds))
 	mux.HandleFunc("POST /api/launch/calendar", s.locked(s.handleLaunchCalendar))

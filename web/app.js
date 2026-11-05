@@ -1,6 +1,6 @@
 // Shared shell for every page. All numbers shown come from the API; this file only formats.
 function renderHeader(step, subtitle) {
-  const nav = [['0 Setup', '/'], ['1 Directions', '/directions.html'], ['2 Simulate', '/simulate.html'], ['3 Verdict', '/verdict.html'], ['4 Review', '/review.html'], ['5 Launch', '/launch.html']];
+  const nav = [['0 Setup', '/'], ['1 Review', '/review.html'], ['2 Directions', '/directions.html'], ['3 Simulate', '/simulate.html'], ['4 Verdict', '/verdict.html'], ['5 Launch', '/launch.html']];
   const pills = nav.map(([t, h], i) => i === step
     ? `<div class="pill active">${t}</div>` : `<a class="pill" href="${h}">${t}</a>`).join('');
   const el = document.createElement('div');

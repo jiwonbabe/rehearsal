@@ -20,6 +20,7 @@ It is an **agent loop**: planner (Muse Spark) → engine → adversary (Muse Spa
 flowchart TB
     subgraph OWNER["👤 Owner · decides"]
         O1["1 · Profile, goal, budget<br/>(confirms what Spark read)"]
+        O1b["1b · Reviews the month that just ended<br/>(what happened vs what the engine expected)"]
         O5["5 · Picks one or two directions"]
         O8["8 · Commits a plan"]
         O10["10 · Switches the paused campaign on"]
@@ -37,11 +38,11 @@ flowchart TB
         E7["7 · Runs every plan against every bad month<br/>survived · dies if · the assumption that flips it"]
         E9["9 · Paused Meta campaign · creator kit · calendar"]
     end
-    O1 --> S2 --> S3 --> E4
+    O1 --> O1b --> S2 --> S3 --> E4
+    O1b -. re-learned rates .-> E4
     E0 -. shown before any plan .-> O1
     O1 --> E0
     E4 --> O5 --> S6 --> E7 --> S7b --> O8 --> S9 --> E9 --> O10
-    E7 -. next month: review what happened, re-learn rates .-> S3
 ```
 
 Numbers in the boxes are the order of one month. Every arrow into the engine carries text or ranges; every arrow out of it carries numbers.
@@ -70,7 +71,7 @@ Numbers in the boxes are the order of one month. Every arrow into the engine car
 
 ## Does it work
 
-- **Live:** https://rehearsal-run.fly.dev, three demo brands, every screen, month 1 → review → month 2.
+- **Live:** https://rehearsal-run.fly.dev, three demo brands, every screen: review the month that just ended, plan this month, launch, preview the next.
 - **Numbers are checked twice:** the Go engine is compared to an independent Python reference engine through golden fixtures on every `go test ./...` (calibration, backtest, stress, flip, launch, seasonality, creator pool, budget split).
 - **The model is checked on the way in:** every Spark response passes validation before it is shown (enums, sentence shape, no numbers the engine did not produce, banned words), so a bad generation degrades to a safe fallback instead of a wrong screen.
 - **The engine is checked against the brand:** the hidden-weeks backtest and the known-answer recovery are on the first screen, hits and misses included.
@@ -95,7 +96,7 @@ Every brand is synthetic and labelled so on every screen. The header switches be
 
 - **Real:** the Meta ad account connection (live reach estimate; a paused campaign and ad set are created in a real account), the public data (Census monthly retail sales, Signet Jewelers quarterly sales, Gupta Media Meta CPM, Pew 2026 platform use), and the engine's own error.
 - **Synthetic:** the three brands, their 52 weeks of history, their mock Instagram insights and the creators found for them. Fictional handles only.
-- **Rules the code enforces:** the model's text is validated before it is shown, and any sentence quoting a number the engine did not produce is dropped; the words *forecast* and *prediction* appear nowhere in the product.
+- **Rules the code enforces:** the model's text is validated before it is shown, and any sentence quoting a number the engine did not produce is dropped; the product never claims to foresee the future; it says what survived, what dies if, and which assumption flips the answer.
 
 ## Run it
 
@@ -115,4 +116,4 @@ Muse Spark is called through the Meta Model API (OpenAI-compatible chat completi
 
 ## Next
 
-Move the review in front of the plan: review the month that just ended, re-learn, then plan this month (today the review sits between month 1 and a preview of month 2 because the demo data ends in October). Connect a real shop and Instagram account (the seams exist), let a brand's own ad-account CPM replace the public ad-cost table, add more channels as levers with the same rule: a lever with no history is shown, not rated.
+Connect a real shop and Instagram account (the seams exist), let a brand's own ad-account CPM replace the public ad-cost table, add more channels as levers with the same rule: a lever with no history is shown, not rated.

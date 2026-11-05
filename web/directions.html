@@ -26,7 +26,7 @@
 <script src="/i18n.js"></script>
 <script src="/app.js"></script>
 <script>
-renderHeader(1, 'Directions · this month');
+renderHeader(2, 'Directions · this month');
 let dirs = [], coverage = [], data = {}, brandTarget = {}, sel = getSelected().slice(0, 2);
 const line = (label, text) => { const r = document.createElement('div'); r.innerHTML = '<span style="font-weight:600"></span> <span></span>'; r.firstChild.textContent = label; r.lastChild.textContent = text; return r; };
 function renderPlaybook(box, pb) {
@@ -192,7 +192,7 @@ $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
     sel = sel.filter(id => dirs.some(d => d.id === id));
     document.getElementById('title').textContent = ((data.season && data.season.name) || 'This month') + ': pick one or two directions';
     const lm = data.last_month;
-    if (data.month === 2 && lm) {
+    if (lm) {
       const t = document.getElementById('taught');
       t.style.display = 'grid';
       const body = document.getElementById('taught-body');
@@ -200,6 +200,12 @@ $go.onclick = () => { setSelected(sel); location.href = '/simulate.html'; };
       p(lm.diagnosis);
       p(`Orders ${lm.actual.orders} vs ${Math.round(lm.range[0])}–${Math.round(lm.range[1])}`);
       (lm.rate_changes || []).forEach(r => p(`${r.rate} ${r.old} → ${r.new}`));
+      if (data.month === 1) {
+        const b = document.createElement('button'); b.className = 'btn ghost'; b.style.cssText = 'min-height:34px;font-size:13px;padding:0 14px;justify-self:start;margin-top:6px';
+        b.textContent = 'Preview next month with these rates';
+        b.onclick = async () => { b.disabled = true; try { await api('/api/month/next', {}); setSelected([]); location.reload(); } catch (e) { b.disabled = false; showError(e); } };
+        body.appendChild(b);
+      }
     }
     draw();
   } catch (e) { showError(e); }

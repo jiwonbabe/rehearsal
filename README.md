@@ -5,7 +5,7 @@ The AI proposes. A deterministic engine tests. A person decides.
 
 Live demo: **https://rehearsal-run.fly.dev** · Built Nov 2–4, 2026 during the Meta Global AI Developer Hackathon, no external code · Go, stdlib only.
 
-**Who it is for:** a small brand owner with no marketer, a few hundred dollars a month, and a plan that has never been tested against anything going wrong. They find out in week 3 that it did not work, after the budget is gone. Rehearsal moves that moment to before the spend.
+**Theme: Build for Your World.** This started with a small brand owner in my own family and the question she asks every month: ads, creators, a sale, or nothing? **Who it is for:** a small brand owner with no marketer, a few hundred dollars a month, and a plan that has never been tested against anything going wrong. They find out in week 3 that it did not work, after the budget is gone. Rehearsal moves that moment to before the spend.
 
 It is an **agent loop**: planner (Muse Spark) → engine → adversary (Muse Spark) → engine → verdict + check line (Muse Spark) → **human commits** → executor (Muse Spark playbook + engine numbers → paused Meta campaign, creator kit, calendar). Models at both ends, a deterministic engine in the middle, a person before anything is sent.
 
@@ -48,6 +48,19 @@ flowchart LR
 **A strong month raises the bar instead of flattering a plan.** December demand is 2.2× an average month for jewelry, so the tool offers a month-sized goal; at that goal, just posting survives 1 of 20 bad months.
 
 ![December verdict](docs/img/december.png)
+
+## Does it work
+
+- **Live:** https://rehearsal-run.fly.dev, three demo brands, every screen, month 1 → review → month 2.
+- **Numbers are checked twice:** the Go engine is compared to an independent Python reference engine through golden fixtures on every `go test ./...` (calibration, backtest, stress, flip, launch, seasonality, creator pool, budget split).
+- **The model is checked on the way in:** every Spark response passes validation before it is shown (enums, sentence shape, no numbers the engine did not produce, banned words), so a bad generation degrades to a safe fallback instead of a wrong screen.
+- **The engine is checked against the brand:** the hidden-weeks backtest and the known-answer recovery are on the first screen, hits and misses included.
+- **The action is real:** with a Meta ad account connected, Launch created a paused campaign and ad set in a real account (verified Nov 3, 2026; nothing spends).
+- **The flow is exercised end to end:** a headless-browser run clicks through all six screens for all three brands before each deploy.
+
+## What is new here
+
+A planning assistant that is *not allowed to do the math*. The LLM contributes what it is good at (directions written for this brand, plausible bad months, a playbook, a DM) and a deterministic engine does what it is good at (running 240 plans against 20 bad months, finding the one assumption that flips the ranking, sizing the goal to the season, splitting a budget). The engine's own error is the first thing the owner sees, and a lever with no history is shown but not rated.
 
 ## Three demo brands
 

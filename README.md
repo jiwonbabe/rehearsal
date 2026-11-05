@@ -17,15 +17,34 @@ It is an **agent loop**: planner (Muse Spark) → engine → adversary (Muse Spa
 | **Never writes an order count, a revenue figure or a rate** | **Same input, same output; checked against a Python reference** | **Nothing spends without them** |
 
 ```mermaid
-flowchart LR
-    A[Owner: profile, goal, budget] --> B[Muse Spark proposes<br/>4 directions + ranges]
-    B --> C[Engine: 240 plans]
-    D[Muse Spark adversary<br/>20 bad months] --> C
-    C --> E[Verdict: survived / dies if /<br/>the assumption that flips it]
-    E --> F[Owner commits]
-    F --> G[Launch: paused Meta campaign,<br/>creator kit, calendar]
-    H[Engine backtest on the brand's own history] -.shown first.-> A
+flowchart TB
+    subgraph OWNER["👤 Owner · decides"]
+        O1["1 · Profile, goal, budget<br/>(confirms what Spark read)"]
+        O5["5 · Picks one or two directions"]
+        O8["8 · Commits a plan"]
+        O10["10 · Switches the paused campaign on"]
+    end
+    subgraph SPARK["🧠 Muse Spark · proposes text and ranges, never a number"]
+        S2["2 · Reads the profile screenshot → labels"]
+        S3["3 · Planner: 4 directions + parameter ranges"]
+        S6["6 · Adversary: 20 bad months per direction"]
+        S7b["7b · Check line: what to verify this week"]
+        S9["9 · Playbook, creator brief, DM"]
+    end
+    subgraph ENGINE["⚙️ Engine · deterministic, computes every number"]
+        E0["0 · Backtest on the brand's own history<br/>(hits and misses shown first)"]
+        E4["4 · 60 plans per direction"]
+        E7["7 · Runs every plan against every bad month<br/>survived · dies if · the assumption that flips it"]
+        E9["9 · Paused Meta campaign · creator kit · calendar"]
+    end
+    O1 --> S2 --> S3 --> E4
+    E0 -. shown before any plan .-> O1
+    O1 --> E0
+    E4 --> O5 --> S6 --> E7 --> S7b --> O8 --> S9 --> E9 --> O10
+    E7 -. next month: review what happened, re-learn rates .-> S3
 ```
+
+Numbers in the boxes are the order of one month. Every arrow into the engine carries text or ranges; every arrow out of it carries numbers.
 
 ## What the screens show
 

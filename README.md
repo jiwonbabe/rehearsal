@@ -3,7 +3,11 @@
 **Stress-test a small brand's monthly marketing plan before the money is spent.**
 The AI proposes. A deterministic engine tests. A person decides.
 
-Live demo: **https://rehearsal-run.fly.dev** · Built Nov 2–4, 2026 for the Meta Global AI Developer Hackathon with Muse Spark · Go, stdlib only.
+Live demo: **https://rehearsal-run.fly.dev** · Built Nov 2–4, 2026 during the Meta Global AI Developer Hackathon, no external code · Go, stdlib only.
+
+**Who it is for:** a small brand owner with no marketer, a few hundred dollars a month, and a plan that has never been tested against anything going wrong. They find out in week 3 that it did not work, after the budget is gone. Rehearsal moves that moment to before the spend.
+
+It is an **agent loop**: planner (Muse Spark) → engine → adversary (Muse Spark) → engine → verdict + check line (Muse Spark) → **human commits** → executor (Muse Spark playbook + engine numbers → paused Meta campaign, creator kit, calendar). Models at both ends, a deterministic engine in the middle, a person before anything is sent.
 
 | The model (Muse Spark) | The engine (Go, deterministic) | The owner |
 |---|---|---|
@@ -69,7 +73,7 @@ BRAND=data/brands/beauty.json go run ./cmd/server     # another demo brand
 go test ./...                                         # Go engine vs the Python reference fixtures
 ```
 
-Spark responses are cached in `spark/cache/`; the server never calls the model live. `MUSE_API_KEY=... go run ./cmd/sparkcache` regenerates a cache. `META_AD_ACCOUNT_ID` and `META_ACCESS_TOKEN` make Launch live.
+Muse Spark is called through the Meta Model API (OpenAI-compatible chat completions, text + image input); set `MUSE_BASE_URL` and `MUSE_MODEL` to use the same prompts against Baseten's `meta-models/muse-spark-open-1026`. Spark responses are cached in `spark/cache/`; the server never calls the model live. `MUSE_API_KEY=... go run ./cmd/sparkcache` regenerates a cache. `META_AD_ACCOUNT_ID` and `META_ACCESS_TOKEN` make Launch live.
 
 ## More
 

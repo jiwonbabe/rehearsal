@@ -86,6 +86,10 @@
       <div style="background:#f3f4f1;border-radius:8px;padding:14px 16px"><div style="font-size:12px;color:#5c6066">Typical miss</div><div id="bt-err" class="mono" style="font-size:28px;font-weight:500"></div><div style="font-size:12px;color:#5c6066">how far off the engine was in a typical week</div></div>
       <div style="background:#f3f4f1;border-radius:8px;padding:14px 16px"><div style="font-size:12px;color:#5c6066">Weeks it got right</div><div id="bt-in" class="mono" style="font-size:28px;font-weight:500"></div><div style="font-size:12px;color:#5c6066">its answer was within 20% of what really happened</div></div>
     </div>
+    <div id="bt-strip" style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:12px;color:#5c6066">The 13 hidden weeks, in order · blue = your orders landed inside the engine's range, red = outside</div>
+      <div id="bt-cells" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    </div>
     <details><summary style="cursor:pointer;font-size:13px;color:#5c6066">Show the 13 hidden weeks</summary>
     <table style="border-collapse:collapse;font-size:13px;width:100%;margin-top:8px">
       <thead><tr style="text-align:left;color:#5c6066"><th>Week</th><th>Orders you got</th><th>Engine said</th><th>Engine's range (low–high)</th><th>Result</th><th></th></tr></thead>
@@ -149,6 +153,12 @@ async function loadBacktest() {
       <td style="color:#5c6066">${r.promo ? 'sale week' : ''}</td></tr>`;
   }).join('');
   $('bt-weak').style.display = weak ? 'block' : 'none';
+  $('bt-cells').innerHTML = bt.rows.map(r => {
+    const inside = r.actual >= r.low && r.actual <= r.high;
+    return `<div title="${r.week}: you got ${r.actual}, engine said ${r.engine} (${r.low}–${r.high})${r.promo ? ', sale week' : ''}" style="display:flex;flex-direction:column;align-items:center;gap:3px;min-width:46px">
+      <div style="width:46px;height:28px;border-radius:6px;background:${inside ? '#2f5d8a' : '#c2410c'};color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center" class="mono">${r.actual}</div>
+      <div style="font-size:10.5px;color:#5c6066" class="mono">${r.low}–${r.high}</div></div>`;
+  }).join('');
 }
 $('save').onclick = async () => {
   try {

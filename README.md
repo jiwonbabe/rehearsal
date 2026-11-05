@@ -49,7 +49,7 @@ Numbers in the boxes are the order of one month. Every arrow into the engine car
 
 ## What the screens show
 
-**It tests itself before it tests you.** 13 weeks of the brand's history are hidden, the engine reproduces them, and every hit and miss is on screen. Levers with too little history are marked *not rated* instead of guessed.
+**It tests itself before it tests you.** 13 weeks of the brand's history are hidden, the engine reproduces them, and every hit and miss is on screen. Levers with too little history are marked *not rated* instead of guessed. Then the month that just ended is reviewed (what happened vs what the engine expected) and the rates are re-learned before anything is planned.
 
 ![Setup: hidden weeks, hits and misses](docs/img/trust.png)
 
@@ -65,7 +65,7 @@ Numbers in the boxes are the order of one month. Every arrow into the engine car
 
 ![Launch](docs/img/launch.png)
 
-**A strong month raises the bar instead of flattering a plan.** December demand is 2.2× an average month for jewelry, so the tool offers a month-sized goal; at that goal, just posting survives 1 of 20 bad months.
+**A strong month raises the bar instead of flattering a plan.** Previewing next month: December demand is 2.2× an average month for jewelry, so the tool offers a month-sized goal; at that goal, just posting survives 1 of 20 bad months.
 
 ![December verdict](docs/img/december.png)
 
@@ -86,11 +86,11 @@ A planning assistant that is *not allowed to do the math*. The LLM contributes w
 
 Every brand is synthetic and labelled so on every screen. The header switches between them; each has its own history, mock Meta account, season table and Spark cache.
 
-| Brand | Category | Holdout miss | Rates recovered within 10% | Best plan / baseline (Nov) |
+| Brand | Category | Holdout miss | Rates recovered within 10% | Best plan / baseline (Nov, after the October review, ads + creators picked) |
 |---|---|---|---|---|
-| Wrenfield Jewelry | jewelry | 14.7% (8 of 13 weeks inside) | 7 of 9 | 16 / 5 of 20 |
-| Harbor & Pine Apparel | clothing | 14.8% (8 of 13) | 8 of 9 | 5 / 1 of 20 |
-| Lumen Skincare | beauty | 18.5% (6 of 13) | 9 of 9 | 11 / 1 of 20 |
+| Wrenfield Jewelry | jewelry | 14.7% (8 of 13 weeks inside) | 7 of 9 | 15 / 5 of 20 |
+| Harbor & Pine Apparel | clothing | 14.8% (8 of 13) | 8 of 9 | 20 / 13 of 20 |
+| Lumen Skincare | beauty | 18.5% (6 of 13) | 9 of 9 | 20 / 1 of 20 |
 
 ## What is real, what is not
 

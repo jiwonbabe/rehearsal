@@ -115,4 +115,4 @@ Muse Spark is called through the Meta Model API (OpenAI-compatible chat completi
 
 ## Next
 
-Connect a real shop and Instagram account (the seams exist), let a brand's own ad-account CPM replace the public ad-cost table, add more channels as levers with the same rule: a lever with no history is shown, not rated.
+Move the review in front of the plan: review the month that just ended, re-learn, then plan this month (today the review sits between month 1 and a preview of month 2 because the demo data ends in October). Connect a real shop and Instagram account (the seams exist), let a brand's own ad-account CPM replace the public ad-cost table, add more channels as levers with the same rule: a lever with no history is shown, not rated.
